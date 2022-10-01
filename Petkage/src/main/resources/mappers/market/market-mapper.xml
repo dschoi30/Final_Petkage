@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.market.model.mapper.MarketMapper">
+	<resultMap type="Product" id="productListResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proImg" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+		<result property="proRepCount" column="PRO_REP_COUNT"/>
+	</resultMap>
+	
+	<select id="selectProductCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT WHERE PRO_STATUS='Y'
+	</select>
+</mapper>
