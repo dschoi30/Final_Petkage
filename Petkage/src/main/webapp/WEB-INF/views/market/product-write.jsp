@@ -57,21 +57,25 @@
                 <br><br>
                 <div class="row justify-content-center"><h2>상품 등록</h2></div>
                 <br><br>
-                <form method="post">
+                <form action="${ path }/market/product-write" method="POST" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <td><b>상품명</b></td>
-                            <td><input type="text" size="80" placeholder="노출 상품명 입력(브랜드명 + 상품명)"></td>
+                            <td><input type="text" name="proName" size="80" placeholder="노출 상품명 입력(브랜드명 + 상품명)" required></td>
+                        </tr>
+                        <tr>
+                            <td><b>브랜드</b></td>
+                            <td><input type="text" name="proBrand" size="80" placeholder="노출 브랜드명 입력" required></td>
                         </tr>
                         <tr>
                             <td><b>카테고리</b></td>
                             <td>
-                                <select required>
+                                <select name="proCategory1" required>
                                     <option>카테고리 선택 1</option>
                                     <option value="dog">강아지</option>
                                     <option value="cat">고양이</option>
                                 </select>
-                                <select required>
+                                <select name="proCategory2" required>
                                     <option>카테고리 선택 2</option>
                                     <option value="food">사료/간식</option>
                                     <option value="health">건강/관리</option>
@@ -87,11 +91,11 @@
                         </tr>
                         <tr>
                             <td><b>태그</b></td>
-                            <td><input type="text" size="80" placeholder="쉼표(,)로 구분하여 최대 10개까지 입력 가능"></td>
+                            <td><input type="text" name="proTag" size="80" placeholder="쉼표(,)로 구분하여 최대 10개까지 입력 가능"></td>
                         </tr>
                         <tr>
                             <td><b>대표 이미지</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
+                            <td><input type="file" name="proImg" id="cit_file_1" required/></td>
                         </tr>
                         <tr>
                             <td><b>추가 이미지 1/5</b></td>
@@ -123,23 +127,23 @@
                             <td><b>출고 소요 기간(일)</b></td>
                         </tr>
                         <tr>
-                            <td><input type="text" size="18" dir="rtl"></td>
-                            <td><input type="text" size="18" dir="rtl"></td>
-                            <td><input type="text" size="18" dir="rtl"></td>
-                            <td><input type="text" size="18" dir="rtl"></td>
-                            <td><input type="text" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proQty" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proOPrice" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proSPrice" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proDelFee" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proLTime" size="18" dir="rtl"></td>
                         </tr>
                     </table>
                     <br><br>
                     <b>상품 상세 설명</b>
-                    <textarea id="summernote" name="editordata"></textarea>
+                    <textarea id="summernote" name="proContent" required></textarea>
                     <br>
                     <div class="align-btn-prod-write">
                         <button type="reset" class="btn btn-light text-nowrap">입력취소</button>
                         <button class="btn btn-light text-nowrap">미리보기</button>
                         <button class="btn btn-light text-nowrap">중간저장</button>
-                        <button class="btn btn-light text-nowrap" onclick="location.replace('${ path }/market/product-list')">저장하기</button>
-                    </div>  
+                        <button type="submit" class="btn btn-light text-nowrap">저장하기</button>
+                    </div>
                 </form>
             </div>
         </div>

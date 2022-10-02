@@ -17,7 +17,7 @@
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    
 
     <!-- Product CSS-->
-    <link rel="stylesheet" href="${path}/resources/css/market/product.css">
+    <link rel="stylesheet" href="${ path }/resources/css/market/product.css">
 
     <!-- Common CSS -->
     <link rel="stylesheet" href="/EUM/CSS/common/header.css"></link>
@@ -61,7 +61,7 @@
                             <input type="text" name="searchVal" id="searchInput" class="form-control" size="60">
                             <span class="input-group-btn">
                                 <button id="searchBtn">
-                                    <img src="${path}/resources/images/market/search.png" width="23" height="23" alt="search">
+                                    <img src="${ path }/resources/images/market/search.png" width="23" height="23" alt="search">
                                 </button>
                             </span>
                         </div>
@@ -78,7 +78,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon1.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/best-icon.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">베스트</div>
@@ -88,7 +88,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon2.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon1.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">사료/간식</div>
@@ -98,7 +98,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon3.png"" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon3.png"" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">건강관리</div>
@@ -108,7 +108,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon4.png"" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon4.png"" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">배변용품</div>
@@ -118,7 +118,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon5.png"" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon5.png"" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">리빙용품</div>
@@ -128,7 +128,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon6.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon7.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">미용/목욕</div>
@@ -138,7 +138,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon7.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon8.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">야외용품</div>
@@ -148,7 +148,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon8.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon9.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">장난감</div>
@@ -158,7 +158,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon9.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon10.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">패션용품</div>
@@ -168,7 +168,7 @@
                             <li class="subcategory">
                                 <button class="btn-subcategory">
                                     <span class="span-subcategory-img">
-                                        <img src="${path}/resources/images/market/category/dog-icon10.png" width="60" height="60" alt="">
+                                        <img src="${ path }/resources/images/market/category/dog-icon11.png" width="60" height="60" alt="">
                                     </span>
                                     <span class="span-subcategory">
                                         <div class="">기타</div>
@@ -185,113 +185,41 @@
                     <a href="javascript:pricelistdesc();">높은가격</a>
                 </div>
                 <div class="row">
-                    <div class="row row-cols-2 row-cols-md-4">
-                        <div class="col mb-4">
-                            <a class="page-link" href="/CHOI/HTML/product_view.html" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                            </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="/CHOI/HTML/product_view.html" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="/CHOI/HTML/product_view.html" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="/CHOI/HTML/product_view.html" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row row-cols-2 row-cols-md-4">
-                        <div class="col mb-4">
-                            <a class="page-link" href="#" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="#" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="#" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col mb-4">
-                            <a class="page-link" href="#" style="border: 0;">
-                            <div class="card h-100" style="border: 0;">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">탐사 6free 강아지 사료 연어 레시피, 3kg</p>
-                                        <p class="rating">★★★★★ (후기 : 99건)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+	                <c:if test="${ empty list }">
+	                	조회된 게시글이 없습니다.
+	                </c:if>
+	                <c:if test="${ not empty list }">
+                    	<div class="row row-cols-2 row-cols-md-4">
+	                    	<c:forEach var="product" items="${ list }">
+		                        <div class="col mb-4">
+		                            <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 400px;">
+		                            <div class="card h-100" style="border: 0;">
+		                                    <img src="${ path }/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
+		                                    <div class="card-body">
+		                                        <p class="card-text">${ product.proName }</p>
+		                                        <p class="rating">★★★★★ (후기 : 99건)</p>
+		                                    </div>
+		                            </div>
+		                            </a>
+		                        </div>
+		                   	</c:forEach>
+                   		</div>
+                   	</c:if>
                 </div>
                 <div>
                     <ul class="pagination justify-content-center">
-	                    <li class="page-item"><a class="page-link" href="${ path }/market/list?page=1&&type=${ type }">&lt;&lt;</a></li>
-	                    <li class="page-item"><a class="page-link" href="${ path }/market/list?page=${ pageInfo.prevPage }&&type=${ type }">&lt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1">&lt;&lt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }">&lt;</a></li>
 						<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 							<c:if test="${ status.current == pageInfo.currentPage }">
 			                    <li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
 							</c:if>
 							<c:if test="${ status.current != pageInfo.currentPage }">
-			                    <li class="page-item"><a class="page-link" href="${ path }/market/list?page=${ status.current }&&type=${ type }">${ status.current }</a></li>
+			                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }">${ status.current }</a></li>
 							</c:if>
 						</c:forEach>
-                        <li class="page-item"><a class="page-link" href="${ path }/market/list?page=${ pageInfo.nextPage }&&type=${ type }">&gt;</a></li>
-                    	<li class="page-item"><a class="page-link" href="${ path }/market/list?page=${ pageInfo.maxPage }&&type=${ type }">&gt;&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }">&gt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }">&gt;&gt;</a></li>
                     </ul>
                 </div>
             </div>

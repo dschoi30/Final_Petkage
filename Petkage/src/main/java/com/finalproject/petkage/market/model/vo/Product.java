@@ -22,6 +22,8 @@ public class Product {
 	
 	private String proCategory2;
 	
+	private String proTag;
+	
 	private String proImg;
 	
 	private int proQty;
@@ -33,6 +35,8 @@ public class Product {
 	private int proDelFee;
 	
 	private int proLTime;
+	
+	private String proContent;
 	
 	private Date proRDate;
 	
