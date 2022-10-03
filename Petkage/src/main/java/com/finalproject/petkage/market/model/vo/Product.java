@@ -24,7 +24,7 @@ public class Product {
 	
 	private String proTag;
 	
-	private String proImg;
+	private String renamedFileName;
 	
 	private int proQty;
 	

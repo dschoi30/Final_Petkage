@@ -95,7 +95,7 @@
                         </tr>
                         <tr>
                             <td><b>대표 이미지</b></td>
-                            <td><input type="file" name="proImg" id="cit_file_1" required/></td>
+                            <td><input type="file" name="upfile" id="cit_file_1" required/></td>
                         </tr>
                         <tr>
                             <td><b>추가 이미지 1/5</b></td>

@@ -13,7 +13,7 @@ public interface MarketService {
 	
 	Product findProductByNo(int proNo);
 	
-	int save(int proNo);
+	int save(Product product);
 
 	int delete(int proNo);
 }

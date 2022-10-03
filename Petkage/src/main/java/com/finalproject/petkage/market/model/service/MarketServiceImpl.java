@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
@@ -39,14 +40,22 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public int save(int proNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int save(Product product) {
+		
+		int result = 0;
+
+		if(product.getProNo() != 0) {
+			
+		} else {
+			result = mapper.registerProduct(product);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public int delete(int proNo) {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 	

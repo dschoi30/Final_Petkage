@@ -15,4 +15,6 @@ public interface MarketMapper {
 	List<Product> selectAll(RowBounds rowbounds);
 	
 	Product selectProductByNo(@Param("proNo") int proNo);
+
+	int registerProduct(Product product);
 }

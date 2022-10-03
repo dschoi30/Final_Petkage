@@ -194,7 +194,7 @@
 		                        <div class="col mb-4">
 		                            <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 400px;">
 		                            <div class="card h-100" style="border: 0;">
-		                                    <img src="${ path }/resources/images/market/dogfood.jpg" class="card-img-top" alt="...">
+		                                    <img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
 		                                    <div class="card-body">
 		                                        <p class="card-text">${ product.proName }</p>
 		                                        <p class="rating">★★★★★ (후기 : 99건)</p>

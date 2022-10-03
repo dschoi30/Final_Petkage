@@ -74,7 +74,7 @@
                         <div class="carousel-inner">
                             <div class="carousel-images">
                                 <div class="carousel-item active">
-                                <img src="${path}/resources/images/market/dogfood.jpg" class="d-block w-100" alt="...">
+                                <img src="${path}/resources/upload/market/${ product.renamedFileName }" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
                                 <img src="${path}/resources/images/market/dogfood2.jpg" class="d-block w-100" alt="...">
@@ -103,7 +103,7 @@
                         <ul class="prod-images">
                             <li>
                                 <a href="#" class="_1F-riHNwNb" role="button" aria-selected="false">
-                                    <img src="${path}/resources/images/market/dogfood.jpg" width="80" height="80" alt="대표이미지">
+                                    <img src="${path}/resources/upload/market/${ product.renamedFileName }" width="80" height="80" alt="대표이미지">
                                 </a>
                             </li>
                             <li>
@@ -195,11 +195,7 @@
                     <div class="row justify-content-center">
                         <p id="prodContent"></p>
                         <br><br>
-                        <div>
-                            <img src="${path}/resources/images/market/dogfood6.jpg" class="d-block" alt="...">
-                            <img src="${path}/resources/images/market/dogfood7.jpg" class="d-block" alt="...">
-                            <img src="${path}/resources/images/market/dogfood8.jpg" class="d-block" alt="...">
-                        </div>
+                        <div>${ product.proContent }</div>
                     </div>
                     <ul class="prod-review-wrap">
                         <p id="prodReview"></p>
