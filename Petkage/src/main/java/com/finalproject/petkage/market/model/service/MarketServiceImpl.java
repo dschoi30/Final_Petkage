@@ -45,7 +45,7 @@ public class MarketServiceImpl implements MarketService {
 		int result = 0;
 
 		if(product.getProNo() != 0) {
-			
+			result = mapper.updateProduct(product);
 		} else {
 			result = mapper.registerProduct(product);
 		}
@@ -55,8 +55,12 @@ public class MarketServiceImpl implements MarketService {
 
 	@Override
 	public int delete(int proNo) {
-
-		return 0;
+		
+		int result = 0;
+		
+		result = mapper.updateProductStatus(proNo, "N");
+		
+		return result;
 	}
 	
 }

@@ -33,6 +33,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 
+	<style type="text/css">
+		@font-face {
+	    font-family: 'GmarketSansMedium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	</style>	
+
     <title>Document</title>
 </head>
 <body>
@@ -170,13 +179,16 @@
                     <br>
                     <div class="prod-summary-footer">
                         <a href="/CHOI/HTML/product_cart.html">
-                            <button class="btn btn-light">장바구니</button>
+                            <button class="btn btn-light" style="width: 235px;">장바구니</button>
                             <!-- <input type="button" class="prod-summary-pay-btn" value="장바구니"> -->
                         </a>
                         <a href="/CHOI/HTML/product_payment.html">
-                            <button class="btn btn-dark">바로구매</button>
+                            <button class="btn btn-dark" style="width: 235px;">바로 구매</button>
                             <!-- <input type="button" class="prod-summary-pay-btn" value="바로구매"> -->
-                        </a>
+                        </a><br><br>
+                        <button class="btn btn-light" style="width: 235px;"
+                            	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
+                        <button class="btn btn-light" id="btnDelProd" style="width: 235px;">상품 삭제</button>
                     </div>
                 </div>
             </div>
@@ -597,5 +609,13 @@
     </section>
 
     <script src="${path}/resources/js/product.js"></script>
+    
+    <script type="text/javascript">
+	    $("#btnDelProd").on("click", () => {
+	        if(confirm("정말로 게시글을 삭제하시겠습니까?")) {
+	            location.replace("${ path }/market/product-delete?proNo=${ product.proNo }");
+	        };
+	    });
+    </script>
 </body>
 </html>

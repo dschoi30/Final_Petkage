@@ -116,4 +116,51 @@
 			DEFAULT
 		)
 	</insert>
+	
+	<insert id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT
+			<trim prefix="SET" suffixOverrides=",">
+				<if test="proName != null">
+					PRO_NAME = #{ proName },
+				</if>
+				<if test="proBrand != null">
+					PRO_BRAND = #{ proBrand },
+				</if>
+				<if test="proCategory1 != null">
+					PRO_CATEGORY1 = #{ proCategory1 },
+				</if>
+				<if test="proCategory2 != null">
+					PRO_CATEGORY2 = #{ proCategory2 },
+				</if>
+				<if test="proTag != null">
+					PRO_TAG = #{ proTag },
+				</if>
+				<if test="renamedFileName != null">
+					PRO_IMG = #{ renamedFileName },
+				</if>
+				<if test="proQty != null">
+					PRO_QTY = #{ proQty },
+				</if>
+				<if test="proOPrice != null">
+					PRO_OPRICE = #{ proOPrice },
+				</if>
+				<if test="proSPrice != null">
+					PRO_SPRICE = #{ proSPrice },
+				</if>
+				<if test="proDelFee != null">
+					PRO_DEL_FEE = #{ proDelFee },
+				</if>
+				<if test="proLTime != null">
+					PRO_LTIME = #{ proLTime },
+				</if>
+				<if test="proContent != null">
+					PRO_CONTENT = #{ proContent }
+				</if>
+			</trim>
+		WHERE PRO_NO = #{ proNo }
+	</insert>
+	
+	<insert id="updateProductStatus" parameterType="map">
+		UPDATE PRODUCT SET PRO_STATUS = #{ proStatus } WHERE PRO_NO = #{ proNo }
+	</insert>
 </mapper>

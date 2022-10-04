@@ -17,4 +17,10 @@ public interface MarketMapper {
 	Product selectProductByNo(@Param("proNo") int proNo);
 
 	int registerProduct(Product product);
+
+	int updateProductStatus(@Param("proNo") int proNo, @Param("proStatus") String string);
+	
+	int findProductByNo(int proNo);
+
+	int updateProduct(Product product);
 }

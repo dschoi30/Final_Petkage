@@ -122,4 +122,64 @@ public class MarketController {
 		
 		return model;
 	}
+
+	@GetMapping("/product-delete")
+	public ModelAndView Delete(ModelAndView model, @RequestParam int proNo) {
+		
+		int result = 0;
+		
+		result = service.delete(proNo);
+		
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
+			model.addObject("location", "/market/product-list");
+		} else {
+			model.addObject("msg", "게시글 삭제에 실패했습니다.");
+			model.addObject("location", "/market/product-view?no=" + proNo);
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+	
+	@GetMapping("/product-update")
+	public ModelAndView Update(ModelAndView model, @RequestParam int proNo) {
+
+		log.info("{}", proNo);
+
+		Product product = null;
+		
+		product = service.findProductByNo(proNo);
+		
+		model.addObject("product", product);
+		model.setViewName("market/product-update");
+		
+		return model;
+	}
+	
+	@PostMapping("/product-update")
+	public ModelAndView Update(ModelAndView model, @ModelAttribute Product product) {
+		
+		int result = 0;
+		
+		result = service.save(product);
+		
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 수정되었습니다.");
+			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
+		} else {
+			model.addObject("msg", "게시글 수정에 실패했습니다.");
+			model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
+			
+		}
+		
+		product.setProSelNo(1);
+		
+		System.out.println(product);
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
 }

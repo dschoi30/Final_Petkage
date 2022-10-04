@@ -64,17 +64,18 @@
         <div class="row">
             <div class="contents">
                 <br><br>
-                <div class="row justify-content-center"><h2>상품 등록</h2></div>
+                <div class="row justify-content-center"><h2>상품 등록 수정</h2></div>
                 <br><br>
-                <form action="${ path }/market/product-write" method="POST" enctype="multipart/form-data">
+                <form action="${ path }/market/product-update" method="POST" enctype="multipart/form-data">
+                	<input type="hidden" name="proNo" value="${ product.proNo }">
                     <table class="table">
                         <tr>
                             <td><b>상품명</b></td>
-                            <td><input type="text" name="proName" size="80" placeholder="노출 상품명 입력(브랜드명 + 상품명)" required></td>
+                            <td><input type="text" name="proName" size="80" placeholder="노출 상품명 입력(브랜드명 + 상품명)" value="${ product.proName }"></td>
                         </tr>
                         <tr>
                             <td><b>브랜드</b></td>
-                            <td><input type="text" name="proBrand" size="80" placeholder="노출 브랜드명 입력" required></td>
+                            <td><input type="text" name="proBrand" size="80" placeholder="노출 브랜드명 입력" value="${ product.proBrand }"></td>
                         </tr>
                         <tr>
                             <td><b>카테고리</b></td>
@@ -100,11 +101,15 @@
                         </tr>
                         <tr>
                             <td><b>태그</b></td>
-                            <td><input type="text" name="proTag" size="80" placeholder="쉼표(,)로 구분하여 최대 10개까지 입력 가능"></td>
+                            <td><input type="text" name="proTag" size="80" placeholder="쉼표(,)로 구분하여 최대 10개까지 입력 가능" value="${ product.proTag }"></td>
                         </tr>
                         <tr>
                             <td><b>대표 이미지</b></td>
-                            <td><input type="file" name="upfile" id="cit_file_1" required/></td>
+                            <td><input type="file" name="upfile" id="cit_file_1"/>
+                            	<c:if test="${ not empty product.renamedFileName }">
+                            		<span>${ product.renamedFileName }</span>
+                            	</c:if>
+                            </td>
                         </tr>
                         <tr>
                             <td><b>추가 이미지 1/5</b></td>
@@ -136,16 +141,16 @@
                             <td><b>출고 소요 기간(일)</b></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="proQty" size="18" dir="rtl"></td>
-                            <td><input type="text" name="proOPrice" size="18" dir="rtl"></td>
-                            <td><input type="text" name="proSPrice" size="18" dir="rtl"></td>
-                            <td><input type="text" name="proDelFee" size="18" dir="rtl"></td>
-                            <td><input type="text" name="proLTime" size="18" dir="rtl"></td>
+                            <td><input type="text" name="proQty" size="18" dir="rtl" value="${ product.proQty }"></td>
+                            <td><input type="text" name="proOPrice" size="18" dir="rtl" value="${ product.proOPrice }"></td>
+                            <td><input type="text" name="proSPrice" size="18" dir="rtl" value="${ product.proSPrice }"></td>
+                            <td><input type="text" name="proDelFee" size="18" dir="rtl" value="${ product.proDelFee }"></td>
+                            <td><input type="text" name="proLTime" size="18" dir="rtl" value="${ product.proLTime }"></td>
                         </tr>
                     </table>
                     <br><br>
                     <b>상품 상세 설명</b>
-                    <textarea id="summernote" name="proContent" required></textarea>
+                    <textarea id="summernote" name="proContent" value="${ product.proContent }"></textarea>
                     <br>
                     <div class="align-btn-prod-write">
                         <button type="reset" class="btn btn-light text-nowrap">입력취소</button>
