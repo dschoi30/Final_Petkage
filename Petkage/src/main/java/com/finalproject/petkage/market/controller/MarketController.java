@@ -57,6 +57,10 @@ public class MarketController {
 			try {
 				location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
 				
+				if(product.getRenamedFileName() != null) {
+					MultipartFileUtil.delete(location + "/" + product.getRenamedFileName());
+				}
+				
 				renamedFileName = MultipartFileUtil.save(upfile, location);
 				
 				System.out.println(location);
@@ -159,9 +163,29 @@ public class MarketController {
 	}
 	
 	@PostMapping("/product-update")
-	public ModelAndView Update(ModelAndView model, @ModelAttribute Product product) {
+	public ModelAndView Update(ModelAndView model, @ModelAttribute Product product, @RequestParam("upfile") MultipartFile upfile) {
 		
 		int result = 0;
+		
+//		System.out.println(upfile.isEmpty());
+//		System.out.println(upfile.getOriginalFilename());
+		
+		if(upfile != null && !upfile.isEmpty()) {
+
+			String location = null;
+			String renamedFileName = null;
+			
+			try {
+				location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
+				renamedFileName = MultipartFileUtil.save(upfile, location);
+
+				if(renamedFileName != null) {
+					product.setRenamedFileName(renamedFileName);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		result = service.save(product);
 		
