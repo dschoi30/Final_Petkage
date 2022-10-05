@@ -1,0 +1,498 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
+html {
+    font-size: 62.5%;
+}
+
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  * {
+    font-family: "GmarketSansMedium";
+}
+
+  /* 반응형 */
+
+@media all and (max-width: 1023px) {
+    html {
+    font-size: 50%;
+    }
+
+}
+
+
+.wg_10 {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    width: 1110px;
+}
+
+.wg_10 .wg5_top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top {
+        width: 90%;
+    }
+}
+
+.wg_10 .wg5_top .wg5t_1 {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 업로드 */
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload {
+    list-style: none;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top .wg5t_1 .wgc7w_upload {
+        width: 90%;
+    }
+}
+
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload .wgc7w_imgbox,
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload #preview {
+    width: 100%;
+}
+
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload .btn-upload {
+    width: 150px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #753422;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #753422;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload .btn-upload:hover {
+    background: #753422;
+    color: #fff;
+}
+
+.wg_10 .wg5_top .wg5t_1 .wgc7w_upload #image {
+    display: none;
+}
+
+/* 텍스트 및 정보 부분 */
+
+.wg_10 .wg5_top .wg5t_2 {
+    width: 50%;
+    padding-left: 105px;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top .wg5t_2 {
+        padding-left: 10px;
+    }
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_name {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_name input {
+    width: 100%;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_name input {
+        width: 80%
+    }
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_address {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_address input {
+    width: 100%;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_address input {
+        width: 80%
+    }
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_option,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_info {
+    width: 100%;
+}
+
+@media (max-width: 1023px) {
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_option,
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_amenities,
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_info {
+        width: 80%
+    }
+}
+.wg_10 .wg5_top .wg5t_2 .wg5t2_option .wg5t2_size,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wg5t2_amentext,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_info .wg5t2_introduce label  {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_option .wg5t2_breed {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_option .wg5t2_breed input,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox1 input,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox2 input,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox3 input {
+    margin-right: 5px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_option .wg5t2_breed label,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox1 label,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox2 label,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox3 label {
+    width: 65px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0;
+    margin-right: 8px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox1,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox2,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wgs_checkbox3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.wg_10 .wg5_top .wg5t_2 .wg5t2_info .form-control {
+    resize: none;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+
+/* 바텀 */
+
+.wg_10 .wg5_bottom {
+    width: 100%;
+    margin-top: 100px;
+    margin-left: 25px;
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg5_bottom {
+        width: 90%;
+        margin-left: 0px;
+    }
+}
+
+.wg_10 .wg5_bottom .wg5b_btn section {
+    display: flex;
+    width: 1056px;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 3px solid #959595;
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg5_bottom .wg5b_btn section {
+        width: 88%;
+        margin-left: 25px;
+    }
+}
+
+.wg_10 .wg5_bottom .wg5b_btn section .btnBox {
+    width: 220px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #6B6B6B;
+    position: relative;
+    transform: translateY(3px);
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg5_bottom .wg5b_btn section .btnBox {
+        width: 150px;
+        height: 40px;
+    }
+}
+
+.wg_10 .wg5_bottom .wg5b_btn section .btnBox:hover {
+    color: #753422;
+}
+
+.wg_10 .wg5_bottom .wg5b_btn section .btnBox.active {
+    color: #753422;
+    border-bottom: 3px solid #753422;
+}
+
+/* 구조 */
+.wg_10 .wg5_bottom .wg5b_content {
+    position: relative;
+    margin-top: 30px;
+    margin-left: 25px;
+    width: 1056px;
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg5_bottom .wg5b_content {
+        width: 88%;
+    }
+}
+
+.wg_10 .wg5_bottom .wg5b_content .content_container {
+    display: none;
+    margin: 0 !important;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .content_container.active {
+    display: block;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .content_container section {
+    position: relative;
+    max-width: 80%;
+    margin: 30px auto 0 auto;
+    transform: translateX(0.8%);
+    padding: 0;
+}
+
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 {
+    border: 1px solid #6B6B6B;
+    border-radius: 5px;
+    height: 240px;
+    display: flex;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload {
+    list-style: none;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload .btn-upload {
+    width: 150px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #753422;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #753422;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload .btn-upload:hover {
+    background: #753422;
+    color: #fff;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image,
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_1,
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_2,
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_3,
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_4 {
+    display: none;
+}
+
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text {
+    width: 70%;
+    height: 100%;
+    margin-left: 50px;
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text {
+        margin-left: 80px;
+    }
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te1 input {
+    width: 100%;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #D6D6D6;
+    margin-bottom: 20px;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te2 .te2_2 span:first-child {
+    text-decoration: line-through;
+    color: #6B6B6B;
+    font-size: 1.6rem;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te3 {
+    margin-bottom: 20px;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te3 a {
+    text-decoration: none;
+    color: #6B6B6B;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te3 a:hover {
+    color: #D79771;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te4 .te4_btn {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #D79771;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #D79771;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te4 .te4_btn:disabled {
+    border: 1px solid #959595;
+    background-color: #959595;
+}
+
+.wg_10 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wg5bcr_text .te4 .te4_btn.active:hover {
+    border: 1px solid #D79771;
+    background-color: #fff;
+    color: #D79771;
+}
+
+/* 숙소 정보 */
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf {
+    border-bottom: 2px solid #eeeeee8f;
+}
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_1 {
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding-left: 40px;
+
+}
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_1::marker {
+    font-size: 0;
+}
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_1:hover {
+    background-color: #eeeeee62;
+}
+
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_content {
+    width: 100%;
+    padding: 40px;
+    background-color: #e2e2e2;
+    color: #6B6B6B;
+}
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_content h5 {
+    color: #414141;
+}
+
+.wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_content input {
+    width: 500px;
+}
+
+/* 작성 완료 */
+.wg_10 .wg9_btn {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media (max-width:1023px) {
+    .wg_10 .wg9_btn {
+        width: 81.5%;
+    }
+}
+
+.wg_10 .wg9_btn input {
+    width: 150px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #753422;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #753422;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wg_10 .wg9_btn input:hover {
+    background: #753422;
+    color: #fff;
+}
