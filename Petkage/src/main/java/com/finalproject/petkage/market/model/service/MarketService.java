@@ -10,10 +10,13 @@ public interface MarketService {
 	int getProductCount();
 	
 	List<Product> getProductList(PageInfo pageInfo);
-	
+
+	List<Product> getProductList(PageInfo pageInfo, String searchValue);
+
 	Product findProductByNo(int proNo);
 	
 	int save(Product product);
 
 	int delete(int proNo);
+
 }

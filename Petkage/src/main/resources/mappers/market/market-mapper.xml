@@ -23,7 +23,7 @@
 			   P.PRO_REP_COUNT
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
-		WHERE P.PRO_STATUS = 'Y'
+		WHERE P.PRO_STATUS = 'Y' AND (PRO_NAME || PRO_TAG LIKE '%' || #{searchValue} || '%')
 	</sql>
 	<resultMap type="Product" id="productListResultMap">
 		<id property="proNo" column="PRO_NO"/>
@@ -49,7 +49,7 @@
 		SELECT COUNT(*) FROM PRODUCT WHERE PRO_STATUS='Y'
 	</select>
 	
-	<select id="selectAll" resultMap="productListResultMap">
+	<select id="selectProductList" resultMap="productListResultMap">
 		<include refid="productListSql" />
 		ORDER BY P.PRO_NO DESC
 	</select>

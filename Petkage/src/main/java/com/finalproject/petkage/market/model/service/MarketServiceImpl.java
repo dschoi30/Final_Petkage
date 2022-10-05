@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
@@ -26,13 +27,19 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public List<Product> getProductList(PageInfo pageInfo) {
 
+		return getProductList(pageInfo, null);
+	}
+	
+	@Override
+	public List<Product> getProductList(PageInfo pageInfo, String searchValue) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
+				
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return mapper.selectAll(rowBounds);
+		return mapper.selectProductList(rowBounds, searchValue);
 	}
-
+	
 	@Override
 	public Product findProductByNo(int proNo) {
 		
@@ -62,5 +69,5 @@ public class MarketServiceImpl implements MarketService {
 		
 		return result;
 	}
-	
+
 }

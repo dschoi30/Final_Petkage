@@ -62,12 +62,12 @@
         <div class="row">
             <div class="contents">
                 <br><br>
-                <form action="">
+                <form action="${ path }/market/product-list" method="GET">
                 <div class="row justify-content-center">
                     <div class="wrap-category">
                         <div class="category-info-top"><h3>마켓</h3></div>
                         <div class="wrap-search-bar">
-                            <input type="text" name="searchVal" id="searchInput" class="form-control" size="60">
+                            <input type="text" name="searchValue" id="searchInput" class="form-control" size="60">
                             <span class="input-group-btn">
                                 <button id="searchBtn">
                                     <img src="${ path }/resources/images/market/search.png" width="23" height="23" alt="search">
@@ -201,15 +201,27 @@
                     	<div class="row row-cols-2 row-cols-md-4">
 	                    	<c:forEach var="product" items="${ list }">
 		                        <div class="col mb-4">
-		                            <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 400px;">
+		                            <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 420px;">
 		                            <div class="card h-100" style="border: 0;">
 		                                    <img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
 		                                    <div class="card-body">
 		                                        <p class="card-text">${ product.proName }</p>
-		                                        <p class="rating">★★★★★ (후기 : 99건)</p>
+		                                        <div style="margin-bottom: 5px;">
+		                                            <span style="color: #ed0000; font-size: 18px; font-weight: bold;">14,490</span><span>원</span><br>
+		                                        </div>
+		                                        <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 10/6(목) 발송</p>
+		                                        <div style="margin-bottom: 5px;">
+			                                        <span class="rating">
+			                                            <img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">
+			                                            <img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">
+			                                            <img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">
+			                                            <img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">
+			                                            <img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">
+			                                        </span>(후기 : 99건)
+												</div>	
 		                                    </div>
 		                            </div>
-		                            </a>
+		                            </a><hr>
 		                        </div>
 		                   	</c:forEach>
                    		</div>
@@ -217,18 +229,18 @@
                 </div>
                 <div>
                     <ul class="pagination justify-content-center">
-	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1">&lt;&lt;</a></li>
-	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }">&lt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1&searchValue=${searchValue}">&lt;&lt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }&searchValue=${searchValue}">&lt;</a></li>
 						<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 							<c:if test="${ status.current == pageInfo.currentPage }">
 			                    <li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
 							</c:if>
 							<c:if test="${ status.current != pageInfo.currentPage }">
-			                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }">${ status.current }</a></li>
+			                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }&searchValue=${searchValue}">${ status.current }</a></li>
 							</c:if>
 						</c:forEach>
-                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }">&gt;</a></li>
-                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }">&gt;&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&searchValue=${searchValue}">&gt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&searchValue=${searchValue}">&gt;&gt;</a></li>
                     </ul>
                 </div>
             </div>
@@ -281,6 +293,8 @@
     </section>
 
     <script src="${path}/resources/js/market/product.js"></script>
+    
+
 
 </body>
 </html>
