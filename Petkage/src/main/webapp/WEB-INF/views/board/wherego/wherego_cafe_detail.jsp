@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25029489670655943df197a370a5aa89"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25029489670655943df197a370a5aa89"></script>
 
     <!-- fontawesome -->
     <link
@@ -161,7 +161,7 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">지도</summary>
                         <div class="wg5bci_content">
-                            <div id="map"></div> <!-- 지도 -->
+                            <div id="map" style="width:500px;height:400px;"></div> <!-- 지도 -->
                             <div class="hAddr">
                                 <span class="title">현재 위치 :</span>&nbsp;
                                 <span id="centerAddr"></span>
