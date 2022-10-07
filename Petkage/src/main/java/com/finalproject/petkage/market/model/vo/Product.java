@@ -18,9 +18,9 @@ public class Product {
 	
 	private String proBrand;
 	
-	private String proCategory1;
+	private String proCategory1 = "dog";
 	
-	private String proCategory2;
+	private String proCategory2 = "best";
 	
 	private String proTag;
 	
@@ -43,4 +43,6 @@ public class Product {
 	private String proStatus;
 	
 	private int proRepCount;
+	
+	private String searchValue = "";
 }

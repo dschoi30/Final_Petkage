@@ -80,22 +80,22 @@
                         <tr>
                             <td><b>카테고리</b></td>
                             <td>
-                                <select name="proCategory1" required>
+                                <select id="proCategory1" name="proCategory1" required>
                                     <option>카테고리 선택 1</option>
-                                    <option value="dog">강아지</option>
-                                    <option value="cat">고양이</option>
+                                    <option value="dog" name="category1">강아지</option>
+                                    <option value="cat" name="category1">고양이</option>
                                 </select>
-                                <select name="proCategory2" required>
+                                <select id="proCategory2" name="proCategory2" required>
                                     <option>카테고리 선택 2</option>
-                                    <option value="food">사료/간식</option>
-                                    <option value="health">건강/관리</option>
-                                    <option value="poo">배변용품</option>
-                                    <option value="living">리빙용품</option>
-                                    <option value="beauty">미용/목욕</option>
-                                    <option value="outdoor">야외용품</option>
-                                    <option value="toy">장난감</option>
-                                    <option value="fashion">패션용품</option>
-                                    <option value="etc">기타</option>
+                                    <option value="food" name="category2">사료/간식</option>
+                                    <option value="health" name="category2">건강/관리</option>
+                                    <option value="poo" name="category2">배변용품</option>
+                                    <option value="living" name="category2">리빙용품</option>
+                                    <option value="beauty" name="category2">미용/목욕</option>
+                                    <option value="outdoor" name="category2">야외용품</option>
+                                    <option value="toy" name="category2">장난감</option>
+                                    <option value="fashion" name="category2">패션용품</option>
+                                    <option value="etc" name="category2">기타</option>
                                 </select>
                             </td>
                         </tr>
@@ -206,7 +206,10 @@
             lang: "ko-KR",					// 한글 설정
             placeholder: '최대 2,048자까지 내용을 입력할 수 있습니다.'	//placeholder 설정
         });
-    });    
+        
+    	$("#proCategory1 option[value=${product.proCategory1}]").attr("selected", "selected");    		
+    	$("#proCategory2 option[value=${product.proCategory2}]").attr("selected", "selected");
+    });
     </script>
 </body>
 </html>

@@ -31,13 +31,13 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	@Override
-	public List<Product> getProductList(PageInfo pageInfo, String searchValue) {
+	public List<Product> getProductList(PageInfo pageInfo, Product product) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 				
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return mapper.selectProductList(rowBounds, searchValue);
+		return mapper.selectProductList(rowBounds, product);
 	}
 	
 	@Override

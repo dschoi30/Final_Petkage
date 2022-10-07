@@ -12,7 +12,7 @@ import com.finalproject.petkage.market.model.vo.Product;
 public interface MarketMapper {
 	int selectProductCount();
 
-	List<Product> selectProductList(RowBounds rowbounds, String searchValue);
+	List<Product> selectProductList(RowBounds rowbounds, Product product);
 	
 	Product selectProductByNo(@Param("proNo") int proNo);
 

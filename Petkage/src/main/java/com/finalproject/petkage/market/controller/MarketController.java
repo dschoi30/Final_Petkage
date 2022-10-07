@@ -97,7 +97,10 @@ public class MarketController {
 	@GetMapping("/product-list")
 	public ModelAndView List(ModelAndView model, 
 			@RequestParam(value = "page", defaultValue = "1") int page, 
-			@RequestParam(required = false) String searchValue) {
+			@RequestParam(required = false) String searchValue,
+			@RequestParam(required = false) String proCategory1,
+			@RequestParam(required = false) String proCategory2,
+			@ModelAttribute Product product) {
 
 		log.info("{}", searchValue);
 
@@ -105,7 +108,7 @@ public class MarketController {
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 8, service.getProductCount(), 8);
-		list = service.getProductList(pageInfo, searchValue);
+		list = service.getProductList(pageInfo, product);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
