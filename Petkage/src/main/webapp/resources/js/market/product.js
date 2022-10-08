@@ -7,11 +7,14 @@ $(document).ready(() => {
 
     function btnIterator() {
         for (var i = 0; i < btn.length; i++) {
+            btn[i].addEventListener("click", btnChange);
+        }
+        for (var i = 0; i < btn.length; i++) {
             btn[i].addEventListener("click", btnClicked);
         }
     }
 
-    function btnClicked(event) {
+    function btnChange(event) {
         console.log(event.target);
         // console.log(this);
         console.log(event.target.classList);
@@ -25,6 +28,10 @@ $(document).ready(() => {
             event.target.classList.add("clicked");
         }
     }
+
+	function btnClicked(event) {
+		
+	}
 
     // 상품 상세 페이지 상단바
 
@@ -47,17 +54,18 @@ $(document).ready(() => {
     const modal_img = document.querySelector(".modal_content");
     const span = document.querySelector(".close");
 
-    img.addEventListener('click', ()=>{
+    img.addEventListener('click', () => {
         modalDisplay("block");
         modal_img.src = img.src;
     });
-    span.addEventListener('click', ()=>{
+    span.addEventListener('click', () => {
         modalDisplay("none");
     });
-    modal.addEventListener('click', ()=>{
+    modal.addEventListener('click', () => {
         modalDisplay("none");
     });
     function modalDisplay(text){
         modal.style.display = text;
     }
+    
 });

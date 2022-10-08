@@ -43,4 +43,6 @@ public class Product {
 	private String proStatus;
 	
 	private int proRepCount;
+	
+	private String searchValue;
 }

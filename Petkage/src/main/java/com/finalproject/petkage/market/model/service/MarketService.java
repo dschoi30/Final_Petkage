@@ -11,12 +11,14 @@ public interface MarketService {
 	
 	List<Product> getProductList(PageInfo pageInfo);
 
-	List<Product> getProductList(PageInfo pageInfo, String searchValue);
+	List<Product> getProductList(PageInfo pageInfo, Product product);
 
 	Product findProductByNo(int proNo);
 	
 	int save(Product product);
 
 	int delete(int proNo);
+
+//	List<Product> getProductSearchList(PageInfo pageInfo, String searchValue);
 
 }
