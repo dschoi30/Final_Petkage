@@ -23,4 +23,10 @@ public class WheregoController {
 		
 		return "board/wherego/wherego_cafe_detail";
 	}
+	
+	@RequestMapping("/test2")
+	public String test2() {
+		
+		return "board/wherego/wherego_cafe";
+	}
 }
