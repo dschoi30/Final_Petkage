@@ -161,17 +161,11 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">지도</summary>
                         <div class="wg5bci_content">
-<<<<<<< HEAD
-	                        <div class="map_wrap">
-	                            <div id="map" style="width:100%;height:300px;"></div> <!-- 지도 -->
-	                        </div>
-=======
                             <div id="map" style="width: 100%; height: 300px;"></div> <!-- 지도 -->
                             <div class="hAddr">
                                 <span class="title">현재 위치 :</span>&nbsp;
                                 <span id="centerAddr"></span>
                             </div>
->>>>>>> SEO
                         </div>
                     </details>
                     <details class="wg5bc_inf" open>
@@ -371,38 +365,12 @@
    <!--  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=334344dce2f2aee24efdae6872bcd47a"></script> -->
     <script>
 
-<<<<<<< HEAD
-     center: new kakao.maps.LatLng(37.520277, 127.122590), //지도의 중심좌표.
-
-     level: 5 //지도의 레벨(확대, 축소 정도)
-        };
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };  
-
-    // 지도를 생성합니다    
-    var map = new kakao.maps.Map(mapContainer, mapOption); 
-
- // 마커가 표시될 위치입니다 
-    var markerPosition  = new kakao.maps.LatLng(37.520277, 127.122590); 
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
-
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
-         	
-=======
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };  
-
+    
         // 지도를 생성합니다    
         var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
@@ -462,7 +430,7 @@
 	
 	    // 마커가 지도 위에 표시되도록 설정합니다
 	    marker.setMap(map);  
->>>>>>> SEO
+
     </script>
 
     <script>
