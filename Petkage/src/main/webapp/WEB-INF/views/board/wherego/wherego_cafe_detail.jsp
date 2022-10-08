@@ -163,10 +163,6 @@
                         <div class="wg5bci_content">
 	                        <div class="map_wrap">
 	                            <div id="map" style="width:100%;height:300px;"></div> <!-- 지도 -->
-	                            <div class="hAddr">
-	                                <span class="title">현재 위치 :</span>&nbsp;
-	                                <span id="centerAddr"></span>
-	                            </div>
 	                        </div>
                         </div>
                     </details>
@@ -382,121 +378,16 @@
     // 지도를 생성합니다    
     var map = new kakao.maps.Map(mapContainer, mapOption); 
 
- 	// 마커를 표시할 위치와 title 객체 배열입니다 
-    var positions = [
-    	// 송파구
-    	{
-            title: '<div>GS25한강잠실1호점</div>', 
-            latlng: new kakao.maps.LatLng(37.519580, 127.093538)
-        }
-    ];
+ // 마커가 표시될 위치입니다 
+    var markerPosition  = new kakao.maps.LatLng(37.520277, 127.122590); 
 
-    // 마커 이미지의 이미지 주소입니다
-     var imageSrc = "${ path }/resources/images/wherego/별.png"; 
-        
-   	 for (var i = 0; i < positions.length; i ++) {
-        
-        // 마커 이미지의 이미지 크기 입니다
-        var imageSize = new kakao.maps.Size(20, 20) 
-        
-        // 마커 이미지를 생성합니다    
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-        
-        // 마커를 생성합니다
-        var marker2 = new kakao.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: positions[i].latlng, // 마커를 표시할 위치
-            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image : markerImage // 마커 이미지 
-        });
-        
-        // 마커에 표시할 인포윈도우를 생성합니다 
-        var infowindow2 = new kakao.maps.InfoWindow({
-            content: positions[i].title // 인포윈도우에 표시할 내용
-        });
-
-        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-        // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-        kakao.maps.event.addListener(marker2, 'mouseover', makeOverListener(map, marker2, infowindow2));
-        kakao.maps.event.addListener(marker2, 'mouseout', makeOutListener(infowindow2));
-    }
-
-    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-    function makeOverListener(map, marker2, infowindow2) {
-        return function() {
-            infowindow2.open(map, marker2);
-        };
-    }
-
-    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-    function makeOutListener(infowindow2) {
-        return function() {
-            infowindow2.close();
-        };
-    }
-   	 
-    
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
-
-    var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
-        infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
-
-    // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
-    searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-
-    // 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-        searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-                detailAddr += '<div>주소 : ' + result[0].address.address_name + '</div>';
-                
-                var content = '<div class="bAddr">' +
-                                detailAddr + 
-                            '</div>';
-
-                // 마커를 클릭한 위치에 표시합니다 
-                marker.setPosition(mouseEvent.latLng);
-                marker.setMap(map);
-
-                // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-                infowindow.setContent(content);
-                infowindow.open(map, marker);
-            }   
-        });
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
     });
 
-    // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
-    kakao.maps.event.addListener(map, 'idle', function() {
-        searchAddrFromCoords(map.getCenter(), displayCenterInfo);
-    });
-
-    function searchAddrFromCoords(coords, callback) {
-        // 좌표로 행정동 주소 정보를 요청합니다
-        geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
-    }
-
-    function searchDetailAddrFromCoords(coords, callback) {
-        // 좌표로 법정동 상세 주소 정보를 요청합니다
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-    }
-
-    // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-    function displayCenterInfo(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var infoDiv = document.getElementById('centerAddr');
-
-            for(var i = 0; i < result.length; i++) {
-                // 행정동의 region_type 값은 'H' 이므로
-                if (result[i].region_type === 'H') {
-                    infoDiv.innerHTML = result[i].address_name;
-                    break;
-                }
-            }
-        }    
-    }  
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
          	
     </script>
 
