@@ -143,14 +143,23 @@ html {
 }
 
 /* 지도 */
-.wg_6 .wg6 .wg6_map {
+.wg_6 .wg6_map {
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.wg_6 .wg6 .wg6_map #map {
-    width: 100%;
-    height: 350px;
+.wg_6 .wg6_map #map {
+	margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+@media (max-width: 1023px) {
+    .wg_6 .wg6_map #map{
+        width: 80%;
+    }
+}
+
 
 /* 미들라인 */
 .wg_6 .wg6_mid {
@@ -158,6 +167,7 @@ html {
     display: flex;
     align-items: center;
 }
+
 
 @media (max-width: 1023px) {
     .wg_6 .wg6_mid {
