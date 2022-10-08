@@ -2,8 +2,6 @@ package com.finalproject.petkage.market.model.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.vo.Product;
 
@@ -20,5 +18,7 @@ public interface MarketService {
 	int save(Product product);
 
 	int delete(int proNo);
+
+//	List<Product> getProductSearchList(PageInfo pageInfo, String searchValue);
 
 }

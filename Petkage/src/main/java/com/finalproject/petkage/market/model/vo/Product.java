@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class Product {
 	private int proNo;
@@ -18,9 +17,9 @@ public class Product {
 	
 	private String proBrand;
 	
-	private String proCategory1 = "dog";
+	private String proCategory1;
 	
-	private String proCategory2 = "best";
+	private String proCategory2;
 	
 	private String proTag;
 	
@@ -44,5 +43,10 @@ public class Product {
 	
 	private int proRepCount;
 	
-	private String searchValue = "";
+	private String searchValue;
+	
+	public Product() {
+		proCategory1 = "dog";
+		proCategory2 = "";
+	}
 }

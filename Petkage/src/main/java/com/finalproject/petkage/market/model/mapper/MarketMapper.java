@@ -23,4 +23,6 @@ public interface MarketMapper {
 	int findProductByNo(int proNo);
 
 	int updateProduct(Product product);
+
+//	List<Product> selectProductSearchList(RowBounds rowBounds, String searchValue);
 }
