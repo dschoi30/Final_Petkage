@@ -178,14 +178,11 @@
                     </div>
                     <br>
                     <div class="prod-summary-footer">
-                        <a href="/CHOI/HTML/product_cart.html">
-                            <button class="btn btn-light" style="width: 235px;">장바구니</button>
-                            <!-- <input type="button" class="prod-summary-pay-btn" value="장바구니"> -->
-                        </a>
-                        <a href="/CHOI/HTML/product_payment.html">
-                            <button class="btn btn-dark" style="width: 235px;">바로 구매</button>
-                            <!-- <input type="button" class="prod-summary-pay-btn" value="바로구매"> -->
-                        </a><br><br>
+                        <button class="btn btn-light" style="width: 235px;"
+                        		onclick="location.href='${ path }/market/product-cart?proNo=${ product.proNo }'">장바구니</button>
+                        <button class="btn btn-light" style="width: 235px;"
+                        		onclick="location.href='${ path }/market/product-payment?proNo=${ product.proNo }'">바로 구매</button>
+                        <br><br>
                         <button class="btn btn-light" style="width: 235px;"
                             	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
                         <button class="btn btn-light" id="btnDelProd" style="width: 235px;">상품 삭제</button>

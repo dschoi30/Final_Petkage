@@ -91,7 +91,7 @@
 		                    <div class="col-xs-1">
 		                        <ul class="wrap-subcategory">
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=best'">
+		                                <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategory2=best'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/best-icon.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -99,7 +99,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="food" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=food'">
+		                                <button class="btn-subcategory" name="proCategory2" value="food" onclick="location.href='${ path }/market/product-list?proCategory2=food'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon1.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -107,7 +107,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="health" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=health'">
+		                                <button class="btn-subcategory" name="proCategory2" value="health" onclick="location.href='${ path }/market/product-list?proCategory2=health'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon3.png"" width="60" height="60" alt="">
 		                                    </span><br>
@@ -115,7 +115,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="poo" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=poo'">
+		                                <button class="btn-subcategory" name="proCategory2" value="poo" onclick="location.href='${ path }/market/product-list?proCategory2=poo'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon4.png"" width="60" height="60" alt="">
 		                                    </span><br>
@@ -123,7 +123,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="living" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=living'">
+		                                <button class="btn-subcategory" name="proCategory2" value="living" onclick="location.href='${ path }/market/product-list?proCategory2=living'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon5.png"" width="60" height="60" alt="">
 		                                    </span><br>
@@ -131,7 +131,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="beauty" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=beauty'">
+		                                <button class="btn-subcategory" name="proCategory2" value="beauty" onclick="location.href='${ path }/market/product-list?proCategory2=beauty'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon7.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -139,7 +139,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="outdoor" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=outdoor'">
+		                                <button class="btn-subcategory" name="proCategory2" value="outdoor" onclick="location.href='${ path }/market/product-list?proCategory2=outdoor'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon8.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -147,7 +147,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="toy" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=toy'">
+		                                <button class="btn-subcategory" name="proCategory2" value="toy" onclick="location.href='${ path }/market/product-list?proCategory2=toy'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon9.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -155,7 +155,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="fashion" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=fashion'">
+		                                <button class="btn-subcategory" name="proCategory2" value="fashion" onclick="location.href='${ path }/market/product-list?proCategory2=fashion'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon10.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -163,7 +163,7 @@
 		                                </button>
 		                            </li>
 		                            <li class="subcategory">
-		                                <button class="btn-subcategory" name="proCategory2" value="etc" onclick="location.href='${ path }/market/product-list?proCategory1=cat&proCategory2=etc'">
+		                                <button class="btn-subcategory" name="proCategory2" value="etc" onclick="location.href='${ path }/market/product-list?proCategory2=etc'">
 		                                    <span class="span-subcategory-img">
 		                                        <img src="${ path }/resources/images/market/category/dog-icon11.png" width="60" height="60" alt="">
 		                                    </span><br>
@@ -361,18 +361,18 @@
 	                </div>
 	                <div>
 	                    <ul class="pagination justify-content-center">
-		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1&searchValue=${ product.searchValue }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&lt;&lt;</a></li>
-		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }&searchValue=${ product.searchValue }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&lt;</a></li>
+		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1&proCategory1=dog&proCategory2=${ product.proCategory2 }">&lt;&lt;</a></li>
+		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&lt;</a></li>
 							<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 								<c:if test="${ status.current == pageInfo.currentPage }">
 				                    <li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
 								</c:if>
 								<c:if test="${ status.current != pageInfo.currentPage }">
-				                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }&searchValue=${ product.searchValue }&proCategory1=dog&proCategory2=${ product.proCategory2 }">${ status.current }</a></li>
+				                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }&proCategory1=dog&proCategory2=${ product.proCategory2 }">${ status.current }</a></li>
 								</c:if>
 							</c:forEach>
-	                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&searchValue=${ product.searchValue }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&gt;</a></li>
-	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&searchValue=${ product.searchValue }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
+	                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&gt;</a></li>
+	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&proCategory1=dog&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
 	                    </ul>
 	                </div>
 	            </c:if>
@@ -506,18 +506,18 @@
 	                </div>
 	                <div>
 	                    <ul class="pagination justify-content-center">
-		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&lt;&lt;</a></li>
-		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&lt;</a></li>
+		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=1&proCategory1=cat&proCategory2=${ product.proCategory2 }">&lt;&lt;</a></li>
+		                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.prevPage }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&lt;</a></li>
 							<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 								<c:if test="${ status.current == pageInfo.currentPage }">
 				                    <li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
 								</c:if>
 								<c:if test="${ status.current != pageInfo.currentPage }">
-				                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">${ status.current }</a></li>
+				                    <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ status.current }&proCategory1=cat&proCategory2=${ product.proCategory2 }">${ status.current }</a></li>
 								</c:if>
 							</c:forEach>
-	                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;</a></li>
-	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
+	                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;</a></li>
+	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
 	                    </ul>
 	                </div>
 	            </c:if>

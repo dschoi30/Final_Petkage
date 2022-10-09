@@ -213,4 +213,40 @@ public class MarketController {
 		
 		return model;
 	}
+	
+	@GetMapping("/product-cart")
+	public ModelAndView Cart (ModelAndView model, @RequestParam int proNo) {
+
+		log.info("{}", proNo);
+		
+		Product product = null;
+		
+		product = service.findProductByNo(proNo);
+		
+		model.addObject("product", product);
+		model.setViewName("market/product-cart");
+		
+		return model;
+	}
+	
+	@GetMapping("/product-payment")
+	public ModelAndView Payment (ModelAndView model, @RequestParam int proNo) {
+
+		Product product = null;
+		
+		product = service.findProductByNo(proNo);
+		
+		model.addObject("product", product);
+		model.setViewName("market/product-payment");
+		
+		return model;
+	}
+	
+	@GetMapping("/product-payment-fin")
+	public ModelAndView PaymentFinished (ModelAndView model) {
+
+		model.setViewName("market/product-payment-fin");
+		
+		return model;
+	}
 }
