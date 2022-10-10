@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/board/wherego/wherego_cafe.css">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -292,24 +292,6 @@
         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
         function displayMarker(locPosition, message) {
 
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({  
-                map: map, 
-                position: locPosition
-            }); 
-            
-            var iwContent = message, // 인포윈도우에 표시할 내용
-                iwRemoveable = true;
-
-            // 인포윈도우를 생성합니다
-            var infowindow = new kakao.maps.InfoWindow({
-                content : iwContent,
-                removable : iwRemoveable
-            });
-            
-            // 인포윈도우를 마커위에 표시합니다 
-            infowindow.open(map, marker);
-            
             // 지도 중심좌표를 접속위치로 변경합니다
             map.setCenter(locPosition);      
         }    
