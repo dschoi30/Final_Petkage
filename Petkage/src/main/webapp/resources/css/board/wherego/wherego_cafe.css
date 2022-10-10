@@ -145,18 +145,21 @@ html {
 /* Áöµµ */
 .wg_6 .wg6_map {
     width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.wg_6 .wg6_map #map {
-	margin-top: 20px;
-    margin-bottom: 20px;
+    height: 350px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 1023px) {
-    .wg_6 .wg6_map #map{
-        width: 80%;
+	.wg_6 .wg6_map {
+        width: 80% !important;
+    }
+}
+
+
+@media (max-width: 1023px) {
+    .wg_6 .wg6_map #map {
+        width: 80% !important;
     }
 }
 

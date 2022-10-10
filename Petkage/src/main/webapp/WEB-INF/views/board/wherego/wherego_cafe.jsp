@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	
 	<!-- 카카오 맵 api -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	25029489670655943df197a370a5aa89&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	25029489670655943df197a370a5aa89&libraries=services"></script>	
 
     <!-- 제이쿼리 datepicker -->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="wg6_map">
-            <div id="map" style="width: 100%; height: 350px;"></div>
+            <div id="map" style="width: 100%; height: 350px; margin-top: 20px; margin-bottom: 20px;"></div>
         </div>
         <div class="wg6_mid">
             <div class="wg6_line"></div>
@@ -291,29 +291,12 @@
 
         // 지도에 마커와 인포윈도우를 표시하는 함수입니다
         function displayMarker(locPosition, message) {
-
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({  
-                map: map, 
-                position: locPosition
-            }); 
-            
-            var iwContent = message, // 인포윈도우에 표시할 내용
-                iwRemoveable = true;
-
-            // 인포윈도우를 생성합니다
-            var infowindow = new kakao.maps.InfoWindow({
-                content : iwContent,
-                removable : iwRemoveable
-            });
-            
-            // 인포윈도우를 마커위에 표시합니다 
-            infowindow.open(map, marker);
             
             // 지도 중심좌표를 접속위치로 변경합니다
             map.setCenter(locPosition);      
         }    
         
+        map.relayout();
         
     </script>
 
