@@ -517,7 +517,7 @@
 								</c:if>
 							</c:forEach>
 	                        <li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.nextPage }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;</a></li>
-	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
+	                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-list?page=${ pageInfo.maxPage }&searchValue=${ product.searchValue }&proCategory1=cat&proCategory2=${ product.proCategory2 }">&gt;&gt;</a></li>
 	                    </ul>
 	                </div>
 	            </c:if>

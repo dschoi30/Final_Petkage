@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Product;
 
@@ -27,11 +28,14 @@ import lombok.extern.slf4j.Slf4j;
 public class MarketController {
 	@Autowired 
 	private MarketService service;
+
+	@Autowired
+	private KakaoPayService kakaoPayService;
 	
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@GetMapping("product-write")
+	@GetMapping("/product-write")
 	public String write() {
 		
 		log.info("게시글 작성 페이지 요청");
@@ -242,10 +246,19 @@ public class MarketController {
 		return model;
 	}
 	
-	@GetMapping("/product-payment-fin")
-	public ModelAndView PaymentFinished (ModelAndView model) {
+	@PostMapping("/product-payment")
+	public String Payment() {
+		log.info("결제 준비 PostMapping");
+		
+		return "redirect:" + kakaoPayService.kakaoPayReady();
+	}
 
-		model.setViewName("market/product-payment-fin");
+	@GetMapping("/product-payment-finished")
+	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
+		log.info("결제 성공 GetMapping");
+		log.info("pg_token : {}", pg_token);
+        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
+		model.setViewName("market/product-payment-finished");
 		
 		return model;
 	}

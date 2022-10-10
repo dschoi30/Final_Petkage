@@ -121,6 +121,7 @@
                 </div>
                 <div class="pay-method-info">
                     <br><h4>결제 정보</h4><br>
+                    <form method="post" action="${ path }/market/product-payment">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -142,7 +143,8 @@
                             <tr>
                                 <td>결제 방법</td>
                                 <td>
-                                    <label><input type="radio" name="kakaopay">카카오페이</label>&nbsp;
+<!--                                     <label><input type="radio" name="kakaopay" id="check_module">카카오페이</label>&nbsp; -->
+		    						<button id="kakaopay">카카오페이</button>
                                     <label><input type="radio" name="account">계좌이체</label>&nbsp;
                                     <label><input type="radio" name="card">신용/체크카드</label>&nbsp;
                                     <label><input type="radio" name="corp-card">법인카드</label>
@@ -150,6 +152,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
             </div>
             <div class="contents">
@@ -205,7 +208,46 @@
 
     <script src="${path}/resources/js/market/product.js"></script>
     
-
-
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
+    <script>
+	$("#kakaopay").click(function () {
+		var IMP = window.IMP;
+		// '' 안에 띄어쓰기 없이 가맹점 식별코드 삽입
+		IMP.init('imp71578272');
+		IMP.request_pay({
+			pg: 'kakao',
+			pay_method: 'card',
+			merchant_uid: 'merchant_' + new Date().getTime(),
+			/* 
+			 *  merchant_uid의 경우 
+			 *  https://docs.iamport.kr/implementation/payment
+			 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+			 */
+			name: '주문명 : 아메리카노',
+			// 결제창에서 보여질 이름
+			// name: '주문명 : ${auction.a_title}',
+			// 위와같이 model에 담은 정보를 넣어 쓸 수도 있습니다.
+			amount: 2000,
+			// amount: ${bid.b_bid},
+			buyer_name: '이름',
+			// 구매자 이름, 구매자 정보도 model 값으로 바꿀 수 있습니다.
+			// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 링크를 참고해주세요.
+			buyer_postcode: '123-456',
+			}, function (rsp) {
+				console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				// success.submit();
+				// 결제 성공 시 정보를 넘겨줘야 한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+	});
+</script>
 </body>
 </html>
