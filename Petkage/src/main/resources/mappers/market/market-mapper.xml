@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.market.model.mapper.MarketMapper">
+	<sql id="productListSql">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS,
+			   P.PRO_REP_COUNT
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		WHERE P.PRO_STATUS = 'Y' 
+			AND (PRO_NAME || PRO_TAG LIKE '%' || #{searchValue} || '%')
+			AND PRO_CATEGORY1 LIKE '%' || #{proCategory1} || '%'
+			AND PRO_CATEGORY2 LIKE '%' || #{proCategory2} || '%'
+	</sql>
+	<resultMap type="Product" id="productListResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proTag" column="PRO_TAG"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proContent" column="PRO_CONTENT"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+		<result property="proRepCount" column="PRO_REP_COUNT"/>
+	</resultMap>
+	
+	<select id="selectProductCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT WHERE PRO_STATUS='Y'
+	</select>
+	
+	<select id="selectProductList" resultMap="productListResultMap">
+		<include refid="productListSql" />
+		ORDER BY P.PRO_NO DESC
+	</select>
+	
+		<select id="selectProductSearchList" resultMap="productListResultMap">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS,
+			   P.PRO_REP_COUNT
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		WHERE P.PRO_STATUS = 'Y' 
+			AND (PRO_NAME || PRO_TAG LIKE '%' || #{searchValue} || '%')
+		ORDER BY P.PRO_NO DESC
+	</select>
+	
+	<select id="selectProductByNo" parameterType="_int"  resultMap="productListResultMap">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS,
+			   P.PRO_REP_COUNT
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
+	</select>
+	
+	<insert id="registerProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="proNo" keyColumn="PRO_NO">
+		INSERT INTO PRODUCT (
+		    PRO_NO,
+		    PRO_SEL_NO,
+		    PRO_NAME,
+		    PRO_BRAND,
+		    PRO_CATEGORY1,
+		    PRO_CATEGORY2,
+		    PRO_TAG,
+		    PRO_IMG,
+		    PRO_QTY,
+		    PRO_OPRICE,
+		    PRO_SPRICE,
+		    PRO_DEL_FEE,
+		    PRO_LTIME,
+		    PRO_CONTENT,
+		    PRO_RDATE,
+		    PRO_STATUS,
+		    PRO_REP_COUNT
+		) VALUES (
+		    SEQ_PRO_NO.NEXTVAL,
+		    #{proSelNo},
+		    #{proName},
+		    #{proBrand},
+		    #{proCategory1},
+		    #{proCategory2},
+   		    #{proTag},
+		    #{renamedFileName},
+		    #{proQty},
+   		    #{proOPrice},
+		    #{proSPrice},
+		    #{proDelFee},
+			#{proLTime},
+			#{proContent},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	
+	<insert id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT
+			<trim prefix="SET" suffixOverrides=",">
+				<if test="proName != null">
+					PRO_NAME = #{ proName },
+				</if>
+				<if test="proBrand != null">
+					PRO_BRAND = #{ proBrand },
+				</if>
+				<if test="proCategory1 != null">
+					PRO_CATEGORY1 = #{ proCategory1 },
+				</if>
+				<if test="proCategory2 != null">
+					PRO_CATEGORY2 = #{ proCategory2 },
+				</if>
+				<if test="proTag != null">
+					PRO_TAG = #{ proTag },
+				</if>
+				<if test="renamedFileName != null">
+					PRO_IMG = #{ renamedFileName },
+				</if>
+				<if test="proQty != null">
+					PRO_QTY = #{ proQty },
+				</if>
+				<if test="proOPrice != null">
+					PRO_OPRICE = #{ proOPrice },
+				</if>
+				<if test="proSPrice != null">
+					PRO_SPRICE = #{ proSPrice },
+				</if>
+				<if test="proDelFee != null">
+					PRO_DEL_FEE = #{ proDelFee },
+				</if>
+				<if test="proLTime != null">
+					PRO_LTIME = #{ proLTime },
+				</if>
+				<if test="proContent != null">
+					PRO_CONTENT = #{ proContent }
+				</if>
+			</trim>
+		WHERE PRO_NO = #{ proNo }
+	</insert>
+	
+	<insert id="updateProductStatus" parameterType="map">
+		UPDATE PRODUCT SET PRO_STATUS = #{ proStatus } WHERE PRO_NO = #{ proNo }
+	</insert>
+</mapper>

@@ -13,38 +13,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
-   // 15 + 2
-   private int no;
-   
-   private String userId;
-   
-   private String userPwd;
-   
-   private String userName;
-      
-   private String userPhone;
-   
-   private String zonecode;
-   
-   private String userAddress;
-   
-   private String addressSub;
-   
-   private String userEmail;
-   
-   private int point;
-   
-   private int report;
-   
-   private String memberRole;
-   
-   private String status;
-   
-   private Date enrolldate;
-   
-   private String petYN;
-   
-//   private Pet pet;
-//   
-//   private Seller seller;
+	// 15 + 2
+	private int no;
+	
+	private String userId;
+	
+	private String userPwd;
+	
+	private String userName;
+		
+	private String userPhone;
+	
+	private String zonecode;
+	
+	private String userAddress;
+	
+	private String addressSub;
+	
+	private String userEmail;
+	
+	private int point;
+	
+	private int report;
+	
+	private String memberRole;
+	
+	private String status;
+	
+	private Date enrolldate;
+	
+	private String petYN;
+	
+	private Pet pet;
+	
+	private Seller seller;
 }
