@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.petkage.tools.model.service.ToolsService;
 
@@ -58,6 +59,18 @@ public class ToolsController {
 		
 		return "tools/walkOutRecommend";
 	}
+	
+//	@RequestMapping(value="/calResult", method= {RequestMethod.POST})
+//	@ResponseBody
+//	public String resultAjax() {
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//
+//		map.put("kor", "Korea");
+//	        map.put("us", "United States");
+//
+//		return null;
+//	}
 	
 	
 	

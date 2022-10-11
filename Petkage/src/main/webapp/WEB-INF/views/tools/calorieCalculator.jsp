@@ -78,15 +78,19 @@
 								<h5>반려동물 선택</h5>
 								<div class="pet_choice">
 									<input type="hidden" id="pet_type" name="pet_type">
-									<ul id="pet_sel">
-										<li onclick="pet_sel(0)" class="pet_type_0 pet_off"><a><img
-													src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
+									<ul id="pet_sel" name="pet_sel">
+										<li class="pet_type_0 pet_off" id="dog_on" onclick="dog_on()" value="">
+											<a>
+												<img src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
 												<p>강아지</p>
-											</a></li>
-										<li onclick="pet_sel(3)" class="pet_type_3 pet_off"><a><img
-													src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
+											</a>
+										</li>
+										<li class="pet_type_3 pet_off" id="cat_on" onclick="cat_on()" value="">
+											<a>
+												<img src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
 												<p>고양이</p>
-											</a></li>
+											</a>
+										</li>
 									</ul>
 								</div>
 							</span>

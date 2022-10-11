@@ -19,7 +19,7 @@
 	<section class="hd">
         <div class="header_container">
             <header class="d-flex flex-wrap mb-4">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+                <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
                     <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 

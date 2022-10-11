@@ -52,7 +52,6 @@
 			right: 0;
 			top: 0;
 			z-index: 100;
-			background-color: #FFEBC9;
 		}
 
 		.best_product:nth-child(1) {
@@ -98,7 +97,7 @@
 <body>
 	<section class="hd">
 		<header class="d-flex flex-wrap mb-4">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+                <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
                     <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
@@ -126,7 +125,7 @@
 	</section>
 
 	<main id="fullpage">
-		<section class="section sec1">
+		<section class="section sec1"> <!-- 메인 화면 -->
 			<div class="wrapper">
 				<video autoplay playsinline muted loop preload poster="http://i.imgur.com/xHO6DbC.png">
 				  <source src="${ path }/resources/videos/갱얼쥐.mp4" />
@@ -158,8 +157,11 @@
 			  <div class="iconmouse">
 				<span class="ball"></span>
 			  </div>
+			  
+			  
+  
 		</section>
-		<section class="section sec2">
+		<section class="section sec2"> <!-- 추천 어디가지 -->
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
@@ -236,7 +238,7 @@
 			</div>
 		
 		</section>
-		<section class="section sec3">
+		<section class="section sec3"> <!-- 추천 상품 -->
 			<div class="texts_left">
 				<div class="texts_text">
 					<h1>추천 상품</h1> 
@@ -249,7 +251,7 @@
 				<div class="best_product"></div>
 			</div>
 		</section>
-		<section class="section sec4">
+		<section class="section sec4"> <!-- 일정 캘린더 -->
 				<div class="calendar">
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
@@ -291,7 +293,7 @@
 				</div>
 		</section>
 
-		<section class="ft section fp-auto-height">
+		<section class="ft section fp-auto-height"> <!-- 푸터 -->
 			<div class="footer_container">
 				<footer class="footer_section1">
 					<div class="footer">
@@ -345,6 +347,87 @@
 
 	<!-- Main js -->
 	<script src="${ path }/resources/js/main.js"></script> 
+	
+	<!-- Socket js -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	
+	<script type="text/javascript">
+
+	// 전송 버튼 누르는 이벤트
+	$("#button-send").on("click", function(e) {
+		sendMessage();
+		$('#msg').val('')
+	});
+	
+	var sock = new SockJS('http://localhost:8080/chatting');
+	sock.onmessage = onMessage;
+	sock.onclose = onClose;
+	sock.onopen = onOpen;
+	
+	function sendMessage() {
+		sock.send($("#msg").val());
+	}
+	
+	// 서버에서 메시지를 받았을 때
+	function onMessage(msg) {
+		
+		var data = msg.data;
+		var sessionId = null; // 데이터를 보낸 사람
+		var message = null;
+		
+		var arr = data.split(":");
+		
+		for(var i=0; i<arr.length; i++){
+			console.log('arr[' + i + ']: ' + arr[i]);
+		}
+		
+		var cur_session = '${userid}'; // 현재 세션에 로그인 한 사람
+		console.log("cur_session : " + cur_session);
+		
+		sessionId = arr[0];
+		message = arr[1];
+		
+	    // 로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+		if(sessionId == cur_session){
+			
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-secondary'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			
+			$("#msgArea").append(str);
+		}
+		else{
+			
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-warning'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			
+			$("#msgArea").append(str);
+		}
+		
+	}
+	
+	// 채팅창에 들어왔을 때
+	function onOpen(evt) {
+		
+		var user = '${pr.username}';
+		var str = user + "님이 입장하셨습니다.";
+		
+		$("#msgArea").append(str);
+	}
+	
+	// 채팅창에서 나갔을 때
+	function onClose(evt) {
+		
+		var user = '${pr.username}';
+		var str = user + " 님이 퇴장하셨습니다.";
+		
+		$("#msgArea").append(str);
+	}
+	
+	</script>
      
 </body>
 </html>

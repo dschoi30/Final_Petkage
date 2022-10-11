@@ -78,21 +78,25 @@
 								<h5>반려동물 선택</h5>
 								<div class="pet_choice">
 									<input type="hidden" id="pet_type" name="pet_type">
-									<ul id="pet_sel">
-										<li onclick="pet_sel(0)" class="pet_type_0 pet_off" id="dog_on"><a><img
-													src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
+									<ul id="pet_sel" name="pet_sel">
+										<li class="pet_type_0 pet_off" id="dog_on" onclick="dog_on()" value="">
+											<a>
+												<img src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
 												<p>강아지</p>
-											</a></li>
-										<li onclick="pet_sel(3)" class="pet_type_3 pet_off" id="cat_on"><a><img
-													src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
+											</a>
+										</li>
+										<li class="pet_type_3 pet_off" id="cat_on" onclick="cat_on()" value="">
+											<a>
+												<img src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
 												<p>고양이</p>
-											</a></li>
+											</a>
+										</li>
 									</ul>
 								</div>
 							</span>
 							<span class="content_write_input write_divline">
 								<h5>생년월일 입력</h5>
-								<input type="text" name="dog_date" id="dog_date" inputmode="numeric" pattern="[0-9]*"
+								<input type="text" name="pet_date" id="pet_date" inputmode="numeric" pattern="[0-9]*"
 									maxlength="10" xonkeyup="myFunction()"
 									placeholder="반려동물의 생년월일을 입력해주세요. ex) 20221031" title="">
 							</span>
@@ -100,17 +104,22 @@
 								<h5>몸무게 선택</h5>
 								<div class="cal_choice">
 									<fieldset>
-										<input type="hidden" id="dog_type" name="dog_type">
-										<label for="dog_type0"><input type="radio"
-												class="dog_type_btn dog_type0 cal_type_checked" id="dog_type0"
-												name="animal_check" value="dog_check" onclick="weigh_choice(0)"
-												checked><span>소(~ 9kg)</span></label>
-										<label for="dog_type1"><input type="radio" class="dog_type_btn dog_type1"
-												id="dog_type1" name="animal_check" value="dog_check"
-												onclick="weigh_choice(1)"><span>중(9 ~ 23kg)</span></label>
-										<label for="dog_type2"><input type="radio" class="dog_type_btn dog_type2"
-												id="dog_type2" name="animal_check" value="dog_check"
-												onclick="weigh_choice(2)"><span>대(23kg 이상)</span></label>
+										<input type="hidden" id="dog_type" name="animal_check">
+										<label for="dog_type0">
+											<input type="radio" class="dog_type_btn dog_type0" id="dog_type0"
+												name="animal_check" value="dog_check0" onclick="weigh_choice(0)">
+												<span>소(~ 9kg)</span>
+										</label>
+										<label for="dog_type1">
+											<input type="radio" class="dog_type_btn dog_type1" id="dog_type1" 
+												name="animal_check" value="dog_check1" onclick="weigh_choice(1)">
+												<span>중(9 ~ 23kg)</span>
+										</label>
+										<label for="dog_type2">
+											<input type="radio" class="dog_type_btn dog_type2" id="dog_type2" 
+												name="animal_check" value="dog_check2" onclick="weigh_choice(2)">
+												<span>대(23kg 이상)</span>
+										</label>
 									</fieldset>
 								</div>
 							</span>

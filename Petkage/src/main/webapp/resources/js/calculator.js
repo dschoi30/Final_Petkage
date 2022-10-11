@@ -1,74 +1,147 @@
-// 펫 타입 선택
-function pet_sel(no) {
-    $("#pet_type").val(no);
-    $(this).addClass("pet_on");
-    $("li[class^='pet_type_']").removeClass("pet_on");
-    $(".pet_type_" + no).addClass("pet_on");
 
-    if (no == 0) {
-        console.log(no + "강아지");
-        $("#cat_hide").show();
-        $("#bcs_sel_cat_img").hide();
-        $("#bcs_sel_dog_img").show();
-        $("#pet_jisu").hide();
-        $("#cat_jisu").hide();
-        $("#dog_jisu").show();
-        
-    } else if (no == 3) {
-        console.log(no + "고양이");
-        $("#cat_hide").hide();
-        $("#bcs_sel_dog_img").hide();
-        $("#bcs_sel_cat_img").show();
-        $("#pet_jisu").hide();
-        $("#dog_jisu").hide();
-        $("#cat_jisu").show();
+function parseType(type) {
+    switch (type) {
+    case 0:
+        type = '강아지 소'
+            break;
+    case 1:
+        type = '강아지 중'
+            break;
+    case 2:
+        type = '강아지 대'
+            break;
+    case 3:
+        type = '고양이'
+            break;
+    default:
     }
+    return type;
 }
 
-// 비만도 선택
-function bcs_sel(no) {
-    $("#bcs_type").val(no);
-    $(this).addClass("bcs_on");
-    $("li[class^='bcs_type_']").removeClass("bcs_on");
-    $(".bcs_type_" + no).addClass("bcs_on");
+var cellBirth = document.getElementById('pet_date');
+	cellBirth.onkeyup = function(event){
+	event = event || window.event;
+	var _val = this.value.trim();
 }
 
-// 소중대 선택
-function weigh_choice(no) { 
-    $("a[class^='bcs_type_']").removeClass("bcs_on");
+function result_view(tab_id) {
+    var pet_type = $('input[name="pet_type"]').val();
 
-    $("#dog_type").val(no);
-    $("#bcs_type").val("");
-}
+    var dog_on = $("#dog_on").val();
+    var cat_on = $("#cat_on").val();
 
-// 소중대 라디오 버튼 선택
-var dog_type_btn = document.getElementsByClassName("dog_type_btn");
+    var pet_date = $('input[name="pet_date"]').val().replace(/\./g, '-');
+    var dog_type = $('input[name="animal_check"]').val();
 
-function handleClick(event) {
-    console.log(event.target);
+    var bcs_type = $('#bcs_type').val();
 
-    console.log(event.target.classList);
+    var pet_weight = $('input[name="pet_weight"]').val();
+    var dog_jisu = $('select[name="dog_jisu"]').val();
+    var cat_jisu = $('select[name="cat_jisu"]').val();
 
-    if (event.target.classList[1] === "cal_type_checked") {
-        event.target.classList.remove("cal_type_checked");
-    } else {
-        for (var i = 0; i < dog_type_btn.length; i++) {
-            dog_type_btn[i].classList.remove("cal_type_checked");
+    if (tab_id == 1) {
+        if (!pet_type) {
+            alert("반려동물을 선택해주세요.")
+        } else {
+            if(dog_on === 0 && cat_on === 0) {
+                if (!pet_date) {
+                    alert("생년월일을 입력해주세요.");
+                    $('input[name="pet_date"]').focus()
+                    return;
+                } else if (!dog_type) {
+                    alert("몸무게를 선택해주세요.");
+                    return;
+                }
+            
+            } else {
+                if (!pet_date) {
+                    alert("생년월일을 입력해주세요.");
+                    $('input[name="pet_date"]').focus()
+                    return;
+                } 
+            }
         }
 
-        event.target.classList.add("cal_type_checked");
+        if (!isBirthday(pet_date)) { //생년월일 유효성 검사
+            return;
+        }
+
     }
+
+
+    $.ajax ({
+        type: "POST",
+        url: "${ path }/tools/calResult",
+        dataType: "json",
+        data: {
+            data
+        },
+        success: function(r){
+			$(".cal_result_box").show();
+			// $(".calculator_sns").show(); // 공유하기
+			$(".cal_info_box").hide();
+
+			//나이계산기
+			if(tab_id==1){
+                $(".cal_result_age").css("display","block");
+                
+                if (pet_type === "강아지") {
+                    $("#dog_age").html(r.msg[0]);
+                    $("#dog_age_cal").html(r.msg[1]+"살");
+                    $("#dog_life").html(r.msg[2]);
+                } else if (pet_type === "고양이") {
+                    $("#dog_age").html(r.msg[0]);
+                    $("#dog_age_cal").html(r.msg[1]+"살");
+                    $("#dog_life").html(r.msg[2]);
+                }
+
+			}else if(tab_id==2){//칼로리계산
+				$(".Cc_result_calorie").css("display","block");
+				$("#basic_meta").html(r.msg[0]+"kcal");
+				$("#basic_kal").html(r.msg[1]+"kcal");
+				
+			}else if(tab_id==3){//칼로리계산
+				$(".Cc_result_obesity").css("display","block");
+				$("#bsc_type_str1").html(r.msg_pc[0]);
+				$("#bsc_type_str2").html(r.msg_pc[1]);
+				$("#bsc_type_str3").html(r.msg_pc[2]);
+			}
+
+		}
+
+    });
+
+
 }
 
-function init() {
-    for (var i = 0; i < dog_type_btn.length; i++) {
-        dog_type_btn[i].addEventListener("click", handleClick);
-    }
+function dog_on() {
+    console.log("강쥐 클릭");
+    console.log($("#dog_on").val());
+    console.log($('input[name="pet_type"]').val());
+
+    $("#cat_hide").show();
+    $('input[name="pet_type"]').attr('value','강아지');
+    $("[name=animal_check]").attr("disabled", false);
+    $('#cat_on').attr('value','');
 }
 
-init();
+function cat_on() {
+    console.log("고영희 클릭");
+    console.log($("#cat_on").val());
+    console.log($('input[name="pet_type"]').val());
 
-// 생년월일 유효성 검사
+    $("#cat_hide").hide();
+    $('input[name="pet_type"]').attr('value','고양이');
+    $("[name=animal_check]").attr("disabled", true);
+    $('#cat_on').attr('value','3');
+}
+
+function weigh_choice(no) { 
+    console.log(no + $("#dog_type").val(no));
+
+    $("#dog_type"+no).val(no);
+}
+
 function isBirthday(dateStr) {
     $("#birth_chk_str").hide();
     dateStr = dateStr.replace(/[^0-9]/g, '');
@@ -81,25 +154,25 @@ function isBirthday(dateStr) {
     if (dateStr.length <= 10) { // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다. 
         if (1900 > year || year > yearNow) {
             alert("날짜형식이 다릅니다.");
-            $('input[name="dog_date"]').focus()
+            $('input[name="pet_date"]').focus()
             return false;
         } else if (month < 1 || month > 12) {
             alert("날짜형식이 다릅니다.");
-            $('input[name="dog_date"]').focus()
+            $('input[name="pet_date"]').focus()
             return false;
         } else if (day < 1 || day > 31) {
             alert("날짜형식이 다릅니다.");
-            $('input[name="dog_date"]').focus()
+            $('input[name="pet_date"]').focus()
             return false;
         } else if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) {
             alert("날짜형식이 다릅니다.");
-            $('input[name="dog_date"]').focus()
+            $('input[name="pet_date"]').focus()
             return false;
         } else if (month == 2) {
             var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
             if (day > 29 || (day == 29 && !isleap)) {
                 alert("날짜형식이 다릅니다.");
-                $('input[name="dog_date"]').focus()
+                $('input[name="pet_date"]').focus()
                 return false;
             } else {
                 return true;
@@ -109,147 +182,7 @@ function isBirthday(dateStr) {
         }
     } else { //1.입력된 생년월일이 8자 초과할때 : auth:false 
         alert("날짜형식이 다릅니다.");
-        $('input[name="dog_date"]').focus()
+        $('input[name="pet_date"]').focus()
         return false;
     }
-}
-
-// 펫 상태 셀렉트 박스
-const label = document.querySelectorAll('.label');
-
-label.forEach(function(lb){
-    lb.addEventListener('click', e => {
-        let optionList = lb.nextElementSibling;
-        let optionItems = optionList.querySelectorAll('.optionItem');
-        clickLabel(lb, optionItems);
-    })
-});
-
-const clickLabel = (lb, optionItems) => {
-    if(lb.parentNode.classList.contains('active')) {
-        lb.parentNode.classList.remove('active');
-        optionItems.forEach((opt) => {
-            opt.removeEventListener('click', () => {
-                handleSelect(lb, opt)
-            })
-        })
-    } else {
-        lb.parentNode.classList.add('active');
-        optionItems.forEach((opt) => {
-            opt.addEventListener('click', () => {
-                handleSelect(lb, opt)
-            })
-        })
-    }
-}
-
-const handleSelect = (label, item) => {
-    label.innerHTML = item.textContent;
-    label.parentNode.classList.remove('active');
-}
-
-// 결과창 열기
-function result_view(tab_id) {
-    var dog_date = $('input[name="dog_date"]').val().replace(/\./g, '-');
-    var dog_type = $('input[name="dog_type"]').val();
-
-    var bcs_type = $('#bcs_type').val();
-
-    var pet_weight = $('input[name="pet_weight"]').val();
-    var dog_jisu = $('select[name="dog_jisu"]').val();
-    var cat_jisu = $('select[name="cat_jisu"]').val();
-
-    if (tab_id == 1) {
-        if (!dog_date) {
-            alert("생년월일을 입력해주세요.");
-            $('input[name="dog_date"]').focus()
-            return;
-        } else if (!dog_type) {
-            alert("몸무게를 선택해주세요.");
-            return;
-        } else {
-			return;
-        }
-
-        if (!isBirthday(dog_date)) { //생년월일 유효성 검사
-            return;
-        } else {
-            $(".cal_info_box").hide();
-            if ($("#dog_on").hasClass("pet_on") === true && $("#cat_on").hasClass("pet_off") === true) {
-                $(".cal_result_box").show();
-                $("#dog_life").show();
-                $("#cat_life").hide();
-            } else if ($("#dog_on").hasClass("pet_off") === true && $("#cat_on").hasClass("pet_on") === true) {
-                $(".cal_result_box").show();
-                $("#cat_life").show();
-                $("#dog_life").hide();
-            }
-        }
-
-        data = "m2Code=dogcal&mode=age_cal&dog_date=" + dog_date + "&dog_type=" + dog_type;
-    
-    } else if (tab_id == 2) {
-        if (!bcs_type) {
-            alert("BCS를 선택해주세요");
-            return;
-        } else {
-
-        $(".cal_info_box").hide();
-            if ($("#dog_on").hasClass("pet_on") === true && $("#cat_on").hasClass("pet_off") === true) {
-                $(".cal_result_box").show();
-                $("#dog_ob_1").show();
-                $("#cat_ob_1").hide();
-            } else if ($("#dog_on").hasClass("pet_off") === true && $("#cat_on").hasClass("pet_on") === true) {
-                $(".cal_result_box").show();
-                $("#cat_ob_1").show();
-                $("#dog_ob_1").hide();
-            }
-        }
-
-        data = "m2Code=dogcal&mode=bimando_cal&bcs_type=" + bcs_type;
-    
-    } else if (tab_id == 3) {
-        if (!pet_weight) {
-            alert("몸무게를 입력해주세요.");
-            $('input[name="pet_weight"]').focus()
-            return;
-        } else if ((dog_jisu && !cat_jisu) ) {
-            alert("반려동물 상태를 선택해주세요.");
-            return;
-        } else {
-            $(".cal_info_box").hide();
-            $(".cal_result_box").show();
-        }
-
-        data = "m2Code=dogcal&mode=calorie_cal&pet_weight=" + pet_weight + "&dog_jisu=" + dog_jisu;
-    
-    }
-
-    $.ajax({
-        type: "post",
-        dataType: "json",
-        data: data,
-        url: "../ajaxData_cal.php",
-        success: function (r) {
-            $(".cal_result_box").show();
-            // $(".h21_calculator_sns").show(); //SNS 공유하기
-            $(".cal_info_box").hide();
-
-            if (tab_id == 1) { // 나이 계산기
-                $(".cal_result_age").css("display", "block");
-                $("#dog_age").html(r.msg[0]);
-                $("#dog_age_cal").html(r.msg[1] + "살");
-                $("#dog_life").html(r.msg[2]);
-            } else if (tab_id == 2) {// 비만도 계산기
-                $(".cal_result_bmi").css("display", "block");
-                $("#bsc_type_str1").html(r.msg_pc[0]);
-                $("#bsc_type_str2").html(r.msg_pc[1]);
-                $("#bsc_type_str3").html(r.msg_pc[2]);
-            } else if (tab_id == 3) {// 칼로리 계산기
-                $(".cal_result_calorie").css("display", "block");
-                $("#basic_meta").html(r.msg[0] + "kcal");
-                $("#basic_kal").html(r.msg[1] + "kcal");
-            } 
-        }
-    })
 }
