@@ -172,9 +172,9 @@
                     <div>
                     </div>
                     <div class="prod-total-price">
-                        <span class="col mt-2 p-0"><label>수량 : <input type="number" value="1" min="1" max="999" step="1" dir="rtl" required></label></span>
+                        <span class="col mt-2 p-0"><label>수량 : <input type="number" id="orderQty" value="1" min="1" max="${ product.proQty }" step="1" dir="rtl" required></label></span>
                         <span class="total-price-info">총 상품 금액</span>
-                        <span class="total-price">14,490원</span>
+                        <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></div>
                     </div>
                     <br>
                     <div class="prod-summary-footer">
@@ -607,12 +607,18 @@
 
     <script src="${path}/resources/js/product.js"></script>
     
-    <script type="text/javascript">
+    <script>
+	$(document).ready(() => {
 	    $("#btnDelProd").on("click", () => {
 	        if(confirm("정말로 게시글을 삭제하시겠습니까?")) {
 	            location.replace("${ path }/market/product-delete?proNo=${ product.proNo }");
 	        };
 	    });
+	    
+	    $("#orderQty").on("change", () => {
+			$("#totalPrice").text(${ product.proSPrice } * ${"#orderQty"}.val());
+		});
+	});
     </script>
 </body>
 </html>

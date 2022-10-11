@@ -18,6 +18,7 @@ import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
 
 import lombok.extern.slf4j.Slf4j;
@@ -231,6 +232,17 @@ public class MarketController {
 		model.setViewName("market/product-cart");
 		
 		return model;
+	}
+	
+	@PostMapping("/product-cart")
+	public String Cart(@ModelAttribute Cart cart, @RequestParam Product product) {
+		
+		
+		cart.setMemNo(1);
+		cart.setProNo(product.getProNo());
+		
+		
+		return "market/product-cart";
 	}
 	
 	@GetMapping("/product-payment")
