@@ -47,6 +47,21 @@
                     <div class="wg5t2_address">
                         <input type="text" name="address" placeholder="매장 주소" required>
                     </div>
+					<div class="wg5t2_location">
+                        <div class="wg5t2_loca">지역</div>
+                        <select name="" id="" required>
+                            <option disabled selected>지역선택</option>
+                            <option>서울</option>
+                            <option>부산</option>
+                            <option>제주</option>
+                            <option>경기</option>
+                            <option>인천</option>
+                            <option>강원</option>
+                            <option>경상</option>
+                            <option>전라</option>
+                            <option>충청</option>
+                        </select>
+                    </div>
                     <div class="wg5t2_option">
                         <div class="wg5t2_size">크기</div>
                         <div class="wg5t2_breed">
