@@ -33,7 +33,7 @@
 	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login';" value="로그인">
 					</c:if>
 					
-					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
+					<c:if test="${ (not empty loginMember) && loginMember.memberRole == 'ROLE_USER' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
