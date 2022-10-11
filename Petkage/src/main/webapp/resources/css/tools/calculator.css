@@ -1075,9 +1075,11 @@
   	padding-top: 7px;
 }
 
+/*
 .tc .cal_result_dic:last-child {
   	border-left: 1px solid #e6e6e6;
 }
+*/
 
 .tc .cal_result_dic {
   	display: inline-block;
