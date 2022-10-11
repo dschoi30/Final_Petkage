@@ -83,7 +83,7 @@ public class MemberController {
 		model.addObject("msg", "로그아웃 되었습니다.");
 		model.setViewName("common/msg");
 		model.addObject("location", "/");
-		log.info("로그아웃");
+		log.info("로그아웃 성공");
 
 		return model;
 	}
