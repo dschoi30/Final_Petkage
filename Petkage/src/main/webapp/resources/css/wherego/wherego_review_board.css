@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+@charset "UTF-8";
 
 html {
     font-size: 62.5%;
@@ -16,14 +16,14 @@ html {
     font-family: "GmarketSansMedium";
   }
 
-  /* ¹İÀÀÇü */
+  /* ë°˜ì‘í˜• */
 
 @media all and (max-width: 1023px) {
     html {
     font-size: 50%;
     }
 
-    /* °Ë»ö ¹Ù*/
+    /* ê²€ìƒ‰ ë°”*/
     .wg_2 .wg_top {
     width: 60%;
     }
@@ -96,7 +96,7 @@ html {
     transform: translatey(-4px);
 }
 
-/* ¸®ºä °Ô½ÃÆÇ »ó´Ü */
+/* ë¦¬ë·° ê²Œì‹œíŒ ìƒë‹¨ */
 
 .wg_2 .wgc_7 {
     margin: 0 auto;
@@ -110,7 +110,7 @@ html {
     }
 }
 
-/* 1) ¸®ºä °Ô½ÃÆÇ ¹Ù*/
+/* 1) ë¦¬ë·° ê²Œì‹œíŒ ë°”*/
 
 .wg_2 .wgc_7 .wgc7_rbar {
     width: 1110px;
@@ -178,7 +178,7 @@ html {
     margin: 0 auto;
 }
 
-/* Ä«Å×°í¸® */
+/* ì¹´í…Œê³ ë¦¬ */
 
 .wg_2 .wg_cate {
     margin: 0 auto;
@@ -265,7 +265,7 @@ html {
     transform: scale(1.4);
 }
 
-/* ¸®ºä °Ô½Ã±Û */
+/* ë¦¬ë·° ê²Œì‹œê¸€ */
 
 .wg_2 .wgc_7 .wgc7_list {
     width: 100%;

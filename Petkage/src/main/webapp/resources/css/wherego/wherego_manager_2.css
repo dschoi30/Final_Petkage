@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+@charset "UTF-8";
 
 html {
     font-size: 62.5%;
@@ -16,7 +16,7 @@ html {
     font-family: "GmarketSansMedium";
 }
 
-  /* ¹İÀÀÇü */
+  /* ë°˜ì‘í˜• */
 
 @media all and (max-width: 1023px) {
     html {
@@ -53,7 +53,7 @@ html {
     justify-content: center;
 }
 
-/* ¾÷·Îµå */
+/* ì—…ë¡œë“œ */
 .wg_10 .wg5_top .wg5t_1 .wgc7w_upload {
     list-style: none;
     width: 100%;
@@ -94,7 +94,7 @@ html {
     display: none;
 }
 
-/* ÅØ½ºÆ® ¹× Á¤º¸ ºÎºĞ */
+/* í…ìŠ¤íŠ¸ ë° ì •ë³´ ë¶€ë¶„ */
 
 .wg_10 .wg5_top .wg5t_2 {
     width: 50%;
@@ -199,7 +199,7 @@ html {
 }
 
 
-/* ¹ÙÅÒ */
+/* ë°”í…€ */
 
 .wg_10 .wg5_bottom {
     width: 100%;
@@ -258,7 +258,7 @@ html {
     border-bottom: 3px solid #753422;
 }
 
-/* ±¸Á¶ */
+/* êµ¬ì¡° */
 .wg_10 .wg5_bottom .wg5b_content {
     position: relative;
     margin-top: 30px;
@@ -421,7 +421,7 @@ html {
     color: #D79771;
 }
 
-/* ¼÷¼Ò Á¤º¸ */
+/* ìˆ™ì†Œ ì •ë³´ */
 
 .wg_10 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf {
     border-bottom: 2px solid #eeeeee8f;
@@ -462,7 +462,7 @@ html {
     width: 500px;
 }
 
-/* ÀÛ¼º ¿Ï·á */
+/* ì‘ì„± ì™„ë£Œ */
 .wg_10 .wg9_btn {
     width: 100%;
     margin-top: 30px;
