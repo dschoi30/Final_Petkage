@@ -22,7 +22,7 @@ public class ChatController {
 		log.info("==================================");
 		log.info("@ChatController, GET Chat / Username : " + user.getUserName());
 		
-		model.addAttribute("userid", user.getUserName());
+		model.addAttribute("userName", user.getUserName());
 	}
 
 }

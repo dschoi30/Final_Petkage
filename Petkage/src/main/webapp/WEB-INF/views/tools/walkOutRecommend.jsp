@@ -103,12 +103,10 @@
     var positions = [
         // 송파구
         {
-            title: <div>'GS25한강잠실1호점'</div>, 
+            title: 'GS25한강잠실1호점', 
             latlng: new kakao.maps.LatLng(37.519580, 127.093538)
-        },
-        {
-        	title: 
         }
+
    	 ]
 	
  	// 마커 이미지의 이미지 주소입니다
@@ -130,8 +128,7 @@
             image : markerImage // 마커 이미지 
         });
     }
-	
- 	
+
 	
 	</script>
 </body>
