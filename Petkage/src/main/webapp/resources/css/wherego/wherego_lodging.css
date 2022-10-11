@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+@charset "UTF-8";
 
 html {
     font-size: 62.5%;
@@ -16,7 +16,7 @@ html {
     font-family: "GmarketSansMedium";
 }
 
-  /* ¹İÀÀÇü */
+  /* ë°˜ì‘í˜• */
 
 @media all and (max-width: 1023px) {
     html {
@@ -143,7 +143,7 @@ html {
 }
 
 
-/* ÇÊÅÍ ¹öÆ° */
+/* í•„í„° ë²„íŠ¼ */
 .wg_4 .wg_filter {
     width: 100%;
     display: flex;

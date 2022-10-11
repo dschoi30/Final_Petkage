@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+@charset "UTF-8";
 
 html {
     font-size: 62.5%;
@@ -16,14 +16,14 @@ html {
     font-family: "GmarketSansMedium";
   }
 
-  /* ¹İÀÀÇü */
+  /* ë°˜ì‘í˜• */
 
 @media all and (max-width: 1023px) {
     html {
     font-size: 50%;
     }
 
-    /* °Ë»ö ¹Ù*/
+    /* ê²€ìƒ‰ ë°”*/
     .wg_3 .wg_top {
     width: 60%;
     }
@@ -96,7 +96,7 @@ html {
     transform: translatey(-4px);
 }
 
-/* ¸®ºä °Ô½ÃÆÇ »ó´Ü */
+/* ë¦¬ë·° ê²Œì‹œíŒ ìƒë‹¨ */
 
 .wg_3 .wgc_7 {
     margin: 0 auto;
@@ -110,7 +110,7 @@ html {
     }
 }
 
-/* 1) ¸®ºä °Ô½ÃÆÇ ¹Ù*/
+/* 1) ë¦¬ë·° ê²Œì‹œíŒ ë°”*/
 
 .wg_3 .wgc_7 .wgc7_rbar {
     width: 1110px;
@@ -159,7 +159,7 @@ html {
     font-weight: 800;
 }
 
-/* ¿É¼Ç */
+/* ì˜µì…˜ */
 
 .wg_3 .wgc_7 .wgc7_option {
     width: 100%;
@@ -239,7 +239,7 @@ html {
     font-size: 1.4rem;
 }
 
-/* º°Á¡ */
+/* ë³„ì  */
 
 
 .wg_3 .wgc_7 .wgc7_option .wgc7_score {
@@ -298,7 +298,7 @@ html {
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-/* ¾÷·Îµå ¹× ÅØ½ºÆ® */
+/* ì—…ë¡œë“œ ë° í…ìŠ¤íŠ¸ */
 
 .wg_3 .wgc_7 .wgc7_write {
     width: 100%;
@@ -317,7 +317,7 @@ html {
 }
 
 
-/* ¾÷·Îµå */
+/* ì—…ë¡œë“œ */
 .wg_3 .wgc_7 .wgc7_write .wgc7w_upload {
     list-style: none;
 }
@@ -363,7 +363,7 @@ html {
     padding-top: 120px;
 }
 
-/* ¹öÆ° */
+/* ë²„íŠ¼ */
 .wg_3 .wgc_7 .wgc7_button {
     width: 100%;
     margin: 0 auto;

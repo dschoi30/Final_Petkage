@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+@charset "UTF-8";
 
 html {
     font-size: 62.5%;
@@ -16,7 +16,7 @@ html {
     font-family: "GmarketSansMedium";
 }
 
-  /* ¹İÀÀÇü */
+  /* ë°˜ì‘í˜• */
 
 @media all and (max-width: 1023px) {
     html {
@@ -142,7 +142,7 @@ html {
     color: #753422;
 }
 
-/* Áöµµ */
+/* ì§€ë„ */
 .wg_6 .wg6_map {
     width: 100%;
     margin-top: 20px;
@@ -161,7 +161,7 @@ html {
 }
 
 
-/* ¹Ìµé¶óÀÎ */
+/* ë¯¸ë“¤ë¼ì¸ */
 .wg_6 .wg6_mid {
     width: 100%;
     display: flex;
@@ -206,7 +206,7 @@ html {
     color: #D79771;
 }
 
-/* Ä«µå */
+/* ì¹´ë“œ */
 
 .wg_6 .wg6_bottom {
     width: 100%;
