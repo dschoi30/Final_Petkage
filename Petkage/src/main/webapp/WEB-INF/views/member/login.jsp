@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
-
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +79,7 @@
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
 	                  회원가입을 하시면 다양한 혜택이 준비되어 있습니다.
 	                </span>
-	                <button type="button" class="btn btn-block" id="btnJoinMember" onclick="location.href='${ path }/member/join'" >
+	                <button type="button" class="btn btn-block" id="btnJoinMember" onclick="location.href='${ path }/member/enroll'" >
 	                  회원가입
 	                </button>
 	              </div>
@@ -113,6 +113,5 @@
 	</script>
 	
 </body>
-
-</body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>
