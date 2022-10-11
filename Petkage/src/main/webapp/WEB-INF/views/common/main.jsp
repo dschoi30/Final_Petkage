@@ -311,7 +311,7 @@
 						<ul class="nav footer_nav">
 							<li class="nav-item footer_item"><a href="#" class="nav-link footer_link">이용약관</a></li>
 							<li class="nav-item footer_item"><a href="#" class="nav-link footer_link">개인정보 취급방침</a></li>
-							<li class="nav-item footer_item"><a href="#" class="nav-link footer_link">공지사항</a></li>
+							<li class="nav-item footer_item"><a href="${ path }/notice/noticeList" class="nav-link footer_link">공지사항</a></li>
 							<li class="nav-item footer_item"><a href="#" class="nav-link footer_link">FAQ</a></li>
 						</ul>
 	
