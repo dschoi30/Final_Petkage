@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.member.model.service.MemberService;
@@ -74,18 +75,15 @@ public class MemberController {
 		
 		return model;
 	}
-	
+		
 	// 로그아웃 처리
 	@GetMapping("/logout")
-	public ModelAndView logout(HttpSession session, ModelAndView model) {
-		
-		session.invalidate();
-		model.addObject("msg", "로그아웃 되었습니다.");
-		model.setViewName("common/msg");
-		model.addObject("location", "/");
+	public String logout(SessionStatus status) {
 		log.info("로그아웃 성공");
-
-		return model;
+		
+		status.setComplete();
+		
+		return "redirect:/";
 	}
 	
 	// 회원가입 페이지 처리
