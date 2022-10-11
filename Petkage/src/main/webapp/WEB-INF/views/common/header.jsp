@@ -33,19 +33,21 @@
 	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login';" value="로그인">
 					</c:if>
 					
-					<c:if test="${ not empty loginMember && loginMember.role == 'ROLE_USER' }">
+					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
-	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/logout')" value="로그아웃">
+	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
-					<c:if test="${ not empty loginMember && loginMember.role == 'ROLE_SELLER' }">
+					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
-	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/logout')" value="로그아웃">
+	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
+	                    <a href="${ path }/market/product-write">상품 등록</a><br><br>
+						<a href="${ path }/market/product-list">상품 목록</a>
         			</c:if>
         			
-					<c:if test="${ not empty loginMember && loginMember.role == 'ROLE_ADMIN' }">
+					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin'" value="관리자페이지" >
-	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/logout')" value="로그아웃">
+	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
                     <a href="${ path }/market" class="d-flex align-items-center headercart">

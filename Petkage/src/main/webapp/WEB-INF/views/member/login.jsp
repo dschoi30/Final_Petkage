@@ -79,7 +79,7 @@
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
 	                  회원가입을 하시면 다양한 혜택이 준비되어 있습니다.
 	                </span>
-	                <button type="button" class="btn btn-block" id="btnJoinMember" onclick="location.href='${ path }/member/join'" >
+	                <button type="button" class="btn btn-block" id="btnJoinMember" onclick="location.href='${ path }/member/enroll'" >
 	                  회원가입
 	                </button>
 	              </div>
