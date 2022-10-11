@@ -139,7 +139,15 @@ html {
     }
 }
 
+.wg_10 .wg5_top .wg5t_2 .wg5t2_location select {
+    width: 100px;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+
 .wg_10 .wg5_top .wg5t_2 .wg5t2_option,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_location,
 .wg_10 .wg5_top .wg5t_2 .wg5t2_amenities,
 .wg_10 .wg5_top .wg5t_2 .wg5t2_info {
     width: 100%;
@@ -147,12 +155,14 @@ html {
 
 @media (max-width: 1023px) {
     .wg_10 .wg5_top .wg5t_2 .wg5t2_option,
+    .wg_10 .wg5_top .wg5t_2 .wg5t2_location,
     .wg_10 .wg5_top .wg5t_2 .wg5t2_amenities,
     .wg_10 .wg5_top .wg5t_2 .wg5t2_info {
         width: 80%
     }
 }
 .wg_10 .wg5_top .wg5t_2 .wg5t2_option .wg5t2_size,
+.wg_10 .wg5_top .wg5t_2 .wg5t2_location .wg5t2_loca,
 .wg_10 .wg5_top .wg5t_2 .wg5t2_amenities .wg5t2_amentext,
 .wg_10 .wg5_top .wg5t_2 .wg5t2_info .wg5t2_introduce label  {
     font-size: 1.6rem;
