@@ -87,7 +87,7 @@
                 <img src="${ path }/resources//images/notice/Rectangle 2051.png" id="nt_pic">
                 <div class="nt_text">
                     <span style="color: white">전체</span>
-                    <span class="nt_color">10</span>
+                    <span class="nt_color">${ noticeCount }</span>
                 </div>
             </div>
 

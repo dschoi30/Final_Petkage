@@ -31,11 +31,14 @@ public class NoticeController {
 		
 		pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10);
 		list = service.getNoticeList(pageInfo);
+		int noticeCount = service.getNoticeCount();
 		
 		
 		System.out.println(list);
+		System.out.println(noticeCount);
 		
 		model.addObject("list", list); 
+		model.addObject("noticeCount", noticeCount); 
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("notice/noticeList");
 		
