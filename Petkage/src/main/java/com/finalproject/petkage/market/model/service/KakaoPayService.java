@@ -28,24 +28,24 @@ public class KakaoPayService {
 	public String kakaoPayReady() {
 		RestTemplate restTemplate = new RestTemplate();
 
-		// ¼­¹ö·Î ¿äÃ»ÇÒ Header
+		//ì„œë²„ë¡œ ìš”ì²­í•  Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "a2c23a946b5f644401b0fc455309f81c");
 		headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
 		headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 		
-		// ¼­¹ö·Î ¿äÃ»ÇÒ Body
+		// ì„œë²„ë¡œ ìš”ì²­í•  Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
 		params.add("partner_order_id", "1001");
 		params.add("partner_user_id", "ds0631");
-		params.add("item_name", "Å½»ç 6free °­¾ÆÁö »ç·á ¿¬¾î ·¹½ÃÇÇ, 3kg");
+		params.add("item_name", "íƒì‚¬ 6free ê°•ì•„ì§€ ì‚¬ë£Œ ì—°ì–´ ë ˆì‹œí”¼, 3kg");
 		params.add("quantity", "1");
 		params.add("total_amount", "17490");
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8083/petkage/market/product-payment-finished");
-		params.add("cancel_url", "http://localhost:8083/petkage/market/product-payment-canceled");
-		params.add("fail_url", "http://localhost:8083/petkage/market/product-payment-failed");
+		params.add("approval_url", "http://localhost:8083/petkage/market/order-finished");
+		params.add("cancel_url", "http://localhost:8083/petkage/market/order-canceled");
+		params.add("fail_url", "http://localhost:8083/petkage/market/order-failed");
 		
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
@@ -62,7 +62,7 @@ public class KakaoPayService {
 			e.printStackTrace();
 		}
 
-       return "/product-payment";
+       return "/order";
     }
 	
     public KakaoPayApproval kakaoPayInfo(String pg_token) {
@@ -72,13 +72,13 @@ public class KakaoPayService {
         
         RestTemplate restTemplate = new RestTemplate();
  
-        // ¼­¹ö·Î ¿äÃ»ÇÒ Header
+        // ì„œë²„ë¡œ ìš”ì²­í•  Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "a2c23a946b5f644401b0fc455309f81c");
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
  
-        // ¼­¹ö·Î ¿äÃ»ÇÒ Body
+        // ì„œë²„ë¡œ ìš”ì²­í•  Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReady.getTid());
@@ -96,10 +96,8 @@ public class KakaoPayService {
             return kakaoPayApproval;
         
         } catch (RestClientException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         

@@ -84,4 +84,12 @@ public class MarketServiceImpl implements MarketService {
 		return result;
 	}
 
+	@Override
+	public List<Cart> getCartList(String memNo) {
+
+		List<Cart> cart = mapper.getCartList(memNo);
+		
+		return cart;
+	}
+
 }

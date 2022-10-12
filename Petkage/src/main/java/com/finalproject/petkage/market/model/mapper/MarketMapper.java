@@ -29,4 +29,6 @@ public interface MarketMapper {
 
 	Cart checkCart(Cart cart);
 
+	List<Cart> getCartList(String memNo);
+
 }

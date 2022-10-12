@@ -121,7 +121,7 @@
                 </div>
                 <div class="pay-method-info">
                     <br><h4>결제 정보</h4><br>
-                    <form method="post" action="${ path }/market/product-payment">
+                    <form method="post" action="${ path }/market/order">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class="contents">
-                <button class="cart-pay-btn" onclick="location.href='${ path }/market/product-payment-fin'">결제하기</button>
+                <button class="cart-pay-btn" onclick="location.href='${ path }/market/order-finished'">결제하기</button>
             </div>
         </div>
     </div>

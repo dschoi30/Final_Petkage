@@ -104,7 +104,7 @@
                  <ul class="nav nav-pills">
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">커뮤니티</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">

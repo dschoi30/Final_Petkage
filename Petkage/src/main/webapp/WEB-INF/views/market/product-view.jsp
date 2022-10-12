@@ -156,10 +156,10 @@
                         <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
-                        19% <s><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###"/>원</s> (정상가)
+                        19% <s><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###원"/></s> (정상가)
                     </div>
                     <div class="prod-sale-price">
-                        <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></span>
+                        <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></span>
                         <span clas="sale-price-info">(할인가)</span>
                     </div>
                     <div class="reward-point">
@@ -173,19 +173,18 @@
                     </div>
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
-                        	<button class="plus-btn">+</button>
-<!--                         	<label>수량 : <input type="number" class="qty-input" value="1" min="1" max="${ product.proQty }" step="1" dir="rtl" required></label>  -->
-								<input type="text" class="qty-input" size="5" value="1">
-                        	<button class="minus-btn">-</button>
+                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
+                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
-                        <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></div>
+                        <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></div>
                     </div>
                     <br>
                     <div class="prod-summary-footer">
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
                         <button class="btn btn-light" style="width: 235px;"
-                        		onclick="location.href='${ path }/market/product-payment?proNo=${ product.proNo }'">바로 구매</button>
+                        		onclick="location.href='${ path }/market/order?proNo=${ product.proNo }'">바로 구매</button>
                         <br><br>
                         <button class="btn btn-light" style="width: 235px;"
                             	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
@@ -610,7 +609,7 @@
     </section>
 
     <script src="${path}/resources/js/product.js"></script>
-    
+
     <script>
 	$(document).ready(() => {
 	    $("#btnDelProd").on("click", () => {
@@ -620,19 +619,40 @@
 	    });
 
     	// 주문 수량 선택
-    	let quantity = $(".qty-input").val();
+    	var quantity = $(".qty-input").val();
     	$(".plus-btn").on("click", function(){
     		$(".qty-input").val(++quantity);
-    		$("#totalPrice").text(${ product.proSPrice } * quantity);
+    		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
     	});
     	$(".minus-btn").on("click", function(){
     		if(quantity > 1){
     			$(".qty-input").val(--quantity);
-        		$("#totalPrice").text(${ product.proSPrice } * quantity);
+        		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
     		}
     	});
-    	
+	});
+	</script>
+	<script>
+	$(document).ready(() => {
+    	// 서버로 전송할 데이터
+    	// 장바구니 추가 버튼
+   		$("#btnAddCart").on("click", () => {
+   			var memNo = 1;
+   	    	var proCount = $(".qty-input").val();
 
+   			$.ajax({
+   				url: '${path}/market/cart/add',
+   				type: 'POST',
+   				data: {
+   					"memNo" : memNo,
+   					"proCount" : proCount
+   				},
+   				success: () => {
+    				alert("장바구니에 추가되었습니다.");
+   				}
+   			})
+   		});
+		
 	});
 	</script>
 </body>

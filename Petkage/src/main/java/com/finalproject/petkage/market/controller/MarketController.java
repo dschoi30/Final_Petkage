@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,7 +45,7 @@ public class MarketController {
 	@GetMapping("/product-write")
 	public String write() {
 		
-		log.info("°Ô½Ã±Û ÀÛ¼º ÆäÀÌÁö ¿äÃ»");
+		log.info("ê²Œì‹œê¸€ ì‘ì„± í˜ì´ì§€ ìš”ì²­");
 		
 		return "market/product-write";
 	}
@@ -89,10 +92,10 @@ public class MarketController {
 		result = service.save(product);
 		
 		if(result > 0) {
-			model.addObject("msg", "»óÇ°ÀÌ Á¤»óÀûÀ¸·Î µî·ÏµÇ¾ú½À´Ï´Ù.");
+			model.addObject("msg", "ìƒí’ˆì´ ì •ìƒì ìœ¼ë¡œ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
 		} else {
-			model.addObject("msg", "»óÇ° µî·Ï¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+			model.addObject("msg", "ìƒí’ˆ ë“±ë¡ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-write");
 		}
 		
@@ -114,7 +117,7 @@ public class MarketController {
 		
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 8, service.getProductCount(), 8);
+		pageInfo = new PageInfo(page, 5, service.getProductCount(), 8);
 		list = service.getProductList(pageInfo, product);
 //		searchList = service.getProductSearchList(pageInfo, searchValue);
 //		System.out.println(searchList);
@@ -150,10 +153,10 @@ public class MarketController {
 		result = service.delete(proNo);
 		
 		if(result > 0) {
-			model.addObject("msg", "°Ô½Ã±ÛÀÌ Á¤»óÀûÀ¸·Î »èÁ¦µÇ¾ú½À´Ï´Ù.");
+			model.addObject("msg", "ê²Œì‹œê¸€ì´ ì •ìƒì ìœ¼ë¡œ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-list");
 		} else {
-			model.addObject("msg", "°Ô½Ã±Û »èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+			model.addObject("msg", "ê²Œì‹œê¸€ ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-view?no=" + proNo);
 		}
 		
@@ -205,10 +208,10 @@ public class MarketController {
 		result = service.save(product);
 		
 		if(result > 0) {
-			model.addObject("msg", "°Ô½Ã±ÛÀÌ Á¤»óÀûÀ¸·Î ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+			model.addObject("msg", "ê²Œì‹œê¸€ì´ ì •ìƒì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
 		} else {
-			model.addObject("msg", "°Ô½Ã±Û ¼öÁ¤¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+			model.addObject("msg", "ê²Œì‹œê¸€ ìˆ˜ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
 			
 		}
@@ -221,33 +224,28 @@ public class MarketController {
 		
 		return model;
 	}
-	
-	@GetMapping("/cart")
-	public ModelAndView Cart (ModelAndView model, @RequestParam int proNo) {
 
-		log.info("{}", proNo);
-		
-		Product product = null;
-		
-		product = service.findProductByNo(proNo);
-
-		model.addObject("product", product);
-		model.setViewName("market/cart");
-		
-		return model;
-	}
-	
-	@PostMapping("/cart")
+	@PostMapping("/cart/add")
 	@ResponseBody
-	public String addCart(Cart cart) {
+	public String addCart(Cart cart, HttpServletRequest request) {
 		int result = 0;
 		
+//		HttpSession session = request.getSession();
+		System.out.println(cart);
 		result = service.addCart(cart);
 		
 		return result + "";
 	}
+
+	@GetMapping("/cart/{memNo}")
+	public String Cart (@PathVariable("memNo") String memNo, ModelAndView model) {
+
+		model.addObject("cartInfo", service.getCartList(memNo));
+		
+		return "/cart";
+	}
 	
-	@GetMapping("/product-payment")
+	@GetMapping("/order")
 	public ModelAndView Payment (ModelAndView model, @RequestParam int proNo) {
 
 		Product product = null;
@@ -255,24 +253,24 @@ public class MarketController {
 		product = service.findProductByNo(proNo);
 		
 		model.addObject("product", product);
-		model.setViewName("market/product-payment");
+		model.setViewName("market/order");
 		
 		return model;
 	}
 	
-	@PostMapping("/product-payment")
+	@PostMapping("/order")
 	public String Payment() {
-		log.info("°áÁ¦ ÁØºñ PostMapping");
+		log.info("ê²°ì œ ì¤€ë¹„ PostMapping");
 		
 		return "redirect:" + kakaoPayService.kakaoPayReady();
 	}
 
-	@GetMapping("/product-payment-finished")
+	@GetMapping("/order-finished")
 	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
-		log.info("°áÁ¦ ¼º°ø GetMapping");
+		log.info("ê²°ì œ ì„±ê³µ GetMapping");
 		log.info("pg_token : {}", pg_token);
         model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
-		model.setViewName("market/product-payment-finished");
+		model.setViewName("market/order-finished");
 		
 		return model;
 	}
