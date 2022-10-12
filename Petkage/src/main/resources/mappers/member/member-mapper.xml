@@ -1,8 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="memberMapper">
+<mapper namespace="com.finalproject.petkage.member.model.mapper.MemberMapper">
+	<sql id="selectMemberSql">
+		SELECT MEM_NO,
+		       MEM_ID,
+		       MEM_PWD,
+		       MEM_NAME,
+		       MEM_PHONE,
+		       MEM_ZONECODE,
+		       MEM_ADDRESS,
+		       MEM_SUBADDRESS,
+		       MEM_EMAIL,
+		       MEM_POINT,
+		       MEM_REPORT,
+		       MEM_ROLE,
+		       MEM_STATUS,
+		       MEM_ENROLLDATE
+		FROM MEMBER
+	</sql>
+
+	<resultMap type="Member" id="memberResultMap">
+		<id property="no" column="MEM_NO" />
+		<result property="userId" column="MEM_ID"/>
+		<result property="userPwd" column="MEM_PWD"/>
+		<result property="userName" column="MEM_NAME"/>
+		<result property="userPhone" column="MEM_PHONE"/>
+		<result property="zonecode" column="MEM_ZONECODE"/>
+		<result property="userAddress" column="MEM_ADDRESS"/>
+		<result property="addressSub" column="MEM_SUBADDRESS"/>
+		<result property="userEmail" column="MEM_EMAIL"/>
+		<result property="point" column="MEM_POINT"/>
+		<result property="report" column="MEM_REPORT"/>
+		<result property="memberRole" column="MEM_ROLE"/>
+		<result property="status" column="MEM_STATUS"/>
+		<result property="enrolldate" column="MEM_ENROLLDATE"/>
+		<result property="petYN" column="MEM_PETYN"/>
+	</resultMap>
+	
+	<!-- pet -->
+	<resultMap type="Pet" id="petResultMap">
+		<id property="petNo" column="PET_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="petName" column="PET_NAME"/>
+		<result property="petType" column="PET_TYPE"/>
+		<result property="petWeight" column="PET_WEIGHT"/>
+		<result property="petInfo" column="PET_INFO"/>
+		<result property="petStatus" column="PET_STATUS"/>
+	</resultMap>
+	<resultMap type="Member" id="inPetResultMap" extends="memberResultMap">
+		<collection property="pet" javaType="arraylist" columnPrefix="P_" resultMap="petResultMap" />
+	</resultMap>
+
+	<!-- seller -->
+	<resultMap type="Seller" id="sellerResultMap">
+		<result property="sellerNo" column="SEL_NO"/>
+		<result property="memNo" column="MEM_NO"/>
+		<result property="bName" column="SEL_NAME"/>
+		<result property="bNumber" column="SEL_LICENSE"/>
+	</resultMap>
+	
+	<resultMap type="Seller" id="insellerResultMap" extends="memberResultMap">
+		<collection property="pet" javaType="arraylist" columnPrefix="S_" resultMap="sellerResultMap" />
+	</resultMap>
+	
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+	<select id="selectAll" resultMap="memberResultMap">		
+		<include refid="selectMemberSql"/>
+		WHERE MEM_STATUS = 'Y'
+	</select>
+	
+
+	
+
+ 	<!-- 로그인 -->
+	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql" />
+		WHERE MEM_ID= #{ userId } AND MEM_STATUS ='Y'
+	</select>
+ 	
+ 	
+ 	<!-- 
+	<select id="selectMemberById" parameterType="string" resultMap="inPetResultMap">
+		SELECT M.MEM_NO,
+		       M.MEM_ID,
+		       M.MEM_PWD,
+		       M.MEM_NAME,
+		       M.MEM_PHONE,
+		       M.MEM_ZONECODE,
+		       M.MEM_ADDRESS,
+		       M.MEM_SUBADDRESS,
+		       M.MEM_EMAIL,
+		       M.MEM_POINT,
+		       M.MEM_REPORT,
+		       M.MEM_ROLE,
+		       M.MEM_STATUS,
+		       M.MEM_ENROLLDATE,
+		       M.MEM_PETYN,
+		       P.PET_NO AS "P_PET_NO",
+		       P.MEM_NO AS "P_MEM_NO",
+		       P.PET_NAME AS "P_PET_NAME",
+		       P.PET_INFO AS "P_PET_INFO",
+		       P.PET_TYPE AS "P_PET_TYPE",
+		       P.PET_WEIGHT AS "P_PET_WEIGHT",
+		       P.PET_STATUS AS "P_PET_STATUS"
+		FROM MEMBER M
+		INNER JOIN PET P ON (M.MEM_NO = P.MEM_NO)
+		WHERE M.MEM_ID = #{ userId } AND M.MEM_STATUS ='Y'
+	</select>
+	-->
+	
+	
+	<!-- 회원가입 member insert -->
+	<insert id="insertMember" parameterType="Member"
+			useGeneratedKeys="true" keyColumn="MEM_NO" keyProperty="no" >
+		INSERT INTO MEMBER (
+		    MEM_NO,
+		    MEM_ID,
+		    MEM_PWD,
+		    MEM_NAME,
+		    MEM_PHONE,
+		    MEM_ZONECODE,
+		    MEM_ADDRESS,
+		    MEM_SUBADDRESS,
+		    MEM_EMAIL,
+		    MEM_POINT,
+		    MEM_REPORT,
+		    MEM_ROLE,
+		    MEM_STATUS,
+		    MEM_ENROLLDATE,
+		    MEM_PETYN
+		) VALUES (
+		    SEQ_MEM_NO.NEXTVAL,
+		    #{ userId },
+		    #{ userPwd},
+		    #{ userName },
+		    #{ userPhone },
+		    #{ zonecode },
+		    #{ userAddress },
+		    #{ addressSub },
+		    #{ userEmail },
+		    DEFAULT,
+		    DEFAULT,
+		    #{ memberRole }, 
+		    DEFAULT,
+		    DEFAULT,
+		    #{ petYN }
+		)
+	</insert>
+	
+	<!-- 회원가입 pet insert -->
+	<insert id="insertPet" parameterType="Pet"
+			useGeneratedKeys="true" keyColumn="PET_NO" keyProperty="petNo">
+		INSERT INTO PET (
+		    PET_NO,
+			MEM_NO,
+			PET_NAME,
+			PET_INFO,
+			PET_TYPE,
+			PET_WEIGHT,
+			PET_STATUS
+		) VALUES (
+			SEQ_PET_NO.NEXTVAL,
+			#{ memNo },
+			#{ petName },
+			#{ petInfo },
+			#{ petType },
+			#{ petWeight },
+			DEFAULT
+		)
+	</insert>
+	
+	<!-- 회원가입 seller insert -->
+	<insert id="insertSeller" parameterType="Seller"
+			useGeneratedKeys="true" keyColumn="SEL_NO" keyProperty="sellerNo">
+	INSERT INTO SELLER (
+		    SEL_NO,
+		    MEM_NO,
+		    SEL_NAME,
+			SEL_LICENSE
+		) VALUES (
+			SEQ_SEL_NO.NEXTVAL,
+			#{ memNo },
+			#{ bName },
+			#{ bNumber }
+		)
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE MEM_ID = #{ userId } AND MEM_STATUS ='Y'
+	</select>
+	
+	<select id="emailCheck" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE MEM_EMAIL = #{ userEmail } AND MEM_STATUS ='Y'
 	</select>
 </mapper>

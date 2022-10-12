@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+/* 전체 폰트 설정 */
+@font-face {
+	font-family: "GmarketSansMedium";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: "GmarketSansMedium";
+}
+
+/* TOOLS MENU CSS */
+.tc {
+    overflow:hidden;
+}
+
+.tc input:-webkit-autofill,
+.tc input:-webkit-autofill:hover,
+.tc input:-webkit-autofill:focus,
+.tc input:-webkit-autofill:active {
+    transition: background-color 5000s; 
+}
+
+
+.tc .tools_container {
+    float: left;
+    text-align: center;
+    width: 100%;
+    margin: 0px auto 70px auto;
+    border: 0px solid #000;
+}
+
+.tc .cal_top {
+    width: 100%;
+    min-height: 255px;
+    background-size: 100%;
+}
+
+.tc .pr {
+    position: relative;
+}
+
+.tc .cal_top_box {
+    margin: 0px auto;
+}
+
+.tc .cal_top_box h3 {
+    width: 100%;
+    text-align: center;
+    color: #E3B7A0;
+    font-size: 45px;
+    font-weight: 300;
+    padding: 50px 0 0 0px;
+    letter-spacing: -0.03em;
+}
+
+.tc .cal_top_box h3 span {
+    color: #803D3D;
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.tc .area {
+    max-width: 1200px ! important;
+    min-width: 1260px ! important;
+    margin: 0px auto;
+}
+
+.cal_Tbg {
+    width: 100%;
+    min-height: 255px;
+}
+
+.tc .cal_top_h3_line_c {
+    width: 1100px;
+    height: 3px;
+    background: #D6D6D6;
+    text-align: center;
+    margin: 30px auto 15px;
+}
+
+.tc .cal_menu {   
+    top: -40px;
+}
+
+.tc .cal_menu, .tc .cal_content {
+    width: 800px;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 5px 5px 48px rgb(207 207 207 / 65%);
+}
+
+.tc .cal_menu_btn li.active {
+    background-color: #E3B7A0;
+}
+
+.tc .cal_menu_btn li {
+    width: 20%;
+    /* background-color: #FFEBC9; */
+    background-color: #fff;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 20px 0px;
+    transition: 0.3s;
+    font-size: 20px;
+    border-right: 1px solid #f7e8e7;
+    box-sizing: border-box;
+}
+
+.tc .cal_menu_btn li .cal_icon {
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+
+.tc .cal_menu_btn li.active a {
+    color: #fff;
+}
+
+.tc .cal_menu_btn li.active .cal_txt {
+    color: #fff;
+}
+
+.tc .cal_menu_btn li.inactive:hover {
+    background-color: rgba(255, 234, 199, 0.5);
+}
+
+.tc .cal_menu_btn li .cal_txt {
+    display: block;
+    overflow: hidden;
+    padding-top: 5px;
+    color: #803D3D;
+    text-align: center;
+    
+}
+
+.tc .cal_menu_btn img {
+    width: 50px;
+    height: 50px;
+}
+
+.tc .cal_content {
+    top: 0px;
+}
+
+.tc .cal_write {
+    margin: 3%;
+}
+
+.tc .content_write {
+    display: block;
+    overflow: hidden;
+    border-top: 1px solid #646361;
+}
+
+.tc .content_write .write_divline {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.tc .content_write label {
+    margin: 10px;
+}
+.tc .content_write span {
+    margin-left: 10px;
+}
+
+.tc .content_write_input {
+    display: block;
+    overflow: hidden;
+    text-align: left;
+}
+
+.tc .content_write_input h5 {
+    width: 16%;
+    float: left;
+    overflow: hidden;
+    margin: 18px 2% 15px 0;
+    border-right: 1px solid #ebebeb;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.tc .content_write_input > input[type="radio"] {
+    overflow: hidden;
+    margin-left: 1%;
+    padding: 13px 10px 13px 10px;
+    font-size: 16px;
+    font-weight: 300;
+    border: none;
+}

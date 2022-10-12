@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.notice.model.mapper.NoticeMapper">
+	<sql id="noticeListSql">
+		SELECT  N.NOTI_NO, 
+				N.NOTI_WRITERNO, 
+				N.NOTI_TITLE, 
+				N.NOTI_CONTENT,
+				N.NOTI_DATE,
+				N.NOTI_IMG,
+				N.NOTI_STATUS
+		FROM NOTICE N
+	</sql>
+	
+	<resultMap type="Notice" id="NoticeResultMap">
+		<id property="no" column="NOTI_NO"/>
+		<result property="writerNo" column="NOTI_WRITERNO"/>
+		<result property="title" column="NOTI_TITLE"/>
+		<result property="content" column="NOTI_CONTENT"/>
+		<result property="createDate" column="NOTI_DATE"/>
+		<result property="img" column="NOTI_IMG"/>
+		<result property="status" column="NOTI_STATUS"/>
+	</resultMap>
+
+	<!-- 공지 목록 조회(전체 목록) -->
+	<select id="selectNoticeCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE WHERE NOTI_STATUS='Y'
+	</select>
+	
+	<select id="selectAll" resultMap="NoticeResultMap">
+		<include refid="noticeListSql"/>
+		WHERE N.NOTI_STATUS = 'Y'
+		ORDER BY N.NOTI_NO DESC
+	</select>
+
+</mapper>

@@ -1,0 +1,124 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+font-family: "GmarketSansMedium";
+}
+
+.nt .card-header{
+    background-color: white;
+    border-bottom: #6b6b6b 0.5px solid;
+    cursor: pointer;
+}
+
+.nt .card-header .two{
+    background-color: white;
+    border-top: #6b6b6b 0.5px solid;
+}
+
+.nt .nt_header{
+    font-weight: bold;
+    font-size: 1.25em;
+    text-align: center;
+    background: #FEDDB2;
+    align-items: center;
+    width: 1110px;
+}
+
+.nt .b-btn {
+        background-color: #d79771;
+        color: white;
+        font-size: 0.7em;
+        font-weight: bold;
+        width: 100px;
+        height: 40px;
+        margin-left: 20px;
+        border-radius: 10px;
+        border-style: none;
+}
+
+.nt .nt_big{
+    border: #D6d6d6 2px solid;
+    height: 150%;
+}
+
+.nt .nt_small{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.nt .nt_no{
+    display: inline-block; 
+    width: 30px; 
+    text-align: center;
+}
+
+.nt .nt_title{
+    display: inline-block; 
+    padding-left: 30px; 
+    width: 725px;
+    font-weight: bold;
+}
+
+.nt .nt_ud{
+    display: inline-block; 
+    width: 50px;
+    color: #6b6b6b;
+    font-size: 0.8em;
+}
+
+.nt .nt_date{
+    display: inline-block; 
+    width: 125px;
+}
+
+.nt table{
+    border-spacing: 1px;
+    border-color: white;
+}
+
+.nt .nt_content{
+    margin-left: 60px;
+    line-height: 30px;
+    width: 900px;
+}
+
+.nt .nt_color{
+    color: #803D3D;
+}
+
+.nt .nt_inner{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+.nt_inner2 #nt_pic{
+    position: relative;
+    border-bottom: #6b6b6b 10px;
+}
+
+.nt .nt_text{
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.nt .down{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #803D3D;
+}
+
+.nt #pageBar{
+    text-align: center;
+    font-size: 2em;
+    background-color: red;
+}
