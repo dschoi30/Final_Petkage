@@ -28,35 +28,35 @@
 					<ul>
 						<li class='active'>
 							<a href="${ path }/tools/ageCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/age_on.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/age_on.png"
 										alt="나이 계산기" /></span>
 								<span class="cal_txt">나이 계산</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/bmiCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/bmi_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/bmi_off.png"
 										alt="비만도 계산기" /></span>
 								<span class="cal_txt">비만도 계산</span>
 							</a>
 						</li>	
 						<li class='inactive'>
 							<a href="${ path }/tools/calorieCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/cal_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/cal_off.png"
 										alt="권장 칼로리" /></span>
 								<span class="cal_txt">권장 칼로리</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/foodDictionary">
-								<span class="cal_icon"><img src="${ path }/resources/images/dic_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/dic_off.png"
 										alt="식품 사전" /></span>
 								<span class="cal_txt">식품 사전</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/walkOutRecommend">
-								<span class="cal_icon"><img src="${ path }/resources/images/out_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/out_off.png"
 										alt="산책코스" /></span>
 								<span class="cal_txt">산책코스</span>
 							</a>
@@ -81,13 +81,13 @@
 									<ul id="pet_sel" name="pet_sel">
 										<li class="pet_type_0 pet_off" id="dog_on" onclick="dog_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Dog.png" alt="BCS_s01" />
 												<p>강아지</p>
 											</a>
 										</li>
 										<li class="pet_type_3 pet_off" id="cat_on" onclick="cat_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Cat.png" alt="BCS_s01" />
 												<p>고양이</p>
 											</a>
 										</li>
@@ -138,7 +138,7 @@
 					<!-- 나이 계산기 결과 -->
 					<div class="cal_result_age" id="dog_life">
 						<div class="age_circle">
-							<span class="age_img"><img src="${ path }/resources/images/Laughing_Dog.png" alt="강아지" /></span>
+							<span class="age_img"><img src="${ path }/resources/images/common/Laughing_Dog.png" alt="강아지" /></span>
 							<span class="age_number" id="dog_age">1살</span>
 						</div>
 		
@@ -148,20 +148,16 @@
 		
 						<div class="age_circle">
 							<!-- ! 이미지 수정하기 -->
-							<span class="age_img"><img src="${ path }/resources/images/Agegroup_W1.png" alt="사람" /></span>
-							<span class="age_number" id="dog_age_cal">15살</span>
+							<span class="age_img"><img class="human_img" id="dog_to_human" src="${ path }/resources/images/Agegroup_W1.png" alt="사람" /></span>
+							<span class="age_number" id="dog_age_cal">몇 살</span>
 						</div>
 		
-						<div class="age_lifecycle" id="dog_life0">영유아기</div>
-						<!-- <div class="age_lifecycle" id="dog_life1">아동청소년기</div>
-							<div class="age_lifecycle" id="dog_life2">청년기</div>
-							<div class="age_lifecycle" id="dog_life3">중장년기</div>
-							<div class="age_lifecycle" id="dog_life4">노년기</div> -->
+						<div class="age_lifecycle" id="dog_lifecycle">기</div>
 					</div>
 		
 					<div class="cal_result_age" id="cat_life" style="display:none">
 						<div class="age_circle">
-							<span class="age_img"><img src="${ path }/resources/images/Laughing_Cat.png" alt="강아지" /></span>
+							<span class="age_img"><img src="${ path }/resources/images/common/Laughing_Cat.png" alt="고양이" /></span>
 							<span class="age_number" id="cat_age">1살</span>
 						</div>
 		
@@ -171,15 +167,11 @@
 		
 						<div class="age_circle">
 							<!-- ! 이미지 수정하기 -->
-							<span class="age_img"><img src="${ path }/resources/images/Agegroup_W1.png" alt="사람" /></span>
-							<span class="age_number" id="cat_age_cal">15살</span>
+							<span class="age_img"><img class="human_img" id="cat_to_human" src="${ path }/resources/images/.png" alt="사람" /></span>
+							<span class="age_number" id="cat_age_cal">몇 살</span>
 						</div>
 		
-						<div class="age_lifecycle" id="cat_life0">영유아기</div>
-						<!-- <div class="age_lifecycle" id="dog_life1">아동청소년기</div>
-							<div class="age_lifecycle" id="dog_life2">청년기</div>
-							<div class="age_lifecycle" id="dog_life3">중장년기</div>
-							<div class="age_lifecycle" id="dog_life4">노년기</div> -->
+						<div class="age_lifecycle" id="cat_lifecycle">기</div>
 					</div>
 		
 					<!-- 계산기 다시하기 버튼-->
@@ -231,8 +223,8 @@
 		if (tab_id == 1) {
 			if (!pet_type) {
 				alert("반려동물을 선택해주세요.")
-			} else {
-				if(dog_on === 0 && cat_on === 0) {
+			} else  {
+				if(dog_on === 0 && cat_on === 0) { // 강아지 일 때
 					if (!pet_date) {
 						alert("생년월일을 입력해주세요.");
 						$('input[name="pet_date"]').focus()
@@ -240,13 +232,30 @@
 					} else if (!dog_type) {
 						alert("몸무게를 선택해주세요.");
 						return;
-					}
+					} 
 
 					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
 						return;
 					}
-				
-				} else {
+					
+					if (pet_date && dog_type && isBirthday(pet_date)) {
+						$(".cal_result_box").show();
+						$(".cal_info_box").hide();
+
+						$("#dog_life").show();
+						$("#cat_life").hide();
+
+						$("#dog_age").html(petAges(pet_date));
+						console.log("댕 나이 : " + petAges(pet_date));
+
+						$("#dog_age_cal").html(dogToHumanAge(pet_date));
+						console.log("댕 사람나이 : " + dogToHumanAge(pet_date));
+
+						$("#dog_lifecycle").html(dogAgeGroup(pet_date));
+						console.log("댕 시기 : " + dogAgeGroup(pet_date));
+					}
+					
+				} else { // 고양이 일 때 
 					if (!pet_date) {
 						alert("생년월일을 입력해주세요.");
 						$('input[name="pet_date"]').focus()
@@ -256,39 +265,26 @@
 					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
 						return;
 					}
+
+					if (pet_date && isBirthday(pet_date)) {
+						$(".cal_result_box").show();
+						$(".cal_info_box").hide();
+
+						$("#cat_life").show();
+						$("#dog_life").hide();
+
+						$("#cat_age").html(petAges(pet_date));
+						console.log("냥 나이 : " + petAges(pet_date));
+
+						$("#cat_age_cal").html(catToHumanAge(pet_date));
+						console.log("냥 사람나이 : " + catToHumanAge(pet_date));
+
+						$("#cat_lifecycle").html(catAgeGroup(pet_date));
+						console.log("냥 시기 : " + catAgeGroup(pet_date));
+					}
 				}
 			}
 		}
-
-		$.ajax ({
-			type: "POST",
-			url: "${ path }/tools/calResult",
-			dataType: "json",
-			data: {
-				data
-			},
-			success: function(r){
-				$(".cal_result_box").show();
-				// $(".calculator_sns").show(); // 공유하기
-				$(".cal_info_box").hide();
-
-				//나이계산기
-				if(tab_id==1){
-					$(".cal_result_age").css("display","block");
-					
-					if (pet_type === "강아지") {
-						$("#dog_age").html(r.msg[0]);
-						$("#dog_age_cal").html(r.msg[1]+"살");
-						$("#dog_life").html(r.msg[2]);
-					} else if (pet_type === "고양이") {
-						$("#dog_age").html(r.msg[0]);
-						$("#dog_age_cal").html(r.msg[1]+"살");
-						$("#dog_life").html(r.msg[2]);
-					}
-
-				}
-			}
-		});
 	}
 
 	function dog_on() {
@@ -318,10 +314,10 @@
 	}
 
 	function weigh_choice(no) { 
-		console.log(no + $("#dog_type").val(no));
+        console.log(no + $("#dog_type").val(no));
 
-		$("#dog_type"+no).val(no);
-	}
+        $("#dog_type"+no).val(no);
+    }
 
 	function isBirthday(dateStr) {
 		$("#birth_chk_str").hide();
@@ -367,6 +363,229 @@
 			return false;
 		}
 	}
+
+	function petAges(birth) {
+		var date = new Date; // 날짜 변수 선언
+		var year = date.getFullYear(); 
+		var month = (date.getMonth() + 1); 
+		var day = date.getDate();
+
+		var today = new Date(year, month, day);
+		console.log("오늘 : " + today);
+
+		var birth = birth.replace(/[^0-9]/g, '');
+		var birthdayy = birth.substr(0, 4); 
+		var birthdaym = birth.substr(4, 2);
+		var birthdayd = birth.substr(6, 2);
+
+		var birthday = new Date(birthdayy, birthdaym, birthdayd);
+		console.log("생일 : " + birthday);
+
+		var dif = today - birthday; // 두 날짜의 차이
+		var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+		var cMonth = cDay * 30;// 월 만듬
+		var cYear = cMonth * 12; // 년 만듬
+		
+		console.log("차이 : " + dif);
+		
+		if (parseInt(dif/cYear) > 0) {
+			console.log(parseInt(dif/cYear));
+			age = parseInt(dif/cYear) + "살";
+		} else {
+			console.log(parseInt(dif/cMonth));
+			age = parseInt(dif/cMonth) + "개월";
+		}
+
+		return age;
+	}
+
+	function dogAgeGroup(age) {
+		petAge = petAges(age);
+
+		if (petAge == '0개월' || petAge == '1개월' || petAge == '2개월' || 
+			petAge == '3개월' || petAge == '4개월') {
+			$('#dog_to_human').attr('src','${ path }/resources/images/common/age1_1.png');
+			group = "영유아기"
+
+		} else if (petAge == '5개월' || petAge == '6개월' || petAge == '7개월' || petAge == '8개월' ||
+					petAge == '9개월' || petAge == '10개월' || petAge == '11개월' || petAge == '1살') {
+			document.getElementById("dog_to_human").src = "${ path }/resources/images/common/age2_1.png"
+			group = "아동 청소년기"
+		} else if (petAge == '2살' || petAge == '3살' || petAge == '4살') {
+			document.getElementById("dog_to_human").src = "${ path }/resources/images/common/age3_1.png"
+			group = "청년기"
+		} else if (petAge == '5살' || petAge == '6살' || petAge == '7살' || 
+					petAge == '8살' || petAge == '9살' || petAge == '10살') {
+			document.getElementById("dog_to_human").src = "${ path }/resources/images/common/age4_1.png"
+			group = "중장년기"
+		} else {
+			document.getElementById("dog_to_human").src = "${ path }/resources/images/common/age5_1.png"
+			group = "노년기"
+		}
+		return group
+	}
+
+	function catAgeGroup(age) {
+		petAge = petAges(age);
+
+		if (petAge == '0개월' || petAge == '1개월' || petAge == '2개월' ||
+			petAge == '3개월' || petAge == '4개월') {
+			document.getElementById("cat_to_human").src = "../resources/images/common/age1_2.png"
+			group = "영유아기"
+		} else if (petAge == '5개월' || petAge == '6개월' || petAge == '7개월' || petAge == '8개월' ||
+					petAge == '9개월' || petAge == '10개월' || petAge == '11개월' || petAge == '1살') {
+			document.getElementById("cat_to_human").src = "${ path }/resources/images/common/age2_2.png"
+			group = "아동 청소년기"
+		} else if (petAge == '2살' || petAge == '3살' || petAge == '4살') {
+			document.getElementById("cat_to_human").src = "${ path }/resources/images/common/age3_2.png"
+			group = "청년기"
+		} else if (petAge == '5살' || petAge == '6살' || petAge == '7살' || 
+					petAge == '8살' || petAge == '9살' || petAge == '10살' || 
+					petAge == '11살' || petAge == '12살') {
+			document.getElementById("cat_to_human").src = "${ path }/resources/images/common/age4_2.png"
+			group = "중장년기"
+		} else {
+			document.getElementById("cat_to_human").src = "${ path }/resources/images/common/age5_2.png"
+			group = "노년기"
+		}
+		return group
+	}
+
+	function dogToHumanAge(age) {
+		petAge = petAges(age);
+		var dogType_no = $('input[name="animal_check"]').val();
+
+		if (petAge == '0개월' || petAge == '1개월') {
+			age = "1살"
+		} else if (petAge == '2개월') {
+			age = "2살"
+		} else if (petAge == '3개월') {
+			age = "5살"
+		} else if (petAge == '4개월') {
+			age = "6살"
+		} else if (petAge == '5개월') {
+			age = "8살"
+		} else if (petAge == '6개월') {
+			age = "10살"
+		} else if (petAge == '7개월') {
+			age = "11살"
+		} else if (petAge == '8개월') {
+			age = "12살"
+		} else if (petAge == '9개월') {
+			age = "13살"
+		} else if (petAge == '10개월') {
+			age = "14살"
+		} else if (petAge == '11개월') {
+			age = "15살"
+		} else if (petAge == '1살') {
+			age = "16살"
+		} else if (petAge == '2살') {
+			age = "24살"
+		} 
+		else {
+			var agelength = petAge.length;
+			var basicAge = 24;
+
+			if (agelength < 3) {
+				var ageNum = parseInt(petAge.substr(0,1)); // petAge의 숫자만 추출
+
+				console.log("1자리 나이 : " + ageNum);
+
+				if (ageNum) {
+					if (dogType_no == 0) {
+						age = (basicAge + (5 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 1) {
+						age = (basicAge + (6 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 2) {
+						age = (basicAge + (7 * (ageNum - 2))) + "살"
+					}
+				}
+			} else if (agelength == 3) {
+				var ageNum = parseInt(petAge.substr(0,2)); // petAge의 숫자만 추출
+
+				console.log("2자리 나이 : " + ageNum);
+
+				if (ageNum) {
+					if (dogType_no == 0) {
+						age = (basicAge + (5 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 1) {
+						age = (basicAge + (6 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 2) {
+						age = (basicAge + (7 * (ageNum - 2))) + "살"
+					}
+				}
+			} else if (agelength > 3) {
+				var ageNum = parseInt(petAge.substr(0,3)); // petAge의 숫자만 추출
+
+				console.log("3자리 나이 : " + ageNum);
+
+				if (ageNum) {
+					if (dogType_no == 0) {
+						age = (basicAge + (5 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 1) {
+						age = (basicAge + (6 * (ageNum - 2))) + "살"
+					} else if (dogType_no == 2) {
+						age = (basicAge + (7 * (ageNum - 2))) + "살"
+					}
+				}
+			}
+		}
+		return age
+	}
+
+	function catToHumanAge(age) {
+		petAge = petAges(age);
+
+		if (petAge == '0개월' || petAge == '1개월') {
+			age = "1살"
+		} else if (petAge == '2개월') {
+			age = "3살"
+		} else if (petAge == '3개월') {
+			age = "5살"
+		} else if (petAge == '4개월') {
+			age = "6살"
+		} else if (petAge == '5개월') {
+			age = "8살"
+		} else if (petAge == '6개월') {
+			age = "9살"
+		} else if (petAge == '7개월') {
+			age = "10살"
+		} else if (petAge == '8개월') {
+			age = "11살"
+		} else if (petAge == '9개월') {
+			age = "12살"
+		} else if (petAge == '10개월') {
+			age = "13살"
+		} else if (petAge == '11개월') {
+			age = "14살"
+		} else if (petAge == '1살') {
+			age = "15살"
+		} else if (petAge == '2살') {
+			age = "24살"
+		} else {
+			var agelength = petAge.length;
+			var basicAge = 24;
+
+			if (agelength < 3) {
+				var ageNum = parseInt(petAge.substr(0,1)); // petAge의 숫자만 추출
+				console.log("1자리 나이 : " + ageNum);
+
+				age = (basicAge + (4 * (ageNum - 2))) + "살"
+			} else if (agelength == 3) {
+				var ageNum = parseInt(petAge.substr(0,2)); // petAge의 숫자만 추출
+				console.log("2자리 나이 : " + ageNum);
+
+				age = (basicAge + (4 * (ageNum - 2))) + "살"
+			} else if (agelength > 3) {
+				var ageNum = parseInt(petAge.substr(0,3)); // petAge의 숫자만 추출
+				console.log("3자리 나이 : " + ageNum);
+
+				age = (basicAge + (4 * (ageNum - 2))) + "살"
+			}		
+		}
+		return age
+	}
+
 	</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

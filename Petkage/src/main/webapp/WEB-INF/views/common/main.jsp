@@ -143,12 +143,12 @@
 	    }
 	  });
 	</script>
-<!-- End Channel Plugin -->
+	<!-- End Channel Plugin -->
 	
 	<section class="hd">
 		<header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                  <ul class="nav nav-pills">
@@ -178,7 +178,7 @@
         			</c:if>
         			
                     <a href="${ path }/market" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
+                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>
@@ -223,7 +223,7 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -232,7 +232,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -241,7 +241,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -250,7 +250,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -259,7 +259,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -268,7 +268,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -277,7 +277,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -371,21 +371,21 @@
 	
 						<div class="footer_icons">
 							<a href="/" class="">
-                            	<img src="${ path }/resources/images/Instagram.png" alt="" class="footericon">
+                            	<img src="${ path }/resources/images/common/Instagram.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/Facebook.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/Facebook.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/youtube.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/youtube.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/kakaotalk.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/kakaotalk.png" alt="" class="footericon">
 	                        </a>
 						</div>
 	
 							
-						<img src="${ path }/resources/images/Pet.png" alt="" class="footerLogo">
+						<img src="${ path }/resources/images/common/Pet.png" alt="" class="footerLogo">
 					</div>
 				</footer>
 			</div>

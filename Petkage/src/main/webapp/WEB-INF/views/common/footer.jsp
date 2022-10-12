@@ -37,20 +37,20 @@
 
                     <div class="footer_icons">
                         <a href="/" class="">
-                            <img src="${ path }/resources/images/Instagram.png" alt="" class="footericon">
+                            <img src="${ path }/resources/images/common/Instagram.png" alt="" class="footericon">
                         </a>
                         <a href="/" class="">
-                            <img src="${ path }/resources/images/Facebook.png" alt="" class="footericon">
+                            <img src="${ path }/resources/images/common/Facebook.png" alt="" class="footericon">
                         </a>
                         <a href="/" class="">
-                            <img src="${ path }/resources/images/youtube.png" alt="" class="footericon">
+                            <img src="${ path }/resources/images/common/youtube.png" alt="" class="footericon">
                         </a>
                         <a href="/" class="">
-                            <img src="${ path }/resources/images/kakaotalk.png" alt="" class="footericon">
+                            <img src="${ path }/resources/images/common/kakaotalk.png" alt="" class="footericon">
                         </a>
                     </div>
 
-                    <img src="${ path }/resources/images/Pet.png" alt="" class="footerLogo">
+                    <img src="${ path }/resources/images/common/Pet.png" alt="" class="footerLogo">
                 </div>
             </footer>
         </div>

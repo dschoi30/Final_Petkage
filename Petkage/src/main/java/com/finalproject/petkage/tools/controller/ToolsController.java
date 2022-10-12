@@ -85,4 +85,13 @@ public class ToolsController {
 
         return model;
 	}	
+	
+	@RequestMapping("/ageResult")
+	public ModelAndView ageResult (
+	        ModelAndView model) {
+	    
+	    return model;
+	}
+	
+	
 }

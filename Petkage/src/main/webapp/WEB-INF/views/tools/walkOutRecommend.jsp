@@ -29,35 +29,35 @@
 					<ul>
 						<li class='inactive'>
 							<a href="${ path }/tools/ageCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/age_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/age_off.png"
 										alt="나이 계산기" /></span>
 								<span class="cal_txt">나이 계산</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/bmiCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/bmi_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/bmi_off.png"
 										alt="비만도 계산기" /></span>
 								<span class="cal_txt">비만도 계산</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/calorieCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/cal_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/cal_off.png"
 										alt="권장 칼로리" /></span>
 								<span class="cal_txt">권장 칼로리</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/foodDictionary">
-								<span class="cal_icon"><img src="${ path }/resources/images/dic_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/dic_off.png"
 										alt="식품 사전" /></span>
 								<span class="cal_txt">식품 사전</span>
 							</a>
 						</li>
 						<li class='active'>
 							<a href="${ path }/tools/walkOutRecommend">
-								<span class="cal_icon"><img src="${ path }/resources/images/out_on.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/out_on.png"
 										alt="산책코스" /></span>
 								<span class="cal_txt">산책코스</span>
 							</a>
