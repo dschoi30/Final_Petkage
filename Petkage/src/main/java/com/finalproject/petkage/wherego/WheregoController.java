@@ -29,4 +29,10 @@ public class WheregoController {
 		
 		return "wherego/wherego_cafe";
 	}
+	
+	@RequestMapping("/lodging")
+	public String lodging() {
+		
+		return "wherego/wherego_lodging";
+	}
 }
