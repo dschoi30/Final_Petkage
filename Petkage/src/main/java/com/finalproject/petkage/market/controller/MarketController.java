@@ -3,6 +3,8 @@ package com.finalproject.petkage.market.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -219,7 +222,7 @@ public class MarketController {
 		return model;
 	}
 	
-	@GetMapping("/product-cart")
+	@GetMapping("/cart")
 	public ModelAndView Cart (ModelAndView model, @RequestParam int proNo) {
 
 		log.info("{}", proNo);
@@ -227,22 +230,21 @@ public class MarketController {
 		Product product = null;
 		
 		product = service.findProductByNo(proNo);
-		
+
 		model.addObject("product", product);
-		model.setViewName("market/product-cart");
+		model.setViewName("market/cart");
 		
 		return model;
 	}
 	
-	@PostMapping("/product-cart")
-	public String Cart(@ModelAttribute Cart cart, @RequestParam Product product) {
+	@PostMapping("/cart")
+	@ResponseBody
+	public String addCart(Cart cart) {
+		int result = 0;
 		
+		result = service.addCart(cart);
 		
-		cart.setMemNo(1);
-		cart.setProNo(product.getProNo());
-		
-		
-		return "market/product-cart";
+		return result + "";
 	}
 	
 	@GetMapping("/product-payment")

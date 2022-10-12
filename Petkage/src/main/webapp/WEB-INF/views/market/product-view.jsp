@@ -172,14 +172,18 @@
                     <div>
                     </div>
                     <div class="prod-total-price">
-                        <span class="col mt-2 p-0"><label>수량 : <input type="number" id="orderQty" value="1" min="1" max="${ product.proQty }" step="1" dir="rtl" required></label></span>
+                       <span class="col mt-2 p-0">
+                        	<button class="plus-btn">+</button>
+<!--                         	<label>수량 : <input type="number" class="qty-input" value="1" min="1" max="${ product.proQty }" step="1" dir="rtl" required></label>  -->
+								<input type="text" class="qty-input" size="5" value="1">
+                        	<button class="minus-btn">-</button>
+                       	</span>
                         <span class="total-price-info">총 상품 금액</span>
                         <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></div>
                     </div>
                     <br>
                     <div class="prod-summary-footer">
-                        <button class="btn btn-light" style="width: 235px;"
-                        		onclick="location.href='${ path }/market/product-cart?proNo=${ product.proNo }'">장바구니</button>
+                        <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
                         <button class="btn btn-light" style="width: 235px;"
                         		onclick="location.href='${ path }/market/product-payment?proNo=${ product.proNo }'">바로 구매</button>
                         <br><br>
@@ -614,11 +618,22 @@
 	            location.replace("${ path }/market/product-delete?proNo=${ product.proNo }");
 	        };
 	    });
-	    
-	    $("#orderQty").on("change", () => {
-			$("#totalPrice").text(${ product.proSPrice } * ${"#orderQty"}.val());
-		});
+
+    	// 주문 수량 선택
+    	let quantity = $(".qty-input").val();
+    	$(".plus-btn").on("click", function(){
+    		$(".qty-input").val(++quantity);
+    		$("#totalPrice").text(${ product.proSPrice } * quantity);
+    	});
+    	$(".minus-btn").on("click", function(){
+    		if(quantity > 1){
+    			$(".qty-input").val(--quantity);
+        		$("#totalPrice").text(${ product.proSPrice } * quantity);
+    		}
+    	});
+    	
+
 	});
-    </script>
+	</script>
 </body>
 </html>
