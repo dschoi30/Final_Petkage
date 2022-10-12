@@ -1,4 +1,4 @@
-package com.finalproject.petkage.wherego;
+package com.finalproject.petkage.wherego.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,5 +34,17 @@ public class WheregoController {
 	public String lodging() {
 		
 		return "wherego/wherego_lodging";
+	}
+	
+	@RequestMapping("/manager1")
+	public String manager1() {
+		
+		return "wherego/wherego_manager_1";
+	}
+	
+	@RequestMapping("/manager2")
+	public String manager2() {
+		
+		return "wherego/wherego_manager_2";
 	}
 }
