@@ -28,35 +28,35 @@
 					<ul>
 						<li class='inactive'>
 							<a href="${ path }/tools/ageCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/age_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/age_off.png"
 										alt="나이 계산기" /></span>
 								<span class="cal_txt">나이 계산</span>
 							</a>
 						</li>
 						<li class='active'>
 							<a href="${ path }/tools/bmiCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/bmi_on.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/bmi_on.png"
 										alt="비만도 계산기" /></span>
 								<span class="cal_txt">비만도 계산</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/calorieCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/cal_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/cal_off.png"
 										alt="권장 칼로리" /></span>
 								<span class="cal_txt">권장 칼로리</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/foodDictionary">
-								<span class="cal_icon"><img src="${ path }/resources/images/dic_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/dic_off.png"
 										alt="식품 사전" /></span>
 								<span class="cal_txt">식품 사전</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/walkOutRecommend">
-								<span class="cal_icon"><img src="${ path }/resources/images/out_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/out_off.png"
 										alt="산책코스" /></span>
 								<span class="cal_txt">산책코스</span>
 							</a>
@@ -81,13 +81,13 @@
 									<ul id="pet_sel" name="pet_sel">
 										<li class="pet_type_0 pet_off" id="dog_on" onclick="dog_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Dog.png" alt="BCS_s01" />
 												<p>강아지</p>
 											</a>
 										</li>
 										<li class="pet_type_3 pet_off" id="cat_on" onclick="cat_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Cat.png" alt="BCS_s01" />
 												<p>고양이</p>
 											</a>
 										</li>
@@ -123,27 +123,27 @@
 									<input type="hidden" id="bcs_type" name="bcs_type">
 									<ul id="bcs_sel_dog_img">
 										<li onclick="bcs_sel(0)" class="bcs_type_0"><a><img
-													src="${ path }/resources/images/Dog_Fat1.png" alt="BCS_s01" /></a></li>
+													src="${ path }/resources/images/common/Dog_Fat1.png" alt="BCS_s01" /></a></li>
 										<li onclick="bcs_sel(2)" class="bcs_type_2"><a><img
-													src="${ path }/resources/images/Dog_Fat2.png" alt="BCS_s03" /></a></li>
+													src="${ path }/resources/images/common/Dog_Fat2.png" alt="BCS_s03" /></a></li>
 										<li onclick="bcs_sel(4)" class="bcs_type_4"><a><img
-													src="${ path }/resources/images/Dog_Fat3.png" alt="BCS_s05" /></a></li>
+													src="${ path }/resources/images/common/Dog_Fat3.png" alt="BCS_s05" /></a></li>
 										<li onclick="bcs_sel(6)" class="bcs_type_6"><a><img
-													src="${ path }/resources/images/Dog_Fat4.png" alt="BCS_s07" /></a></li>
+													src="${ path }/resources/images/common/Dog_Fat4.png" alt="BCS_s07" /></a></li>
 										<li onclick="bcs_sel(8)" class="bcs_type_8"><a><img
-													src="${ path }/resources/images/Dog_Fat5.png" alt="BCS_s09" /></a></li>
+													src="${ path }/resources/images/common/Dog_Fat5.png" alt="BCS_s09" /></a></li>
 									</ul>
 									<ul id="bcs_sel_cat_img" style="display:none">
 										<li onclick="bcs_sel(0)" class="bcs_type_0"><a><img
-													src="${ path }/resources/images/Cat_Fat1.png" alt="BCS_l01" /></a></li>
+													src="${ path }/resources/images/common/Cat_Fat1.png" alt="BCS_l01" /></a></li>
 										<li onclick="bcs_sel(2)" class="bcs_type_2"><a><img
-													src="${ path }/resources/images/Cat_Fat2.png" alt="BCS_l03" /></a></li>
+													src="${ path }/resources/images/common/Cat_Fat2.png" alt="BCS_l03" /></a></li>
 										<li onclick="bcs_sel(4)" class="bcs_type_4"><a><img
-													src="${ path }/resources/images/Cat_Fat3.png" alt="BCS_l05" /></a></li>
+													src="${ path }/resources/images/common/Cat_Fat3.png" alt="BCS_l05" /></a></li>
 										<li onclick="bcs_sel(6)" class="bcs_type_6"><a><img
-													src="${ path }/resources/images/Cat_Fat4.png" alt="BCS_l07" /></a></li>
+													src="${ path }/resources/images/common/Cat_Fat4.png" alt="BCS_l07" /></a></li>
 										<li onclick="bcs_sel(8)" class="bcs_type_8"><a><img
-													src="${ path }/resources/images/Cat_Fat5.png" alt="BCS_l09" /></a></li>
+													src="${ path }/resources/images/common/Cat_Fat5.png" alt="BCS_l09" /></a></li>
 									</ul>
 								</div>
 							</span>

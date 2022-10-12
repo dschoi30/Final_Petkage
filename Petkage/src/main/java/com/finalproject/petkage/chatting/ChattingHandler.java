@@ -1,4 +1,4 @@
-package com.finalproject.petkage.common.util;
+package com.finalproject.petkage.chatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping("/chatting")
+//@RequestMapping("/chatting")
 public class ChattingHandler extends TextWebSocketHandler{
 
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
@@ -21,7 +21,7 @@ public class ChattingHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		
-		log.info("#ChattingHandler, afterConnectionEstablished");
+		log.info("{} 연결됨", session.getId());
 		sessionList.add(session);
 		
 		log.info(session.getPrincipal().getName() + "님이 입장하셨습니다.");
@@ -31,8 +31,7 @@ public class ChattingHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
-		log.info("#ChattingHandler, handleMessage");
-		log.info(session.getId() + ": " + message);
+		log.info(session.getId() + ": " + message.getPayload());
 		
 		// 모든 유저에게 메세지 출력
 		for(WebSocketSession s : sessionList) {
@@ -44,7 +43,7 @@ public class ChattingHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		
-		log.info("#ChattingHandler, afterConnectionClosed");
+		log.info("{} 연결 끊김", session.getId());
 
 		sessionList.remove(session);
 		

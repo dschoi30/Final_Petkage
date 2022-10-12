@@ -95,10 +95,60 @@
 	
 </head>
 <body>
+	<!-- Channel Plugin Scripts -->
+	<script>
+	  (function() {
+	    var w = window;
+	    if (w.ChannelIO) {
+	      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+	    }
+	    var ch = function() {
+	      ch.c(arguments);
+	    };
+	    ch.q = [];
+	    ch.c = function(args) {
+	      ch.q.push(args);
+	    };
+	    w.ChannelIO = ch;
+	    function l() {
+	      if (w.ChannelIOInitialized) {
+	        return;
+	      }
+	      w.ChannelIOInitialized = true;
+	      var s = document.createElement('script');
+	      s.type = 'text/javascript';
+	      s.async = true;
+	      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+	      s.charset = 'UTF-8';
+	      var x = document.getElementsByTagName('script')[0];
+	      x.parentNode.insertBefore(s, x);
+	    }
+	    if (document.readyState === 'complete') {
+	      l();
+	    } else if (window.attachEvent) {
+	      window.attachEvent('onload', l);
+	    } else {
+	      window.addEventListener('DOMContentLoaded', l, false);
+	      window.addEventListener('load', l, false);
+	    }
+	  })();
+	  ChannelIO('boot', {
+	    "pluginKey": "dcd4334b-0c76-4864-81ba-8701c893a37e", //please fill with your plugin key
+	    "memberId": "${ member.userId }", //fill with user id
+	    "profile": {
+	      "name": "${ member.userName }", //fill with user name
+	      "mobileNumber": "${ member.userPhone }", //fill with user phone number
+	      "CUSTOM_VALUE_1": "VALUE_1", //any other custom meta data
+	      "CUSTOM_VALUE_2": "VALUE_2"
+	    }
+	  });
+	</script>
+	<!-- End Channel Plugin -->
+	
 	<section class="hd">
 		<header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                  <ul class="nav nav-pills">
@@ -106,6 +156,7 @@
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">커뮤니티</a></li>
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/chatting" class="nav-link header_link">채팅</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
 	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login'" value="로그인">
@@ -127,7 +178,7 @@
         			</c:if>
         			
                     <a href="${ path }/market" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
+                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>
@@ -166,16 +217,13 @@
 			  <div class="iconmouse">
 				<span class="ball"></span>
 			  </div>
-			  
-			  
-  
 		</section>
 		<section class="section sec2"> <!-- 추천 어디가지 -->
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -184,7 +232,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -193,7 +241,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -202,7 +250,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -211,7 +259,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -220,7 +268,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -229,7 +277,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -323,21 +371,21 @@
 	
 						<div class="footer_icons">
 							<a href="/" class="">
-                            	<img src="${ path }/resources/images/Instagram.png" alt="" class="footericon">
+                            	<img src="${ path }/resources/images/common/Instagram.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/Facebook.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/Facebook.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/youtube.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/youtube.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/kakaotalk.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/kakaotalk.png" alt="" class="footericon">
 	                        </a>
 						</div>
 	
 							
-						<img src="${ path }/resources/images/Pet.png" alt="" class="footerLogo">
+						<img src="${ path }/resources/images/common/Pet.png" alt="" class="footerLogo">
 					</div>
 				</footer>
 			</div>
@@ -356,90 +404,6 @@
 
 	<!-- Main js -->
 	<script src="${ path }/resources/js/main.js"></script> 
-	
-	<!-- Socket js -->
-	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-	
-	<!-- 
-	<script type="text/javascript">
-
-	// 전송 버튼 누르는 이벤트
-	$("#button-send").on("click", function(e) {
-		sendMessage();
-		$('#msg').val('')
-	});
-	
-	var sock = new SockJS('http://localhost:8080/chatting');
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-	sock.onopen = onOpen;
-	
-	function sendMessage() {
-		sock.send($("#msg").val());
-	}
-	
-	// 서버에서 메시지를 받았을 때
-	function onMessage(msg) {
-		
-		var data = msg.data;
-		var sessionId = null; // 데이터를 보낸 사람
-		var message = null;
-		
-		var arr = data.split(":");
-		
-		for(var i=0; i<arr.length; i++){
-			console.log('arr[' + i + ']: ' + arr[i]);
-		}
-		
-		var cur_session = '${userid}'; // 현재 세션에 로그인 한 사람
-		console.log("cur_session : " + cur_session);
-		
-		sessionId = arr[0];
-		message = arr[1];
-		
-	    // 로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-		if(sessionId == cur_session){
-			
-			var str = "<div class='col-6'>";
-			str += "<div class='alert alert-secondary'>";
-			str += "<b>" + sessionId + " : " + message + "</b>";
-			str += "</div></div>";
-			
-			$("#msgArea").append(str);
-		}
-		else{
-			
-			var str = "<div class='col-6'>";
-			str += "<div class='alert alert-warning'>";
-			str += "<b>" + sessionId + " : " + message + "</b>";
-			str += "</div></div>";
-			
-			$("#msgArea").append(str);
-		}
-		
-	}
-	
-	// 채팅창에 들어왔을 때
-	function onOpen(evt) {
-		
-		var user = '${pr.username}';
-		var str = user + "님이 입장하셨습니다.";
-		
-		$("#msgArea").append(str);
-	}
-	
-	// 채팅창에서 나갔을 때
-	function onClose(evt) {
-		
-		var user = '${pr.username}';
-		var str = user + " 님이 퇴장하셨습니다.";
-		
-		$("#msgArea").append(str);
-	}
-	
-	</script>
-	
-	-->
      
 </body>
 </html>

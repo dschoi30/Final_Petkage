@@ -28,35 +28,35 @@
 					<ul>
 						<li class='inactive'>
 							<a href="${ path }/tools/ageCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/age_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/age_off.png"
 										alt="나이 계산기" /></span>
 								<span class="cal_txt">나이 계산</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/bmiCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/bmi_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/bmi_off.png"
 										alt="비만도 계산기" /></span>
 								<span class="cal_txt">비만도 계산</span>
 							</a>
 						</li>
 						<li class='active'>
 							<a href="${ path }/tools/calorieCalculator">
-								<span class="cal_icon"><img src="${ path }/resources/images/cal_on.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/cal_on.png"
 										alt="권장 칼로리" /></span>
 								<span class="cal_txt">권장 칼로리</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/foodDictionary">
-								<span class="cal_icon"><img src="${ path }/resources/images/dic_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/dic_off.png"
 										alt="식품 사전" /></span>
 								<span class="cal_txt">식품 사전</span>
 							</a>
 						</li>
 						<li class='inactive'>
 							<a href="${ path }/tools/walkOutRecommend">
-								<span class="cal_icon"><img src="${ path }/resources/images/out_off.png"
+								<span class="cal_icon"><img src="${ path }/resources/images/common/out_off.png"
 										alt="산책코스" /></span>
 								<span class="cal_txt">산책코스</span>
 							</a>
@@ -81,13 +81,13 @@
 									<ul id="pet_sel" name="pet_sel">
 										<li class="pet_type_0 pet_off" id="dog_on" onclick="dog_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Dog.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Dog.png" alt="BCS_s01" />
 												<p>강아지</p>
 											</a>
 										</li>
 										<li class="pet_type_3 pet_off" id="cat_on" onclick="cat_on()" value="">
 											<a>
-												<img src="${ path }/resources/images/Laughing_Cat.png" alt="BCS_s01" />
+												<img src="${ path }/resources/images/common/Laughing_Cat.png" alt="BCS_s01" />
 												<p>고양이</p>
 											</a>
 										</li>
@@ -96,7 +96,7 @@
 							</span>
 							<span class="content_write_input write_divline">
 								<h5>몸무게 입력</h5>
-								<input type="text" name="pet_weight" id="pet_weight"  inputmode="numeric" pattern="[0-9]*" placeholder="kg단위로 입력해주세요" title="">
+								<input type="text" name="pet_weight" id="pet_weight" inputmode="numeric" pattern="[0-9]*" placeholder="kg단위로 입력해주세요" title="">
 							</span>
 							<span class="content_write_input write_divline">
 								<h5>반려동물 상태</h5>
