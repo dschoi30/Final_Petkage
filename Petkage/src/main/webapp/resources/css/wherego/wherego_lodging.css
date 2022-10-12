@@ -31,6 +31,8 @@ html {
     padding: 0;
     box-sizing: border-box;
     width: 1110px;
+    margin-top: 20px;
+  	margin-bottom: 50px;
 }
 
 .wg_4 .wg_top {

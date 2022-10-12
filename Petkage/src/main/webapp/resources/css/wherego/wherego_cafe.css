@@ -31,6 +31,8 @@ html {
     padding: 0;
     box-sizing: border-box;
     width: 1110px;
+    margin-top: 20px;
+  	margin-bottom: 50px;
 }
 
 .wg_6 .wg_top {
@@ -146,7 +148,7 @@ html {
 .wg_6 .wg6_map {
     width: 100%;
     height: 350px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
