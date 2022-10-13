@@ -3,6 +3,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.finalproject.petkage.market.model.mapper.MarketMapper">
+	<resultMap type="Product" id="productListResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proTag" column="PRO_TAG"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proContent" column="PRO_CONTENT"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+		<result property="proRepCount" column="PRO_REP_COUNT"/>
+	</resultMap>
+	
+	<resultMap type="Cart" id="cartListResultMap">
+		<id property="cartNo" column="CART_NO"/>
+		<result property="memNo" column="CART_MEM_NO"/>
+		<result property="proCount" column="CART_PRO_COUNT"/>
+	</resultMap>
+
 	<sql id="productListSql">
 		SELECT P.PRO_NO,
 			   P.PRO_SEL_NO,
@@ -28,26 +54,7 @@
 			AND PRO_CATEGORY1 LIKE '%' || #{proCategory1} || '%'
 			AND PRO_CATEGORY2 LIKE '%' || #{proCategory2} || '%'
 	</sql>
-	<resultMap type="Product" id="productListResultMap">
-		<id property="proNo" column="PRO_NO"/>
-		<result property="proSelNo" column="PRO_SEL_NO"/>
-		<result property="proName" column="PRO_NAME"/>
-		<result property="proBrand" column="PRO_BRAND"/>
-		<result property="proCategory1" column="PRO_CATEGORY1"/>
-		<result property="proCategory2" column="PRO_CATEGORY2"/>
-		<result property="proTag" column="PRO_TAG"/>
-		<result property="renamedFileName" column="PRO_IMG"/>
-		<result property="proQty" column="PRO_QTY"/>
-		<result property="proOPrice" column="PRO_OPRICE"/>
-		<result property="proSPrice" column="PRO_SPRICE"/>
-		<result property="proDelFee" column="PRO_DEL_FEE"/>
-		<result property="proLTime" column="PRO_LTIME"/>
-		<result property="proContent" column="PRO_CONTENT"/>
-		<result property="proRDate" column="PRO_RDATE"/>
-		<result property="proStatus" column="PRO_STATUS"/>
-		<result property="proRepCount" column="PRO_REP_COUNT"/>
-	</resultMap>
-	
+		
 	<select id="selectProductCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT WHERE PRO_STATUS='Y'
 	</select>
@@ -57,7 +64,7 @@
 		ORDER BY P.PRO_NO DESC
 	</select>
 	
-		<select id="selectProductSearchList" resultMap="productListResultMap">
+	<select id="selectProductSearchList" resultMap="productListResultMap">
 		SELECT P.PRO_NO,
 			   P.PRO_SEL_NO,
 			   P.PRO_NAME,

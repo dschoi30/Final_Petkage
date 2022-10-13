@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,13 +55,15 @@ public class MarketController {
 	public ModelAndView write(
 						 ModelAndView model,
 						 @ModelAttribute Product product,
-						 @RequestParam("upfile") MultipartFile upfile) {
+						 @RequestParam("upfile") MultipartFile upfile,
+						 @SessionAttribute("loginMember") Member loginMember) {
 		
 		int result = 0;
 		
 		log.info("Upfile is Empty : {}", upfile.isEmpty());
 		log.info("Upfile Name : {}", upfile.getOriginalFilename());
 		
+		// 파일 업로드 여부 확인 후 저장
 		if(upfile != null && !upfile.isEmpty()) {
 			String location = null;
 			String renamedFileName = null;
@@ -85,8 +88,8 @@ public class MarketController {
 			}
 			
 		}
-		
-		product.setProSelNo(1);
+		// 작성 내용을 DB에 저장
+		product.setProSelNo(loginMember.getNo());
 		System.out.println(product);
 		
 		result = service.save(product);
@@ -107,8 +110,8 @@ public class MarketController {
 	
 	@GetMapping("/product-list")
 	public ModelAndView List(ModelAndView model, 
-			@RequestParam(value = "page", defaultValue = "1") int page,
-			@ModelAttribute Product product) {
+							@RequestParam(value = "page", defaultValue = "1") int page,
+							@ModelAttribute Product product) {
 
 //		log.info("{}", searchValue);
 
@@ -146,18 +149,26 @@ public class MarketController {
 	}
 
 	@GetMapping("/product-delete")
-	public ModelAndView Delete(ModelAndView model, @RequestParam int proNo) {
-		
+	public ModelAndView Delete(ModelAndView model, 
+							@SessionAttribute("loginMember") Member loginMember, 
+							@RequestParam int proNo) {
 		int result = 0;
+		Product product = null;
 		
-		result = service.delete(proNo);
+		product = service.findProductByNo(proNo);
+		
+//		if(product.getProSelNo().equals(loginMember.getNo())) {
+//			result = service.delete(proNo);
+//			
+//		}
+		
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
 			model.addObject("location", "/market/product-list");
 		} else {
 			model.addObject("msg", "게시글 삭제에 실패했습니다.");
-			model.addObject("location", "/market/product-view?no=" + proNo);
+			model.addObject("location", "/market/product-view?proNo=" + proNo);
 		}
 		
 		model.setViewName("common/msg");
