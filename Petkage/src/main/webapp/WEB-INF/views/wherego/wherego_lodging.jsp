@@ -168,19 +168,22 @@
                 </form>    
             </div>
             <div class="wg_content_card">
-                <div class="wgc4_card">
-                    <div class="card_img">
-                        <img src="${ path }/resources/images/wherego/카드1.png">
-                    </div>
-                    <div class="card_text">
-                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                        <div class="ct_2">4.8점</div>
-                        <div class="ct_3">
-                            <p>강남구 | 역삼역 도보 1분</p>
-                            <p>310,000원</p>
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach var="lodgingselect" items="${lodgingselect}">
+	                <div class="wgc4_card">
+	                    <div class="card_img">
+	                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
+	                    </div>
+	                    <div class="card_text">
+	                        <div class="ct_1">${lodgingselect.img}</div>
+	                        <div class="ct_2">4.8점</div>
+	                        <div class="ct_3">
+	                            <p>강남구 | 역삼역 도보 1분</p>
+	                            <p>${lodgingselect.price}</p>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+                <%--  
                 <div class="wgc4_card">
                     <div class="card_img">
                         <img src="${ path }/resources/images/wherego/카드2.png">
@@ -233,6 +236,7 @@
                         </div>
                     </div>
                 </div>
+                --%>
             </div>
         </div>
 
