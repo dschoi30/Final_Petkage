@@ -109,7 +109,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-list")
-	public ModelAndView List(ModelAndView model, 
+	public ModelAndView list(ModelAndView model, 
 							@RequestParam(value = "page", defaultValue = "1") int page,
 							@ModelAttribute Product product) {
 
@@ -133,7 +133,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-view")
-	public ModelAndView View(ModelAndView model, @RequestParam int proNo ) {
+	public ModelAndView view(ModelAndView model, @RequestParam int proNo ) {
 
 		System.out.println(proNo);
 		
@@ -149,7 +149,7 @@ public class MarketController {
 	}
 
 	@GetMapping("/product-delete")
-	public ModelAndView Delete(ModelAndView model, 
+	public ModelAndView delete(ModelAndView model, 
 							@SessionAttribute("loginMember") Member loginMember, 
 							@RequestParam int proNo) {
 		int result = 0;
@@ -157,27 +157,31 @@ public class MarketController {
 		
 		product = service.findProductByNo(proNo);
 		
-//		if(product.getProSelNo().equals(loginMember.getNo())) {
-//			result = service.delete(proNo);
-//			
-//		}
-		
-		
-		if(result > 0) {
-			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
-			model.addObject("location", "/market/product-list");
+		if(product.getProSelNo() == (loginMember.getNo())) {
+			result = service.delete(proNo);
+			
+			if(result > 0) {
+				model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
+				model.addObject("location", "/market/product-list");
+			} else {
+				model.addObject("msg", "게시글 삭제에 실패했습니다.");
+				model.addObject("location", "/market/product-view?proNo=" + proNo);
+			}
+			
 		} else {
-			model.addObject("msg", "게시글 삭제에 실패했습니다.");
-			model.addObject("location", "/market/product-view?proNo=" + proNo);
+			model.addObject("msg", "잘못된 접근입니다.");
+			model.addObject("location", "/market/product-list");
 		}
 		
+		
+
 		model.setViewName("common/msg");
 		
 		return model;
 	}
 	
 	@GetMapping("/product-update")
-	public ModelAndView Update(ModelAndView model, @RequestParam int proNo) {
+	public ModelAndView update(ModelAndView model, @RequestParam int proNo) {
 
 		log.info("{}", proNo);
 
@@ -192,7 +196,7 @@ public class MarketController {
 	}
 	
 	@PostMapping("/product-update")
-	public ModelAndView Update(ModelAndView model, @ModelAttribute Product product, @RequestParam("upfile") MultipartFile upfile) {
+	public ModelAndView update(ModelAndView model, @ModelAttribute Product product, @RequestParam("upfile") MultipartFile upfile) {
 		
 		int result = 0;
 		

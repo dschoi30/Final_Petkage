@@ -141,10 +141,12 @@
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
                         <button class="btn btn-light" style="width: 235px;"
                         		onclick="location.href='${ path }/market/order?proNo=${ product.proNo }'">바로 구매</button>
-                        <br><br>
-                        <button class="btn btn-light" style="width: 235px;"
-                            	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
-                        <button class="btn btn-light" id="btnDelProd" style="width: 235px;">상품 삭제</button>
+						<c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
+	                        <br><br>
+	                        <button class="btn btn-light" style="width: 235px;"
+	                            	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
+	                        <button class="btn btn-light" id="btnDelProd" style="width: 235px;">상품 삭제</button>
+                        </c:if>
                     </div>
                 </div>
             </div>
