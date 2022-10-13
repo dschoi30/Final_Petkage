@@ -184,7 +184,7 @@
 	</section>
 	<!-- Age_calculator 끝 -->
 	
-	<script>
+	<script type="text/javascript">
 	
 	function parseType(type) {
 		switch (type) {
