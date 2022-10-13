@@ -1,5 +1,6 @@
 package com.finalproject.petkage.member.model.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -114,6 +115,16 @@ public class MemberServiceImpl implements MemberService {
 		result = mapper.updatePwd(userEmail, newPwd);
 		
 		return 0;
+	}
+
+	
+	@Override
+	public int updateFindNum(String userId, int findNum) {
+		int result = 0;
+		
+		result = mapper.updateFindNum(userId, findNum);
+		
+		return result;
 	}
 	
 

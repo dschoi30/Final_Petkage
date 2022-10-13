@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.wherego.model.mapper.WheregoMapper">
+	<sql id="selectMemberSql">
+		SELECT *
+		FROM WHEREWEGO
+	</sql>
+	
+	<resultMap type="Wherego" id="wheregovo">
+		<id property="spotNo" column="SPOT_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="img" column="SPOT_IMG" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="minfo" column="SPOT_MINFO" />
+		<result property="mameni" column="SPOT_MAMENI" />
+		<result property="price" column="SPOT_PRICE" />
+		<result property="rimg" column="SPOT_RIMG" />
+		<result property="subinfo" column="SPOT_SUBINFO" />
+	
+	</resultMap>
+	
+	<select id="lodging_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+	</select>
+	
+</mapper>

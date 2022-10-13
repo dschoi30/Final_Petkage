@@ -195,6 +195,142 @@
 	</section>
 	<!-- calorie_calculator 끝 -->
 
-	<script src="${ path }/resources/js/calculator.js"></script>
+	<script type="text/javascript">
+	
+	function result_view(tab_id) {
+		var pet_type = $('input[name="pet_type"]').val();
+
+		var dog_on = $("#dog_on").val();
+		var cat_on = $("#cat_on").val();
+
+		var pet_weight = $('input[name="pet_weight"]').val().replace(/\./g,'-');;
+
+		var dog_jisu = $("#dog_jisu").val();
+		var cat_jisu = $("#cat_jisu").val();
+
+		if (tab_id == 3) {
+			if (!pet_type) {
+				alert("반려동물을 선택해주세요.")
+			} else  {
+				if(dog_on === 0 && cat_on === 0) { // 강아지 일 때
+					if (!dog_weight) {
+						alert("몸무게를 입력해주세요.");
+						$('input[name="pet_date"]').focus()
+						return;
+					} else if (!dog_jisu) {
+						alert("몸무게를 선택해주세요.");
+						return;
+					} 
+
+					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
+						return;
+					}
+					
+					if (pet_date && dog_type && isBirthday(pet_date)) {
+						$(".cal_result_box").show();
+						$(".cal_info_box").hide();
+
+						$("#dog_life").show();
+						$("#cat_life").hide();
+
+						$("#dog_age").html(petAges(pet_date));
+						console.log("댕 나이 : " + petAges(pet_date));
+
+						$("#dog_age_cal").html(dogToHumanAge(pet_date));
+						console.log("댕 사람나이 : " + dogToHumanAge(pet_date));
+
+						$("#dog_lifecycle").html(dogAgeGroup(pet_date));
+						console.log("댕 시기 : " + dogAgeGroup(pet_date));
+					}
+					
+				} else { // 고양이 일 때 
+					if (!pet_date) {
+						alert("생년월일을 입력해주세요.");
+						$('input[name="pet_date"]').focus()
+						return;
+					}
+					
+					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
+						return;
+					}
+
+					if (pet_date && isBirthday(pet_date)) {
+						$(".cal_result_box").show();
+						$(".cal_info_box").hide();
+
+						$("#cat_life").show();
+						$("#dog_life").hide();
+
+						$("#cat_age").html(petAges(pet_date));
+						console.log("냥 나이 : " + petAges(pet_date));
+
+						$("#cat_age_cal").html(catToHumanAge(pet_date));
+						console.log("냥 사람나이 : " + catToHumanAge(pet_date));
+
+						$("#cat_lifecycle").html(catAgeGroup(pet_date));
+						console.log("냥 시기 : " + catAgeGroup(pet_date));
+					}
+				}
+			}
+		}
+	}
+
+	function dog_on() {
+		console.log("강쥐 클릭");
+		console.log($("#dog_on").val());
+		console.log($('input[name="pet_type"]').val());
+
+		$("#dog_on").addClass("pet_on");
+		$("#cat_on").removeClass("pet_on");
+		$('input[name="pet_type"]').attr('value','강아지');
+		$('#cat_on').attr('value','');
+	}
+
+	function cat_on() {
+		console.log("고영희 클릭");
+		console.log($("#cat_on").val());
+		console.log($('input[name="pet_type"]').val());
+
+		$("#cat_on").addClass("pet_on");
+		$("#dog_on").removeClass("pet_on");
+		$('input[name="pet_type"]').attr('value','고양이');
+		$('#cat_on').attr('value','3');
+	}
+
+	// 펫 상태 셀렉트 박스
+	const label = document.querySelectorAll('.label');
+
+	label.forEach(function(lb){
+		lb.addEventListener('click', e => {
+			let optionList = lb.nextElementSibling;
+			let optionItems = optionList.querySelectorAll('.optionItem');
+			clickLabel(lb, optionItems);
+		})
+	});
+
+	const clickLabel = (lb, optionItems) => {
+		if(lb.parentNode.classList.contains('active')) {
+			lb.parentNode.classList.remove('active');
+			optionItems.forEach((opt) => {
+				opt.removeEventListener('click', () => {
+					handleSelect(lb, opt)
+				})
+			})
+		} else {
+			lb.parentNode.classList.add('active');
+			optionItems.forEach((opt) => {
+				opt.addEventListener('click', () => {
+					handleSelect(lb, opt)
+				})
+			})
+		}
+	}
+
+	const handleSelect = (label, item) => {
+		label.innerHTML = item.textContent;
+		label.parentNode.classList.remove('active');
+	}
+
+	</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

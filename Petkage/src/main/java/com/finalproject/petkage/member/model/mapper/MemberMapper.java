@@ -24,4 +24,6 @@ public interface MemberMapper {
 	Member selectMemberByEmail(String userEmail);
 
 	int updatePwd(String userEmail, String newPwd);
+
+	int updateFindNum(String userId, int findNum);
 }
