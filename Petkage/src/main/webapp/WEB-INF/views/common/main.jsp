@@ -108,7 +108,7 @@
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
-	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login'" value="로그인">
+	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/loginPage'" value="로그인">
 					</c:if>
 					
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
