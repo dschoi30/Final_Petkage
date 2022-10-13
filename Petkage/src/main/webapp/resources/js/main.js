@@ -9,9 +9,6 @@ $(function(){
     sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
     afterLoad: function(anchorLink, index){
         console.log("지금 섹션은" + index);
-        if(index == 5){
-            alert("마지막 입니다.")
-        }
     }
 	});
 
