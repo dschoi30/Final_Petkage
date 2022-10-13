@@ -99,7 +99,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// 회원가입 페이지 처리 - OK 
+	// 회원가입 페이지 처리 - OK  
 	@GetMapping("/enroll")
 	public String enrollPage() {
 		log.info ("회원가입 페이지 요청");
