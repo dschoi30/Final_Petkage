@@ -3,6 +3,7 @@ package com.finalproject.petkage.market.model.service;
 import java.util.List;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
 
 public interface MarketService {
@@ -19,6 +20,8 @@ public interface MarketService {
 
 	int delete(int proNo);
 
-//	List<Product> getProductSearchList(PageInfo pageInfo, String searchValue);
+	int addCart(Cart cart);
+
+	List<Cart> getCartList(String memNo);
 
 }

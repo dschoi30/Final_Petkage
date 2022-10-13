@@ -14,13 +14,17 @@
     	
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <!-- Product CSS-->
+    <link rel="stylesheet" href="${ path }/resources/css/market/product.css">
+    
 </head>
 <body>
 	<section class="hd">
         <div class="header_container">
             <header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                 <ul class="nav nav-pills">
@@ -49,8 +53,8 @@
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
-                    <a href="${ path }/market" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
+                    <a href="${ path }/market/cart/${ loginMember.no }" class="d-flex align-items-center headercart">
+                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>

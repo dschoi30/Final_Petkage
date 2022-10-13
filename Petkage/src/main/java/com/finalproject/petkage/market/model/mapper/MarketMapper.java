@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
 
 @Mapper
@@ -24,5 +25,10 @@ public interface MarketMapper {
 
 	int updateProduct(Product product);
 
-//	List<Product> selectProductSearchList(RowBounds rowBounds, String searchValue);
+	int addCart(Cart cart);
+
+	Cart checkCart(Cart cart);
+
+	List<Cart> getCartList(String memNo);
+
 }

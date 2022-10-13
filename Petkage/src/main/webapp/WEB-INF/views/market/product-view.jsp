@@ -7,64 +7,19 @@
 
 <html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    
+
+    <!-- Bootstrap CSS -->   
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-
-    <!-- Product CSS-->
-    <link rel="stylesheet" href="${path}/resources/css/market/product.css">
-
-    <!-- Common CSS -->
-    <link rel="stylesheet" href="/EUM/CSS/common/header.css"></link>
-    <link rel="stylesheet" href="/EUM/CSS/common/footer.css"></link>
-    
-    <!-- jQuery js -->  
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>   
 
     <!-- modal-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
 
-	<style type="text/css">
-		@font-face {
-	    font-family: 'GmarketSansMedium';
-	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-	    font-weight: normal;
-	    font-style: normal;
-	}
-	</style>	
-
     <title>Document</title>
 </head>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <body>
-    <section class="hd">
-        <div class="header_container">
-            <header class="d-flex flex-wrap mb-4">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="/EUM/resources/images/Petkage_Logo2.png" alt="" class="headerLogo">
-                </a>
-
-                <ul class="nav nav-pills">
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">커뮤니티</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">OTHERS</a></li>
-                    <input type="button" class="headerBtn" id="loginBtn" value="로그인">
-                    <a href="/" class="d-flex align-items-center headercart">
-                        <img src="/EUM/resources/images/Cart.png" alt="" class="cart">
-                    </a>
-                </ul>
-            </header>
-        </div>
-    </section>
     <div id="wrap-all-prod">
         <div class="row">
             <div class="contents" style="margin-bottom: 50px;">
@@ -156,10 +111,10 @@
                         <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
-                        19% <s><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###"/>원</s> (정상가)
+                        19% <s><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###원"/></s> (정상가)
                     </div>
                     <div class="prod-sale-price">
-                        <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></span>
+                        <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></span>
                         <span clas="sale-price-info">(할인가)</span>
                     </div>
                     <div class="reward-point">
@@ -172,20 +127,21 @@
                     <div>
                     </div>
                     <div class="prod-total-price">
-                        <span class="col mt-2 p-0"><label>수량 : <input type="number" value="1" min="1" max="999" step="1" dir="rtl" required></label></span>
+                       <span class="col mt-2 p-0">
+                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
+                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
+                       	</span>
                         <span class="total-price-info">총 상품 금액</span>
-                        <span class="total-price">14,490원</span>
+                        <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></div>
+						<span class="total-price" style="margin: 0;">원</span>
                     </div>
                     <br>
                     <div class="prod-summary-footer">
-                        <a href="/CHOI/HTML/product_cart.html">
-                            <button class="btn btn-light" style="width: 235px;">장바구니</button>
-                            <!-- <input type="button" class="prod-summary-pay-btn" value="장바구니"> -->
-                        </a>
-                        <a href="/CHOI/HTML/product_payment.html">
-                            <button class="btn btn-dark" style="width: 235px;">바로 구매</button>
-                            <!-- <input type="button" class="prod-summary-pay-btn" value="바로구매"> -->
-                        </a><br><br>
+                        <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
+                        <button class="btn btn-light" style="width: 235px;"
+                        		onclick="location.href='${ path }/market/order?proNo=${ product.proNo }'">바로 구매</button>
+                        <br><br>
                         <button class="btn btn-light" style="width: 235px;"
                             	onclick="location.href='${ path }/market/product-update?proNo=${ product.proNo }'">상품 수정</button>
                         <button class="btn btn-light" id="btnDelProd" style="width: 235px;">상품 삭제</button>
@@ -574,48 +530,52 @@
             </div>
         </div>
     </div>
-    <section class="ft">
-        <div class="footer_container">
-            <footer class="footer_section1">
-                    <p class="footerName">Petkage</p>
-                    <ul class="nav footer_nav">
-                        <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">이용약관</a></li>
-                        <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">개인정보 취급방침</a></li>
-                        <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">공지사항</a></li>
-                        <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">FAQ</a></li>
-                    </ul>
-                    <div class="footer_contents">
-                        <p class="footer_content">회사명 : (주)펫키지 대표 : 문인수 / 전화 : 070-1234-5678 / 주소 : 서울특별시 강남구 테헤란로 14길 6 남도빌딩</p>
-                        <p class="footer_content">사업자 등록번호 안내 : 123-45-6789 / 통신판매업 신고 2022-서울강남-03472 <a href="">[사업자정보 확인]</a>  </p>
-                        <p class="footer_content">&copy;펫키지. All Rights Reserved</p>
-                    </div>
-                    <div class="footer_icons">
-                        <a href="/" class="">
-                            <img src="/EUM/resources/images/Instagram.png" alt="" class="footericon">
-                        </a>
-                        <a href="/" class="">
-                            <img src="/EUM/resources/images/Facebook.png" alt="" class="footericon">
-                        </a>
-                        <a href="/" class="">
-                            <img src="/EUM/resources/images/youtube.png" alt="" class="footericon">
-                        </a>
-                        <a href="/" class="">
-                            <img src="/EUM/resources/images/kakaotalk.png" alt="" class="footericon">
-                        </a>
-                    </div>
-                    <img src="/EUM/resources/images/Pet2.png" alt="" class="footerLogo">
-            </footer>
-        </div>
-    </section>
 
     <script src="${path}/resources/js/product.js"></script>
-    
-    <script type="text/javascript">
+
+    <script>
+	$(document).ready(() => {
 	    $("#btnDelProd").on("click", () => {
 	        if(confirm("정말로 게시글을 삭제하시겠습니까?")) {
 	            location.replace("${ path }/market/product-delete?proNo=${ product.proNo }");
 	        };
 	    });
-    </script>
-</body>
-</html>
+
+    	// 주문 수량 선택
+    	var quantity = $(".qty-input").val();
+    	$(".plus-btn").on("click", function(){
+    		$(".qty-input").val(++quantity);
+    		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
+    	});
+    	$(".minus-btn").on("click", function(){
+    		if(quantity > 1){
+    			$(".qty-input").val(--quantity);
+        		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
+    		}
+    	});
+	});
+	</script>
+	<script>
+	$(document).ready(() => {
+    	// 서버로 전송할 데이터
+    	// 장바구니 추가 버튼
+   		$("#btnAddCart").on("click", () => {
+   			var memNo = 1;
+   	    	var proCount = $(".qty-input").val();
+
+   			$.ajax({
+   				url: '${path}/market/cart/add',
+   				type: 'POST',
+   				data: {
+   					"memNo" : memNo,
+   					"proCount" : proCount
+   				},
+   				success: () => {
+    				alert("장바구니에 추가되었습니다.");
+   				}
+   			})
+   		});
+		
+	});
+	</script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
