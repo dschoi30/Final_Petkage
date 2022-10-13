@@ -50,6 +50,12 @@ public class WheregoController {
 		return model;
 	}
 	
+	@GetMapping("/lodgingdetail")
+	public String lodgingdetail() {
+		
+		return "wherego/wherego_lodging_detail";
+	}
+	
 	@GetMapping("/manager1")
 	public String manager1() {
 		
