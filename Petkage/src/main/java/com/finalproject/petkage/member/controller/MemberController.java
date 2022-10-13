@@ -334,7 +334,6 @@ public class MemberController {
 						
 			System.out.println("인증번호 : " + findNum);
 			
-			
 			if (member.getUserId().equals(userId)) {			
 				// userEmail로 받은 member객체에서 userId나 userEmail로 인증번호 테이블에 저장하기
 				result = service.updateFindNum(userId, findNum);
