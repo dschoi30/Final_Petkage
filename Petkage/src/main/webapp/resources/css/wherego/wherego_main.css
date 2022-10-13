@@ -282,6 +282,11 @@ html {
   text-align: center;
 }
 
+.wg_1 .wg_cate .wgc_box a {
+  text-decoration: none;
+  color: black;	
+}
+
 
 .wg_1 .wg_cate .wgc_box p {
   margin: 0;
