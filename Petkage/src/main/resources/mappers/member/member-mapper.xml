@@ -220,6 +220,6 @@
 	<update id="updateFindNum" parameterType="Member" useGeneratedKeys="true">
 		UPDATE MEMBER 
 			SET MEM_FINDNUM =  #{ findNum }  
-		WHERE MEM_ID = #{ userId } ;
+		WHERE MEM_ID = #{ userId }
 	</update>
 </mapper>
