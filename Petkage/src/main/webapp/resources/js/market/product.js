@@ -68,4 +68,22 @@ $(document).ready(() => {
         modal.style.display = text;
     }
     
+    $("#btnDelProd").on("click", () => {
+        if(confirm("정말로 게시글을 삭제하시겠습니까?")) {
+            location.replace("${ path }/market/product-delete?proNo=${ product.proNo }");
+        };
+    });
+
+	// 주문 수량 선택
+	var quantity = $(".qty-input").val();
+	$(".plus-btn").on("click", function(){
+		$(".qty-input").val(++quantity);
+		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
+	});
+	$(".minus-btn").on("click", function(){
+		if(quantity > 1){
+			$(".qty-input").val(--quantity);
+    		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
+		}
+	});
 });

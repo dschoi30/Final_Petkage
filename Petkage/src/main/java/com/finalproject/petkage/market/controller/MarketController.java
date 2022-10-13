@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -181,7 +182,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-update")
-	public ModelAndView update(ModelAndView model, @RequestParam int proNo) {
+	public ModelAndView update(ModelAndView model, @RequestParam int proNo, @SessionAttribute("loginMember") Member loginMember) {
 
 		log.info("{}", proNo);
 
@@ -189,50 +190,60 @@ public class MarketController {
 		
 		product = service.findProductByNo(proNo);
 		
-		model.addObject("product", product);
-		model.setViewName("market/product-update");
-		
+		if(product.getProSelNo() == (loginMember.getNo())) {
+			model.addObject("product", product);
+			model.setViewName("market/product-update");
+		} else {
+			model.addObject("msg", "잘못된 접근입니다.");
+			model.addObject("location", "/market/product-list");
+			model.setViewName("common/msg");
+		}
 		return model;
 	}
 	
 	@PostMapping("/product-update")
-	public ModelAndView update(ModelAndView model, @ModelAttribute Product product, @RequestParam("upfile") MultipartFile upfile) {
+	public ModelAndView update(ModelAndView model,
+							@ModelAttribute Product product, 
+							@RequestParam("upfile") MultipartFile upfile,
+							@SessionAttribute("loginMember") Member loginMember) {
 		
 		int result = 0;
 		
 //		System.out.println(upfile.isEmpty());
 //		System.out.println(upfile.getOriginalFilename());
 		
-		if(upfile != null && !upfile.isEmpty()) {
-
-			String location = null;
-			String renamedFileName = null;
-			
-			try {
-				location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
-				renamedFileName = MultipartFileUtil.save(upfile, location);
-
-				if(renamedFileName != null) {
-					product.setRenamedFileName(renamedFileName);
+		if(service.findProductByNo(product.getProNo()).getProSelNo() == (loginMember.getNo())) {			
+			if(upfile != null && !upfile.isEmpty()) {
+	
+				String location = null;
+				String renamedFileName = null;
+				
+				try {
+					location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
+					renamedFileName = MultipartFileUtil.save(upfile, location);
+	
+					if(renamedFileName != null) {
+						product.setRenamedFileName(renamedFileName);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-		}
-		
-		result = service.save(product);
-		
-		if(result > 0) {
-			model.addObject("msg", "게시글이 정상적으로 수정되었습니다.");
-			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
-		} else {
-			model.addObject("msg", "게시글 수정에 실패했습니다.");
-			model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
+
+			result = service.save(product);
 			
+			if(result > 0) {
+				model.addObject("msg", "게시글이 정상적으로 수정되었습니다.");
+				model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
+			} else {
+				model.addObject("msg", "게시글 수정에 실패했습니다.");
+				model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
+			}
+		} else {
+			model.addObject("msg", "잘못된 접근입니다.");
+			model.addObject("location", "/board/list");
 		}
-		
-		product.setProSelNo(1);
-		
+
 		System.out.println(product);
 		
 		model.setViewName("common/msg");
@@ -242,22 +253,25 @@ public class MarketController {
 
 	@PostMapping("/cart/add")
 	@ResponseBody
-	public String addCart(Cart cart, HttpServletRequest request) {
+	public String addCart(Cart cart, @SessionAttribute("loginMember") Member loginMember) {
 		int result = 0;
 		
-//		HttpSession session = request.getSession();
 		System.out.println(cart);
 		result = service.addCart(cart);
 		
 		return result + "";
 	}
 
-	@GetMapping("/cart/{memNo}")
-	public String Cart (@PathVariable("memNo") String memNo, ModelAndView model) {
+	@GetMapping("/cart")
+	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @RequestParam int no) {
 
-		model.addObject("cartInfo", service.getCartList(memNo));
+		List<Cart> list = service.getCartList(no);
 		
-		return "/cart";
+		System.out.println(list);
+		model.addObject("list", list);
+		model.setViewName("market/cart");
+		
+		return model;
 	}
 	
 	@GetMapping("/order")

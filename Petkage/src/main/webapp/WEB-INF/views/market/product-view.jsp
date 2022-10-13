@@ -545,11 +545,11 @@
 
     	// 주문 수량 선택
     	var quantity = $(".qty-input").val();
-    	$(".plus-btn").on("click", function(){
+    	$(".plus-btn").on("click", () => {
     		$(".qty-input").val(++quantity);
     		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
     	});
-    	$(".minus-btn").on("click", function(){
+    	$(".minus-btn").on("click", () => {
     		if(quantity > 1){
     			$(".qty-input").val(--quantity);
         		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());

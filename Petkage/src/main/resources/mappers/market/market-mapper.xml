@@ -26,7 +26,15 @@
 	<resultMap type="Cart" id="cartListResultMap">
 		<id property="cartNo" column="CART_NO"/>
 		<result property="memNo" column="CART_MEM_NO"/>
-		<result property="proCount" column="CART_PRO_COUNT"/>
+		<result property="proNo" column="PRO_NO"/>
+		<result property="proCount" column="PRO_COUNT"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
 	</resultMap>
 
 	<sql id="productListSql">
@@ -215,10 +223,20 @@
 		DELETE FROM CART WHERE CART_NO = #{ cartNo }
 	</insert>
 	
-	<select id="getCartList" parameterType="Cart">
-		SELECT C.CART_NO, C.CART_MEM_NO, C.CART_PRO_COUNT
+	<select id="getCartList" resultMap="cartListResultMap">
+		SELECT C.CART_NO, 
+			   C.CART_MEM_NO,
+			   C.PRO_NO,
+			   C.PRO_COUNT, 
+			   P.PRO_NAME, 
+			   P.PRO_BRAND, 
+			   P.PRO_IMG, 
+			   P.PRO_OPRICE, 
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME
 		FROM CART C
-		JOIN MEMBER M ON(C.CART_MEM_NO = M.MEM_NO)
-		WHERE CART_MEM_NO = #{ memNo }
+		LEFT JOIN PRODUCT P ON(C.PRO_NO = P.PRO_NO)
+		WHERE C.CART_MEM_NO = #{ no }
 	</select>
 </mapper>

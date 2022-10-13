@@ -22,6 +22,6 @@ public interface MarketService {
 
 	int addCart(Cart cart);
 
-	List<Cart> getCartList(String memNo);
+	List<Cart> getCartList(int no);
 
 }

@@ -85,9 +85,9 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public List<Cart> getCartList(String memNo) {
+	public List<Cart> getCartList(int no) {
 
-		List<Cart> cart = mapper.getCartList(memNo);
+		List<Cart> cart = mapper.getCartList(no);
 		
 		return cart;
 	}
