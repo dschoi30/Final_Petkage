@@ -174,7 +174,7 @@
 	                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
 	                    </div>
 	                    <div class="card_text">
-	                        <div class="ct_1">${lodgingselect.img}</div>
+	                        <div class="ct_1">${lodgingselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
 	                            <p>강남구 | 역삼역 도보 1분</p>
