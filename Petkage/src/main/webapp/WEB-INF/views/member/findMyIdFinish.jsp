@@ -40,12 +40,12 @@
               </div>
               <div style="height: 15em;" id="saveName">
                   <span class="findByEmailAlert">회원님의 아이디는 <span style="font-weight: bold; color: #753422;" >
-                  ${ userId }
+                  ${ saveId }
                   </span>입니다.</span>
               </div>
 
           <div class="btnBox">
-              <button type="button" class="btnFindMyIdFinish" id="btnLogin" onclick="location.href='${path}/member/login'">로그인</button>
+              <button type="button" class="btnFindMyIdFinish" id="btnLogin" onclick="location.href='${path}/member/loginPage'">로그인</button>
               <button type="button" class="btnFindMyIdFinish" id="btnFindPwd" onclick="location.href='${path}/member/findMyPwdPage'">비밀번호 찾기</button>
           </div>
 
