@@ -24,12 +24,12 @@
         <div class="header_container">
             <header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                 <ul class="nav nav-pills">
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
@@ -44,8 +44,6 @@
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
-	                    <a href="${ path }/market/product-write">상품 등록</a><br><br>
-						<a href="${ path }/market/product-list">상품 목록</a>
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
@@ -54,7 +52,7 @@
         			</c:if>
         			
                     <a href="${ path }/market/cart/${ loginMember.no }" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
+                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>
