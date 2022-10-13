@@ -142,6 +142,36 @@
   font-weight: 700;
 }
 
+.findIdPwd .btnFindByEmail:hover {
+  color: #753422;
+  border-radius: 20px;
+  border: 2px solid #753422;
+  background-color: 753422;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 10px;
+  padding: 3.5px;
+  width: 90px;
+  height: 2rem;
+  font-weight: 700;
+}
+
+.findIdPwd .btnFindByEmail[disabled] {
+  color: #cfcece;
+  border-radius: 20px;
+  border: 2px solid #f6f7f8;
+  background-color: #f6f7f8;
+  display: inline-block;
+  cursor: default;
+  text-align: center;
+  margin-left: 10px;
+  padding: 3.5px;
+  width: 90px;
+  height: 2rem;
+  font-weight: 700;
+}
+
 /* 인증번호 보내기 버튼 */
 .findIdPwd .btnSendNum {
   color: #d79771;
@@ -213,7 +243,7 @@
   height: 50px;
   width: 200px;
   font-size: 25px;
-  font-weight: 700;
+  /* font-weight: 700; */
   border-radius: 20px;
   border: none;
   margin-top: 20px;
@@ -239,7 +269,22 @@
   height: 50px;
   width: 100px;
   font-size: 25px;
-  font-weight: 700;
+  /* font-weight: 700; */
+  border-radius: 20px;
+  border: none;
+  padding-top: 5px;
+}
+
+.findIdPwd .btnFindMyIdNext[disabled] {
+  color: #cfcece;
+  border-radius: 20px;
+  border: 2px solid #f6f7f8;
+  background-color: #f6f7f8;
+  display: inline-block;
+  cursor: default;
+  height: 50px;
+  width: 100px;
+  font-size: 25px;
   border-radius: 20px;
   border: none;
   padding-top: 5px;

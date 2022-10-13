@@ -38,6 +38,7 @@
 	</websocket:handlers>
     
 	<beans:bean id="chattingHandler" class="com.finalproject.petkage.common.util.ChattingHandler"></beans:bean>
+
 </beans:beans>
 
 

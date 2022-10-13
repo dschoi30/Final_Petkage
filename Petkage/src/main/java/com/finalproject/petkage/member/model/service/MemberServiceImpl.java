@@ -70,6 +70,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Transactional
 	public int idCheck(String userId) {
 		int result = 0;
 		result = mapper.idCheck(userId);
@@ -78,11 +79,41 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Transactional
 	public int emailCheck(String userEmail) {
 		int result = 0;
 		result = mapper.emailCheck(userEmail);
 
 		return result;
+	}
+
+	@Override
+	@Transactional
+	public Member findByEmail(String userEmail) {
+		Member member = null;
+		
+		member = mapper.selectMemberByEmail(userEmail);
+		
+		if(member != null) {
+			System.out.println(member.getUserEmail());
+			System.out.println("service - userEmail : " + userEmail);
+			
+			return member;
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	@Transactional
+	public int updatePwd(String userEmail, String newPwd) {
+		int result = 0;
+		
+		newPwd = passwordEncoder.encode(newPwd);
+		
+		result = mapper.updatePwd(userEmail, newPwd);
+		
+		return 0;
 	}
 	
 

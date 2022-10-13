@@ -58,9 +58,9 @@
 	                </label>
 	
 	                <span class="ml-auto">
-	                  <a href="#" class="forgot-pass" id="btnFindId" onclick="location.href='${ path }/member/findMyId'">Forgot ID</a>
+	                  <a href="#" class="forgot-pass" id="btnFindId" onclick="location.href='${ path }/member/findMyIdPage'">Forgot ID</a>
 	                  <span class="forgot-pass"> / </span>
-	                  <a href="./findMyPwd.html" class="forgot-pass" id="btnFindPwd" onclick="location.href='${ path }/member/findMyPwd'">Forgot Password</a>
+	                  <a href="#" class="forgot-pass" id="btnFindPwd" onclick="location.href='${ path }/member/findMyPwdPage'">Forgot Password</a>
 	                </span> 
 	              </div>
 	
