@@ -12,6 +12,10 @@
 	font-family: "GmarketSansMedium";
 }
 
+.hd {
+    font-size:14px;
+}
+
 .hd .header_container {
     background-color: #FFEBC9;
     height: 80px;
