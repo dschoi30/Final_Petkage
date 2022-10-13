@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/member")
-@SessionAttributes("loginMember")
+@SessionAttributes({"loginMember", "userId"})
 public class MemberController {
 
 	@Autowired
@@ -274,7 +274,8 @@ public class MemberController {
 	
 	// 아이디 찾기 완료 페이지 처리
 	@GetMapping("/findMyIdFinishPage")
-	public String findMyIdFinishPage() {
+	public String findMyIdFinishPage(ModelAndView model, 
+									@SessionAttribute("userId") Member userId) {
 		log.info ("아이디 찾기 완료 페이지 처리");
 
 		return "member/findMyIdFinish";
