@@ -1,15 +1,22 @@
 package com.finalproject.petkage.member.controller;
 
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +31,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/member")
-@SessionAttributes("loginMember")
+@SessionAttributes({"loginMember", "userId"})
 public class MemberController {
 
 	@Autowired
 	private MemberService service;
 	
+	@Autowired
+    private JavaMailSender mailSender;
+		
 	// 로그인 페이지 처리
 	@GetMapping("/login")
 	public String loginPage() {
@@ -40,8 +50,10 @@ public class MemberController {
 	
 	// 로그인 처리
 	@PostMapping("/login")
-	public ModelAndView login(HttpSession session, ModelAndView model, 
-			@RequestParam String userId, @RequestParam String userPwd) {
+	public ModelAndView login(HttpSession session, 
+							  ModelAndView model, 
+							  @RequestParam String userId, 
+							  @RequestParam String userPwd) {
 		log.info("{}, {}", userId, userPwd);
 
 		Member loginMember = service.login(userId, userPwd);
@@ -51,17 +63,17 @@ public class MemberController {
 			
 			if(loginMember.getMemberRole().equals("ROLE_USER")) {
 				// 일반 회원 로그인 했을 경우
-				model.addObject("msg", "일반 회원 로그인");
+				model.addObject("msg", "당신은 Petkage의 일반 회원입니다.");
 				model.setViewName("common/msg");
 				System.out.println(loginMember.getMemberRole());
 			} else if (loginMember.getMemberRole().equals("ROLE_SELLER")){
 				// 판매 회원 로그인 했을 경우
-				model.addObject("msg", "판매 회원 로그인");
+				model.addObject("msg", "당신은 Petkage의 판매자 회원입니다.");
 				model.setViewName("common/msg");
 				System.out.println(loginMember.getMemberRole());
 			} else {
 				// 관리자 회원 로그인 했을 경우
-				model.addObject("msg", "관리자 로그인");
+				model.addObject("msg", "당신은 Petkage의 관리자입니다.");
 				model.setViewName("common/msg");
 				System.out.println(loginMember.getMemberRole());
 			}
@@ -138,7 +150,6 @@ public class MemberController {
 		log.info ("회원가입 완료 페이지 요청");
 
 		return "member/enrollFinish";
-
 	}
 	
 	// 아이디 중복 체크
@@ -180,7 +191,7 @@ public class MemberController {
 	}
 	
 	// 아이디 찾기 페이지 처리
-	@GetMapping("/findMyId")
+	@GetMapping("/findMyIdPage")
 	public String findMyIdPage() {
 		log.info ("아이디 찾기 페이지 요청");
 		
@@ -188,10 +199,183 @@ public class MemberController {
 	}
 	
 	// 비밀번호 찾기 페이지 처리
-	@GetMapping("/findMyPwd")
+	@GetMapping("/findMyPwdPage")
 	public String findMyPwdPage() {
 		log.info ("비밀번호 찾기 페이지 요청");
 		
 		return "member/findMyPwd";
+	}
+
+	// 아이디 찾기 이메일 보내기 
+	@GetMapping("/findMyIdEmailCheck")
+	@ResponseBody
+	public String findMyIdEmailCheck(HttpSession session,
+									  @RequestParam String userName, 
+									  @RequestParam String userEmail) {
+
+		Member member = service.findByEmail(userEmail);
+		
+		System.out.println("이메일 보내기 인증 버튼 클릭 !");
+		
+		if(member != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999); // 랜덤난수설정
+			String checkNum = Integer.toString(num);
+			
+			System.out.println("랜덤 난수 : " + checkNum);
+			
+			if (member.getUserName().equals(userName)) {
+				System.out.println("member.getUserEmail() : " + member.getUserEmail());
+				
+						
+				String setfrom = "petkage_final@naver.com"; // naver 
+				String tomail = userEmail; //받는사람
+				String title = "[Petkage] 비밀번호 변경 인증 이메일 입니다"; 
+				String content = System.getProperty("line.separator") 
+								+ "안녕하세요 " + member.getUserName() + "회원님" 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "[Petkage] 비밀번호찾기(변경) 인증번호는 " + checkNum + " 입니다." 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "이 메일은 발신 전용 이메일 입니다. "
+								+ System.getProperty("line.separator"); 
+	
+//				try {
+//					MimeMessage message = mailSender.createMimeMessage();
+//					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//	
+//					messageHelper.setFrom(setfrom); 
+//					messageHelper.setTo(tomail); 
+//					messageHelper.setSubject(title);
+//					messageHelper.setText(content); 
+//	
+//					mailSender.send(message);
+//					
+//					} catch (Exception e) {
+//						System.out.println(e.getMessage());
+//					}
+
+				session.setAttribute("userId", member.getUserId());
+				
+				return checkNum;
+				
+			} else {
+				
+				return "userName fail";
+			}
+		
+		} else {
+			
+			return "member fail";
+		}
+		
+	}
+	
+	// 아이디 찾기 완료 페이지 처리
+	@GetMapping("/findMyIdFinishPage")
+	public String findMyIdFinishPage(ModelAndView model, 
+									@SessionAttribute("userId") Member userId) {
+		log.info ("아이디 찾기 완료 페이지 처리");
+
+		return "member/findMyIdFinish";
+	}
+	
+	// 비밀번호 찾기 이메일 보내기 
+	@GetMapping("/findMyPwdEmailCheck")
+	@ResponseBody
+	public String findMyPwdEmailCheck(HttpSession session,
+									  @RequestParam String userId, 
+									  @RequestParam String userEmail) {
+
+		Member member = service.findByEmail(userEmail);
+		System.out.println("이메일 보내기 인증 버튼 클릭 !");
+		
+		if(member != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999); // 랜덤난수설정
+			String checkNum = Integer.toString(num);
+			
+			session.setAttribute("userId", member.getUserId());
+			
+			System.out.println("랜덤 난수 : " + checkNum);
+			
+			if (member.getUserId().equals(userId)) {
+				System.out.println("member.getUserEmail() : " + member.getUserEmail());
+				
+						
+				String setfrom = "petkage_final@naver.com"; // naver 
+				String tomail = userEmail; //받는사람
+				String title = "[Petkage] 비밀번호 변경 인증 이메일 입니다"; 
+				String content = System.getProperty("line.separator") 
+								+ "안녕하세요 " + member.getUserName() + "회원님" 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "[Petkage] 비밀번호찾기(변경) 인증번호는 " + checkNum + " 입니다." 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "이 메일은 발신 전용 이메일 입니다. "
+								+ System.getProperty("line.separator"); 
+	
+//				try {
+//					MimeMessage message = mailSender.createMimeMessage();
+//					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//	
+//					messageHelper.setFrom(setfrom); 
+//					messageHelper.setTo(tomail); 
+//					messageHelper.setSubject(title);
+//					messageHelper.setText(content); 
+//	
+//					mailSender.send(message);
+//					
+//					} catch (Exception e) {
+//						System.out.println(e.getMessage());
+//					}
+
+				return checkNum;
+				
+			} else {
+				
+				return "userId fail";
+			}
+		
+		} else {
+			
+			return "member fail";
+		}
+		
+	}
+	
+	@PostMapping("/updateFindPwd")
+	@ResponseBody
+	public ModelAndView updateFindPwd(ModelAndView model,
+									  @RequestParam("saveEmail") String userEmail,
+				  					  @RequestParam String newPwd, 
+			  						  @RequestParam String newPwdCheck) {
+		
+		int result = 0;
+		
+		System.out.println("userEmail : " + userEmail);
+		System.out.println("newPwd : " + newPwd);
+		System.out.println(newPwd.equals(newPwdCheck));
+		
+		Member member = service.findByEmail(userEmail);
+		
+		System.out.println(member);
+		
+		if(member != null && newPwd.equals(newPwdCheck)) {
+			// 멤버가 존재 할 경우
+			result = service.updatePwd(userEmail, newPwd);
+			
+			model.addObject("msg", "[Petkage] 비밀번호가 변경 되었습니다.");
+			
+		} else {
+			model.addObject("msg", "[Petkage] 비밀번호 변경이 실패하였습니다.");
+		}
+		
+		model.addObject("location", "/member/login");
+		model.setViewName("common/msg");
+		
+		return model;
 	}
 }

@@ -20,4 +20,8 @@ public interface MemberMapper {
 	int insertSeller(Seller seller);
 
 	int emailCheck(String userEmail);
+
+	Member selectMemberByEmail(String userEmail);
+
+	int updatePwd(String userEmail, String newPwd);
 }

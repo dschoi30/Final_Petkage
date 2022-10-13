@@ -227,7 +227,7 @@ $("#formJoin").submit(function () {
     return false;
   }
 
-  // // 아이디 중복검사
+  // 아이디 중복검사
   if ($("[name=idDuplicateTest]").val() != "1") {
     $("#id_termsCheck").text("중복 확인을 해주세요.");
     $("#userId").focus();

@@ -82,7 +82,12 @@
 		WHERE MEM_ID= #{ userId } AND MEM_STATUS ='Y'
 	</select>
  	
- 	
+ 	<!-- 이메일로 아이디/비밀번호 찾기-->
+	<select id="selectMemberByEmail" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql" />
+		WHERE MEM_EMAIL= #{ userEmail } AND MEM_STATUS ='Y'
+	</select>
+	
  	<!-- 
 	<select id="selectMemberById" parameterType="string" resultMap="inPetResultMap">
 		SELECT M.MEM_NO,
@@ -201,4 +206,13 @@
 		FROM MEMBER 
 		WHERE MEM_EMAIL = #{ userEmail } AND MEM_STATUS ='Y'
 	</select>
+	
+	<!-- 패스워드 변경 -->
+	<update id="updatePwd">
+		UPDATE MEMBER 
+		SET 
+		    MEM_PWD = #{ newPwd }
+		WHERE MEM_EMAIL = #{ userEmail }
+	</update>
+	
 </mapper>

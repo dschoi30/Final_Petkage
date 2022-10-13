@@ -184,7 +184,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>이메일</th>
+                  <th style="margin-top: 10px" >이메일</th>
                     <td>
                       <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" >
                       <span class="userInfoAlert" id="error_Email"></span>
