@@ -14,6 +14,10 @@
     	
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <!-- Product CSS-->
+    <link rel="stylesheet" href="${ path }/resources/css/market/product.css">
+    
 </head>
 <body>
 	<section class="hd">
@@ -49,7 +53,7 @@
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
-                    <a href="${ path }/market" class="d-flex align-items-center headercart">
+                    <a href="${ path }/market/cart/${ loginMember.no }" class="d-flex align-items-center headercart">
                         <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
                     </a>
                 </ul>

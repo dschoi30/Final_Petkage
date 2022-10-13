@@ -32,6 +32,17 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/market/**"/>
+			
+			<exclude-mapping path="/market/product-list"/>
+			<exclude-mapping path="/market/product-view"/>
+			
+			<beans:bean id="loginCheckInterceptor" class="com.finalproject.petkage.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<websocket:handlers>
 		<websocket:mapping handler="chattingHandler" path="/chatting" />
 		<websocket:sockjs />
