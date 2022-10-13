@@ -115,6 +115,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		return 0;
 	}
+
+	
+	@Override
+	public int updateFindNum(String userId, int findNum) {
+		int result = 0;
+		
+		result = mapper.updateFindNum(userId, findNum);
+		
+		return result;
+	}
 	
 
 }

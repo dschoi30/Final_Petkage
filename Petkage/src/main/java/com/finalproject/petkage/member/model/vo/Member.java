@@ -44,6 +44,8 @@ public class Member {
 	
 	private String petYN;
 	
+	private int findNum;
+	
 	private Pet pet;
 	
 	private Seller seller;

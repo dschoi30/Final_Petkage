@@ -178,7 +178,7 @@ public class MemberController {
 		}
 	}
 	
-	// 아이디 찾기 페이지 처리 - OK
+	// 아이디 찾기 - 페이지 처리 - OK
 	@GetMapping("/findMyIdPage")
 	public String findMyIdPage() {
 		log.info ("아이디 찾기 페이지 요청");
@@ -186,7 +186,7 @@ public class MemberController {
 		return "member/findMyId";
 	}
 
-	// 아이디 찾기 이메일 보내기 - OK
+	// 아이디 찾기 - 이메일 보내기
 	@GetMapping("/findMyIdEmailCheck")
 	@ResponseBody
 	public String findMyIdEmailCheck(HttpSession session,
@@ -298,16 +298,16 @@ public class MemberController {
 		
 	}
 	
-	// 아이디 찾기 완료 페이지 처리 - OK
+	// 아이디 찾기 - 완료 페이지 처리 - OK
 	@GetMapping("/findMyIdFinishPage")
 	public String findMyIdFinishPage() {
 		
 		log.info ("아이디 찾기 완료 페이지 처리");
 
-		return "member/findMyIdFinish";
+		return "member/findMyId_Finish";
 	}
 	
-	// 비밀번호 찾기 페이지 처리 - OK
+	// 비밀번호 찾기 - 페이지 처리 - OK
 	@GetMapping("/findMyPwdPage")
 	public String findMyPwdPage() {
 		log.info ("비밀번호 찾기 페이지 요청");
@@ -315,29 +315,32 @@ public class MemberController {
 		return "member/findMyPwd";
 	}
 	
-	// 비밀번호 찾기 이메일 보내기 
+	///////////////////////////////////////////////////////////////////////////////////// 비밀번호 찾기부터 하자 @_@ 아자 아자 아자 !
+	// 비밀번호 찾기 - 이메일 보내기 
 	@GetMapping("/findMyPwdEmailCheck")
 	@ResponseBody
-	public String findMyPwdEmailCheck(HttpSession session,
-									  @RequestParam String userId, 
+	public String findMyPwdEmailCheck(@RequestParam String userId, 
 									  @RequestParam String userEmail) {
 
-		Member member = service.findByEmail(userEmail);
 		System.out.println("이메일 보내기 인증 버튼 클릭 !");
+		
+		int result = 0;
+		
+		Member member = service.findByEmail(userEmail);
 		
 		if(member != null) {
 			Random r = new Random();
-			int num = r.nextInt(999999); // 랜덤난수설정
-			String checkNum = Integer.toString(num);
-			
-			session.setAttribute("userId", member.getUserId());
-			
-			System.out.println("랜덤 난수 : " + checkNum);
-			
-			if (member.getUserId().equals(userId)) {
-				System.out.println("member.getUserEmail() : " + member.getUserEmail());
-				
+			int findNum = r.nextInt(999999); // 랜덤난수설정
 						
+			System.out.println("인증번호 : " + findNum);
+			
+			
+			if (member.getUserId().equals(userId)) {			
+				// userEmail로 받은 member객체에서 userId나 userEmail로 인증번호 테이블에 저장하기
+				result = service.updateFindNum(userId, findNum);
+				
+				System.out.println(result);
+				
 				String setfrom = "petkage_final@naver.com"; // naver 
 				String tomail = userEmail; //받는사람
 				String title = "[Petkage] 비밀번호 변경 인증 이메일 입니다"; 
@@ -345,7 +348,7 @@ public class MemberController {
 								+ "안녕하세요 " + member.getUserName() + "회원님" 
 								+ System.getProperty("line.separator")
 								+ System.getProperty("line.separator")
-								+ "[Petkage] 비밀번호찾기(변경) 인증번호는 " + checkNum + " 입니다." 
+								+ "[Petkage] 비밀번호 변경 인증번호는 " + findNum + " 입니다." 
 								+ System.getProperty("line.separator")
 								+ System.getProperty("line.separator")
 								+ "이 메일은 발신 전용 이메일 입니다. "
@@ -366,7 +369,7 @@ public class MemberController {
 //						System.out.println(e.getMessage());
 //					}
 
-				return checkNum;
+				return "success";
 				
 			} else {
 				
@@ -380,6 +383,19 @@ public class MemberController {
 		
 	}
 	
+	// 비밀번호 찾기 - 인증번호 일치 여부 확인
+	
+	
+	// 비밀번호 찾기 - 비밀번호 변경 페이지 처리
+	@GetMapping("/findMyPwdFinishPage")
+	public String findMyPwdFinishPage() {
+		
+		log.info ("비밀번호 변경 페이지 처리");
+
+		return "member/findMyPwd_Finish";
+	}
+	
+	// 비밀번호 찾기 - 비밀번호 변경
 	@PostMapping("/updateFindPwd")
 	@ResponseBody
 	public ModelAndView updateFindPwd(ModelAndView model,

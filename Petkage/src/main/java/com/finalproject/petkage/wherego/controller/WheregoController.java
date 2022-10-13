@@ -56,6 +56,19 @@ public class WheregoController {
 		return "wherego/wherego_lodging_detail";
 	}
 	
+	@GetMapping("/reviewboard")
+	public String reivewboard() {
+		
+		return "wherego/wherego_review_board";
+	}
+	
+	@GetMapping("/reviewwrite")
+	public String reivewwrite() {
+		
+		return "wherego/wherego_review_write";
+	}
+	
+	
 	@GetMapping("/manager1")
 	public String manager1() {
 		
