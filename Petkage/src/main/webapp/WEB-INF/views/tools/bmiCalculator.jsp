@@ -163,58 +163,58 @@
 					<div class="cal_result_obesity">
 						<div class="cal_result_ob">
 							<span class="cal_ob_img"><img src="http://appdata.hungryapp.co.kr/images/hatdog/img/calculator/result_img05.png" alt="체중계" /></span>
-							<div id="pet_ob_1">
+							<div id="pet_ob_0" class="ob_off">
 								<dl>
 									<dt id="bsc_type_str1">1단계</dt>
 									<dd id="bsc_type_str2">(매우 마름, 심한 저체중)</dd>
 								</dl>
-								<p id="bsc_type_str3">갈비뼈, 척추뼈, 골반뼈를 비롯한 몸의 뼈들이
-									두드러지게 보입니다.
-									체지방이 없어 보이고,
+								<p id="bsc_type_str3">갈비뼈, 척추뼈, 골반뼈를 비롯한 몸의 뼈들이<br>
+									두드러지게 보입니다. <br>
+									체지방이 없어 보이고,<br>
 									몸 전체적으로 근육이 없어 보입니다.
 								</p>
 							</div>
-							<div id="pet_ob_2" style="display:none">
+							<div id="pet_ob_1" class="ob_off" style="display:none">
 								<dl>
 									<dt id="bsc_type_str1">2단계</dt>
 									<dd id="bsc_type_str2">(마름, 저체중)</dd>
 								</dl>
-								<p id="bsc_type_str3">갈비뼈, 척추뼈, 골반뼈가 밖에서 보이며 쉽게 만져집니다.
-									갈비뼈를 만졌을 때 만져지는 지방이 거의 없습니다.
-									옆에서 보면 허리가 매우 잘록하게 들어가 있고,
+								<p id="bsc_type_str3">갈비뼈, 척추뼈, 골반뼈가 밖에서 보이며 쉽게 만져집니다.<br>
+									갈비뼈를 만졌을 때 만져지는 지방이 거의 없습니다.<br>
+									옆에서 보면 허리가 매우 잘록하게 들어가 있고,<br>
 									앞에서 보면 복부가 매우 잘록해 보입니다.
 								</p>
 							</div>
-							<div id="pet_ob_3" style="display:none">
+							<div id="pet_ob_2" class="ob_off" style="display:none">
 								<dl>
 									<dt id="bsc_type_str1">3단계</dt>
 									<dd id="bsc_type_str2">(정상 체중)</dd>
 								</dl>
-								<p id="bsc_type_str3">갈비뼈 아래로 약간의 피하지방이 느껴집니다.
-									지방 아래로 갈비뼈가 쉽게 만져집니다.
-									위에서 보면 허리를 쉽게 알아차릴 수 있습니다.
+								<p id="bsc_type_str3">갈비뼈 아래로 약간의 피하지방이 느껴집니다.<br>
+									지방 아래로 갈비뼈가 쉽게 만져집니다.<br>
+									위에서 보면 허리를 쉽게 알아차릴 수 있습니다.<br>
 									옆에서 보면 복부가 뚜렷한 곡선을 그리며 올라갑니다.
 								</p>
 							</div>
-							<div id="pet_ob_4" style="display:none">
+							<div id="pet_ob_3" class="ob_off" style="display:none">
 								<dl>
 									<dt id="bsc_type_str1">4단계</dt>
 									<dd id="bsc_type_str2">(과체중)</dd>
 								</dl>
-								<p id="bsc_type_str3">척추와 꼬리 부분에 많은 지방이 있어 보입니다.
-									갈비뼈 아래의 지방이 두꺼워 힘을 주어야 뼈가 만져집니다.
-									위에서 보면 허리가 잘 구분되지 않습니다.
+								<p id="bsc_type_str3">척추와 꼬리 부분에 많은 지방이 있어 보입니다.<br>
+									갈비뼈 아래의 지방이 두꺼워 힘을 주어야 뼈가 만져집니다.<br>
+									위에서 보면 허리가 잘 구분되지 않습니다.<br>
 									옆에서 보면 복부의 굴곡이 보이지 않습니다.
 								</p>
 							</div>
-							<div id="pet_ob_5" style="display:none">
+							<div id="pet_ob_4" class="ob_off" style="display:none">
 								<dl>
 									<dt id="bsc_type_str1">5단계</dt>
 									<dd id="bsc_type_str2">(고도 비만)</dd>
 								</dl>
-								<p id="bsc_type_str3">흉부, 척추, 꼬리, 다리, 목 부분에 지방이 매우 많아 살이 접힙니다.
-									피하지방이 몸 전체에 많아서, 갈비뼈를 찾기 어렵습니다.
-									위에서 보면 허리가 없거나 바깥으로 튀어 나와 있습니다.
+								<p id="bsc_type_str3">흉부, 척추, 꼬리, 다리, 목 부분에 지방이 매우 많아 살이 접힙니다.<br>
+									피하지방이 몸 전체에 많아서, 갈비뼈를 찾기 어렵습니다.<br>
+									위에서 보면 허리가 없거나 바깥으로 튀어 나와 있습니다.<br>
 									옆에서 보면 복부가 아래로 쳐져 있습니다.
 								</p>
 							</div>
@@ -236,16 +236,18 @@
 	<script type="text/javascript">
 
 	function result_view(tab_id) {
-    var pet_type = $('input[name="pet_type"]').val();
+		var pet_type = $('input[name="pet_type"]').val();
 
-    var dog_on = $("#dog_on").val();
-    var cat_on = $("#cat_on").val();
+		var dog_on = $("#dog_on").val();
+		var cat_on = $("#cat_on").val();
 
-    var dog_type = $('input[name="animal_check"]').val();
+		var dog_type = $('input[name="animal_check"]').val();
 
-    var bcs_type = $('#bcs_type').val();
+		var bcs_type = $('#bcs_type').val();
+		var bcs_num = parseInt($('#bcs_type').val().substr(-1));
 
-    if (tab_id == 2) {
+		if (tab_id == 2) {
+
 			if (!pet_type) {
 				alert("반려동물을 선택해주세요.")
 			} else  {
@@ -254,6 +256,7 @@
 						alert("BCS를 선택해주세요.");
 						return;
 					} else if (!dog_type) {
+						console.log("뭘 선택했어? " + bcs_type);
 						alert("몸무게를 선택해주세요.");
 						return;
 					} 
@@ -262,12 +265,7 @@
 						$(".cal_result_box").show();
 						$(".cal_info_box").hide();
 
-						$("#dog_life").show();
-						$("#cat_life").hide();
-					
-						$("#bsc_type_str1").html(r.msg_pc[0]);
-						$("#bsc_type_str2").html(r.msg_pc[1]);
-						$("#bsc_type_str3").html(r.msg_pc[2]);
+						calcBcs(bcs_num);
 					}
 					
 				} else { // 고양이 일 때 
@@ -280,17 +278,7 @@
 						$(".cal_result_box").show();
 						$(".cal_info_box").hide();
 
-						$("#cat_life").show();
-						$("#dog_life").hide();
-
-						$("#cat_age").html(petAges(pet_date));
-						console.log("냥 나이 : " + petAges(pet_date));
-
-						$("#cat_age_cal").html(catToHumanAge(pet_date));
-						console.log("냥 사람나이 : " + catToHumanAge(pet_date));
-
-						$("#cat_lifecycle").html(catAgeGroup(pet_date));
-						console.log("냥 시기 : " + catAgeGroup(pet_date));
+						calcBcs(bcs_num);
 					}
 				}
 			}
@@ -340,26 +328,48 @@
 
 		if (0 <= no && no <= 4) { // 강아지 비만도 선택
 			$('input[name="bcs_type"]').attr('value',("강아지 BCS" + no));
-			$("#dog_bcs_type"+"_"+no).attr('value', no );
-			console.log("댕 타입 : " + $("#dog_bcs_type_"+no).val());
+			$("#dog_bcs_type"+"_"+no).attr('value', no);
+			console.log("댕 타입 : " + $("#dog_bcs_type_"+ no).val());
 
 			$(".bcs_off").removeClass("bcs_on");
 			$("#dog_bcs_type_" + no).addClass("bcs_on");
 
 		} else if (5 <= no && no <= 9) { // 고양이 비만도 선택
 			$('input[name="bcs_type"]').attr('value',("고양이 BCS" + no));
-			$("#cat_bcs_type"+"_"+no).attr('value', no );
-			console.log("냥 타입 : " + $("#cat_bcs_type_"+no).val());
+			$("#cat_bcs_type"+"_"+no).attr('value', no);
+			console.log("냥 타입 : " + $("#cat_bcs_type_"+ no).val());
 
 			$(".bcs_off").removeClass("bcs_on");
 			$("#cat_bcs_type_" + no).addClass("bcs_on");
 		}
 	}	
 
- function {
-	
- }
+	function calcBcs(no) {
+		var dogBcs = $("#dog_bcs_type_"+ no).val();
+		var catBcs = $("#cat_bcs_type_"+ no).val();
 
+		if (dogBcs == 0 || catBcs == 5) {
+			$(".ob_off").hide();
+			$("#pet_ob_0").show();
+			console.log("1단계 댕 : " + dogBcs + "1단계 냥 : " + catBcs);
+		} else if (dogBcs == 1 || catBcs == 6) {
+			$(".ob_off").hide();
+			$("#pet_ob_1").show();
+			console.log("2단계 댕 : " + dogBcs + "2단계 냥 : " + catBcs);
+		} else if (dogBcs == 2 || catBcs == 7) {
+			$(".ob_off").hide();
+			$("#pet_ob_2").show();
+			console.log("3단계 댕 : " + dogBcs + "3단계 냥 : " + catBcs);
+		} else if (dogBcs == 3 || catBcs == 8) {
+			$(".ob_off").hide();
+			$("#pet_ob_3").show();
+			console.log("4단계 댕 : " + dogBcs + "4단계 냥 : " + catBcs);
+		} else if (dogBcs == 4 || catBcs == 9) {
+			$(".ob_off").hide();
+			$("#pet_ob_4").show();
+			console.log("5단계 댕 : " + dogBcs + "5단계 냥 : " + catBcs);
+		}
+	}
 
 	</script>
 </body>
