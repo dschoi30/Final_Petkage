@@ -16,7 +16,8 @@
 		       MEM_REPORT,
 		       MEM_ROLE,
 		       MEM_STATUS,
-		       MEM_ENROLLDATE
+		       MEM_ENROLLDATE,
+		       MEM_FINDNUM
 		FROM MEMBER
 	</sql>
 
@@ -36,6 +37,7 @@
 		<result property="status" column="MEM_STATUS"/>
 		<result property="enrolldate" column="MEM_ENROLLDATE"/>
 		<result property="petYN" column="MEM_PETYN"/>
+		<result property="findNum" column="MEM_FINDNUM"/>
 	</resultMap>
 	
 	<!-- pet -->
@@ -73,9 +75,6 @@
 		WHERE MEM_STATUS = 'Y'
 	</select>
 	
-
-	
-
  	<!-- 로그인 -->
 	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql" />
@@ -195,12 +194,14 @@
 		)
 	</insert>
 	
+	<!-- 아이디 중복 검사 -->
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) 
 		FROM MEMBER 
 		WHERE MEM_ID = #{ userId } AND MEM_STATUS ='Y'
 	</select>
 	
+	<!-- 이메일 중복 검사 -->
 	<select id="emailCheck" resultType="int">
 		SELECT COUNT(*) 
 		FROM MEMBER 
@@ -215,4 +216,10 @@
 		WHERE MEM_EMAIL = #{ userEmail }
 	</update>
 	
+	<!-- 인증번호 insert -->
+	<update id="updateFindNum" parameterType="Member" useGeneratedKeys="true">
+		UPDATE MEMBER 
+			SET MEM_FINDNUM =  #{ findNum }  
+		WHERE MEM_ID = #{ userId } ;
+	</update>
 </mapper>

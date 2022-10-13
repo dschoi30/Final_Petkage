@@ -2,13 +2,6 @@
 -- CREATE USER PETKAGE IDENTIFIED BY PETKAGE;
 -- GRANT RESOURCE, CONNECT TO PETKAGE;
 
-
--- 컬럼명을 테이블명의 줄임말로 변경
-
-------------------------------------------------
--------------- MEMBER 관련 테이블 --------------
-------------------------------------------------
-
 ------------------------------------------------
 -------------- MEMBER 관련 테이블 --------------
 ------------------------------------------------
@@ -28,6 +21,7 @@ CREATE TABLE MEMBER (
 	MEM_STATUS VARCHAR2(1) DEFAULT 'Y' CHECK(MEM_STATUS IN('Y', 'N')),
     MEM_ENROLLDATE DATE DEFAULT SYSDATE,
     MEM_PETYN VARCHAR2(1) DEFAULT 'N', 
+    MEM_FINDNUM NUMBER NULL,
     
     CONSTRAINT MEMBER_MEM_NO_PK PRIMARY KEY(MEM_NO),
     CONSTRAINT MEMBER_MEM_ID_UQ UNIQUE(MEM_ID)
@@ -49,6 +43,7 @@ COMMENT ON COLUMN MEMBER.MEM_ROLE IS '역할(ROLE_USER/ROLE_SELLER/ROLE_ADMIN)';
 COMMENT ON COLUMN MEMBER.MEM_STATUS IS '회원 상태(Y/N)';
 COMMENT ON COLUMN MEMBER.MEM_ENROLLDATE IS '가입일';
 COMMENT ON COLUMN MEMBER.MEM_PETYN IS '반려동물 유무';
+COMMENT ON COLUMN MEMBER.MEM_FINDNUM IS '인증번호';
 
 CREATE SEQUENCE SEQ_MEM_NO;
 
