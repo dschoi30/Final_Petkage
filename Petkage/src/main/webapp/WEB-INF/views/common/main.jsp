@@ -95,20 +95,69 @@
 	
 </head>
 <body>
+	<!-- Channel Plugin Scripts -->
+	<script>
+	  (function() {
+	    var w = window;
+	    if (w.ChannelIO) {
+	      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+	    }
+	    var ch = function() {
+	      ch.c(arguments);
+	    };
+	    ch.q = [];
+	    ch.c = function(args) {
+	      ch.q.push(args);
+	    };
+	    w.ChannelIO = ch;
+	    function l() {
+	      if (w.ChannelIOInitialized) {
+	        return;
+	      }
+	      w.ChannelIOInitialized = true;
+	      var s = document.createElement('script');
+	      s.type = 'text/javascript';
+	      s.async = true;
+	      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+	      s.charset = 'UTF-8';
+	      var x = document.getElementsByTagName('script')[0];
+	      x.parentNode.insertBefore(s, x);
+	    }
+	    if (document.readyState === 'complete') {
+	      l();
+	    } else if (window.attachEvent) {
+	      window.attachEvent('onload', l);
+	    } else {
+	      window.addEventListener('DOMContentLoaded', l, false);
+	      window.addEventListener('load', l, false);
+	    }
+	  })();
+	  ChannelIO('boot', {
+	    "pluginKey": "dcd4334b-0c76-4864-81ba-8701c893a37e", //please fill with your plugin key
+	    "memberId": "${ member.userId }", //fill with user id
+	    "profile": {
+	      "name": "${ member.userName }", //fill with user name
+	      "mobileNumber": "${ member.userPhone }", //fill with user phone number
+	      "CUSTOM_VALUE_1": "VALUE_1", //any other custom meta data
+	      "CUSTOM_VALUE_2": "VALUE_2"
+	    }
+	  });
+	</script>
+	<!-- End Channel Plugin -->
+
 	<section class="hd">
 		<header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                  <ul class="nav nav-pills">
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">커뮤니티</a></li>
                     <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
-	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login'" value="로그인">
+	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/loginPage'" value="로그인">
 					</c:if>
 					
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
@@ -126,8 +175,8 @@
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
-                    <a href="${ path }/market" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
+                    <a href="${ path }/market/cart/${ loginMember.no }" class="d-flex align-items-center headercart">
+                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>
@@ -175,7 +224,7 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -184,7 +233,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -193,7 +242,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -202,7 +251,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -211,7 +260,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -220,7 +269,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -229,7 +278,7 @@
 					</div>
 					<div class="swiper-slide">
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
 						</div>
 						<div class="slide_texts">
 							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
@@ -323,21 +372,21 @@
 	
 						<div class="footer_icons">
 							<a href="/" class="">
-                            	<img src="${ path }/resources/images/Instagram.png" alt="" class="footericon">
+                            	<img src="${ path }/resources/images/common/Instagram.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/Facebook.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/Facebook.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/youtube.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/youtube.png" alt="" class="footericon">
 	                        </a>
 	                        <a href="/" class="">
-	                            <img src="${ path }/resources/images/kakaotalk.png" alt="" class="footericon">
+	                            <img src="${ path }/resources/images/common/kakaotalk.png" alt="" class="footericon">
 	                        </a>
 						</div>
 	
 							
-						<img src="${ path }/resources/images/Pet.png" alt="" class="footerLogo">
+						<img src="${ path }/resources/images/common/Pet.png" alt="" class="footerLogo">
 					</div>
 				</footer>
 			</div>

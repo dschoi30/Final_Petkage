@@ -135,7 +135,6 @@
               </table>
             </div>
           </div>
-
           <div class="btnBox">
             <input type="submit" class="btnFindMyIdNext" id="btnFindMyIdNext" value="다음" onclick="location.href='${path}/member/findMyIdFinishPage'" disabled />
           </div>

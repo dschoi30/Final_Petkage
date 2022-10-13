@@ -96,27 +96,5 @@
 	</section>
 	<!-- Food_dictionary 끝 -->
 
-<script>
-	function result_view(tab_id) {
-		var searchFood = $("#searchFood").val();
-
-		$.ajax ({
-			type: "GET",
-			url: "${ path }/tools/eatThis",
-			dataType: "json",
-			data: {
-				searchFood
-			},
-			success: function(data){
-				$(".cal_result_box").show();
-				$(".cal_info_box").hide();
-				// $(".calculator_sns").show(); // 공유하기
-			},
-			error: function() {
-				console.log("에러");
-			}
-		});
-	}
-</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
