@@ -131,7 +131,7 @@
           </div>
 
           <div class="btnBox">
-            <input type="submit" class="btnFindMyPwdNext" id="btnFindNext" value="다음" onclick="location.href='${path}/member/findMyPwdFinishPage'" disabled></input>
+            <input type="submit" class="btnFindNext" id="btnFindNext" value="다음" onclick="location.href='${path}/member/findMyPwdFinishPage'" disabled></input>
           </div>
         </div>
       </div>

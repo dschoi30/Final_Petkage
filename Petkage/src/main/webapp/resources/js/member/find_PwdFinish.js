@@ -5,8 +5,8 @@ var idCheck = /^[a-zA-z0-9]{6,12}$/;
 // 이메일 - @ 입력
 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]{3}$/;
 
-// 비밀번호 - 영소문자, 숫자 모두 포함 8자리 이상
-var pwdCheck = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+// 비밀번호 - 영대소문자, 숫자 모두 포함 8자리 이상
+var pwdCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,}$/;
 
 // 아이디 유효성 검사
 $("#userId").keyup(function () {
@@ -60,7 +60,6 @@ $("#find_newPwdCheck").keyup(function () {
     if (newPwd == newPwdCheck) {
       // 비밀번호 일치 이벤트 실행
       $("#pwd_doubleCheck").text("비밀번호가 일치합니다.");
-      // userPwdCheck == "1";
       $("[name=pwdCheckTest]").val("1");
     } else {
       // 비밀번호 불일치 이벤트 실행

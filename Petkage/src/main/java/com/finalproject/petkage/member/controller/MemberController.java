@@ -120,6 +120,7 @@ public class MemberController {
 		member.setPet(pet);
 		member.setSeller(seller);
 				
+		result = service.saveMember(member);
 
 		if(result > 0) {
 			// 단순 로그인했을 때 가입완료 페이지접근 X - 테스트 완료

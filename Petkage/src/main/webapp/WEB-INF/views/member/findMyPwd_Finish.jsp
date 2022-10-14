@@ -46,7 +46,6 @@
             <tr>
               <th>비밀번호</th>
               <td>
-                <input type="hidden" name="saveNo" value="${saveNo}" />
                 <input type="hidden" name="pwdTest" value="0" />
                 <input type="hidden" name="saveUserId" id="findPwdUserId" />
                 <input
@@ -60,7 +59,7 @@
             <tr>
               <th></th>
               <td>
-                <span class="checkAlert" id="pwd_termsCheck">영문자, 숫자 모두 포함해 8자리 이상 입력해 주세요.</span>
+                <span class="checkAlert" id="pwd_termsCheck"></span>
               </td>
             </tr>
             <tr>
@@ -108,15 +107,11 @@
   <script src="${ path }/js/member/find_PwdFinish.js"></script>
 
   <script type="text/javascript">
-    var checkNum = "";
-    var saveEmail = "";
     $(document).ready(function () {
-
-      // 비밀번호 변경 클릭 시 로그인 페이지 이동
       $('#find_PwdChange').click(function () {
         // 비밀번호를 입력하지 않았을 경우
         if ($("[name=pwdTest]").val() != "1") {
-          $("#pwd_termsCheck").text("비밀번호를 입력해 주세요.");
+          $("#pwd_termsCheck").text("이상해");
           $("#newPwd").focus();
 
           return false;
@@ -159,7 +154,7 @@
               }
 
               if(result == "member fail") {
-                alert("잘못된 접근입니다. ")
+                alert("비밀번호 찾기 인증을 다시 시도해 주세요.")
                 location.href="${ path }/member/findMyPwdPage"
               }
             } // success 종료

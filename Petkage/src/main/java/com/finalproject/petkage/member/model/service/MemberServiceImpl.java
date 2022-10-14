@@ -121,6 +121,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		newPwd = passwordEncoder.encode(newPwd);		
 		
+		result = mapper.updatePwd(no, newPwd);
 		return result;
 	}
 }
