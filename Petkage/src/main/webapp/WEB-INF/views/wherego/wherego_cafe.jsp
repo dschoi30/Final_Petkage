@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -70,17 +70,19 @@
         <div class="wg6_bottom">
             <div class="wg6b_ca">
                 <div class="wgc6_card">
-                    <div class="card_img">
-                        <img src="${ path }/resources/images/wherego/카페1.png">
-                    </div>
-                    <div class="card_text">
-                        <div class="ct_1">KH Cafe</div>
-                        <div class="ct_2">4.8점</div>
-                        <div class="ct_3">
-                            <p>수리남 / 도보 148일 18시간</p>
-                            <p>소형견 / 대형견</p>
-                        </div>
-                    </div>
+	                <a href="${ path }/cafedetail">
+	                    <div class="card_img">
+	                        <img src="${ path }/resources/images/wherego/카페1.png">
+	                    </div>
+	                    <div class="card_text">
+	                        <div class="ct_1">KH Cafe</div>
+	                        <div class="ct_2">4.8점</div>
+	                        <div class="ct_3">
+	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>소형견 / 대형견</p>
+	                        </div>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc6_card">
                     <div class="card_img">

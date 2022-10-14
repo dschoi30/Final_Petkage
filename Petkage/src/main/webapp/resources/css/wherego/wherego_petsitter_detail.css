@@ -497,6 +497,21 @@ html {
 }
 
 
+.wg_8 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_content .hAddr {
+	margin-top: 20px;
+	font-size: small;
+    font-weight: bold;
+}
+
+.wg_8 .wg5_bottom .wg5b_content #wg5bc_2 .wg5bc_inf .wg5bci_content .bAddr {
+	padding:5px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+
+
 
 /* 리뷰 */
 

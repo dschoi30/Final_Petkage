@@ -12,12 +12,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_petsitter_detail.css?ver=2">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_petsitter_detail.css?ver=3">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=25029489670655943df197a370a5aa89"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	25029489670655943df197a370a5aa89&libraries=services"></script>
 
     <!-- fontawesome -->
     <link
@@ -148,7 +148,7 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">지도</summary>
                         <div class="wg5bci_content">
-                            <div id="map"></div> <!-- 지도 -->
+                            <div id="map" style="width: 100%; height: 300px;"></div> <!-- 지도 -->
                             <div class="hAddr">
                                 <span class="title">현재 위치 :</span>&nbsp;
                                 <span id="centerAddr"></span>
@@ -351,22 +351,74 @@
 
     <!--  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=334344dce2f2aee24efdae6872bcd47a"></script> -->
     <script>
-        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-        var options = { //지도를 생성할 때 필요한 기본 옵션
 
-        center: new kakao.maps.LatLng(37.520277, 127.122590), //지도의 중심좌표.
-
-        level: 5 //지도의 레벨(확대, 축소 정도)
-        };
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표
-            level: 5 // 지도의 확대 레벨
-        };  
-
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };  
+    
         // 지도를 생성합니다    
         var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+     // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
 
+        var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+            infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+
+        // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+        searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+
+
+        // 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+        kakao.maps.event.addListener(map, 'idle', function() {
+            searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+        });
+
+        function searchAddrFromCoords(coords, callback) {
+            // 좌표로 행정동 주소 정보를 요청합니다
+            geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+        }
+
+        function searchDetailAddrFromCoords(coords, callback) {
+            // 좌표로 법정동 상세 주소 정보를 요청합니다
+            geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+        }
+
+        // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+        function displayCenterInfo(result, status) {
+            if (status === kakao.maps.services.Status.OK) {
+                var infoDiv = document.getElementById('centerAddr');
+
+                for(var i = 0; i < result.length; i++) {
+                    // 행정동의 region_type 값은 'H' 이므로
+                    if (result[i].region_type === 'H') {
+                        infoDiv.innerHTML = result[i].address_name;
+                        break;
+                    }
+                }
+            }    
+        }
+
+	    var imageSrc = 'https://cdn-icons-png.flaticon.com/128/2171/2171990.png', // 마커이미지의 주소입니다    
+	        imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+	        imageOption = {offset: new kakao.maps.Point(10, 10)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	          
+	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+	        markerPosition = new kakao.maps.LatLng(37.520277, 127.122590); // 마커가 표시될 위치입니다
+	
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        position: markerPosition, 
+	        image: markerImage // 마커이미지 설정 
+	    });
+	
+	    // 마커가 지도 위에 표시되도록 설정합니다
+	    marker.setMap(map);  
+
+    
     </script>
 
     <script>

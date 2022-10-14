@@ -20,20 +20,20 @@ public class WheregoController {
 	@Autowired
 	private WheregoService service;
 	
-	@GetMapping("/test")
-	public String test() {
+	@GetMapping("/main")
+	public String main() {
 		
 		return "wherego/wherego_main";
 	}
 	
-	@GetMapping("/test1")
-	public String test1() {
+	@GetMapping("/cafedetail")
+	public String cafedetail() {
 		
 		return "wherego/wherego_cafe_detail";
 	}
 	
-	@GetMapping("/test2")
-	public String test2() {
+	@GetMapping("/cafe")
+	public String cafe() {
 		
 		return "wherego/wherego_cafe";
 	}
@@ -68,6 +68,11 @@ public class WheregoController {
 		return "wherego/wherego_review_write";
 	}
 	
+	@GetMapping("/petsitter")
+	public String petsitter() {
+		
+		return "wherego/wherego_petsitter_detail";
+	}
 	
 	@GetMapping("/manager1")
 	public String manager1() {
