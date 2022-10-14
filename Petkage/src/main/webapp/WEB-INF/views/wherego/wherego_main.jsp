@@ -970,7 +970,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button onclick="location.href='${ path }/reviewboard'"><p>더보기</p></button>
+                    <button onclick="location.href='${ path }/review_list'"><p>더보기</p></button>
                 </div>
             </div>
             <div class="wgc7_list">

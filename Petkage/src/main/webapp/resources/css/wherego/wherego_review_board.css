@@ -48,7 +48,6 @@ html {
     width: 100%;
     align-items: center;
     justify-content: center;
-    
 }
 
 .wg_2 .wg_top .wg_title {
@@ -103,7 +102,7 @@ html {
 .wg_2 .wgc_7 {
     margin: 0 auto;
     width: 1110px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 @media (max-width:1023px) {
@@ -281,6 +280,7 @@ html {
     height: 230px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1:hover {
@@ -304,7 +304,7 @@ html {
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 {
     width: 75%;
-    padding: 10px;
+    padding: 0 10 0 10px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_1 .wgc7l_name {
@@ -330,9 +330,14 @@ html {
     margin-left: 100px;
 }
 
+@media (max-width:1023px) {
+    .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 {
+    	margin-left: 120px;
+    }
+}
+
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 .wgc7l_star {
-    margin-top: -35px;
-    margin-bottom: 35px;
+	height: 48px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 .wgc7l_star img {
@@ -345,6 +350,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 150px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 .wgc7l_review .wgc7l_write_time {
@@ -371,12 +377,17 @@ html {
     border: 1px solid #D79771;
     border-radius: 8px;
     margin: 10px;
+   	cursor: pointer;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_2 #pageBar .checked {
     color: white;
     background-color: #753422;
     border: 1px solid #753422;
+}
+
+.wg_2 .wgc_7 .wgc7_list .wgc7l_2 #pageBar button:hover {
+	box-shadow: 3px 3px 5px rgba(117, 52, 34, 0.3);
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_2 #pageBar button:first-child,

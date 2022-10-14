@@ -127,78 +127,49 @@
 
         <div class="wgc_7">
             <div class="wgc7_list">
-                <div class="wgc7l_1">
-                    <div class="wgc7l_1_1">
-                        <div class="wgc7l_name">
-                            <p>AC호텔 메리어트</p>
-                            <div class="wgc7l_nickname">
-                                <p>김창식</p>
-                            </div>
-                        </div>
-                        <div class="wgc7l_img">
-                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="wgc7l_1_2">
-                        <div class="wgc7l_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wgc7l_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wgc7l_1">
-                    <div class="wgc7l_1_1">
-                        <div class="wgc7l_name">
-                            <p>AC호텔 메리어트</p>
-                            <div class="wgc7l_nickname">
-                                <p>김창식</p>
-                            </div>
-                        </div>
-                        <div class="wgc7l_img">
-                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="wgc7l_1_2">
-                        <div class="wgc7l_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wgc7l_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+             	<c:forEach var="review" items="${review}">
+	                <div class="wgc7l_1">
+	                    <div class="wgc7l_1_1">
+	                        <div class="wgc7l_name">
+	                            <p>${review.revtitle}</p>
+	                            <div class="wgc7l_nickname">
+	                                <p>${review.memname}</p>
+	                            </div>
+	                        </div>
+	                        <div class="wgc7l_img">
+	                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
+	                        </div>
+	                    </div>
+	                    <div class="wgc7l_1_2">
+	                        <div class="wgc7l_star">
+	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
+	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
+	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
+	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
+	                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
+	                        </div>
+	                        <div class="wgc7l_review">
+	                            ${review.revcoment}
+	                            <div class="wgc7l_write_time">
+	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/> 작성</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
                 <div class="wgc7l_2">
                     <div id="pageBar">
-                        <button>&lsaquo;</button>
-                        <button class="checked">1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>&rsaquo;</button>
+                        <button onclick="location.href='${ path }/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
+                      	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+							<c:if test="${ status.current == pageInfo.currentPage }">
+								<button disabled class="checked">${ status.current }</button>
+							</c:if>
+							<c:if test="${ status.current != pageInfo.currentPage }">
+								<button onclick="location.href='${ path }/review_list?page=${ status.current }'">${ status.current }</button>
+							</c:if>
+						</c:forEach>
+
+                        <button onclick="location.href='${ path }/review_list?page=${ pageInfo.nextPage }'">&rsaquo;</button>
                     </div>
                     <div class="top_link">
                         <a href="#wg_top">▲ TOP</a>

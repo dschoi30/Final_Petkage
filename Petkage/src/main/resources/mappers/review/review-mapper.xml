@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.review.model.mapper.Reviewmapper">
+	<resultMap type="Review" id="ReviewList">
+	
+		<id property="revno" column="REV_NO" />
+		<result property="spotno" column="REV_SPOT_NO" />
+		<result property="prono" column="REV_PRO_NO" />
+		<result property="writerno" column="REV_WRITER_NO" />
+		<result property="revtype" column="REV_TYPE" />
+		<result property="revtitle" column="REV_TITLE" />
+		<result property="revcoment" column="REV_CONTENT" />
+		<result property="revimg" column="REV_IMG" />
+		<result property="revdate" column="REV_DATE" />
+		<result property="revscore" column="REV_SCORE" />
+		<result property="revrecomend" column="REV_RECOMMEND" />
+		<result property="revstatus" column="REV_STATUS" />
+		<result property="revreport" column="REV_REPORT" />
+		<result property="revrenameimg" column="REV_RENAMEIMG" />
+		<result property="memname" column="MEM_NAME" />
+	
+	</resultMap>
+	
+	<select id="getReviewAllCount" resultType="_int">
+        SELECT COUNT(*) FROM REVIEW
+    </select>
+    
+    <select id="getReviewList" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+    </select>
+
+</mapper>
