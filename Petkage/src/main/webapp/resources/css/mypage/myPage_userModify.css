@@ -1,0 +1,323 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+    * {
+    font-family: "GmarketSansMedium";
+}
+
+
+  
+  .mp-Modify .modifyBox {
+    border: 5px solid #d9d9d9;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+  
+  .mp-Modify .userInfoBox > div > input {
+    border-top: none;
+    border-bottom: #ffebc9;
+  }
+  
+  .mp-Modify .modifyBox {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .mp-Modify .modifyBox th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 17px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: 0;
+    vertical-align: bottom;
+    color: #6b6b6b;
+    font-weight: bolder;
+  }
+  
+  .mp-Modify .modifyBox td {
+    padding: 0;
+    text-align: left;
+    margin: 0;
+  }
+  
+  .mp-Modify .modifyInput {
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
+    border: #d9d9d9 3px solid;
+    box-shadow: none;
+    background-color: none;
+    margin-top: 10px;
+    float: right;
+    padding: 10px;
+    font-size: large;
+    font-weight: 500;
+  }
+  
+  .mp-Modify .modifyRadioType input[type="radio"] {
+    display: none;
+    justify-content: space-between;
+  }
+  
+  /* pet 타입 radio */
+  .mp-Modify .petTypeBox .modifyRadioType input[type="radio"] + span {
+    display: inline-block;
+    border: 3px solid #dfdfdf;
+    background-color: transparent;
+    padding-top: 13px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 140px;
+    height: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: medium;
+    color: #6b6b6b;
+  }
+  
+  .mp-Modify .petTypeBox .modifyRadioType input[type="radio"] + span {
+    display: inline-block;
+    border: 3px solid #dfdfdf;
+    background-color: transparent;
+    padding-top: 13px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 140px;
+    height: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: medium;
+    color: #6b6b6b;
+  }
+  
+  .mp-Modify .petTypeBox {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mp-Modify .petTypeBox .modifyRadioType input[type="radio"]:checked + span {
+    background-color: #d79771;
+    border: 3px solid #d79771;
+    color: #ffffff;
+  }
+  
+  .mp-Modify .modifyRadioType input[type="radio"]:hover + span {
+    background-color: #d79771;
+    border: 3px solid #d79771;
+    color: #ffffff;
+  }
+  
+  /* 몸무게 선택 radio */
+  .mp-Modify .petWeighBox input[type="radio"] + span {
+    display: inline-block;
+    padding-top: 15px;
+    border: 3px solid #dfdfdf;
+    background-color: transparent;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 90px;
+    height: 50px;
+    font-weight: 700;
+    color: #6b6b6b;
+    font-size: small;
+  }
+  
+  .mp-Modify .petWeighBox {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  
+  .mp-Modify .petWeighBox input[type="radio"]:checked + span {
+    background-color: #d79771;
+    border: 3px solid #d79771;
+    color: #ffffff;
+  }
+  
+  .mp-Modify .modifyRadioType input[type="radio"]:hover + span {
+    background-color: #d79771;
+    border: 3px solid #d79771;
+    color: #ffffff;
+  }
+  
+  /* 알림 문구 */
+  .mp-Modify .checkAlert {
+    color: #753422;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    clear: both;
+    text-align: left;
+    padding-left: 15px;
+  }
+  
+  .mp-Modify .addInfoTitle {
+    font-weight: bolder;
+    text-align: right;
+    color: #753422;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 1em;
+  }
+  
+  /* button */
+  .mp-Modify .btnInfo,
+  .btn_login_home,
+  .btn_login {
+    color: #d79771;
+    border-radius: 20px;
+    border: 2px solid #d79771;
+    background-color: transparent;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 3px;
+    width: 90px;
+    height: 2rem;
+    font-weight: 700;
+    margin: 7px;
+    margin-top: 10;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+  
+  .mp-Modify .btnInfo[disabled] {
+    color: #cfcece;
+    border-radius: 20px;
+    border: 2px solid #f6f7f8;
+    background-color: #f6f7f8;
+    display: inline-block;
+    cursor: default;
+    text-align: center;
+    padding-top: 3px;
+    width: 90px;
+    height: 2rem;
+    font-weight: 700;
+    margin: 7px;
+    margin-top: 10;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+  
+  .mp-Modify .petWeighBox input[type="radio"]:disabled + span {
+    color: #cfcece;
+    border: 3px solid #f6f7f8;
+    display: inline-block;
+    padding-top: 15px;
+    background-color: transparent;
+    text-align: center;
+    cursor: default;
+    border-radius: 20px;
+    width: 90px;
+    height: 50px;
+    font-weight: 700;
+    font-size: small;
+  }
+  
+  .mp-Modify .btn_login_home,
+  .btn_login {
+    border-radius: 20px;
+    border: 2px solid #d79771;
+    background-color: transparent;
+    display: inline-block;
+    cursor: default;
+    text-align: center;
+    padding-top: 3px;
+    width: 90px;
+    height: 2rem;
+    font-weight: 700;
+    margin: 7px;
+    margin-top: 10;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+  
+  .mp-Modify .btnInfo:hover:not([disabled]),
+  .btn_login_home:hover:not([disabled]),
+  .btn_login:hover:not([disabled]) {
+    background-color: #d79771;
+    border: 3px solid #d79771;
+    color: #ffffff;
+  }
+  .mp-Modify .btnBox {
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .mp-Modify .btnJoin {
+    background-color: #d79771;
+    color: white;
+    height: 50px;
+    width: 120px;
+    font-weight: 700;
+    font-size: larger;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
+    padding-top: 5px;
+  }
+  
+  .mp-Modify .btnJoin:hover {
+    border: 1px solid #753422 !important;
+    background-color: #753422 !important;
+  }
+  
+  .mp-Modify .complete {
+    padding: 20px 0 0 0;
+    font-size: 1.5rem;
+    color: #222222;
+  }
+  
+  .mp-Modify p {
+    font-size: 2em;
+    padding: 20px 0 20px 0;
+    color: #d79771;
+    letter-spacing: -0.5px;
+  }
+
+  .mp-Modify .md_button {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+    /* border-top: 2px solid #b1b1b1; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
+.mp-Modify .md_button button {
+    width: 150px;
+    height: 50px;
+    background: #753422;
+    border: 2px solid #753422;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.mp-Modify .md_button button:hover {
+    background: #fff;
+    color: #753422;
+}

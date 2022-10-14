@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+    * {
+    font-family: "GmarketSansMedium";
+}
+
+.mp-wr ul.review-nav {
+	/* width:80%; */
+	display:table;
+	padding:0px;
+	margin:auto;
+    padding-right: 10px;
+}
+
+.mp-wr ul.review-nav .review { 
+	list-style-type: none; 
+	width: 15em; 
+	height: 3em;
+	float: left; 
+	text-align: center; 
+    line-height: 60px;
+	background-color: #ffffff;;
+    /* border-radius: 50%;  */
+    position: relative;
+	font-size: 20px;
+	
+}
+
+/* ul.reviewMenu li:last-of-type {
+	border-right:1px #00bcd4 solid;
+} */
+
+.mp-wr ul.review-nav li a {
+	display: block;
+	padding:.1em;
+	text-decoration: none;
+	color: #803D3D;
+}
+
+/* .mp-wr .review {
+    margin-left: 30px;
+} */
+
+/* hover시 배경색 변경 */
+
+.mp-wr ul.review-nav li:hover{
+	background-color: #803D3D;;
+    transition-duration: 0.5s;
+}
+
+.mp-wr ul.review-nav li:hover > a{
+	color:#FFF; /* 글자색*/
+}
+
+.mp-wr #tb1{
+	text-align: center;
+}
+
+.mp-wr #tb2{
+	text-align: center;
+}
+
+.mp-wr .page-link {
+    color: #000; 
+    background-color: #fff;
+    border: 1px solid #ccc; 
+}
+
+.mp-wr .nav-link {
+	color: #803D3D;
+}
