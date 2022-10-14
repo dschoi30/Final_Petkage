@@ -16,7 +16,7 @@ public interface MemberService {
 
 	Member findByEmail(String userEmail);
 
-	int updatePwd(String userEmail, String newPwd);
-
 	int updateFindNum(String userId, int findNum);
+
+	int updatePwd(int no, String newPwd);
 }

@@ -252,7 +252,7 @@
 }
 
 /* 다음 버튼 */
-.findIdPwd .btnFindMyIdNext {
+.findIdPwd .btnFindNext {
   background-color: #d79771;
   color: white;
   height: 50px;
@@ -263,7 +263,7 @@
   padding-top: 5px;
 }
 
-.findIdPwd .btnFindMyIdNext:hover {
+.findIdPwd .btnFindNext:hover {
   background-color: #753422;
   color: white;
   height: 50px;
@@ -275,7 +275,7 @@
   padding-top: 5px;
 }
 
-.findIdPwd .btnFindMyIdNext[disabled] {
+.findIdPwd .btnFindNext[disabled] {
   color: #cfcece;
   border-radius: 20px;
   border: 2px solid #f6f7f8;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,7 +81,7 @@ public class MemberController {
 			}
 		} else {
 			model.addObject("msg", "[Petkage] 아이디나 비밀번호가 일치하지 않습니다. ");
-			model.addObject("location", "/");
+			model.addObject("location", "/member/loginPage");
 			model.setViewName("common/msg");
 		}
 		
@@ -189,102 +190,55 @@ public class MemberController {
 	// 아이디 찾기 - 이메일 보내기
 	@GetMapping("/findMyIdEmailCheck")
 	@ResponseBody
-	public String findMyIdEmailCheck(HttpSession session,
-									  @RequestParam String userName, 
-									  @RequestParam String userEmail) {
+	public String findMyIdEmailCheck(@RequestParam String userName, 
+									 @RequestParam String userEmail) {
 
-		Member member = service.findByEmail(userEmail);
-		
 		System.out.println("이메일 보내기 인증 버튼 클릭 !");
+
+		int result = 0;
+		
+		Member member = service.findByEmail(userEmail);
 		
 		if(member != null) {
 			Random r = new Random();
-			int num = r.nextInt(999999); // 랜덤난수설정
-			String checkNum = Integer.toString(num);
+			int findNum = r.nextInt(999999); // 랜덤난수설정
 			
-			System.out.println("랜덤 난수 : " + checkNum);
+			System.out.println("인증번호 : " + findNum);
 			
 			if (member.getUserName().equals(userName)) {
-				System.out.println("member.getUserEmail() : " + member.getUserEmail());
+				String userId = member.getUserId();
+				
+				result = service.updateFindNum(userId, findNum);
 				
 				String setfrom = "petkage_final@naver.com"; // naver 
 				String tomail = userEmail; //받는사람
 				String title = "[Petkage] 아이디 찾기 인증 이메일 입니다"; 
-//				String content = System.getProperty("line.separator") 
-//								+ "안녕하세요 " + member.getUserName() + "회원님" 
-//								+ System.getProperty("line.separator")
-//								+ System.getProperty("line.separator")
-//								+ "[Petkage] 아이디 찾기 인증번호는 " + checkNum + " 입니다." 
-//								+ System.getProperty("line.separator")
-//								+ System.getProperty("line.separator")
-//								+ "이 메일은 발신 전용 이메일 입니다. "
-//								+ System.getProperty("line.separator"); 
-				String content = (("<!DOCTYPE html>\r\n" + 
-						"<html lang=\"ko\">\r\n" + 
-						"  <head> </head>\r\n" + 
-						"  <body>\r\n" + 
-						"    <div\r\n" + 
-						"      style=\"\r\n" + 
-						"        margin: 0;\r\n" + 
-						"        padding: 0;\r\n" + 
-						"        padding-top: 100px;\r\n" + 
-						"        padding-bottom: 100px;\r\n" + 
-						"      \"\r\n" + 
-						"    >\r\n" + 
-						"      <div\r\n" + 
-						"        style=\"\r\n" + 
-						"          width: 600px;\r\n" + 
-						"          height: 300px;\r\n" + 
-						"          background: white;\r\n" + 
-						"          margin: 0 auto;\r\n" + 
-						"          padding: 30px;\r\n" + 
-						"          font-size: 16px;\r\n" + 
-						"        \"\r\n" + 
-						"      >\r\n" + 
-						"        <img\r\n" + // 로고 이미지 삽입
-						"          style=\"width: 120px; height: 50px\"\r\n" + 
-						"        />\r\n" + 
-						"        <h2 style='text-align:center;'>\r\n" + 
-						"          안녕하세요! "
-								+  member.getUserName() + "님, No1.미술품 거래 플랫폼 <u style=\"font-size: 30px; margin-top: 0;\">muze</u>입니다!\r\n" + 
-						"        </h2>\r\n" + 
-						"        <div style=\"margin-bottom: 10px\">\r\n" + 
-						"          <div></div>\r\n" + 
-						"          <div style=\"margin-bottom: 5px\">muze에 돌아오신걸 환영합니다.</div>\r\n" + 
-						"          <div style=\"margin-bottom: 5px\">\r\n" + 
-						"            임시 비밀번호는 아래와 같습니다.\r\n" + 
-						"          </div>\r\n" + 
-						"          <div style=\"margin-bottom: 5px; font-size: 20px; font-weight: bold\">\r\n" + 
-						"            [" + checkNum + "]\r\n" + 
-						"          </div>\r\n" + 
-						"          <div style=\"margin-top: 30px; text-align: center\">\r\n" + 
-						"            * 본 메일은 발신전용 메일입니다. *\r\n" + 
-						"          </div>\r\n" + 
-						"        </div>\r\n" + 
-						"      </div>\r\n" + 
-						"    </div>\r\n" + 
-						"  </body>\r\n" + 
-						"</html>\r\n" + 
-						""));
+				String content = System.getProperty("line.separator") 
+								+ "안녕하세요 " + member.getUserName() + "회원님" 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "[Petkage] 아이디 찾기 인증번호는 " + findNum + " 입니다." 
+								+ System.getProperty("line.separator")
+								+ System.getProperty("line.separator")
+								+ "이 메일은 발신 전용 이메일 입니다. "
+								+ System.getProperty("line.separator"); 
 				
-				try {
-					MimeMessage message = mailSender.createMimeMessage();
-					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-	
-					messageHelper.setFrom(setfrom); 
-					messageHelper.setTo(tomail); 
-					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
-	
-					mailSender.send(message);
-					
-					} catch (Exception e) {
-						System.out.println(e.getMessage());
-					}
+//				try {
+//					MimeMessage message = mailSender.createMimeMessage();
+//					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//	
+//					messageHelper.setFrom(setfrom); 
+//					messageHelper.setTo(tomail); 
+//					messageHelper.setSubject(title);
+//					messageHelper.setText(content); 
+//	
+//					mailSender.send(message);
+//					
+//					} catch (Exception e) {
+//						System.out.println(e.getMessage());
+//					}
 
-				session.setAttribute("saveId", member.getUserId());
-				
-				return checkNum;
+				return "success";
 				
 			} else {
 				
@@ -297,7 +251,7 @@ public class MemberController {
 		}
 		
 	}
-	
+		
 	// 아이디 찾기 - 완료 페이지 처리 - OK
 	@GetMapping("/findMyIdFinishPage")
 	public String findMyIdFinishPage() {
@@ -315,7 +269,6 @@ public class MemberController {
 		return "member/findMyPwd";
 	}
 	
-	///////////////////////////////////////////////////////////////////////////////////// 비밀번호 찾기부터 하자 @_@ 아자 아자 아자 !
 	// 비밀번호 찾기 - 이메일 보내기 
 	@GetMapping("/findMyPwdEmailCheck")
 	@ResponseBody
@@ -335,10 +288,7 @@ public class MemberController {
 			System.out.println("인증번호 : " + findNum);
 			
 			if (member.getUserId().equals(userId)) {			
-				// userEmail로 받은 member객체에서 userId나 userEmail로 인증번호 테이블에 저장하기
 				result = service.updateFindNum(userId, findNum);
-				
-				System.out.println(result);
 				
 				String setfrom = "petkage_final@naver.com"; // naver 
 				String tomail = userEmail; //받는사람
@@ -382,8 +332,23 @@ public class MemberController {
 		
 	}
 	
-	// 비밀번호 찾기 - 인증번호 일치 여부 확인
-	
+	// 아이디 & 비밀번호 찾기 - 인증번호 일치 여부 확인
+	@GetMapping("/findNumCheck")
+	@ResponseBody
+	public String findNumCheck(HttpSession session,
+							   @RequestParam("userEmail") String userEmail,
+							   @RequestParam("inputFindNum") int inputFindNum) {
+		String result = null;
+		Member saveMember = service.findByEmail(userEmail);
+		
+		if(saveMember.getFindNum() == inputFindNum) {
+			session.setAttribute("saveMember", saveMember);
+			
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 	
 	// 비밀번호 찾기 - 비밀번호 변경 페이지 처리
 	@GetMapping("/findMyPwdFinishPage")
@@ -394,37 +359,39 @@ public class MemberController {
 		return "member/findMyPwd_Finish";
 	}
 	
-	// 비밀번호 찾기 - 비밀번호 변경
+	// 비밀번호 찾기 - 비밀번호 변경 
 	@PostMapping("/updateFindPwd")
 	@ResponseBody
-	public ModelAndView updateFindPwd(ModelAndView model,
-									  @RequestParam("saveEmail") String userEmail,
-				  					  @RequestParam String newPwd, 
-			  						  @RequestParam String newPwdCheck) {
+	public String updateFindPwd(@SessionAttribute("saveMember") Member saveMember,
+		  					    @RequestParam String newPwd, 
+	  						    @RequestParam String newPwdCheck) {
 		
 		int result = 0;
-		
-		System.out.println("userEmail : " + userEmail);
-		System.out.println("newPwd : " + newPwd);
-		System.out.println(newPwd.equals(newPwdCheck));
-		
-		Member member = service.findByEmail(userEmail);
-		
-		System.out.println(member);
-		
-		if(member != null && newPwd.equals(newPwdCheck)) {
-			// 멤버가 존재 할 경우
-			result = service.updatePwd(userEmail, newPwd);
-			
-			model.addObject("msg", "[Petkage] 비밀번호가 변경 되었습니다.");
-			
+				
+		// 세션에 저장된 멤버가 존재 할 경우
+		if(saveMember != null) {
+			// 비밀번호가 일치 할 경우
+			if(newPwd.equals(newPwdCheck)) {
+				int no = saveMember.getNo();
+				result = service.updatePwd(no, newPwd);
+				
+				if(result > 0) {
+					return "success";
+				} else {
+					return "fail";
+				}
+				
+			} else {
+				// 비밀번호가 일치하지 않을 경우
+				return "pwd fail";
+			}
+		// 세션에 저장된 멤버가 존재하지 않을 경우
 		} else {
-			model.addObject("msg", "[Petkage] 비밀번호 변경이 실패하였습니다.");
+			return "member fail";
 		}
-		
-		model.addObject("location", "/member/login");
-		model.setViewName("common/msg");
-		
-		return model;
 	}
+	
+	
+	
 }
+

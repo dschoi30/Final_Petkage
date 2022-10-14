@@ -38,11 +38,21 @@
               <div class="find_subTitle">아이디</div>
               <hr/>
               </div>
+              <c:if test="${ not empty saveMember }">
               <div style="height: 15em;" id="saveName">
                   <span class="findByEmailAlert">회원님의 아이디는 <span style="font-weight: bold; color: #753422;" >
-                  ${ saveId }
+                  ${ saveMember.userId }
                   </span>입니다.</span>
               </div>
+              </c:if>
+
+              <c:if test="${ empty saveMember }">
+              <div style="height: 15em;" id="saveName">
+                  <span class="findByEmailAlert" style="font-weight: bold; color: #753422;" >
+                  잘못된 접근입니다. 
+                  </span>
+              </div>
+              </c:if>
 
           <div class="btnBox">
               <button type="button" class="btnFindMyIdFinish" id="btnLogin" onclick="location.href='${path}/member/loginPage'">로그인</button>

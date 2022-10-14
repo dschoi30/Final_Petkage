@@ -213,11 +213,11 @@
 		UPDATE MEMBER 
 		SET 
 		    MEM_PWD = #{ newPwd }
-		WHERE MEM_EMAIL = #{ userEmail }
+		WHERE MEM_NO = #{ no }
 	</update>
 	
 	<!-- 인증번호 insert -->
-	<update id="updateFindNum" parameterType="Member" useGeneratedKeys="true">
+	<update id="updateFindNum" parameterType="map">
 		UPDATE MEMBER 
 			SET MEM_FINDNUM =  #{ findNum }  
 		WHERE MEM_ID = #{ userId }
