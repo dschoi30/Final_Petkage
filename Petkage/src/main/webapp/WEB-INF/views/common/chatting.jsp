@@ -9,6 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<!-- jquery js-->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<!-- Socket js -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	
 </head>
 <body>
 	<div class="container">
@@ -32,24 +41,33 @@
 		</div>
 	</div>
 	
-	<!-- Socket js -->
-	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	
 	
 	<script type="text/javascript">
 
+	var sock = new SockJS('http://localhost:8083/petkage/chatting/');
+	sock.onmessage = onMessage;
+	sock.onopen = onOpen;
+	sock.onclose = onClose;
+	
 	// 전송 버튼 누르는 이벤트
 	$("#button-send").on("click", function(e) {
+		console.log("send message");
 		sendMessage();
 		$('#msg').val('')
 	});
 	
-	var sock = new SockJS('http://localhost:8080/chatting');
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-	sock.onopen = onOpen;
-	
 	function sendMessage() {
 		sock.send($("#msg").val());
+	}
+	
+	// 채팅창에 들어왔을 때
+	function onOpen(evt) {
+		
+		var user = '${ loginMember.userName }';
+		var str = user + "님이 입장하셨습니다.";
+		
+		$("#msgArea").append(str);
 	}
 	
 	// 서버에서 메시지를 받았을 때
@@ -65,14 +83,14 @@
 			console.log('arr[' + i + ']: ' + arr[i]);
 		}
 		
-		var cur_session = '${userid}'; // 현재 세션에 로그인 한 사람
-		console.log("cur_session : " + cur_session);
+		var currentUser_session = '${ loginMember.userName }'; // 현재 세션에 로그인 한 사람
+		console.log("currentUser_session : " + currentUser_session);
 		
 		sessionId = arr[0];
 		message = arr[1];
 		
 	    // 로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-		if(sessionId == cur_session){
+		if(sessionId == currentUser_session){
 			
 			var str = "<div class='col-6'>";
 			str += "<div class='alert alert-secondary'>";
@@ -96,20 +114,13 @@
 	// 채팅창에서 나갔을 때
 	function onClose(evt) {
 		
-		var user = '${pr.username}';
+		var user = '${ loginMember.userName }';
 		var str = user + " 님이 퇴장하셨습니다.";
 		
 		$("#msgArea").append(str);
 	}
 	
-	// 채팅창에 들어왔을 때
-	function onOpen(evt) {
-		
-		var user = '${pr.username}';
-		var str = user + "님이 입장하셨습니다.";
-		
-		$("#msgArea").append(str);
-	}
+	
 	
 	</script>
 

@@ -1,25 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<c:set var="path" value="${ pageContext.request.contextPath }"/>
+
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 
     <!-- Product CSS-->
-    <link rel="stylesheet" href="/CHOI/CSS/product.css">
+    <link rel="stylesheet" href="${ path }/resources/css/market/product.css">
 
     <!-- Common CSS -->
     <link rel="stylesheet" href="/EUM/CSS/common/header.css"></link>
     <link rel="stylesheet" href="/EUM/CSS/common/footer.css"></link>
-    
-    <title>Document</title>
+
+    <!-- jQuery js -->  
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>   
+	
+	<style type="text/css">
+		@font-face {
+	    font-family: 'GmarketSansMedium';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	</style>
+	
+    <title>Header</title>
 </head>
 <body>
     <section class="hd">
@@ -28,11 +44,10 @@
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
                     <img src="/EUM/resources/images/Petkage_Logo2.png" alt="" class="headerLogo">
                 </a>
-
                 <ul class="nav nav-pills">
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">커뮤니티</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
+                    <li class="nav-item header_item"><a href="/CHOI/HTML/product_list.html" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="#" class="nav-link header_link">OTHERS</a></li>
                     <input type="button" class="headerBtn" id="loginBtn" value="로그인">
                     <a href="/" class="d-flex align-items-center headercart">
@@ -106,6 +121,7 @@
                 </div>
                 <div class="pay-method-info">
                     <br><h4>결제 정보</h4><br>
+                    <form method="post" action="${ path }/market/order">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -127,7 +143,8 @@
                             <tr>
                                 <td>결제 방법</td>
                                 <td>
-                                    <label><input type="radio" name="kakaopay">카카오페이</label>&nbsp;
+<!--                                     <label><input type="radio" name="kakaopay" id="check_module">카카오페이</label>&nbsp; -->
+		    						<button id="kakaopay">카카오페이</button>
                                     <label><input type="radio" name="account">계좌이체</label>&nbsp;
                                     <label><input type="radio" name="card">신용/체크카드</label>&nbsp;
                                     <label><input type="radio" name="corp-card">법인카드</label>
@@ -135,30 +152,39 @@
                             </tr>
                         </tbody>
                     </table>
+                    </form>
                 </div>
             </div>
             <div class="contents">
-                <a href="/CHOI/HTML/product_payment_fin.html">
-                    <button class="cart-pay-btn">결제하기</button>
-                </a>
+                <button class="cart-pay-btn" onclick="location.href='${ path }/market/order-finished'">결제하기</button>
             </div>
         </div>
     </div>
     <section class="ft">
+        <!-- <div id='wrapper'>
+            <div>
+                CONTENT 
+            </div>
+        </div> -->
+
         <div class="footer_container">
             <footer class="footer_section1">
+                <!-- <div class="footer"> -->
                     <p class="footerName">Petkage</p>
+
                     <ul class="nav footer_nav">
                         <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">이용약관</a></li>
                         <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">개인정보 취급방침</a></li>
                         <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">공지사항</a></li>
                         <li class="nav-item footer_item"><a href="#" class="nav-link footer_link">FAQ</a></li>
                     </ul>
+
                     <div class="footer_contents">
                         <p class="footer_content">회사명 : (주)펫키지 대표 : 문인수 / 전화 : 070-1234-5678 / 주소 : 서울특별시 강남구 테헤란로 14길 6 남도빌딩</p>
                         <p class="footer_content">사업자 등록번호 안내 : 123-45-6789 / 통신판매업 신고 2022-서울강남-03472 <a href="">[사업자정보 확인]</a>  </p>
                         <p class="footer_content">&copy;펫키지. All Rights Reserved</p>
                     </div>
+
                     <div class="footer_icons">
                         <a href="/" class="">
                             <img src="/EUM/resources/images/Instagram.png" alt="" class="footericon">
@@ -173,52 +199,55 @@
                             <img src="/EUM/resources/images/kakaotalk.png" alt="" class="footericon">
                         </a>
                     </div>
+
                     <img src="/EUM/resources/images/Pet2.png" alt="" class="footerLogo">
+                <!-- </div> -->
             </footer>
         </div>
     </section>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script src="${path}/resources/js/market/product.js"></script>
+    
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
     <script>
-        function sample6_execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-    
-                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var addr = ''; // 주소 변수
-                    var extraAddr = ''; // 참고항목 변수
-    
-                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                        addr = data.roadAddress;
-                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                        addr = data.jibunAddress;
-                    }
-    
-                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                    if(data.userSelectedType === 'R'){
-                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                            extraAddr += data.bname;
-                        }
-                        // 건물명이 있고, 공동주택일 경우 추가한다.
-                        if(data.buildingName !== '' && data.apartment === 'Y'){
-                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                        }
-                    } else {
-                        document.getElementById("sample6_extraAddress").value = '';
-                    }
-    
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    document.getElementById('sample6_postcode').value = data.zonecode;
-                    document.getElementById("sample6_address").value = addr;
-                    // 커서를 상세주소 필드로 이동한다.
-                    document.getElementById("sample6_detailAddress").focus();
-                }
-            }).open();
-        }
-    </script>
+	$("#kakaopay").click(function () {
+		var IMP = window.IMP;
+		// '' 안에 띄어쓰기 없이 가맹점 식별코드 삽입
+		IMP.init('imp71578272');
+		IMP.request_pay({
+			pg: 'kakao',
+			pay_method: 'card',
+			merchant_uid: 'merchant_' + new Date().getTime(),
+			/* 
+			 *  merchant_uid의 경우 
+			 *  https://docs.iamport.kr/implementation/payment
+			 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+			 */
+			name: '주문명 : 아메리카노',
+			// 결제창에서 보여질 이름
+			// name: '주문명 : ${auction.a_title}',
+			// 위와같이 model에 담은 정보를 넣어 쓸 수도 있습니다.
+			amount: 2000,
+			// amount: ${bid.b_bid},
+			buyer_name: '이름',
+			// 구매자 이름, 구매자 정보도 model 값으로 바꿀 수 있습니다.
+			// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 링크를 참고해주세요.
+			buyer_postcode: '123-456',
+			}, function (rsp) {
+				console.log(rsp);
+			if (rsp.success) {
+				var msg = '결제가 완료되었습니다.';
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				// success.submit();
+				// 결제 성공 시 정보를 넘겨줘야 한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+			}
+			alert(msg);
+		});
+	});
+</script>
 </body>
 </html>

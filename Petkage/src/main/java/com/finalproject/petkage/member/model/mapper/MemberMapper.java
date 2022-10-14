@@ -13,11 +13,17 @@ public interface MemberMapper {
 
 	int insertMember(Member member);
 
-	int idCheck(String userId);
+	int idCheck(@Param("userId") String userId);
 
 	int insertPet(Pet pet);
 
 	int insertSeller(Seller seller);
 
-	int emailCheck(String userEmail);
+	int emailCheck(@Param("userEmail")String userEmail);
+
+	Member selectMemberByEmail(String userEmail);
+
+	int updateFindNum(@Param("userId") String userId, @Param("findNum") int findNum);
+
+	int updatePwd(@Param("no") int no, @Param("newPwd") String newPwd);
 }

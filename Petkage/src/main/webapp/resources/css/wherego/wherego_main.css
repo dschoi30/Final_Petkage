@@ -39,14 +39,15 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .wg_1 .wg_top {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: center;  
 }
 
 .wg_1 .wg_top .wg_title {
@@ -279,6 +280,11 @@ html {
 .wg_1 .wg_cate .wgc_box {
   width: 277px;
   text-align: center;
+}
+
+.wg_1 .wg_cate .wgc_box a {
+  text-decoration: none;
+  color: black;	
 }
 
 

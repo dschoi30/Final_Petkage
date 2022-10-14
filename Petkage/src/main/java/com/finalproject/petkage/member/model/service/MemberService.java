@@ -13,4 +13,10 @@ public interface MemberService {
 	int idCheck(String userId);
 
 	int emailCheck(String userEmail);
+
+	Member findByEmail(String userEmail);
+
+	int updateFindNum(String userId, int findNum);
+
+	int updatePwd(int no, String newPwd);
 }

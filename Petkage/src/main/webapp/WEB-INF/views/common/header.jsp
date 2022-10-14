@@ -14,22 +14,26 @@
     	
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <!-- Product CSS-->
+    <link rel="stylesheet" href="${ path }/resources/css/market/product.css">
+    
 </head>
 <body>
 	<section class="hd">
         <div class="header_container">
             <header class="d-flex flex-wrap mb-4">
                 <a href="${ path }" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
-                    <img src="${ path }/resources/images/Petkage_Logo3.png" alt="" class="headerLogo">
+                    <img src="${ path }/resources/images/common/Petkage_Logo3.png" alt="" class="headerLogo">
                 </a>
 
                 <ul class="nav nav-pills">
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">어디가지</a></li>
-                    <li class="nav-item header_item"><a href="#" class="nav-link header_link">마켓</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/main" class="nav-link header_link">어디가지</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
-	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/login';" value="로그인">
+	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/loginPage';" value="로그인">
 					</c:if>
 					
 					<c:if test="${ (not empty loginMember) && loginMember.memberRole == 'ROLE_USER' }">
@@ -40,8 +44,6 @@
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
-	                    <a href="${ path }/market/product-write">상품 등록</a><br><br>
-						<a href="${ path }/market/product-list">상품 목록</a>
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
@@ -49,8 +51,8 @@
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
-                    <a href="${ path }/market" class="d-flex align-items-center headercart">
-                        <img src="${ path }/resources/images/Cart.png" alt="" class="cart">
+                    <a href="${ path }/market/cart?no=${ loginMember.no }" class="d-flex align-items-center headercart">
+                        <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>
             </header>

@@ -3,21 +3,31 @@ package com.finalproject.petkage.market.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,14 +37,17 @@ import lombok.extern.slf4j.Slf4j;
 public class MarketController {
 	@Autowired 
 	private MarketService service;
+
+	@Autowired
+	private KakaoPayService kakaoPayService;
 	
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@GetMapping("product-write")
+	@GetMapping("/product-write")
 	public String write() {
 		
-		log.info("°Ô½Ã±Û ÀÛ¼º ÆäÀÌÁö ¿äÃ»");
+		log.info("ê²Œì‹œê¸€ ì‘ì„± í˜ì´ì§€ ìš”ì²­");
 		
 		return "market/product-write";
 	}
@@ -43,13 +56,15 @@ public class MarketController {
 	public ModelAndView write(
 						 ModelAndView model,
 						 @ModelAttribute Product product,
-						 @RequestParam("upfile") MultipartFile upfile) {
+						 @RequestParam("upfile") MultipartFile upfile,
+						 @SessionAttribute("loginMember") Member loginMember) {
 		
 		int result = 0;
 		
 		log.info("Upfile is Empty : {}", upfile.isEmpty());
 		log.info("Upfile Name : {}", upfile.getOriginalFilename());
 		
+		// íŒŒì¼ ì—…ë¡œë“œ ì—¬ë¶€ í™•ì¸ í›„ ì €ì¥
 		if(upfile != null && !upfile.isEmpty()) {
 			String location = null;
 			String renamedFileName = null;
@@ -74,17 +89,17 @@ public class MarketController {
 			}
 			
 		}
-		
-		product.setProSelNo(1);
+		// ì‘ì„± ë‚´ìš©ì„ DBì— ì €ì¥
+		product.setProSelNo(loginMember.getNo());
 		System.out.println(product);
 		
 		result = service.save(product);
 		
 		if(result > 0) {
-			model.addObject("msg", "»óÇ°ÀÌ Á¤»óÀûÀ¸·Î µî·ÏµÇ¾ú½À´Ï´Ù.");
+			model.addObject("msg", "ìƒí’ˆì´ ì •ìƒì ìœ¼ë¡œ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
 		} else {
-			model.addObject("msg", "»óÇ° µî·Ï¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
+			model.addObject("msg", "ìƒí’ˆ ë“±ë¡ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 			model.addObject("location", "/market/product-write");
 		}
 		
@@ -95,9 +110,9 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-list")
-	public ModelAndView List(ModelAndView model, 
-			@RequestParam(value = "page", defaultValue = "1") int page,
-			@ModelAttribute Product product) {
+	public ModelAndView list(ModelAndView model, 
+							@RequestParam(value = "page", defaultValue = "1") int page,
+							@ModelAttribute Product product) {
 
 //		log.info("{}", searchValue);
 
@@ -106,7 +121,7 @@ public class MarketController {
 		
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 8, service.getProductCount(), 8);
+		pageInfo = new PageInfo(page, 5, service.getProductCount(), 8);
 		list = service.getProductList(pageInfo, product);
 //		searchList = service.getProductSearchList(pageInfo, searchValue);
 //		System.out.println(searchList);
@@ -119,7 +134,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-view")
-	public ModelAndView View(ModelAndView model, @RequestParam int proNo ) {
+	public ModelAndView view(ModelAndView model, @RequestParam int proNo ) {
 
 		System.out.println(proNo);
 		
@@ -135,27 +150,39 @@ public class MarketController {
 	}
 
 	@GetMapping("/product-delete")
-	public ModelAndView Delete(ModelAndView model, @RequestParam int proNo) {
-		
+	public ModelAndView delete(ModelAndView model, 
+							@SessionAttribute("loginMember") Member loginMember, 
+							@RequestParam int proNo) {
 		int result = 0;
+		Product product = null;
 		
-		result = service.delete(proNo);
+		product = service.findProductByNo(proNo);
 		
-		if(result > 0) {
-			model.addObject("msg", "°Ô½Ã±ÛÀÌ Á¤»óÀûÀ¸·Î »èÁ¦µÇ¾ú½À´Ï´Ù.");
-			model.addObject("location", "/market/product-list");
+		if(product.getProSelNo() == (loginMember.getNo())) {
+			result = service.delete(proNo);
+			
+			if(result > 0) {
+				model.addObject("msg", "ê²Œì‹œê¸€ì´ ì •ìƒì ìœ¼ë¡œ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				model.addObject("location", "/market/product-list");
+			} else {
+				model.addObject("msg", "ê²Œì‹œê¸€ ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+				model.addObject("location", "/market/product-view?proNo=" + proNo);
+			}
+			
 		} else {
-			model.addObject("msg", "°Ô½Ã±Û »èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
-			model.addObject("location", "/market/product-view?no=" + proNo);
+			model.addObject("msg", "ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.");
+			model.addObject("location", "/market/product-list");
 		}
 		
+		
+
 		model.setViewName("common/msg");
 		
 		return model;
 	}
 	
 	@GetMapping("/product-update")
-	public ModelAndView Update(ModelAndView model, @RequestParam int proNo) {
+	public ModelAndView update(ModelAndView model, @RequestParam int proNo, @SessionAttribute("loginMember") Member loginMember) {
 
 		log.info("{}", proNo);
 
@@ -163,53 +190,116 @@ public class MarketController {
 		
 		product = service.findProductByNo(proNo);
 		
-		model.addObject("product", product);
-		model.setViewName("market/product-update");
-		
+		if(product.getProSelNo() == (loginMember.getNo())) {
+			model.addObject("product", product);
+			model.setViewName("market/product-update");
+		} else {
+			model.addObject("msg", "ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.");
+			model.addObject("location", "/market/product-list");
+			model.setViewName("common/msg");
+		}
 		return model;
 	}
 	
 	@PostMapping("/product-update")
-	public ModelAndView Update(ModelAndView model, @ModelAttribute Product product, @RequestParam("upfile") MultipartFile upfile) {
+	public ModelAndView update(ModelAndView model,
+							@ModelAttribute Product product, 
+							@RequestParam("upfile") MultipartFile upfile,
+							@SessionAttribute("loginMember") Member loginMember) {
 		
 		int result = 0;
 		
 //		System.out.println(upfile.isEmpty());
 //		System.out.println(upfile.getOriginalFilename());
 		
-		if(upfile != null && !upfile.isEmpty()) {
-
-			String location = null;
-			String renamedFileName = null;
-			
-			try {
-				location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
-				renamedFileName = MultipartFileUtil.save(upfile, location);
-
-				if(renamedFileName != null) {
-					product.setRenamedFileName(renamedFileName);
+		if(service.findProductByNo(product.getProNo()).getProSelNo() == (loginMember.getNo())) {			
+			if(upfile != null && !upfile.isEmpty()) {
+	
+				String location = null;
+				String renamedFileName = null;
+				
+				try {
+					location = resourceLoader.getResource("resources/upload/market").getFile().getPath();
+					renamedFileName = MultipartFileUtil.save(upfile, location);
+	
+					if(renamedFileName != null) {
+						product.setRenamedFileName(renamedFileName);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-		}
-		
-		result = service.save(product);
-		
-		if(result > 0) {
-			model.addObject("msg", "°Ô½Ã±ÛÀÌ Á¤»óÀûÀ¸·Î ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
-			model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
-		} else {
-			model.addObject("msg", "°Ô½Ã±Û ¼öÁ¤¿¡ ½ÇÆĞÇß½À´Ï´Ù.");
-			model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
+
+			result = service.save(product);
 			
+			if(result > 0) {
+				model.addObject("msg", "ê²Œì‹œê¸€ì´ ì •ìƒì ìœ¼ë¡œ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				model.addObject("location", "/market/product-view?proNo=" + product.getProNo());
+			} else {
+				model.addObject("msg", "ê²Œì‹œê¸€ ìˆ˜ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
+				model.addObject("location", "/market/product-update?proNo=" + product.getProNo());
+			}
+		} else {
+			model.addObject("msg", "ì˜ëª»ëœ ì ‘ê·¼ì…ë‹ˆë‹¤.");
+			model.addObject("location", "/board/list");
 		}
-		
-		product.setProSelNo(1);
-		
+
 		System.out.println(product);
 		
 		model.setViewName("common/msg");
+		
+		return model;
+	}
+
+	@PostMapping("/cart/add")
+	@ResponseBody
+	public String addCart(Cart cart, @SessionAttribute("loginMember") Member loginMember) {
+		int result = 0;
+		
+		System.out.println(cart);
+		result = service.addCart(cart);
+		
+		return result + "";
+	}
+
+	@GetMapping("/cart")
+	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @RequestParam int no) {
+
+		List<Cart> list = service.getCartList(no);
+		
+		System.out.println(list);
+		model.addObject("list", list);
+		model.setViewName("market/cart");
+		
+		return model;
+	}
+	
+	@GetMapping("/order")
+	public ModelAndView Payment (ModelAndView model, @RequestParam int proNo) {
+
+		Product product = null;
+		
+		product = service.findProductByNo(proNo);
+		
+		model.addObject("product", product);
+		model.setViewName("market/order");
+		
+		return model;
+	}
+	
+	@PostMapping("/order")
+	public String Payment() {
+		log.info("ê²°ì œ ì¤€ë¹„ PostMapping");
+		
+		return "redirect:" + kakaoPayService.kakaoPayReady();
+	}
+
+	@GetMapping("/order-finished")
+	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
+		log.info("ê²°ì œ ì„±ê³µ GetMapping");
+		log.info("pg_token : {}", pg_token);
+        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
+		model.setViewName("market/order-finished");
 		
 		return model;
 	}

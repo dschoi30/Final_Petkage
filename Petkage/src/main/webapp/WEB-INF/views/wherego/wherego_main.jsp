@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
-
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=2">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=6">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -63,20 +63,24 @@
         <div class="wg_cate">
             <div class="wgc_1">
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>숙소</p>
-                    </div>
+	                <a href="${ path }/lodging">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>숙소</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>카페</p>
-                    </div>
+	                <a href="${ path }/cafe">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>카페</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
                     <div class="wgcb_img">
@@ -144,7 +148,7 @@
                     </div>
                 </div>
                 <div class="wgc3_btn">
-                    <button><p>바로가기</p></button>
+                    <button onclick="location.href='${ path }/petsitter'"><p>바로가기</p></button>
                 </div>
             </div>
 
@@ -966,7 +970,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button><p>더보기</p></button>
+                    <button onclick="location.href='${ path }/reviewboard'"><p>더보기</p></button>
                 </div>
             </div>
             <div class="wgc7_list">
@@ -1120,4 +1124,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

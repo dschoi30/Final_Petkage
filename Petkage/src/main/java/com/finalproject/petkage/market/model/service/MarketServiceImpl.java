@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.Product;
 
 @Service
@@ -67,14 +68,28 @@ public class MarketServiceImpl implements MarketService {
 		return result;
 	}
 
-//	@Override
-//	public List<Product> getProductSearchList(PageInfo pageInfo, String searchValue) {
-//		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
-//		int limit = pageInfo.getListLimit();
-//				
-//		RowBounds rowBounds = new RowBounds(offset, limit);
+	@Override
+	public int addCart(Cart cart) {
+		
+		int result = 0;
 //		
-//		return mapper.selectProductSearchList(rowBounds, searchValue);
-//	}
+//		Cart checkCart = mapper.checkCart(cart);
+//		
+//		if(checkCart != null) {
+//			return 2;
+//		}
+//		
+		result = mapper.addCart(cart);
+				
+		return result;
+	}
+
+	@Override
+	public List<Cart> getCartList(int no) {
+
+		List<Cart> cart = mapper.getCartList(no);
+		
+		return cart;
+	}
 
 }

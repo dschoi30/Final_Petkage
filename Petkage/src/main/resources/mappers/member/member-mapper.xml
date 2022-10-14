@@ -16,7 +16,8 @@
 		       MEM_REPORT,
 		       MEM_ROLE,
 		       MEM_STATUS,
-		       MEM_ENROLLDATE
+		       MEM_ENROLLDATE,
+		       MEM_FINDNUM
 		FROM MEMBER
 	</sql>
 
@@ -36,6 +37,7 @@
 		<result property="status" column="MEM_STATUS"/>
 		<result property="enrolldate" column="MEM_ENROLLDATE"/>
 		<result property="petYN" column="MEM_PETYN"/>
+		<result property="findNum" column="MEM_FINDNUM"/>
 	</resultMap>
 	
 	<!-- pet -->
@@ -73,16 +75,18 @@
 		WHERE MEM_STATUS = 'Y'
 	</select>
 	
-
-	
-
  	<!-- 로그인 -->
 	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql" />
 		WHERE MEM_ID= #{ userId } AND MEM_STATUS ='Y'
 	</select>
  	
- 	
+ 	<!-- 이메일로 아이디/비밀번호 찾기-->
+	<select id="selectMemberByEmail" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql" />
+		WHERE MEM_EMAIL= #{ userEmail } AND MEM_STATUS ='Y'
+	</select>
+	
  	<!-- 
 	<select id="selectMemberById" parameterType="string" resultMap="inPetResultMap">
 		SELECT M.MEM_NO,
@@ -190,15 +194,32 @@
 		)
 	</insert>
 	
+	<!-- 아이디 중복 검사 -->
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) 
 		FROM MEMBER 
 		WHERE MEM_ID = #{ userId } AND MEM_STATUS ='Y'
 	</select>
 	
+	<!-- 이메일 중복 검사 -->
 	<select id="emailCheck" resultType="int">
 		SELECT COUNT(*) 
 		FROM MEMBER 
 		WHERE MEM_EMAIL = #{ userEmail } AND MEM_STATUS ='Y'
 	</select>
+	
+	<!-- 패스워드 변경 -->
+	<update id="updatePwd">
+		UPDATE MEMBER 
+		SET 
+		    MEM_PWD = #{ newPwd }
+		WHERE MEM_NO = #{ no }
+	</update>
+	
+	<!-- 인증번호 insert -->
+	<update id="updateFindNum" parameterType="map">
+		UPDATE MEMBER 
+			SET MEM_FINDNUM =  #{ findNum }  
+		WHERE MEM_ID = #{ userId }
+	</update>
 </mapper>

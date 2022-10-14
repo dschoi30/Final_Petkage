@@ -31,6 +31,8 @@ html {
     padding: 0;
     box-sizing: border-box;
     width: 1110px;
+    margin-top: 20px;
+  	margin-bottom: 50px;
 }
 
 .wg_4 .wg_top {
@@ -222,6 +224,9 @@ html {
     box-shadow: 5px 5px 10px rgba(117, 52, 34, 0.8);
 }
 
+.wg_4 .wg_content .wg_content_card .wgc4_card a {
+	text-decoration: none;
+}
 
 .wg_4 .wg_content .wg_content_card .card_img img{
     width: 870px;
@@ -261,6 +266,7 @@ html {
     font-size: 1.6rem;
     font-weight: 800;
     padding-left: 20px;
+    color: black;
 }
 
 .wg_4 .wg_content .wg_content_card .card_text .ct_3 {

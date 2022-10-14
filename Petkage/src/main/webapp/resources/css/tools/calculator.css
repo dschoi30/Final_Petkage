@@ -430,11 +430,12 @@
 .tc .age_circle .age_img {
     display: block;
     text-align: center;
-    padding-top: 25px;
+    padding-top: 20px;
 }
 
 .tc .age_circle .age_img img {
-    width: 42%;
+    /* width: 55px; */
+    height: 50px;
 }
 
 .tc .age_circle .age_number {
@@ -899,8 +900,8 @@
     opacity: 1;
     transform-origin: 0 1px;
     animation: 
-      blink 3s linear infinite,
-      blinkSqueezeTwice 3s linear infinite;
+        blink 3s linear infinite,
+        blinkSqueezeTwice 3s linear infinite;
     animation-delay: 1s;
 }
 
@@ -922,8 +923,8 @@
     opacity: 1;
     transform-origin: 0 1px;
     animation: 
-      blink 3s linear infinite,
-      blinkSqueeze 3s linear infinite;
+        blink 3s linear infinite,
+        blinkSqueeze 3s linear infinite;
 }
 
 .tc .bad .bMouth {
@@ -1022,92 +1023,94 @@
 
 .tc .dic_comment p {
 	font-size: 30px;
-  	font-weight: bold;
+    font-weight: bold;
 }
 
 .tc .spread_underline {
 	color: #333;
-  	text-decoration: none;
-  	display: inline-block;
-  	padding: 10px 0;
-  	position: relative;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 0;
+    position: relative;
 }
 
 .tc .spread_underline:after {    
-  	background: none repeat scroll 0 0 transparent;
-  	bottom: 0;
-  	content: "";
-  	display: block;
-  	bottom: 15px;
-  	height: 20px;
-  	left: 50%;
-  	position: absolute;
-  	transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  	width: 0;
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    bottom: 15px;
+    height: 20px;
+    left: 50%;
+    position: absolute;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
 }
 
 .tc .spread_underline:hover:after { 
-  	width: 100%; 
-  	left: 0; 
+    width: 100%; 
+    left: 0; 
 }
 
 .tc .under_G::after {
-  	background: #33cc0d80;
+    background: #33cc0d80;
 }
 
 .tc .under_S::after {
-  	background: #fcd11e80;
+    background: #fcd11e80;
 }
 
 .tc .under_N::after {
-  	background: #5135c280;
+    background: #5135c280;
 }
 
 .tc .under_B::after {
-  	background: #ff272780;
+    background: #ff272780;
 }
 
 .tc .cal_result_dictionary {
-  	display: block;
-  	overflow: hidden;
-  	text-align: center;
-  	margin: 5% auto;
-  	padding-top: 7px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    margin: 5% auto;
+    padding-top: 7px;
 }
 
+/*
 .tc .cal_result_dic:last-child {
-  	border-left: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
 }
+*/
 
 .tc .cal_result_dic {
-  	display: inline-block;
-  	margin: 10px 0px;
-  	padding: 20px 50px;
- 	width: 395px;
+    display: inline-block;
+    margin: 10px 0px;
+    padding: 20px 50px;
+    width: 395px;
 }
 
 .tc .cal_result_dic dl {
-  	display: block;
+    display: block;
 }
 
 .tc .cal_result_dic dt {
-  	font-size: 25px !important;
-  	padding-right: 5px !important;
+    font-size: 25px !important;
+    padding-right: 5px !important;
 }
 
 .tc .cal_result_dic dl dd {
-  	padding: 10px 0 5px 0;
-  	font-size: 15px;
-  	color: #656565;
-  	font-weight: 400;
+    padding: 10px 0 5px 0;
+    font-size: 15px;
+    color: #656565;
+    font-weight: 400;
 }
 
 .tc .data_G {
-  	color: #33cc0d !important;
+    color: #33cc0d !important;
 }
 
 .tc .data_S {
-  	color: #fcd11e !important;
+    color: #fcd11e !important;
 }
 
 .tc .data_N {
@@ -1115,6 +1118,6 @@
 }
 
 .tc .data_B {
-  	color: #ff2727 !important;
+    color: #ff2727 !important;
 }
 
