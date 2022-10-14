@@ -33,5 +33,57 @@
 		WHERE N.NOTI_STATUS = 'Y'
 		ORDER BY N.NOTI_NO DESC
 	</select>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="Notice"
+		useGeneratedKeys="true" keyProperty="no" keyColumn="NOTI_NO">
+		INSERT INTO NOTICE(
+				NOTI_NO, 
+				NOTI_WRITERNO, 
+				NOTI_TITLE, 
+				NOTI_CONTENT,
+				NOTI_DATE,
+				NOTI_IMG,
+				NOTI_STATUS
+		)
+		VALUES(
+			SEQ_NOTI_NO.NEXTVAL,
+			#{writerNo},
+			#{title},
+			#{content},
+			DEFAULT,
+			DEFAULT,
+			DEFAULT
+		)
+	</insert>
+	
+	<!-- 공지사항 조회 -->
+	<select id="selectNoticeByNo" parameterType="_int" resultMap="NoticeResultMap">
+		<include refid="noticeListSql"/>
+		WHERE N.NOTI_STATUS = 'Y'AND N.NOTI_NO = #{no}
+	</select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE NOTICE 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">
+				NOTI_TITLE = #{title},
+			</if>
+			<if test="content != null">
+				NOTI_CONTENT = #{content},
+			</if>	
+			NOTI_DATE = SYSDATE 
+		</trim>		
+		WHERE NOTI_NO = #{no}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<update id="updateStatus" parameterType="map">
+		UPDATE NOTICE SET NOTI_STATUS = #{status} WHERE NOTI_NO = #{no}
+	</update>
+	
+	
+
 
 </mapper>

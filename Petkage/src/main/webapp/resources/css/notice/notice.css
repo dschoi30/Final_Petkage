@@ -14,7 +14,9 @@ font-family: "GmarketSansMedium";
 .nt .card-header{
     background-color: white;
     border-bottom: #6b6b6b 0.5px solid;
-    cursor: pointer;
+    <!-- 
+    	cursor: pointer; 
+    --!>
 }
 
 .nt .card-header .two{
@@ -45,12 +47,18 @@ font-family: "GmarketSansMedium";
 
 .nt .nt_big{
     border: #D6d6d6 2px solid;
-    height: 150%;
 }
 
 .nt .nt_small{
     margin-top: 50px;
     margin-bottom: 50px;
+    text-align: center;
+}
+
+.nt .nt_write{
+	width:900px; 
+	text-align: center;
+	margin: auto;
 }
 
 .nt .nt_no{
@@ -68,14 +76,20 @@ font-family: "GmarketSansMedium";
 
 .nt .nt_ud{
     display: inline-block; 
-    width: 50px;
+    width: 40px;
     color: #6b6b6b;
     font-size: 0.8em;
 }
 
 .nt .nt_date{
     display: inline-block; 
-    width: 125px;
+    width: 135px;
+}
+
+.nt .down{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #803D3D;
 }
 
 .nt table{
@@ -111,14 +125,24 @@ font-family: "GmarketSansMedium";
     transform: translate(-50%, -50%);
 }
 
-.nt .down{
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #803D3D;
-}
 
 .nt #pageBar{
     text-align: center;
     font-size: 2em;
     background-color: red;
+}
+
+.nt .nt_search{
+	width: 650px;
+	height: 40px;
+	padding-left: 30px;
+	border: 3px solid #753422;
+	border-radius: 30px;
+}
+
+.nt .nt_btn{
+	border : none;	
+	background: transparent;
+    font-weight: 400;
+
 }
