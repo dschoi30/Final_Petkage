@@ -73,12 +73,14 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>카페</p>
-                    </div>
+	                <a href="${ path }/cafe">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>카페</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
                     <div class="wgcb_img">
@@ -146,7 +148,7 @@
                     </div>
                 </div>
                 <div class="wgc3_btn">
-                    <button><p>바로가기</p></button>
+                    <button onclick="location.href='${ path }/petsitter'"><p>바로가기</p></button>
                 </div>
             </div>
 
@@ -968,7 +970,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button><p>더보기</p></button>
+                    <button onclick="location.href='${ path }/reviewboard'"><p>더보기</p></button>
                 </div>
             </div>
             <div class="wgc7_list">
