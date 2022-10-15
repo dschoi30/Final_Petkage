@@ -139,6 +139,7 @@
                     <br>
                     <div class="prod-summary-footer">
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
+
                         <button class="btn btn-light" style="width: 235px;"
                         		onclick="location.href='${ path }/market/order?proNo=${ product.proNo }'">바로 구매</button>
 						<c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
@@ -172,7 +173,7 @@
                         <br><br>
                         <div>
                             <br>
-                            <h4><strong>상품평</strong></h3>
+                            <h4><strong>상품평</strong></h4>
                             <p><small>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.<br>
                                 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이페이지 내 1:1 문의에 남겨주세요.
                             </small></p>
@@ -323,7 +324,7 @@
                         <p id="prodQna"></p>
                         <br><br>
                         <br>
-                        <h4><strong>상품 문의</strong></h3>
+                        <h4><strong>상품 문의</strong></h4>
                         <br>
                         <table class="table" style="margin: 0;">
                             <thead>
@@ -503,7 +504,7 @@
                         <br><br>
                         <div>
                             <br>
-                            <h4><strong>상품 배송/교환/반품 안내</strong></h3>
+                            <h4><strong>상품 배송/교환/반품 안내</strong></h4>
                             <div class="mt-5">
                                 <table class="table">
                                         <tr>
@@ -532,8 +533,18 @@
             </div>
         </div>
     </div>
+                        
+	<form action="${ path }/market/cart/add" method="POST" class="add-cart-form">
+		<input type="hidden" name="proNo" class="update_proNo">
+		<input type="hidden" name="proCount" class="update_proCount">
+		<input type="hidden" name="no" value="${loginMember.no}">
+	</form>	
 
     <script src="${path}/resources/js/product.js"></script>
+
+	<script>
+		
+	</script>
 
     <script>
 	$(document).ready(() => {
@@ -555,28 +566,45 @@
         		$("#totalPrice").text((${ product.proSPrice } * quantity).toLocaleString());
     		}
     	});
-	});
-	</script>
-	<script>
-	$(document).ready(() => {
-    	// 서버로 전송할 데이터
-    	// 장바구니 추가 버튼
-   		$("#btnAddCart").on("click", () => {
-   			var memNo = 1;
-   	    	var proCount = $(".qty-input").val();
 
+    	// 서버로 전송할 데이터
+    	
+    	const form = {
+    		no: '${ loginMember.no }',
+     		proNo: '${ product.proNo }',
+     		proCount: ''
+   	}
+    	// 장바구니 추가 버튼
+   		$("#btnAddCart").on("click", function(e) {
+			form.proCount = $(".qty-input").val();
    			$.ajax({
    				url: '${path}/market/cart/add',
    				type: 'POST',
-   				data: {
-   					"memNo" : memNo,
-   					"proCount" : proCount
+   				data: form,	
+   				success: function(result) {
+   					cartAlert(result);
+   					console.log(result);
    				},
-   				success: () => {
-    				alert("장바구니에 추가되었습니다.");
+   				error: function(error) {
+   					console.log(error);
+   				},
+   				complete: function() {
+   					console.log("complete");
    				}
    			})
    		});
+    	
+   		function cartAlert(result){
+   			if(result == '0'){
+   				alert("장바구니 추가에 실패했습니다.");
+   			} else if(result == '1'){
+   				alert("상품이 장바구니에 추가되었습니다.");
+   			} else if(result == '2'){
+   				alert("상품이 이미 장바구니에 있습니다.");
+   			} else if(result == '5'){
+   				alert("로그인이 필요합니다.");	
+   			}
+   		}
 		
 	});
 	</script>

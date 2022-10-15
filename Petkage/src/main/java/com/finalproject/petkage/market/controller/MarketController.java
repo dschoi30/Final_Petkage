@@ -253,15 +253,29 @@ public class MarketController {
 
 	@PostMapping("/cart/add")
 	@ResponseBody
-	public String addCart(Cart cart, @SessionAttribute("loginMember") Member loginMember) {
+	public String addCart(@ModelAttribute Cart cart) {
 		int result = 0;
 		
 		System.out.println(cart);
 		result = service.addCart(cart);
-		
+		System.out.println(result);
 		return result + "";
 	}
+		
+	@PostMapping("/cart/delete")
+	public String deleteCart(@ModelAttribute Cart cart) {
+		service.deleteCart(cart.getCartNo());
+		
+		return "redirect:/cart/" + cart.getNo();
+	}
 
+	@PostMapping("/cart/update")
+	public String updateCart(@ModelAttribute Cart cart) {
+		service.updateCart(cart);
+		
+		return "redirect:/cart/" + cart.getNo();
+	}
+	
 	@GetMapping("/cart")
 	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @RequestParam int no) {
 

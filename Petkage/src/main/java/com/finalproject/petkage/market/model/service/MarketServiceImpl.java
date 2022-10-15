@@ -71,19 +71,32 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public int addCart(Cart cart) {
 		
-		int result = 0;
-//		
-//		Cart checkCart = mapper.checkCart(cart);
-//		
-//		if(checkCart != null) {
-//			return 2;
-//		}
-//		
-		result = mapper.addCart(cart);
-				
-		return result;
+		Cart checkCart = mapper.checkCart(cart);
+		System.out.println(checkCart);
+		if(checkCart != null) {
+			return 2;
+		}
+		
+		try {
+			return mapper.addCart(cart);
+
+		} catch (Exception e) {
+			return 0;
+		}		
 	}
 
+	@Override
+	public int deleteCart(int cartNo) {
+		
+		return mapper.deleteCart(cartNo);
+	}
+
+	@Override
+	public int updateCart(Cart cart) {
+		
+		return mapper.updateCart(cart);
+	}
+	
 	@Override
 	public List<Cart> getCartList(int no) {
 
@@ -91,5 +104,4 @@ public class MarketServiceImpl implements MarketService {
 		
 		return cart;
 	}
-
 }

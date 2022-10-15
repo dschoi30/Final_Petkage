@@ -25,10 +25,13 @@ public interface MarketMapper {
 
 	int updateProduct(Product product);
 
-	int addCart(Cart cart);
-
-	Cart checkCart(Cart cart);
+	int addCart(Cart cart) throws Exception;
+	
+	int deleteCart(int proNo);
+	
+	int updateCart(Cart cart);
 
 	List<Cart> getCartList(int no);
 
+	Cart checkCart(Cart cart);
 }

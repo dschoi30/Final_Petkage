@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Cart {
 	private int cartNo;
 	
-	private int memNo;
+	private int no;
 	
 	private int proNo;
 	

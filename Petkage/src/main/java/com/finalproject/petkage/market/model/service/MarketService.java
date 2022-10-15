@@ -22,6 +22,10 @@ public interface MarketService {
 
 	int addCart(Cart cart);
 
+	int deleteCart(int cartNo);
+	
+	int updateCart(Cart cart);
+	
 	List<Cart> getCartList(int no);
 
 }
