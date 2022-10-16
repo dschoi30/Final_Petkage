@@ -175,7 +175,7 @@
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
-                    <a href="${ path }/market/cart?no=${ loginMember.no }" class="d-flex align-items-center headercart">
+                    <a href="${ path }/market/cart/${ loginMember.no }" class="d-flex align-items-center headercart">
                         <img src="${ path }/resources/images/common/Cart.png" alt="" class="cart">
                     </a>
                 </ul>

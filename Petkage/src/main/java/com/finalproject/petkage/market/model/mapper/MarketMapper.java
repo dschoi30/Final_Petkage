@@ -31,7 +31,7 @@ public interface MarketMapper {
 
 	int addCart(Cart cart);
 	
-	int deleteCart(int proNo);
+	int deleteCart(int cartNo);
 	
 	int updateCart(Cart cart);
 

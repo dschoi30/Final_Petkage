@@ -37,27 +37,27 @@
 	                        </td>
 	                        <td rowspan="2" style="width: 10%"><img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80"></td>
 	                        <td colspan="3" style="width: 60%"><a href="${ path }/market/product-view?proNo=${ cart.proNo }">${ cart.proName }</a></td>
-	                        <td rowspan="2" style="width: 14%; text-align: center;"><br><strong><fmt:formatNumber value="${ cart.proSPrice }" pattern="#,###"/>원</strong><br><s><fmt:formatNumber value="${ cart.proOPrice }" pattern="#,###"/>원</s></td>
+	                        <td rowspan="2" style="width: 14%; text-align: center;"><br><strong><fmt:formatNumber value="${ cart.proSPrice * cart.proCount }" pattern="#,###"/>원</strong><br><del><fmt:formatNumber value="${ cart.proOPrice * cart.proCount }" pattern="#,###"/>원</del></td>
 	                        <td rowspan="2" style="width: 13%; text-align: center;"><br><fmt:formatNumber value="${ cart.proDelFee }" pattern="#,###"/>원</td>
 	                    </tr>
 	                    <tr>
-	                        <td><c:if test="${ cart.proLTime } == '1'"><span>내일</span> </c:if>내일 배송 출발 예정</td>
+	                        <td>내일 배송 출발 예정</td>
 	                        <td><fmt:formatNumber value="${ cart.proSPrice }" pattern="#,###"/>원</td>
 	                        <td>
-		                        <span class="col mt-2 p-0">
-		                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
-										<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }">
+		                        <div class="col mt-0 p-0">
 		                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-		                        	<a class="btn btn-light change-qty-btn" data-cartNo="${ cart.cartNo }">변경</a>
-		                        	<a class="btn btn-light del-qty-btn" data-cartNo="${ cart.cartNo }">삭제</a>
-		                       	</span>
+									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }">
+		                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
+		                        	<a class="btn btn-light change-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">변경</a>
+		                        	<a class="btn btn-light del-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">삭제</a>
+		                       	</div>
 	                       	</td>
 	                    </tr>
 
                 </c:forEach>
                 </tbody>
             </table>
-            &nbsp;&nbsp;<input type="checkbox" checked="checked">&nbsp;&nbsp;전체선택 ( 1 / <span class="totalKindCount"></span> )&nbsp;&nbsp;<button class="cart-del-btn">전체삭제</button>
+            &nbsp;&nbsp;<input type="checkbox" class="check-all-pro" checked="checked">&nbsp;&nbsp;전체선택 ( <span class="totalKindCount"></span> / <span>${ cart.proCount }</span>)&nbsp;&nbsp;<button class="cart-del-btn check-all-pro">전체삭제</button>
         </div>
         <div class="contents">
             <div class="cart-total-price">
@@ -87,42 +87,40 @@
 <script src="${path}/resources/js/market/product.js"></script>
 
 <script>
-	$(document).ready(() => {
+	$(document).ready(function() {
 	   	// 주문 수량 선택
-	   	$(".plus-btn").on("click", () => {
-		   	var quantity = $(this).parent("span").find("input").val();
-		   	console.log(quantity);
-	   		$(this).parent("span").find("input").val(++quantity);
+	   	$(".plus-btn").on("click", function() {
+		   	let quantity = $(this).parent("div").find("input").val();
+	   		$(this).parent("div").find("input").val(++quantity);
 	   	});
-	   	$(".minus-btn").on("click", () => {
-		   	var quantity = $(this).parent("span").find("input").val();
-		   	console.log(quantity);
+	   	$(".minus-btn").on("click", function() {
+		   	let quantity = $(this).parent("div").find("input").val();
 		   	if(quantity > 1){
-		   		$(this).parent("span").find("input").val(--quantity);
+		   		$(this).parent("div").find("input").val(--quantity);
 	   		}
 	   	});
 	   	
 	   	// 선택 상품 수량 변경
-	   	$(".change-qty-btn").on("click", () => {
-	   		console.log($(this).data("cartno"));
+	   	$(".change-qty-btn").on("click", function() {
 	   		let cartNo = $(this).data("cartno");
-	   		let proCount = $(this).parent("span").find("input").val();
+	   		console.log(cartNo);
+	   		let proCount = $(this).parent("div").find("input").val();
 	   		$(".update-cartNo").val(cartNo);
 	   		$(".update-proCount").val(proCount);
 	   		$(".qty-update-form").submit();
 	   	});
 	   	
 	   	// 선택 상품 삭제
-	   	$(".del-qty-btn").on("click", () => {
+	   	$(".del-qty-btn").on("click", function() {
 	   		const cartNo = $(this).data("cartno");
 	   		$(".del-cartNo").val(cartNo);
 	   		$(".qty-del-form").submit();
-	   	})
+	   	});
 	});
 </script>
 
 <script>
-	$(document).ready(() => {
+	$(document).ready(function() {
 		
 		// 상품 종합 정보
 		setTotalInfo();
@@ -134,29 +132,34 @@
 		
 		// 체크박스 전체 선택
 		$(".check-all-pro").on("click", function() {
-			if(".check-all-pro").prop("checked") {
+			if($(".check-all-pro").prop("checked")) {
 				$(".check-pro").attr("checked", true);
 			} else {
 				$(".check-pro").attr("checked", false);				
 			}
 			
 			setTotalInfo($(".cart-list"));
-		})
+		});
 		
+		// 총 주문 정보
 		function setTotalInfo() {
 			
-	    	var cartSalePrice = 0;
-	    	var cartProCount = 0;
-	    	var cartKindCount = 0;
-	    	var cartDelFee = 0;
-	    	var cartTotalPrice = 0;
+	    	let cartSalePrice = 0;
+	    	let cartProCount = 0;
+	    	let cartKindCount = 0;
+	    	let cartDelFee = 0;
+	    	let cartTotalPrice = 0;
 	    	
 	    	$(".cart-list").each(function(index, element) {
+	    		
+	    		if($(element).find(".check-pro").is(":checked") === true) {
+	    			
 	    		cartSalePrice += parseInt($(element).find(".cart-subtotal-price").val());
 	    		cartProCount += parseInt($(element).find(".cart-pro-count").val());
 				cartKindCount += 1;
 	    		cartDelFee += parseInt($(element).find(".cart-del-fee").val());
 	    		cartTotalPrice += parseInt($(element).find(".cart-total-price").val());
+	    		}
 	    	});
 			// 총 선택상품금액
 	    	$("#totalSalePrice").text(cartSalePrice.toLocaleString());

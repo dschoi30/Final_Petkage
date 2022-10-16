@@ -57,6 +57,7 @@
 
 #wrap-all-prod .table td {
     border-bottom: 1px solid #dee2e6;
+    vertical-align: middle !important;
 }
 
 #wrap-all-prod .table th {
@@ -334,7 +335,7 @@
     position:fixed; 
     top:0; 
     left:0; 
-    width:1070px;
+    width:70%;
     margin-left: 15%;
     margin-right: 15%;
     z-index: 1;

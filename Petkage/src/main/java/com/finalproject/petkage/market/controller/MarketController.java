@@ -266,18 +266,18 @@ public class MarketController {
 	public String deleteCart(@ModelAttribute Cart cart) {
 		service.deleteCart(cart.getCartNo());
 		
-		return "redirect:/cart/" + cart.getNo();
+		return "redirect:/market/cart/" + cart.getNo();
 	}
 
 	@PostMapping("/cart/update")
 	public String updateCart(@ModelAttribute Cart cart) {
 		service.updateCart(cart);
 		
-		return "redirect:/cart/" + cart.getNo();
+		return "redirect:/market/cart/" + cart.getNo();
 	}
 	
-	@GetMapping("/cart")
-	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @RequestParam int no) {
+	@GetMapping("/cart/{no}")
+	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @PathVariable("no") int no) {
 
 		List<Cart> list = service.getCartList(no);
 		
@@ -289,7 +289,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/order")
-	public ModelAndView Payment (ModelAndView model, @RequestParam int proNo) {
+	public ModelAndView Payment (ModelAndView model, @RequestParam int no, @RequestParam int proNo) {
 
 		Product product = null;
 		

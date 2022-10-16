@@ -72,7 +72,7 @@
                         <tbody>
                             <tr>
                                 <td style="width: 12%">이름</td>
-                                <td>최동식</td>
+                                <td>${ loginMember.userName }</td>
                             </tr>
                             <tr>
                                 <td>배송 주소</td>
@@ -80,16 +80,16 @@
                                     <input type="text" id="sample6_postcode" placeholder="우편번호">
                                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                                     &nbsp; <input type="checkbox" checked> 기본배송지 설정 &nbsp;<br>
-                                    <input type="text" id="sample6_address" placeholder="주소" size="50" value="서울 강남구 테헤란로14길 6"><br>
-                                    <input type="text" id="sample6_detailAddress" placeholder="상세주소" size="50" value="KH정보교육원 2층">
+                                    <input type="text" id="sample6_address" placeholder="주소" size="50" value="${ loginMember.userAddress }"><br>
+<!--                                     <input type="text" id="sample6_detailAddress" placeholder="상세주소" size="50" value="KH정보교육원 2층">  -->
                                 </td>
                             <tr>
                                 <td>연락처</td>
-                                <td>010-1234-5678</td>
+                                <td>${ loginMember.userPhone }</td>
                             </tr>
                             <tr>
                                 <td>배송 요청사항</td>
-                                <td>직접 받고 부재 시 문 앞</td>
+                                <td><input type="text" id="delibery-comment" size="50"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -144,10 +144,12 @@
                                 <td>결제 방법</td>
                                 <td>
 <!--                                     <label><input type="radio" name="kakaopay" id="check_module">카카오페이</label>&nbsp; -->
-		    						<button id="kakaopay">카카오페이</button>
-                                    <label><input type="radio" name="account">계좌이체</label>&nbsp;
-                                    <label><input type="radio" name="card">신용/체크카드</label>&nbsp;
-                                    <label><input type="radio" name="corp-card">법인카드</label>
+		    						<button id="kakaopay" value="kakaopay" style="border: 0; margin-right: 10px;">
+										<img src="${ path }/resources/images/market/pay_on_kakao.png" style="width: 80px; height: 30px;" alt="">
+									</button>
+		    						<button id="card" value="card" style="border: 0;">
+										<img src="${ path }/resources/images/market/pay_on_card.png" style="width: 80px; height: 30px;" alt="">
+									</button>
                                 </td>
                             </tr>
                         </tbody>

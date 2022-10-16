@@ -111,26 +111,30 @@
                         <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
-                        19% <s><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###원"/></s> (정상가)
+                         -<fmt:formatNumber type="number" value="${ 100 - (product.proSPrice / product.proOPrice * 100) }" pattern="0"/>% 
+                         <del><fmt:formatNumber value="${ product.proOPrice }" pattern="#,###원"/></del> (정상가)
                     </div>
                     <div class="prod-sale-price">
                         <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></span>
                         <span clas="sale-price-info">(할인가)</span>
                     </div>
                     <div class="reward-point">
-                        700원 적립 (5% 적립)
+                        <span><fmt:formatNumber value="${ product.proSPrice * 0.05 }" pattern="#,###원"/></span> 적립 (5% 적립)
                     </div>
                     <div class="delivery-etd">
                         지금 주문 시 9/19(월)에 발송됩니다.
+                        <c:if test="${ product.proLTime.equals('1') }">
+                        내일
+                        </c:if>
                     </div>
                     <br>
                     <div>
                     </div>
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
-                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
-								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
                         	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
+                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
                         <div class="total-price" id="totalPrice"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></div>
@@ -540,7 +544,7 @@
 		<input type="hidden" name="no" value="${loginMember.no}">
 	</form>	
 
-    <script src="${path}/resources/js/product.js"></script>
+    <script src="${path}/resources/js/market/product.js"></script>
 
 	<script>
 		
@@ -598,7 +602,7 @@
    			if(result == '0'){
    				alert("장바구니 추가에 실패했습니다.");
    			} else if(result == '1'){
-   				alert("상품이 장바구니에 추가되었습니다.");
+   				confirm("상품이 장바구니에 추가되었습니다.");
    			} else if(result == '2'){
    				alert("상품이 이미 장바구니에 있습니다.");
    			} else if(result == '5'){
