@@ -15,6 +15,10 @@ public interface MarketMapper {
 
 	List<Product> selectProductList(RowBounds rowbounds, Product product);
 	
+	List<Product> sortProductListFromLowest(RowBounds rowbounds, Product product);
+
+	List<Product> sortProductListFromHighest(RowBounds rowbounds, Product product);
+	
 	Product selectProductByNo(@Param("proNo") int proNo);
 
 	int registerProduct(Product product);
@@ -25,7 +29,7 @@ public interface MarketMapper {
 
 	int updateProduct(Product product);
 
-	int addCart(Cart cart) throws Exception;
+	int addCart(Cart cart);
 	
 	int deleteCart(int proNo);
 	
