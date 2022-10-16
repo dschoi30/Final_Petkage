@@ -14,6 +14,10 @@ public interface MarketService {
 
 	List<Product> getProductList(PageInfo pageInfo, Product product);
 
+	List<Product> sortProductListFromLowest(PageInfo pageInfo, Product product);
+
+	List<Product> sortProductListFromHighest(PageInfo pageInfo, Product product);
+	
 	Product findProductByNo(int proNo);
 	
 	int save(Product product);

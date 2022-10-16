@@ -573,7 +573,7 @@
     		no: '${ loginMember.no }',
      		proNo: '${ product.proNo }',
      		proCount: ''
-   	}
+   		}
     	// 장바구니 추가 버튼
    		$("#btnAddCart").on("click", function(e) {
 			form.proCount = $(".qty-input").val();

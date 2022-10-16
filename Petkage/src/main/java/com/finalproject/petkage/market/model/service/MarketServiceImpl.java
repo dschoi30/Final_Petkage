@@ -37,6 +37,26 @@ public class MarketServiceImpl implements MarketService {
 		
 		return mapper.selectProductList(rowBounds, product);
 	}
+
+	@Override
+	public List<Product> sortProductListFromLowest(PageInfo pageInfo, Product product) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+				
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.sortProductListFromLowest(rowBounds, product);
+	}
+
+	@Override
+	public List<Product> sortProductListFromHighest(PageInfo pageInfo, Product product) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+				
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.sortProductListFromHighest(rowBounds, product);
+	}
 	
 	@Override
 	public Product findProductByNo(int proNo) {
@@ -76,13 +96,9 @@ public class MarketServiceImpl implements MarketService {
 		if(checkCart != null) {
 			return 2;
 		}
-		
-		try {
-			return mapper.addCart(cart);
+		return mapper.addCart(cart);
 
-		} catch (Exception e) {
-			return 0;
-		}		
+	
 	}
 
 	@Override
