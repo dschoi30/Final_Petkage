@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.notice.model.mapper.NoticeMapper;
@@ -31,5 +32,38 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return mapper.selectAll(rowBounds);
 	}
+	
+	@Override
+	public Notice findNoticeByNo(int no) {
+		
+		return mapper.selectNoticeByNo(no);
+	}
+
+	@Override
+	@Transactional
+	public int save(Notice notice) {
+		int result = 0;
+		
+		if(notice.getNo() != 0) {
+			// update
+			result = mapper.updateNotice(notice);
+		} else {
+			// insert
+			result = mapper.insertNotice(notice);
+		}
+
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public int delete(int no) {
+		int result = 0;
+		
+		result = mapper.updateStatus(no, "N");
+
+		return result;
+	}
+
 
 }

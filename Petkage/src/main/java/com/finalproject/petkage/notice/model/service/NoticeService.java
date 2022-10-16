@@ -11,4 +11,10 @@ public interface NoticeService {
 
 	List<Notice> getNoticeList(PageInfo pageInfo);
 
+	int save(Notice notice);
+
+	Notice findNoticeByNo(int no);
+
+	int delete(int no);
+
 }

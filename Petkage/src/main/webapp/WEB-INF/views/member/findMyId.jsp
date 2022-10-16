@@ -114,7 +114,7 @@
                       <input
                         type="text"
                         class="findByEmailInput"
-                        name="inputCheckNum"
+                        name="inputFindNum"
                         id="findByEmail"
                       />
                     </td>
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="btnBox">
-            <input type="submit" class="btnFindMyIdNext" id="btnFindMyIdNext" value="다음" onclick="location.href='${path}/member/findMyIdFinishPage'" disabled />
+            <input type="submit" class="btnFindNext" id="btnFindNext" value="다음" onclick="location.href='${path}/member/findMyIdFinishPage'" disabled />
           </div>
         </div>
       </div>
@@ -165,43 +165,50 @@
           },
           dataType: "text",
           success: (result) => {
-
-            if(result == "userName fail") {
-              console.log("result : " + result);
-              $('#email_termsCheck').text("이름을 정확히 입력해 주세요.");
-
-            } else if (result == "member fail") {
-              console.log("result : " + result);
-              $('#email_termsCheck').text("등록된 회원 정보가 없습니다. ");
-
-            } else {
-              console.log("result : " + result);
+            if (result == "success") {
+              console.log("인증번호 보내기 버튼 클릭 : " + result);
               $('#sendFinishAlert').text("수신된 이메일의 인증번호를 입력해 주세요.");
               $('#email_termsCheck').text("");
-              $("#numCheckFinish").attr("disabled", false);
-
-              saveEmail = userEmail; // 이메일 저장
-              checkNum = result; // 인증번호 저장
-              
+              $("#numCheckFinish").attr("disabled", false);             
               }
+            if(result == "userName fail") {
+              console.log("인증번호 보내기 버튼 클릭 : " + result);
+              $('#email_termsCheck').text("이름을 정확히 입력해 주세요.");
+            } 
+            if (result == "member fail") {
+              console.log("인증번호 보내기 버튼 클릭 : " + result);
+              $('#email_termsCheck').text("등록된 회원 정보가 없습니다. ");
+            } 
           } // success 종료
         }); // ajax 종료
       }); // 인증번호 보내기 함수 종료
 
       // 인증번호 확인 버튼
       $("#numCheckFinish").click(function () {
-          let inputCheckNum = $("[name=inputCheckNum]").val();
-          console.log(inputCheckNum);
-          console.log(checkNum);
+        let inputFindNum = $("[name=inputFindNum]").val();
+        let userEmail = $("#userEmail").val();
 
-          if(inputCheckNum == checkNum) {
+        $.ajax({
+          type:"GET",
+          url: "${path}/member/findNumCheck",
+          data: {
+            userEmail,
+            inputFindNum
+          },
+          dataType: "text",
+          success: (result) => {
+            console.log("인증번호 확인 버튼" + result);
+            if(result == "success") {
             $('#findByEmailFinish').text("본인인증이 완료되었습니다.");
-            $("#btnFindMyIdNext").attr("disabled", false);
+            $("#btnFindNext").attr("disabled", false);
+            } 
 
-          } else {
-            $('#findByEmailFinish').text("인증번호를 다시 확인해 주세요.");
-          }
-      })
+            if(result == "fail" ) {
+              $('#findByEmailFinish').text("인증번호를 다시 확인해 주세요.");
+            }
+          } // success 종료
+        }); // ajax 종료
+      }); // 인증번호 확인 함수 종료
     })
 
   </script>

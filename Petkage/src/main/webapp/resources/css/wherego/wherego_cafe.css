@@ -247,6 +247,9 @@ html {
     box-shadow: 5px 5px 10px rgba(117, 52, 34, 0.8);
 }
 
+.wg_6 .wg6_bottom .wg6b_ca .wgc6_card a {
+	text-decoration: none;
+}
 
 .wg_6 .wg6_bottom .wg6b_ca .wgc6_card .card_img {
     width: 520px;
@@ -298,6 +301,7 @@ html {
     font-size: 1.6rem;
     font-weight: 800;
     padding-left: 20px;
+    color: black;
 }
 
 .wg_6 .wg6_bottom .wg6b_ca .wgc6_card .card_text .ct_3 {

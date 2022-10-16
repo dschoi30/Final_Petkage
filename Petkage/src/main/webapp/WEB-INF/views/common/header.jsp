@@ -28,7 +28,7 @@
                 </a>
 
                 <ul class="nav nav-pills">
-                    <li class="nav-item header_item"><a href="${ path }/test" class="nav-link header_link">어디가지</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/main" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <c:if test="${ empty loginMember }">
@@ -37,12 +37,12 @@
 					</c:if>
 					
 					<c:if test="${ (not empty loginMember) && loginMember.memberRole == 'ROLE_USER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/myPage_main'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/sellerPage_list'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.replace('${ path }/member/logout')" value="로그아웃">
         			</c:if>
         			

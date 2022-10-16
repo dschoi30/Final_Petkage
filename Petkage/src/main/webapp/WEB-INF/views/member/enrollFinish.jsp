@@ -31,7 +31,7 @@
           <span style="color: #753422; font-weight: bold;">
             Pet</span><span style="color: black; font-weight: bold;">kage</span>를 준비하세요 !</p>
         </div>
-        <div class="btnBox" style="margin-top: 15px; margin-bottom:160px;">
+        <div class="btnBox" style="margin-top: 15px; margin-bottom:15em;">
             <button type="button" id="btnHome" class="btn_login_home" onclick="location.href='${ path }'">홈으로</button>
             <button type="button" id="btnNext" class="btn_login" onclick="location.href='${ path }/member/login'">로그인</button>    
         </div>

@@ -1,6 +1,7 @@
 package com.finalproject.petkage.member.model.service;
 
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.member.model.mapper.MemberMapper;
 import com.finalproject.petkage.member.model.vo.Member;
+
+import oracle.jdbc.logging.annotations.Log;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -96,9 +99,6 @@ public class MemberServiceImpl implements MemberService {
 		member = mapper.selectMemberByEmail(userEmail);
 		
 		if(member != null) {
-			System.out.println(member.getUserEmail());
-			System.out.println("service - userEmail : " + userEmail);
-			
 			return member;
 		} else {
 			return null;
@@ -107,25 +107,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int updatePwd(String userEmail, String newPwd) {
-		int result = 0;
-		
-		newPwd = passwordEncoder.encode(newPwd);
-		
-		result = mapper.updatePwd(userEmail, newPwd);
-		
-		return 0;
-	}
-
-	
-	@Override
 	public int updateFindNum(String userId, int findNum) {
 		int result = 0;
 		
 		result = mapper.updateFindNum(userId, findNum);
-		
 		return result;
 	}
 	
-
+	@Override
+	@Transactional
+	public int updatePwd(int no, String newPwd) {
+		int result = 0;
+		
+		newPwd = passwordEncoder.encode(newPwd);		
+		
+		result = mapper.updatePwd(no, newPwd);
+		return result;
+	}
 }
