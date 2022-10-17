@@ -25,7 +25,6 @@
     transition: background-color 5000s; 
 }
 
-
 .tc .tools_container {
     float: left;
     text-align: center;
@@ -873,6 +872,30 @@
     right: -6px;
     width: 40px;
     background-color: #fff;
+}
+
+.tc .map_content {
+    width: 100%;
+    padding: 40px;
+    background-color: #e2e2e2;
+    color: #6B6B6B;
+}
+
+.tc .map_content h5 {
+    color: #414141;
+}
+
+.tc .map_content .hAddr {
+    margin-top: 20px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.tc .map_content .bAddr {
+    padding:5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* DICTIONARY 결과 CSS */
