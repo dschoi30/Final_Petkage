@@ -128,6 +128,7 @@
         <div class="wgc_7">
             <div class="wgc7_list">
              	<c:forEach var="review" items="${review}">
+             	<c:set var="rename" value="${ review.revrenameimg }" />
 	                <div class="wgc7l_1">
 	                    <div class="wgc7l_1_1">
 	                        <div class="wgc7l_name">
@@ -137,7 +138,7 @@
 	                            </div>
 	                        </div>
 	                        <div class="wgc7l_img">
-	                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
+	                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" alt="">
 	                        </div>
 	                    </div>
 	                    <div class="wgc7l_1_2">

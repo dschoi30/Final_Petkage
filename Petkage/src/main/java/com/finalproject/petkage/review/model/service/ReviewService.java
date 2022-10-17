@@ -11,5 +11,7 @@ public interface ReviewService {
 
 	List<Review> getReviewList(PageInfo pageInfo);
 
+	int review_fupload(Review review);
+
 	
 }

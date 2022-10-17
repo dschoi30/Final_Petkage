@@ -40,4 +40,6 @@ public class Review {
 	private String revrenameimg;
 	
 	private String memname;
+	
+	private String revcategory;
 }
