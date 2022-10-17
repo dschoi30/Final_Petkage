@@ -205,12 +205,6 @@
 		return type;
 	}
 
-	var cellBirth = document.getElementById('pet_date');
-		cellBirth.onkeyup = function(event){
-		event = event || window.event;
-		var _val = this.value.trim();
-	}
-
 	function result_view(tab_id) {
 		var pet_type = $('input[name="pet_type"]').val();
 

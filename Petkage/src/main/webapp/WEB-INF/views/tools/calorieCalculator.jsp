@@ -103,9 +103,9 @@
 								<div class="selectBoxList">
 									<!-- selectBox1 -->
 									<div class="box">
-										<div  class="pet_jisu selectBoxes" id="pet_jisu" name="pet_jisu">
+										<div class="pet_jisu selectBoxes" id="pet_jisu" name="pet_jisu">
 											<button class="label">반려동물 상태 선택</button>
-											<ul class="optionList">
+											<ul class="optionList" id="pet_option" name="pet_option">
 												<li class="optionItem">반려동물 상태 선택</li>
 											</ul>
 										</div>
@@ -114,19 +114,19 @@
 									<div class="box">
 										<div class="pet_jisu selectBoxes" id="dog_jisu" name="dog_jisu" style="display:none">
 											<button class="label">반려견 상태 선택</button>
-											<ul class="optionList">
-												<li class="optionItem" value="1">성장기(4개월 미만) 강아지</li>
-												<li class="optionItem" value="2">성장기(4 ~ 12개월) 강아지</li>
-												<li class="optionItem" value="3">중성화한 성견</li>
-												<li class="optionItem" value="4">중성화하지 않은 성견</li>
-												<li class="optionItem" value="5">체중 감량이 필요한 성견</li>
-												<li class="optionItem" value="6">체중 증량이 필요한 성견</li>
-												<li class="optionItem" value="7">가벼운 활동량의 사역견</li>
-												<li class="optionItem" value="8">중간 활동량의 사역견</li>
-												<li class="optionItem" value="9">높은 활동량의 사역견</li>
-												<li class="optionItem" value="10">임신 초기 성견</li>
-												<li class="optionItem" value="11">임신 중기 이후 성견</li>
-												<li class="optionItem" value="12">나이가 많은 성견</li>
+											<ul class="optionList" id="dog_option" name="dog_option">
+												<li class="optionItem" id="dog_option_0" onclick="dogSel(0)">성장기(4개월 미만) 강아지</li>
+												<li class="optionItem" id="dog_option_1" onclick="dogSel(1)">성장기(4 ~ 12개월) 강아지</li>
+												<li class="optionItem" id="dog_option_2" onclick="dogSel(2)">중성화한 성견</li>
+												<li class="optionItem" id="dog_option_3" onclick="dogSel(3)">중성화하지 않은 성견</li>
+												<li class="optionItem" id="dog_option_4" onclick="dogSel(4)">체중 감량이 필요한 성견</li>
+												<li class="optionItem" id="dog_option_5" onclick="dogSel(5)">체중 증량이 필요한 성견</li>
+												<li class="optionItem" id="dog_option_6" onclick="dogSel(6)">가벼운 활동량의 사역견</li>
+												<li class="optionItem" id="dog_option_7" onclick="dogSel(7)">중간 활동량의 사역견</li>
+												<li class="optionItem" id="dog_option_8" onclick="dogSel(8)">높은 활동량의 사역견</li>
+												<li class="optionItem" id="dog_option_9" onclick="dogSel(9)">임신 초기 성견</li>
+												<li class="optionItem" id="dog_option_10" onclick="dogSel(10)">임신 중기 이후 성견</li>
+												<li class="optionItem" id="dog_option_11" onclick="dogSel(11)">나이가 많은 성견</li>
 											</ul>
 										</div>
 									</div>
@@ -134,15 +134,15 @@
 									<div class="box">
 										<div class="pet_jisu selectBoxes" id="cat_jisu" name="cat_jisu" style="display:none">
 											<button class="label">반려묘 상태 선택</button>
-											<ul class="optionList">
-												<li class="optionItem" value="1">유아기(4개월 미만) 고양이</li>
-												<li class="optionItem" value="2">고속 성장기(4 ~ 6개월) 고양이</li>
-												<li class="optionItem" value="3">고속 성장기(7 ~ 12개월) 고양이</li>
-												<li class="optionItem" value="4">중성화한 성묘</li>
-												<li class="optionItem" value="5">중성화하지 않은 성묘</li>
-												<li class="optionItem" value="6">체중 감량이 필요한 성묘</li>
-												<li class="optionItem" value="7">활동량이 많은 성묘</li>
-												<li class="optionItem" value="8">나이가 많은 성묘</li>
+											<ul class="optionList" id="cat_option" name="cat_option">
+												<li class="optionItem" id="cat_option_0" onclick="catSel(0)">유아기(4개월 미만) 고양이</li>
+												<li class="optionItem" id="cat_option_1" onclick="catSel(1)">고속 성장기(4 ~ 6개월) 고양이</li>
+												<li class="optionItem" id="cat_option_2" onclick="catSel(2)">고속 성장기(7 ~ 12개월) 고양이</li>
+												<li class="optionItem" id="cat_option_3" onclick="catSel(3)">중성화한 성묘</li>
+												<li class="optionItem" id="cat_option_4" onclick="catSel(4)">중성화하지 않은 성묘</li>
+												<li class="optionItem" id="cat_option_5" onclick="catSel(5)">체중 감량이 필요한 성묘</li>
+												<li class="optionItem" id="cat_option_6" onclick="catSel(6)">활동량이 많은 성묘</li>
+												<li class="optionItem" id="cat_option_7" onclick="catSel(7)">나이가 많은 성묘</li>
 											</ul>
 										</div>
 									</div>
@@ -203,7 +203,7 @@
 		var dog_on = $("#dog_on").val();
 		var cat_on = $("#cat_on").val();
 
-		var pet_weight = $('input[name="pet_weight"]').val().replace(/\./g,'-');;
+		var pet_weight = $('input[name="pet_weight"]').val().replace(/\./g,'-');
 
 		var dog_jisu = $("#dog_jisu").val();
 		var cat_jisu = $("#cat_jisu").val();
@@ -213,9 +213,9 @@
 				alert("반려동물을 선택해주세요.")
 			} else  {
 				if(dog_on === 0 && cat_on === 0) { // 강아지 일 때
-					if (!dog_weight) {
+					if (!pet_weight) {
 						alert("몸무게를 입력해주세요.");
-						$('input[name="pet_date"]').focus()
+						$('input[name="pet_weight"]').focus()
 						return;
 					} else if (!dog_jisu) {
 						alert("몸무게를 선택해주세요.");
@@ -233,20 +233,17 @@
 						$("#dog_life").show();
 						$("#cat_life").hide();
 
-						$("#dog_age").html(petAges(pet_date));
+						$("#basic_meta").html(petAges(pet_date));
 						console.log("댕 나이 : " + petAges(pet_date));
-
-						$("#dog_age_cal").html(dogToHumanAge(pet_date));
-						console.log("댕 사람나이 : " + dogToHumanAge(pet_date));
 
 						$("#dog_lifecycle").html(dogAgeGroup(pet_date));
 						console.log("댕 시기 : " + dogAgeGroup(pet_date));
 					}
 					
 				} else { // 고양이 일 때 
-					if (!pet_date) {
-						alert("생년월일을 입력해주세요.");
-						$('input[name="pet_date"]').focus()
+					if (!pet_weight) {
+						alert("몸무게를 입력해주세요.");
+						$('input[name="pet_weight"]').focus()
 						return;
 					}
 					
@@ -284,6 +281,10 @@
 		$("#cat_on").removeClass("pet_on");
 		$('input[name="pet_type"]').attr('value','강아지');
 		$('#cat_on').attr('value','');
+
+		$("#pet_jisu").hide();
+		$("#dog_jisu").show();
+		$("#cat_jisu").hide();
 	}
 
 	function cat_on() {
@@ -295,8 +296,36 @@
 		$("#dog_on").removeClass("pet_on");
 		$('input[name="pet_type"]').attr('value','고양이');
 		$('#cat_on').attr('value','3');
+
+		$("#pet_jisu").hide();
+		$("#cat_jisu").show();
+		$("#dog_jisu").hide();
 	}
 
+	// 몸무게 값으로 기초대사량 구하기
+	function calcWeight(weight) {
+		var weight = weight.replace(/[^0-9]/g, '');
+		var RER = 0;
+	
+		// 기초 대사량 (RER)
+		// 2kg ~ 45kg (체중 * 30) + 70 , 그 외 (체중 * 0.75) * 70
+		if ( 2 <= weight && weight <= 45) {
+			RER = (weight * 30) + 70;
+		} else {
+			RER = (weight * 0.75) * 70;
+		}
+
+		return RER;
+	}
+
+	// 위의 함수로 구해진 기초대사량으로 권장 칼로리 구하기
+	// function calcCalrorie (weight) {
+	// 	var MER = RER * pet_jisu;
+
+	// 	reture MER;
+	// }
+
+	
 	// 펫 상태 셀렉트 박스
 	const label = document.querySelectorAll('.label');
 

@@ -186,3 +186,12 @@ function isBirthday(dateStr) {
         return false;
     }
 }
+
+
+$("#dog_option").attr('value',("강아지 상태" + no));
+		$("#dog_option_" + no).attr('value', no);
+		console.log("댕 상태 : " + $("#dog_option_" + no).val());
+
+		$("#cat_option").attr('value',("고양이 상태" + no));
+		$("#cat_option_" + no).attr('value', no);
+		console.log("냥 상태 : " + $("#cat_option_" + no).val());
