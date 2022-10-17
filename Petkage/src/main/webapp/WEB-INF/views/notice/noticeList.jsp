@@ -32,7 +32,7 @@
                 </span>
             </div>
             <div class="nt_inner">
-                <img src="${ path }/resources//images/notice/Rectangle 2051.png" id="nt_pic">
+                <img src="${ path }/resources/images/notice/Rectangle 2051.png" id="nt_pic">
                 <div class="nt_text">
                     <span style="color: white">전체</span>
                     <span class="nt_color">${ noticeCount }</span>
@@ -69,11 +69,11 @@
 	                    	<span class="btn opacity-0" style="cursor: pointer; width: 100px;"></span>
 	                    </c:if>
                         <c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-	                        	<button type="button" id="btnUpdate" class="nt_btn nt_ud"
-	                        		onclick="location.href='${ path }/notice/noticeUpdate?no=${ notice.no }'">수정</button>
-	                        	
-                    	        <button type="button" id="btnDelete" class="nt_btn nt_ud ntDelete" noticeId="${ notice.no }"
-                    	        	style="margin-right: 15px;">삭제</button>
+                        	<button type="button" id="btnUpdate" class="nt_btn nt_ud"
+                        		onclick="location.href='${ path }/notice/noticeUpdate?no=${ notice.no }'">수정</button>
+                        	
+                   	        <button type="button" id="btnDelete" class="nt_btn nt_ud ntDelete" noticeId="${ notice.no }"
+                   	        	style="margin-right: 15px;">삭제</button>
 	                    </c:if>
                         <span class="nt_date" style="width: 135px;">${ notice.createDate }</span>
                         <span id="down" style="display: inline-block; width: 50px; text-align: right;"><i class="icon-angle-down down"></i></span>
@@ -90,29 +90,29 @@
                 
                 </c:forEach>
         	</c:if>
+			<br><br>
+		<div style="text-align: center;">
 
-		<div id="pageBar">
-			<button onclick="location.href='${ path }/notice/noticeList?page=1'">&lt;&lt;</button>
-
-			<button onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.prevPage }'">&lt;</button>
-
+			<button class="btn btn-customlr btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.prevPage }'">&lt;</button>
+			&nbsp;&nbsp;
 			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 				<c:if test="${ status.current == pageInfo.currentPage }">
-					<button disabled>${ status.current }</button>
+					<button class="btn btn-custom btn-xs" disabled>${ status.current }</button>
+					&nbsp;&nbsp;
 				</c:if>
 				<c:if test="${ status.current != pageInfo.currentPage }">
-					<button onclick="location.href='${ path }/notice/noticeList?page=${ status.current }'">${ status.current }</button>
+					<button class="btn btn-custom btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ status.current }'">${ status.current }</button>
+					&nbsp;&nbsp;
 				</c:if>
 			</c:forEach>
 
-			<button onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.nextPage }'">&gt;</button>
+			<button class="btn btn-customlr btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.nextPage }'">&gt;</button>
 
-			<button onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
 		</div>
 	</div>
 
     </section>
-    
+
     <br>
       
     <script> 

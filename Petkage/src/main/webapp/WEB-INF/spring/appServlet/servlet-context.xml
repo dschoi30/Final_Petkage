@@ -39,7 +39,19 @@
 			<exclude-mapping path="/market/product-list"/>
 			<exclude-mapping path="/market/product-view"/>
 			
+			
 			<beans:bean id="loginCheckInterceptor" class="com.finalproject.petkage.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/notice/**"/>
+			
+			<exclude-mapping path="/notice/noticeList"/>
+			
+			<beans:bean id="AdminCheckInterceptor" class="com.finalproject.petkage.common.interceptor.AdminCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
