@@ -76,7 +76,14 @@
 					<div class="cal_write">
 						<div class="content_write">
 							<span class="content_write_input write_divline">
-								<h5>날씨API</h5>
+								<div class="weather_content">
+									<div>지금 날씨는</div>
+									<div id="weatherIcon"></div>
+									<div>
+										<div id="temp"></div><br>
+										<div id="pty"></div>
+									</div>
+								</div>
 							</span>
 							<span class="content_write_input write_divline">
 								<div class="map_content">
@@ -96,6 +103,55 @@
 	<!-- WalkOut_recommend 끝 -->
 	
 	<script type="text/javascript">
+	/* 
+	 window.onload = function() {
+		const xhttp = new XMLHTTPRequest();
+		const weatherIcon = document.getElementById("weatherIcon");
+		const weatherTemp = document.getElementById("temp");
+		const weatherPty = document.getElementById("pty");
+		const addToWeather = (weatherDto) => {
+			weatherIcon.innerHTML = weatherDto.sky;
+			weatherTemp.innerHTML = "현재온도  " + weatherDto.temp + '도'; 
+			weatherPty.innerHTML = "강수량  " + weatherDto.pty + '%'; 
+		};
+
+		xhttp.addEventListener('readystatechange', (e) => {
+			const readyState = e.target.readyState;
+			const httpState = e.target.state;
+
+			if (readyState == 4 && httpState == 200) {
+				addToWeather(JSON.oarse(e.targe.responseText));
+			}
+		});
+	}
+	
+	function weather() {
+		jQuery.ajax({
+			url : "/tools/weather",
+			type : "get",
+			timeout: 30000,
+			contentType: "application/json",
+			dataType : "json",
+			success : function(data, status, xhr) {
+
+				let dataHeader = data.result.response.header.resultCode;
+
+				if (dataHeader == "00") {
+				console.log("success == >");
+				console.log(data);
+				} else {
+				console.log("fail == >");
+				console.log(data);               
+				}
+			},
+			error : function(e, status, xhr, data) {
+				console.log("error == >");
+				console.log(e);
+			}
+		});
+	}
+	*/
+
 	var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 	var options = { // 지도를 생성할 때 필요한 기본 옵션
 	    center: new kakao.maps.LatLng(37.519580, 127.093538), // 지도의 중심좌표.
@@ -105,21 +161,37 @@
 	var map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
     
     var positions = [
-        // 송파구
+        // 마포구
         {
-            title: 'GS25한강잠실1호점', 
-            latlng: new kakao.maps.LatLng(37.519580, 127.093538)
+            title: '하늘공원 메타세콰이어길', 
+            latlng: new kakao.maps.LatLng(37.5663243, 126.8838553)
+        },
+     	// 도봉구
+        {
+            title: '초안산 도봉 둘레길', 
+            latlng: new kakao.maps.LatLng(37.6450674, 127.0449737)
+        },
+     	// 동작구
+        {
+            title: '보라매공원 둘레길', 
+            latlng: new kakao.maps.LatLng(37.4918982, 126.9192807)
+        },
+     	// 동대문구
+        {
+            title: '가을단풍길(송정 제방길)', 
+            latlng: new kakao.maps.LatLng(37.553292, 127.066897)
         }
 
    	 ]
 	
  	// 마커 이미지의 이미지 주소입니다
-    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    var imageSrc = "${ path }/resources/images/common/running.png"; 
 
     for (var i = 0; i < positions.length; i ++) {
-
+    	var data = positions[i];
+   
         // 마커 이미지의 이미지 크기 입니다
-        var imageSize = new kakao.maps.Size(24, 35); 
+        var imageSize = new kakao.maps.Size(33, 33); 
 
         // 마커 이미지를 생성합니다
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -131,7 +203,32 @@
             title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
             image : markerImage // 마커 이미지 
         });
+
+    	// 마커 위에 커스텀오버레이를 표시합니다
+    	// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+    	var overlay = new kakao.maps.CustomOverlay({
+    		yAnchor:3,
+    	    position: marker.getPosition()       
+    	});
+    	
+    	var content = document.createElement('div');
+        content.innerHTML =  data.title;
+        content.style.cssText = 'background: white; border: 1px solid black';
+        
+        var closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '닫기';
+        closeBtn.onclick = function () {
+            overlay.setMap(null);
+        };
+        content.appendChild(closeBtn);
+        overlay.setContent(content);
+
     }
+	
+	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(marker, 'click', function() {
+	    overlay.setMap(map);
+	});
     
  	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
     if (navigator.geolocation) {
@@ -164,7 +261,7 @@
         map.setCenter(locPosition);
     }
     
- // 주소-좌표 변환 객체를 생성합니다
+	// 주소-좌표 변환 객체를 생성합니다
     var geocoder = new kakao.maps.services.Geocoder();
 
     var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
