@@ -139,8 +139,8 @@
               <c:if test="${ not empty list }">
                  	<div class="row row-cols-2 row-cols-md-4">
                   	<c:forEach var="product" items="${ list }">
-                       <div class="col col-mb-4">
-                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 420px;">
+                       <div class="col col-mb-4" style="padding: 0;">
+                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
                            <div class="card h-100" style="border: 0;">
                                   <img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
                                   <div class="card-body">
@@ -284,8 +284,8 @@
               <c:if test="${ not empty list }">
                  	<div class="row row-cols-2 row-cols-md-4">
                   	<c:forEach var="product" items="${ list }">
-                       <div class="col col-mb-4">
-                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 420px;">
+                       <div class="col col-mb-4" style="padding: 0;">
+                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
                            <div class="card h-100" style="border: 0;">
                                   <img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
                                   <div class="card-body">
@@ -429,8 +429,8 @@
               <c:if test="${ not empty list }">
                  	<div class="row row-cols-2 row-cols-md-4">
                   	<c:forEach var="product" items="${ list }">
-                       <div class="col col-mb-4">
-                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 420px;">
+                       <div class="col col-mb-4" style="padding: 0;">
+                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
                            <div class="card h-100" style="border: 0;">
                                   <img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
                                   <div class="card-body">

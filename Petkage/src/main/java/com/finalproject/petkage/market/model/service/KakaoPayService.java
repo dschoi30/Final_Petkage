@@ -2,7 +2,10 @@ package com.finalproject.petkage.market.model.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,8 +15,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.finalproject.petkage.market.model.mapper.MarketMapper;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
+import com.finalproject.petkage.market.model.vo.PayItems;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +29,9 @@ public class KakaoPayService {
 
 	private KakaoPayReady kakaoPayReady;
 	private KakaoPayApproval kakaoPayApproval;
+	
+	@Autowired
+	private MarketMapper mapper;
 	
 	public String kakaoPayReady() {
 		RestTemplate restTemplate = new RestTemplate();
@@ -66,18 +74,18 @@ public class KakaoPayService {
     }
 	
     public KakaoPayApproval kakaoPayInfo(String pg_token) {
-   	 
+   	
         log.info("KakaoPayInfo............................................");
         log.info("-----------------------------");
         
         RestTemplate restTemplate = new RestTemplate();
- 
+
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "a2c23a946b5f644401b0fc455309f81c");
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
- 
+
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
@@ -101,6 +109,16 @@ public class KakaoPayService {
             e.printStackTrace();
         }
         
+        System.out.println("카카오페이 승인 내용" + kakaoPayApproval);
+        
         return null;
     }
+
+	public List<PayItems> getGoodsInfo(List<PayItems> orders) {
+		
+		List<PayItems> result = new ArrayList<PayItems>();
+		
+		
+		return result;
+	}
 }
