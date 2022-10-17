@@ -46,7 +46,7 @@
 	              </div>
 	              <div class="form-group last mb-3">
 	                <label for="userPwd">비밀번호</label>
-	                <input type="password" class="form-control" placeholder="비밀번호를 입력해 주세요" id="userPwd" name="userPwd">
+	                <input type="password" class="form-control" placeholder="비밀번호를 입력해 주세요" id="userPwd" name="userPwd" autoComplete="off">
 	              </div>
 	              
 	              <div class="d-flex mb-5 align-items-center">
@@ -92,62 +92,101 @@
 	</section>
 	
 	<script src="${ path }/js/member/jquery-3.6.0.js"></script>
-	<script src="${ path }/js/member/popper.min.js"></script>
-	<script src="${ path }/js/member/ootstrap.min.js"></script>
+	<%-- <script src="${ path }/js/member/popper.min.js"></script>
+	<script src="${ path }/js/member/bootstrap.min.js"></script> --%>
 	<script src="${ path }/js/member/main.js"></script>
 	<script src="${ path }/js/member/login.js"></script>
 
 	<!-- 카카오 로그인 -->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			Kakao.init('script앱키 입력');
-			Kakao.isInitialized();
-		});
+	
+	<%-- <script type="text/javascript">
+		Kakao.init('5b193b0622a9f557a7fdcc91e98cd2d0'); // 사용하려는 앱의 JavaScript 키 입력
 
 		function loginWithKakao() {
-			Kakao.Auth.authorize({ 
-			redirectUri: 'http://localhost:8083/kakao_callback' 
-			}); // 등록한 리다이렉트uri 입력
-		}
+			Kakao.Auth.login({ 
+			redirectUri: 'http://localhost:8083/petkage/member/loginPage', // 등록한 리다이렉트uri 입력
+			scope: 'profile_nickname, account_email, gender',
+			success: function(authObj) {
+				console.log(authObj);
+				Kakao.API.request({
+					url:'/v2/user/me',
+					success: res => {
+						const kakao_acount = res.kakao.account;
+						console.log(kakao_accout);
+					}
+				})
+			}
+			});
+		} // loginWithKakao() 
+
+	</script> --%>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				type: 'POST',
+				url : '${path}/member/kakaoApi',
+				data: {},
+				dataType: 'text',
+				success: function(data) {
+					Kakao.init(data);
+				},
+				error: function(xhr, status, error) {
+					alert("API 등록에 실패했습니다." + error);
+				}
+			})	
+		})
+
+		function loginWithKakao() {
+			Kakao.Auth.login({
+				success: function (response) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					})
+					.then(function(response) {
+						console.log(response);
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+				}
+			})
+		} // loginWithKakao()
+
+		function kakaoLoginPro(response){
+			var data = {id:response.id, 
+						nickname:response.kakao_account.profile.nickname, 
+						email:response.kakao_account.account_email}
+			$.ajax({
+				type : 'POST',
+				url : '${path}/member/kakaoLoginPro',
+				data : data,
+				dataType : 'json',
+				success : function(data){
+					console.log("data : " + data)
+					// if(data.JavaData == "YES"){
+					// 	alert("[Petkage] 카카오 계정으로 로그인되었습니다.");
+					// 	location.href = '/'
+					// } else if(data.JavaData == "register"){
+					// 	$("#kakaoId").val(response.id);
+					// 	$("#nickname").val(response.profile.nickname);
+					// 	$("#kakaoEmail").val(response.kakao_account.email);
+					// 	$("#kakaoGender").val(response.kakao_account.gender);
+					// 	$("#kakaoForm").submit();
+					// } else{
+					// 	alert("로그인에 실패했습니다");
+					// }
+					
+				},
+				error: function(xhr, status, error){
+					alert("로그인에 실패했습니다."+error);
+				}
+			}); 
+		} // kakaoLoginPro()
 	</script>
+
 	
-	<!-- 네이버 로그인 -->
-	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-	<script type="text/javascript">
-		var naver_id_login = new naver_id_login("yTGER4Ot0JlEoZV4FqWc", "http://localhost:8083/petkage/");
-		var state = naver_id_login.getUniqState();
-		naver_id_login.setPopup(); //Popup형태의 인증 진행
-		naver_id_login.setDomain("http://localhost:8083/petkage/member/loginPage"); //상태 토큰 비교를 위한 domain 설정
-		naver_id_login.setState(state);
-		naver_id_login.setPopup();
-		naver_id_login.init_naverLogin();
-		naver_id_login.setButton("white", 1,40); //네이버 로그인 버튼 설정
-
-	 	// 접근 토큰 값 출력
-  		alert(naver_id_login.oauthParams.access_token);
-		// 네이버 사용자 프로필 조회
-		naver_id_login.get_naver_userprofile("naverSignInCallback()");
-
-		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-		function naverSignInCallback() {
-			// naver_id_login.getProfileData('프로필항목명');
-			// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
-			alert(naver_id_login.getProfileData('name'));
-			alert(naver_id_login.getProfileData('email'));
-			alert(naver_id_login.getProfileData('mobile')); 
-		}
-	</script>
-
-	<!-- 네이버아디디로로그인 Callback페이지 처리 Script -->
-	<script type="text/javascript">
-
-
-		// 네이버 사용자 프로필 조회
-		naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	</script>
-<!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>
