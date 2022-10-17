@@ -124,15 +124,26 @@ public class NoticeController {
 	
 	// 삭제
 	@GetMapping("/noticeDelete")
-	public ModelAndView delete(ModelAndView model, @RequestParam int no) {
+	public ModelAndView delete(ModelAndView model, 
+					@SessionAttribute("loginMember") Member loginMember,
+					@RequestParam int no) {
 		int result = 0;
-		result = service.delete(no);
+		Notice notice = null;
 		
-		if(result > 0) {
-			model.addObject("msg", "공지사항을 삭제했습니다.");
-			model.addObject("location", "/notice/noticeList");
+		notice = service.findNoticeByNo(no);
+		
+		if(notice.getNo() == (loginMember.getNo())) {
+			result = service.delete(no);
+			
+			if(result > 0) {
+				model.addObject("msg", "공지사항을 삭제했습니다.");
+				model.addObject("location", "/notice/noticeList");
+			} else {
+				model.addObject("msg", "공지사항 삭제를 실패했습니다.");
+				model.addObject("location", "/notice/noticeList");
+			}
 		} else {
-			model.addObject("msg", "공지사항 삭제를 실패했습니다.");
+			model.addObject("msg", "관리자가 아닙니다.");
 			model.addObject("location", "/notice/noticeList");
 		}
 		

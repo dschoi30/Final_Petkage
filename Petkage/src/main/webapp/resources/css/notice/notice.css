@@ -125,13 +125,6 @@ font-family: "GmarketSansMedium";
     transform: translate(-50%, -50%);
 }
 
-
-.nt #pageBar{
-    text-align: center;
-    font-size: 2em;
-    background-color: red;
-}
-
 .nt .nt_search{
 	width: 650px;
 	height: 40px;
@@ -144,5 +137,31 @@ font-family: "GmarketSansMedium";
 	border : none;	
 	background: transparent;
     font-weight: 400;
+}
 
+.nt .btn-custom,.btn:active,.btn-customlr {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.nt .btn-custom {
+	background-color: white;
+	color: 753422;
+	border-color: 753422;
+	border-style : solid;
+	border-width: 3px;
+}
+
+.nt .btn-custon:disabled,.btn:disabled{
+	background-color: 3a170d;
+	color : white;
+	border-color: 3a170d;
+  	border-style : solid;
+  	border-width: 3px;
+}
+
+.nt .btn-customlr {
+	background-color: white;
+	border-color: white !important;
+	font-style: 10px solid;
 }

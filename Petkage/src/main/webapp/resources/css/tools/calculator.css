@@ -25,7 +25,6 @@
     transition: background-color 5000s; 
 }
 
-
 .tc .tools_container {
     float: left;
     text-align: center;
@@ -586,7 +585,6 @@
     margin: 10px;
     border-radius: 4px;
     border: 2px solid #E3B7A0;
-    background: url("../../resources/images/arrow_down.png") calc(100% - 7px) center no-repeat;
     background-size: 20px;
     cursor: pointer;
 }
@@ -646,7 +644,6 @@
 .tc .selectBoxes .optionItem:last-child {
     border-bottom: 0 none;
 }
-
 
 .tc .selectBoxes .optionList::-webkit-scrollbar {width: 6px;}
 .tc .selectBoxes .optionList::-webkit-scrollbar-track {background: transparent; }
@@ -710,7 +707,7 @@
     margin: 20px 5% 0 5%;
     padding-top: 20px;
     font-size: 16px;
-    color: #ffebc9;
+    color: #bdbdbd;
     font-weight: 100;
     line-height: 28px;
     text-align: center;
@@ -718,6 +715,7 @@
 }
 
 .tc .cal_result_calorie .calo_txt .calo_txt_b {
+    color:#4b4b4b;
     font-weight: 600;
 }
 
@@ -726,6 +724,10 @@
     border-top: none !important;
 }
 
+
+.tc #searchFood:focus {
+    color:#fff;
+}
 
 .tc #search_box_cover .tb {
     display: table;
@@ -870,6 +872,30 @@
     right: -6px;
     width: 40px;
     background-color: #fff;
+}
+
+.tc .map_content {
+    width: 100%;
+    padding: 40px;
+    background-color: #e2e2e2;
+    color: #6B6B6B;
+}
+
+.tc .map_content h5 {
+    color: #414141;
+}
+
+.tc .map_content .hAddr {
+    margin-top: 20px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.tc .map_content .bAddr {
+    padding:5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* DICTIONARY 결과 CSS */
@@ -1072,7 +1098,7 @@
     display: block;
     overflow: hidden;
     text-align: center;
-    margin: 5% auto;
+    margin: 5% auto auto auto;
     padding-top: 7px;
 }
 
@@ -1086,7 +1112,7 @@
     display: inline-block;
     margin: 10px 0px;
     padding: 20px 50px;
-    width: 395px;
+    width: 55%;
 }
 
 .tc .cal_result_dic dl {
