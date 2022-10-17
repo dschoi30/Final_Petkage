@@ -71,7 +71,7 @@
 	                  카카오톡으로 로그인
 	                </button>
 	
-	                <button type="button" class="btn btn-block" id="naverLogin">
+	                <button type="button" class="btn btn-block" id="naver_id_login">
 	                  네이버로 로그인
 	                </button>
 	
@@ -112,6 +112,37 @@
 		}
 	</script>
 	
+	<!-- 네이버 로그인 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<%-- <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script> --%>
+	<script type="text/javascript">
+		var naver_id_login = new naver_id_login("yTGER4Ot0JlEoZV4FqWc", "http://localhost:8083/petkage/");
+		var state = naver_id_login.getUniqState();
+		naver_id_login.setPopup(); //Popup형태의 인증 진행
+		naver_id_login.setDomain("http://localhost:8083/petkage/member/loginPage"); //상태 토큰 비교를 위한 domain 설정
+		naver_id_login.setState(state);
+		naver_id_login.setPopup();
+		naver_id_login.init_naverLogin();
+		naver_id_login.setButton("white", 1,40); //네이버 로그인 버튼 설정
+	</script>
+
+	<!-- 네이버아디디로로그인 Callback페이지 처리 Script -->
+	<script type="text/javascript">
+		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+		function naverSignInCallback() {
+			// naver_id_login.getProfileData('프로필항목명');
+			// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+			alert(naver_id_login.getProfileData('email'));
+			alert(naver_id_login.getProfileData('name'));
+			alert(naver_id_login.getProfileData('age')); 
+			alert(naver_id_login.getProfileData('mobile')); 
+		}
+
+
+		// 네이버 사용자 프로필 조회
+		naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	</script>
+<!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>
