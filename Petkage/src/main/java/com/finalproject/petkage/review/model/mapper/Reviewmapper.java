@@ -14,4 +14,6 @@ public interface Reviewmapper {
 
 	List<Review> getReviewList(RowBounds rowBounds);
 
+	int review_fupload(Review review);
+
 }
