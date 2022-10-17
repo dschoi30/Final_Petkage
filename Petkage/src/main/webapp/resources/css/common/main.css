@@ -65,6 +65,7 @@ margin: 100px auto;
 
 #fullpage .wrapper2 {
     position: relative;
+    bottom: 15%;
     width: 100%;
     max-width: 1000px;
     height: 200px;

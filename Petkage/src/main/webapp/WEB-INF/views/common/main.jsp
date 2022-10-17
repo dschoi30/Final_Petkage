@@ -56,40 +56,40 @@
 
 		.best_product:nth-child(1) {
 			background-color: dodgerblue;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwn8y-2983dd90-137f-4401-bde6-bad8b01a3b62.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid244eS0yOTgzZGQ5MC0xMzdmLTQ0MDEtYmRlNi1iYWQ4YjAxYTNiNjIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6_KZnTjuBOypvaaJ-g2h0SkJfLy9NYxUnnzxJGqWQxA");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 
 		.best_product:nth-child(2) {
 			background-color: red;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea37168f-58bf-43ec-b98d-f15c62f681dd/deeo189-b22c4b6a-98dc-4b00-9d1d-abdd1c1cbe18.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhMzcxNjhmLTU4YmYtNDNlYy1iOThkLWYxNWM2MmY2ODFkZFwvZGVlbzE4OS1iMjJjNGI2YS05OGRjLTRiMDAtOWQxZC1hYmRkMWMxY2JlMTgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.iuMiGBbrrjkoSuGldENnb59OIlgv479aka0KHseZrlw");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(3) {
 			background-color: purple;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea37168f-58bf-43ec-b98d-f15c62f681dd/deeo182-1eddcacc-48ce-46f4-97e4-5a3887af11d1.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhMzcxNjhmLTU4YmYtNDNlYy1iOThkLWYxNWM2MmY2ODFkZFwvZGVlbzE4Mi0xZWRkY2FjYy00OGNlLTQ2ZjQtOTdlNC01YTM4ODdhZjExZDEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.up2-M-e6MoppOZE7S9n9KnEqyyBrjNMw60tk8Fc0xMk");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(4) {
 			background-color: darkorange;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwnip-9f4e2268-87bb-4b2c-81a2-ec18769a9f9c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid25pcC05ZjRlMjI2OC04N2JiLTRiMmMtODFhMi1lYzE4NzY5YTlmOWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Svm3i2b8zy-DCKOjfJfxXvX88eBLo4d4xB8MNlh7lXM");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(5) {
 			background-color: yellow;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwnip-9f4e2268-87bb-4b2c-81a2-ec18769a9f9c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid25pcC05ZjRlMjI2OC04N2JiLTRiMmMtODFhMi1lYzE4NzY5YTlmOWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Svm3i2b8zy-DCKOjfJfxXvX88eBLo4d4xB8MNlh7lXM");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 
 		.best_product:nth-child(1):after {
-			content: "챔피온 티셔츠";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(2):after {
-			content: "메종 선글라스";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(3):after {
-			content: "샤넬 똥봉투";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(4):after {
-			content: "시디즈 캣타워";
+			content: "${ product.proName }";
 		}
 	</style>
 	
@@ -152,21 +152,22 @@
                 </a>
 
                  <ul class="nav nav-pills">
-                    <li class="nav-item header_item"><a href="${ path }/main" class="nav-link header_link">어디가지</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/test" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/chatting" class="nav-link header_link">채팅</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
 	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/loginPage'" value="로그인">
 					</c:if>
 					
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/myPage_main'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/sellerPage_list'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
@@ -402,92 +403,281 @@
 
 	<!-- Fullpage js -->
 	<script src="${ path }/resources/js/jquery.fullPage.js"></script>
-
-	<!-- Main js -->
-	<script src="${ path }/resources/js/main.js"></script> 
 	
 	<!-- Socket js -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	
-	<!-- 
 	<script type="text/javascript">
+	
+	// 풀페이지 
+	$(function(){
+	    $('#fullpage').fullpage({
+			//options here
+			autoScrolling:true,
+			scrollHorizontally: false,
+	    
+	    navigation: true,
+	    navigationPosition:'right',
+	    sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
+	    afterLoad: function(anchorLink, index){
+	        console.log("지금 섹션은" + index);
+	    }
+		});
 
-	// 전송 버튼 누르는 이벤트
-	$("#button-send").on("click", function(e) {
-		sendMessage();
-		$('#msg').val('')
+	    $('.headerLogo').on("click", function() {
+	        $.fn.fullpage.moveTo(1);
+	    });
 	});
-	
-	var sock = new SockJS('http://localhost:8080/chatting');
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
-	sock.onopen = onOpen;
-	
-	function sendMessage() {
-		sock.send($("#msg").val());
+
+	// 카드 넘기기
+	t = 53;
+	p = 0;
+	pm = $('.cards_inner__card').length;
+
+	$('.cards_inner__card').mousedown(function(){
+	  var ct = $(this).css('transform');
+	  var cts = ct.split(',')
+	  ctse = (cts[cts.length - 2] + 'px')
+	})
+
+	function on(){
+	  $('.cards_inner__card').draggable({
+	    start: function( event, ui ) {
+	      startPosition = ui.position.left;
+	    },
+	    drag:function(e, ui){
+	      if(ui.position.left > startPosition){
+	        ui.position.left = startPosition;
+	      }
+	      if(ui.position.left < -250){
+	        ui.position.left = -250;
+	      }
+	      x = ui.position.left;
+	      $(this).css('transform',' rotate(' + x/36 + 'deg)')
+	    },
+	    revert:function(valid) {
+	      if(x > 60 || x < - 60) {
+	        el = $(this)
+	        setTimeout(function(){
+	          el_class = el.attr('class').split(' ');
+	          el_class_end = el_class[1]
+	          el.addClass('invalid')
+	          if(p < 3){
+	            $('.points').find('.active').removeClass('active').next().addClass('active') 
+	            p++
+	          } else {
+	            $('.points').find('.active').removeClass('active')
+	            $('.points').find('.first').addClass('active') 
+	            p=0
+	          }
+	        },10)
+	        setTimeout(function(){
+	          $('.cards_inner__card').each(function(){
+	            $(this).addClass('animate');
+	            var ct = $(this).css('transform');
+	            var cts = ct.split(',')
+	            ctse = (parseInt(cts[cts.length - 2]) + 60 + 'px')
+	            $(this).css('transform','translateZ(' + ctse + ')');
+	          });
+	          $('.cards_inner .wrap').prepend('<div class="cards_inner__card ' + el_class_end + ' card_in"><div class="logo"></div></div>')
+	          el.remove();
+	          $('.cards_inner__card').removeClass('animate');
+	          on();
+	        },160);
+	        setTimeout(function(){
+	          $('.card_in').removeClass('card_in')
+	        },500);
+	      } else {
+	        $(this).css('transform','rotate(0deg)')
+	        return !valid;
+	      }
+	    },
+	    axis:'x',
+	    containment:'.cards_inner'
+	  });
+
+	  $('.cards_inner__card:nth-of-type(1)').draggable( 'disable' )
+	  $('.cards_inner__card:nth-of-type(2)').draggable( 'disable' )
+	  $('.cards_inner__card:nth-of-type(3)').draggable( 'disable' )
+	  $('.cards_inner__card:nth-of-type(4)').draggable( 'enable' )
 	}
-	
-	// 서버에서 메시지를 받았을 때
-	function onMessage(msg) {
-		
-		var data = msg.data;
-		var sessionId = null; // 데이터를 보낸 사람
-		var message = null;
-		
-		var arr = data.split(":");
-		
-		for(var i=0; i<arr.length; i++){
-			console.log('arr[' + i + ']: ' + arr[i]);
+
+	on();
+
+	var swiper = new Swiper(".mySwiper", {
+	  effect: "cards",
+	  grabCursor: true,
+	  direction: "vertical",
+	  autoplay: true,
+	  loop: true,
+	});
+
+	var divs = document.querySelectorAll(".best_product");
+	divs.forEach(function (elm) {
+		elm.addEventListener("mouseenter", function () {
+			var panel = document.querySelector(".highlight");
+			panel.classList.toggle("highlight");
+			elm.classList.toggle("highlight");
+		});
+	});
+
+	window.addEventListener("keyup", function (e) {
+		var panel = document.querySelector(".highlight");
+		if (
+			(e.keyCode == 37 || e.keyCode == 38) &&
+			panel != document.querySelectorAll(".best_product")[0]
+		) {
+			panel.previousElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
 		}
-		
-		var cur_session = '${userid}'; // 현재 세션에 로그인 한 사람
-		console.log("cur_session : " + cur_session);
-		
-		sessionId = arr[0];
-		message = arr[1];
-		
-	    // 로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-		if(sessionId == cur_session){
-			
-			var str = "<div class='col-6'>";
-			str += "<div class='alert alert-secondary'>";
-			str += "<b>" + sessionId + " : " + message + "</b>";
-			str += "</div></div>";
-			
-			$("#msgArea").append(str);
+		if (
+			(e.keyCode == 39 || e.keyCode == 40) &&
+			panel != document.querySelectorAll(".best_product")[3]
+		) {
+			panel.nextElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
 		}
-		else{
-			
-			var str = "<div class='col-6'>";
-			str += "<div class='alert alert-warning'>";
-			str += "<b>" + sessionId + " : " + message + "</b>";
-			str += "</div></div>";
-			
-			$("#msgArea").append(str);
-		}
-		
+	});
+
+	window.focus();
+
+	// 하얀 달력
+	const init = {
+	  monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+	  dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+	  today: new Date(),
+	  monForChange: new Date().getMonth(),
+	  activeDate: new Date(),
+	  getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+	  getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+	  nextMonth: function () {
+	    let d = new Date();
+	    d.setDate(1);
+	    d.setMonth(++this.monForChange);
+	    this.activeDate = d;
+	    return d;
+	  },
+	  prevMonth: function () {
+	    let d = new Date();
+	    d.setDate(1);
+	    d.setMonth(--this.monForChange);
+	    this.activeDate = d;
+	    return d;
+	  },
+	  addZero: (num) => (num < 10) ? '0' + num : num,
+	  activeDTag: null,
+	  getIndex: function (node) {
+	    let index = 0;
+	    while (node = node.previousElementSibling) {
+	      index++;
+	    }
+	    return index;
+	  }
+	};
+
+	const $calBody = document.querySelector('.cal-body');
+	const $btnNext = document.querySelector('.btn-cal.next');
+	const $btnPrev = document.querySelector('.btn-cal.prev');
+
+	/**
+	 * @param {number} date
+	 * @param {number} dayIn
+	*/
+	function loadDate (date, dayIn) {
+	  document.querySelector('.cal-date').textContent = date;
+	  document.querySelector('.cal-day').textContent = init.dayList[dayIn];
 	}
-	
-	// 채팅창에 들어왔을 때
-	function onOpen(evt) {
-		
-		var user = '${pr.username}';
-		var str = user + "님이 입장하셨습니다.";
-		
-		$("#msgArea").append(str);
+
+	/**
+	 * @param {date} fullDate
+	 */
+	function loadYYMM (fullDate) {
+	  let yy = fullDate.getFullYear();
+	  let mm = fullDate.getMonth();
+	  let firstDay = init.getFirstDay(yy, mm);
+	  let lastDay = init.getLastDay(yy, mm);
+	  let markToday;  // for marking today date
+	  
+	  if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
+	    markToday = init.today.getDate();
+	  }
+
+	  document.querySelector('.cal-month').textContent = init.monList[mm];
+	  document.querySelector('.cal-year').textContent = yy;
+
+	  let trtd = '';
+	  let startCount;
+	  let countDay = 0;
+	  for (let i = 0; i < 6; i++) {
+	    trtd += '<tr>';
+	    for (let j = 0; j < 7; j++) {
+	      if (i === 0 && !startCount && j === firstDay.getDay()) {
+	        startCount = 1;
+	      }
+	      if (!startCount) {
+	        trtd += '<td>'
+	      } else {
+	        let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+	        trtd += '<td class="day';
+	        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
+	        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+	      }
+	      trtd += (startCount) ? ++countDay : '';
+	      if (countDay === lastDay.getDate()) { 
+	        startCount = 0; 
+	      }
+	      trtd += '</td>';
+	    }
+	    trtd += '</tr>';
+	  }
+	  $calBody.innerHTML = trtd;
 	}
-	
-	// 채팅창에서 나갔을 때
-	function onClose(evt) {
-		
-		var user = '${pr.username}';
-		var str = user + " 님이 퇴장하셨습니다.";
-		
-		$("#msgArea").append(str);
+
+	/**
+	 * @param {string} val
+	 */
+	function createNewList (val) {
+	  let id = new Date().getTime() + '';
+	  let yy = init.activeDate.getFullYear();
+	  let mm = init.activeDate.getMonth() + 1;
+	  let dd = init.activeDate.getDate();
+	  const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
+
+	  let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
+
+	  let eventData = {};
+	  eventData['date'] = date;
+	  eventData['memo'] = val;
+	  eventData['complete'] = false;
+	  eventData['id'] = id;
+	  init.event.push(eventData);
+	  $todoList.appendChild(createLi(id, val, date));
 	}
+
+	loadYYMM(init.today);
+	loadDate(init.today.getDate(), init.today.getDay());
+
+	$btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
+	$btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
+
+	$calBody.addEventListener('click', (e) => {
+	  if (e.target.classList.contains('day')) {
+	    if (init.activeDTag) {
+	      init.activeDTag.classList.remove('day-active');
+	    }
+	    let day = Number(e.target.textContent);
+	    loadDate(day, e.target.cellIndex);
+	    e.target.classList.add('day-active');
+	    init.activeDTag = e.target;
+	    init.activeDate.setDate(day);
+	    reloadTodo();
+	  }
+	});
+
+	$(function(){
+	   $('#datepicker').datepicker();
+	})
 	
-	</script>
-	-->
-     
+	</script>     
 </body>
 </html>
