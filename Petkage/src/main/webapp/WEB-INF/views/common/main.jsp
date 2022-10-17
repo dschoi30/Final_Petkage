@@ -71,10 +71,6 @@
 			background-color: darkorange;
 			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
-		.best_product:nth-child(5) {
-			background-color: yellow;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
 
 		.best_product:nth-child(1):after {
 			content: "${ product.proName }";
