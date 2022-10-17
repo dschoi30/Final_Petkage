@@ -218,26 +218,19 @@
 						$('input[name="pet_weight"]').focus()
 						return;
 					} else if (!dog_jisu) {
-						alert("몸무게를 선택해주세요.");
+						alert("반려동물 상태를 선택해주세요.");
 						return;
 					} 
-
-					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
-						return;
-					}
 					
-					if (pet_date && dog_type && isBirthday(pet_date)) {
+					if (pet_date && dog_jisu) {
 						$(".cal_result_box").show();
 						$(".cal_info_box").hide();
 
-						$("#dog_life").show();
-						$("#cat_life").hide();
+						$("#basic_meta").html(calcWeight(pet_weight) + "kcal");
+						console.log("댕 기초 대사량 : " + calcWeight(pet_weight) + "kcal");
 
-						$("#basic_meta").html(petAges(pet_date));
-						console.log("댕 나이 : " + petAges(pet_date));
-
-						$("#dog_lifecycle").html(dogAgeGroup(pet_date));
-						console.log("댕 시기 : " + dogAgeGroup(pet_date));
+					// 	$("#basic_kal").html(dogAgeGroup(pet_date) + "kcal");
+					// 	console.log("댕 하루 칼로리 : " + dogAgeGroup(pet_date) + "kcal");
 					}
 					
 				} else { // 고양이 일 때 
@@ -245,27 +238,20 @@
 						alert("몸무게를 입력해주세요.");
 						$('input[name="pet_weight"]').focus()
 						return;
-					}
-					
-					if (!isBirthday(pet_date)) { //생년월일 유효성 검사
+					} else if (!cat_jisu) {
+						alert("반려동물 상태를 선택해주세요.");
 						return;
 					}
 
-					if (pet_date && isBirthday(pet_date)) {
+					if (pet_weight && cat_jisu) {
 						$(".cal_result_box").show();
 						$(".cal_info_box").hide();
 
-						$("#cat_life").show();
-						$("#dog_life").hide();
+						$("#basic_meta").html(calcWeight(pet_weight) + "kcal");
+						console.log("냥 기초 대사량 : " + calcWeight(pet_weight) + "kcal");
 
-						$("#cat_age").html(petAges(pet_date));
-						console.log("냥 나이 : " + petAges(pet_date));
-
-						$("#cat_age_cal").html(catToHumanAge(pet_date));
-						console.log("냥 사람나이 : " + catToHumanAge(pet_date));
-
-						$("#cat_lifecycle").html(catAgeGroup(pet_date));
-						console.log("냥 시기 : " + catAgeGroup(pet_date));
+						// $("#basic_kal").html(catAgeGroup(pet_date) + "kcal");
+						// console.log("냥 하루 칼로리 : " + catAgeGroup(pet_date) + "kcal");
 					}
 				}
 			}
@@ -323,7 +309,31 @@
 	// 	var MER = RER * pet_jisu;
 
 	// 	reture MER;
-	// }
+
+	function dogSel(no) {
+		console.log($('input[name="bcs_type"]').val());
+		console.log(no + $("#dog_option").val(no));
+		console.log("타입 번호 : " + no);
+
+	}
+
+	function bcs_sel(no) { 
+		console.log($('input[name="bcs_type"]').val());
+		console.log(no + $("#bcs_sel_dog_img").val(no));
+		console.log("타입 번호 : " + no);
+
+		if (0 <= no && no <= 4) { // 강아지 비만도 선택
+			$('input[name="bcs_type"]').attr('value',("강아지 BCS" + no));
+			$("#dog_bcs_type"+"_"+no).attr('value', no);
+			console.log("댕 타입 : " + $("#dog_bcs_type_"+ no).val());
+
+			$(".bcs_off").removeClass("bcs_on");
+			$("#dog_bcs_type_" + no).addClass("bcs_on");
+
+		}
+	}
+
+
 
 	
 	// 펫 상태 셀렉트 박스
