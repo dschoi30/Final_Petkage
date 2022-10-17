@@ -184,7 +184,7 @@
 								</div>
 								<p><span class="spread_underline under_N">네? 정말이에요??</span></p>
 								<dl>
-									<dt class="data_N searchWord">${ food.foodName }</dt>
+									<dt class="data_N searchWord">${ param.foodName }</dt>
 									<dd id="basic_meta">진심으로 먹일꺼에요?</dd>
 								</dl>
 							</c:if>

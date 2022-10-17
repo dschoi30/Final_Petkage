@@ -56,40 +56,40 @@
 
 		.best_product:nth-child(1) {
 			background-color: dodgerblue;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwn8y-2983dd90-137f-4401-bde6-bad8b01a3b62.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid244eS0yOTgzZGQ5MC0xMzdmLTQ0MDEtYmRlNi1iYWQ4YjAxYTNiNjIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6_KZnTjuBOypvaaJ-g2h0SkJfLy9NYxUnnzxJGqWQxA");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 
 		.best_product:nth-child(2) {
 			background-color: red;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea37168f-58bf-43ec-b98d-f15c62f681dd/deeo189-b22c4b6a-98dc-4b00-9d1d-abdd1c1cbe18.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhMzcxNjhmLTU4YmYtNDNlYy1iOThkLWYxNWM2MmY2ODFkZFwvZGVlbzE4OS1iMjJjNGI2YS05OGRjLTRiMDAtOWQxZC1hYmRkMWMxY2JlMTgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.iuMiGBbrrjkoSuGldENnb59OIlgv479aka0KHseZrlw");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(3) {
 			background-color: purple;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ea37168f-58bf-43ec-b98d-f15c62f681dd/deeo182-1eddcacc-48ce-46f4-97e4-5a3887af11d1.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2VhMzcxNjhmLTU4YmYtNDNlYy1iOThkLWYxNWM2MmY2ODFkZFwvZGVlbzE4Mi0xZWRkY2FjYy00OGNlLTQ2ZjQtOTdlNC01YTM4ODdhZjExZDEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.up2-M-e6MoppOZE7S9n9KnEqyyBrjNMw60tk8Fc0xMk");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(4) {
 			background-color: darkorange;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwnip-9f4e2268-87bb-4b2c-81a2-ec18769a9f9c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid25pcC05ZjRlMjI2OC04N2JiLTRiMmMtODFhMi1lYzE4NzY5YTlmOWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Svm3i2b8zy-DCKOjfJfxXvX88eBLo4d4xB8MNlh7lXM");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 		.best_product:nth-child(5) {
 			background-color: yellow;
-			background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fd26e87c-5667-4cf9-9be9-e58887610efe/debwnip-9f4e2268-87bb-4b2c-81a2-ec18769a9f9c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZkMjZlODdjLTU2NjctNGNmOS05YmU5LWU1ODg4NzYxMGVmZVwvZGVid25pcC05ZjRlMjI2OC04N2JiLTRiMmMtODFhMi1lYzE4NzY5YTlmOWMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Svm3i2b8zy-DCKOjfJfxXvX88eBLo4d4xB8MNlh7lXM");
+			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
 		}
 
 		.best_product:nth-child(1):after {
-			content: "챔피온 티셔츠";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(2):after {
-			content: "메종 선글라스";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(3):after {
-			content: "샤넬 똥봉투";
+			content: "${ product.proName }";
 		}
 
 		.best_product:nth-child(4):after {
-			content: "시디즈 캣타워";
+			content: "${ product.proName }";
 		}
 	</style>
 	

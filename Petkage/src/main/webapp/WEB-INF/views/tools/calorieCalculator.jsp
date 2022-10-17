@@ -7,6 +7,20 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <link rel="stylesheet" href="${ path }/resources/css/tools/calculator.css">
+<style>
+	.tc .selectBoxes {
+	    display: inline-block;
+	    position: relative;
+	    width: 300px;
+	    height: 35px;
+	    margin: 10px;
+	    background: url("${ path }/resources/images/common/arrow_down.png") calc(100% - 7px) center no-repeat;
+	    border-radius: 4px;
+	    border: 2px solid #E3B7A0;
+	    background-size: 20px;
+	    cursor: pointer;
+	}
+</style>
 <body>
 	<!-- calorie_calculator 시작 -->
 	<section class="tc">
@@ -205,8 +219,8 @@
 
 		var pet_weight = $('input[name="pet_weight"]').val().replace(/\./g,'-');
 
-		var dog_jisu = $("#dog_jisu").val();
-		var cat_jisu = $("#cat_jisu").val();
+		var dog_jisu = $("#dog_option").val();
+		var cat_jisu = $("#cat_option").val();
 
 		if (tab_id == 3) {
 			if (!pet_type) {
@@ -222,15 +236,15 @@
 						return;
 					} 
 					
-					if (pet_date && dog_jisu) {
+					if (pet_weight && dog_jisu) {
 						$(".cal_result_box").show();
 						$(".cal_info_box").hide();
 
 						$("#basic_meta").html(calcWeight(pet_weight) + "kcal");
 						console.log("댕 기초 대사량 : " + calcWeight(pet_weight) + "kcal");
 
-					// 	$("#basic_kal").html(dogAgeGroup(pet_date) + "kcal");
-					// 	console.log("댕 하루 칼로리 : " + dogAgeGroup(pet_date) + "kcal");
+						$("#basic_kal").html((calcWeight(pet_weight) * dogSel(dog_jisu)) + "kcal");
+						console.log("댕 하루 칼로리 : " + (calcWeight(pet_weight) * dogSel(dog_jisu)) + "kcal");
 					}
 					
 				} else { // 고양이 일 때 
@@ -250,8 +264,8 @@
 						$("#basic_meta").html(calcWeight(pet_weight) + "kcal");
 						console.log("냥 기초 대사량 : " + calcWeight(pet_weight) + "kcal");
 
-						// $("#basic_kal").html(catAgeGroup(pet_date) + "kcal");
-						// console.log("냥 하루 칼로리 : " + catAgeGroup(pet_date) + "kcal");
+						$("#basic_kal").html((calcWeight(pet_weight) * catSel(cat_jisu)) + "kcal");
+						console.log("냥 하루 칼로리 : " + (calcWeight(pet_weight) * catSel(cat_jisu)) + "kcal");
 					}
 				}
 			}
@@ -304,37 +318,89 @@
 		return RER;
 	}
 
-	// 위의 함수로 구해진 기초대사량으로 권장 칼로리 구하기
-	// function calcCalrorie (weight) {
-	// 	var MER = RER * pet_jisu;
-
-	// 	reture MER;
-
+	// 강아지 수치
 	function dogSel(no) {
-		console.log($('input[name="bcs_type"]').val());
 		console.log(no + $("#dog_option").val(no));
 		console.log("타입 번호 : " + no);
 
+		switch (no) {
+		case 0: // 성장기(4개월 미만) 강아지
+			jisu = 3;
+				break;
+		case 1: // 성장기(4 ~ 12개월) 강아지
+			jisu = 2;
+				break;
+		case 2: // 중성화한 성견
+			jisu = 1.6;
+				break;
+		case 3: // 중성화하지 않은 성견
+			jisu = 1.8;
+				break;
+		case 4: // 체중 감량이 필요한 성견
+			jisu = 1;
+				break;
+		case 5: // 체중 증량이 필요한 성견
+			jisu = 1.7;
+				break;
+		case 6: // 가벼운 활동량의 사역견
+			jisu = 2;
+				break;
+		case 7: // 중간 활동량의 사역견
+			jisu = 3;
+				break;
+		case 8: // 높은 활동량의 사역견
+			jisu = 4;
+				break;
+		case 9: // 임신 초기 성견
+			jisu = 1.8;
+				break;
+		case 10: // 임신 중기 이후 성견
+			jisu = 3;
+				break;
+		case 11: // 나이가 많은 성견
+			jisu = 1.3;
+				break;
+		default:
+		}
+		console.log("지수 : " + jisu);
+		return jisu;
 	}
 
-	function bcs_sel(no) { 
-		console.log($('input[name="bcs_type"]').val());
-		console.log(no + $("#bcs_sel_dog_img").val(no));
+	// 고양이 수치
+	function catSel(no) {
+		console.log(no + $("#cat_option").val(no));
 		console.log("타입 번호 : " + no);
 
-		if (0 <= no && no <= 4) { // 강아지 비만도 선택
-			$('input[name="bcs_type"]').attr('value',("강아지 BCS" + no));
-			$("#dog_bcs_type"+"_"+no).attr('value', no);
-			console.log("댕 타입 : " + $("#dog_bcs_type_"+ no).val());
-
-			$(".bcs_off").removeClass("bcs_on");
-			$("#dog_bcs_type_" + no).addClass("bcs_on");
-
+		switch (no) {
+		case 0: // 유아기(4개월 미만) 고양이
+			jisu = 3;
+				break;
+		case 1: // 고속 성장기(4 ~ 6개월) 고양이
+			jisu = 2.5;
+				break;
+		case 2: // 고속 성장기(7 ~ 12개월) 고양이
+			jisu = 2;
+				break;
+		case 3: // 중성화한 성묘
+			jisu = 1.2;
+				break;
+		case 4: // 중성화하지 않은 성묘
+			jisu = 1.4;
+				break;
+		case 5: // 체중 감량이 필요한 성묘
+			jisu = 0.8;
+				break;
+		case 6: // 활동량이 많은 성묘
+			jisu = 1.6;
+				break;
+		case 7: // 나이가 많은 성묘
+			jisu = 0.7;
+				break;
+		default:
 		}
+		console.log("지수 : " + jisu);
+		return jisu;
 	}
-
-
-
 	
 	// 펫 상태 셀렉트 박스
 	const label = document.querySelectorAll('.label');
