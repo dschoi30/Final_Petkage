@@ -398,19 +398,55 @@ public class MemberController {
 	@PostMapping("/kakaoApi")
 	@ResponseBody
 	public String kakaoApi() {
-		System.out.println("kakaoApi");
+		log.info("kakaoApi 전달");
+		String kakaoApi = "5b193b0622a9f557a7fdcc91e98cd2d0";
 		
-		return "5b193b0622a9f557a7fdcc91e98cd2d0";
+		return kakaoApi;
 	}
 	
 	@PostMapping("/kakaoLoginPro")
 	@ResponseBody
-	public Map<String, Object> kakaoLoginPro(@RequestParam Map<String,Object> paramMap,HttpSession session) {
-		System.out.println("paramMap:" + paramMap);
+	public String kakaoLoginPro(@RequestParam String kakaoId, 
+								@RequestParam String kakaoEmail, 
+								@RequestParam String kakaoName, 
+								HttpSession session) {
 		
-		Map <String, Object> resultMap = new HashMap<String, Object>();
+		System.out.println(kakaoEmail);
+		int result = service.emailCheck(kakaoEmail);
+		System.out.println(result);
+		if(result != 0) {
+			// 중복 이메일 O			
+			return "Kakao_Login";
+		} else {
+			// 중복 이메일 X
+			return "Kakao_Enroll";
+		}
 		
-		return resultMap;
 	}
+	
+	// 회원가입(카카오) 페이지 처리 - OK  
+	@GetMapping("/enrollKakaoPage")
+	public String enrollKakaoPage() {
+		log.info ("회원가입(카카오) 페이지 요청");
+		
+		return "member/enroll_Kakao";
+	}
+	
+	@PostMapping("/setKakaoInfo")
+	public String setKakaoInfo(ModelAndView model,
+							   @RequestParam String kakaoId, 
+							   @RequestParam String kakaoEmail, 
+							   @RequestParam String kakaoName, 
+							   @RequestParam String flag) {
+		
+		model.addObject("kakaoId", kakaoId);
+		model.addObject("kakaoEmail", kakaoEmail);
+		model.addObject("kakaoName", kakaoName);
+		model.addObject("flag", flag);
+		
+		return "member/enroll_Kakao";
+	}
+	
+	
 }
 

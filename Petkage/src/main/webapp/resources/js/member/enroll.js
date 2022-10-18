@@ -66,7 +66,7 @@ var idCheck = /^[a-zA-z0-9]{6,12}$/;
 var pwdCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,}$/;
 
 // 이름 - 한글 또는 영문만 5자 이내 입력 가능
-var nameCheck = /^[가-힣|a-z|A-Z]{3,5}$/;
+var nameCheck = /^[가-힣|a-z|A-Z]{2,5}$/;
 
 // 핸드폰 번호 - 숫자만 입력 가능
 var phoneCheck = /^010[0-9]{8}$/;
