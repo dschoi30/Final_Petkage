@@ -24,7 +24,7 @@
         <div class="py-5 text-center"  style="padding-bottom: 15px !important;">
           <h1>Join to 
           <strong><span style="color: #753422;">Pet</span>kage</strong> 
-          with <span style="color: #ffd600;">KAKAO</span></h1>
+          with <span style="color: #ffd600; font-weight:bold">KAKAO</span></h1>
         </div>
 
         <!-- 회원가입 정보 입력 form -->
@@ -101,7 +101,7 @@
                 <tr>
                   <th>아이디</th>
                   <td>
-                    <input type="text" class="joinInfoInput" name="userId" id="kakaoId" value="${kakaoId}">
+                    <input type="text" class="joinInfoInput" name="userId" id="kakaoId" value="${kakao_kakaoId}" readonly>
                     <input type="hidden" name="idTest" value="0" />
                   </td>
                   <td>
@@ -112,25 +112,25 @@
                 <tr>
                   <th></th>
                   <td>
-                    <span class="checkAlert" id="id_termsCheck">10~12자의 영문 대소문자와 숫자를 입력해 주세요.</span>
+                    <span class="checkAlert" id="id_termsCheck">이미 중복 확인된 아이디입니다.</span>
                   </td>
                 </tr>
                 <tr>
                   <th>비밀번호</th>
                   <td>
                     <input type="hidden" name="pwdTest" value="0" />
-                    <input type="password" class="joinInfoInput" name="userPwd" id="userPwd" >
+                    <input type="password" class="joinInfoInput" name="userPwd" id="userPwd" value="${kakao_kakaoId}" readonly>
                   </td>
                   <th>비밀번호 확인</th>
                   <td>
                     <input type="hidden" name="pwdCheckTest" value="0" />
-                    <input type="password" class="joinInfoInput" name="userPwdCheck" id="userPwdCheck">
+                    <input type="password" class="joinInfoInput" name="userPwdCheck" id="userPwdCheck" value="${kakao_kakaoId}" readonly>
                   </td>
                 </tr>
                 <tr>
                   <th></th>
                   <td>
-                    <span class="checkAlert" id="pwd_termsCheck">영문자, 숫자 모두 포함해 8자리 이상 입력해 주세요.</span>
+                    <span class="checkAlert" id="pwd_termsCheck"></span>
                   </td>
                   <th></th>
                   <td><span class="checkAlert" id="pwd_doubleCheck"></span></td>
@@ -139,7 +139,7 @@
                   <th>이름</th>
                   <td>
                     <input type="hidden" name="nameTest" value="0" />
-                    <input type="text" class="joinInfoInput" name="userName" id="userName" >
+                    <input type="text" class="joinInfoInput" name="userName" id="userName" value="${kakao_name}">
                   </td>
                   <th>핸드폰 번호</th>
                   <td>
@@ -188,7 +188,7 @@
                 <tr>
                   <th style="margin-top: 10px" >이메일</th>
                     <td>
-                      <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" >
+                      <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" value="${kakao_email}" readonly>
                       <span class="userInfoAlert" id="error_Email"></span>
                     </td>
                     <td>
@@ -211,7 +211,7 @@
                 <tr>
                   <th></th>
                     <td>
-                      <span class="checkAlert" id="email_termsCheck"></span>
+                      <span class="checkAlert" id="email_termsCheck">이미 중복 확인된 이메일입니다.</span>
                     </td>
                   <th></th>
                   <td>
@@ -325,7 +325,7 @@
 
 	<!-- java script -->
 	<script src="${ path }/js/member/jquery-3.6.0.js"></script>
-	<script async src="${ path }/js/member/enroll.js?ver=1"></script>
+	<script async src="${ path }/js/member/enroll_Kakao.js?ver=1"></script>
 	
   <!-- 다음 주소 검색 API -->
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -372,83 +372,7 @@
           document.getElementById("addressSub").focus();
         }
       }).open();
-  }
-  
-// 아이디 중복 검사
-  $("#userIdDuplicate").on("click", () => {
-    $("[name=idDuplicateTest]").val("1");
-
-    let userId = $("#userId").val().trim();
-
-    // DB를 통해 중복검사
-    $.ajax({
-      type: "POST",
-      url: "${path}/member/idCheck",
-      data: {
-        userId,
-      },
-
-      success: (result) => {
-        console.log(result);
-        
-        if(result == 'success') {
-          // 중복 아이디 X
-          $("[name=idTest]").val("1");
-          $("#id_termsCheck").text("사용 가능한 아이디 입니다.");
-        } else {
-          // 중복 아이디 O
-          $("[name=idTest]").val("0");
-          $("#userId").val("").focus();
-          $("#id_termsCheck").text("이미 사용중인 아이디 입니다.");
-        }
-      } // success 종료
-
-    }); // ajax 종료
-
-    //아이디 중복검사 이후 id값 변경시 다시 중복검사 하게끔
-    $("#userId").change(function () {
-      $("[name=idDuplicateTest]").val("0");
-    });
-
-  }); 
-
-  // 이메일 중복 검사
-  $("#emailDuplicate").on("click", () => {
-    $("[name=emailDuplicateTest]").val("1");
-
-    let userEmail = $("#userEmail").val().trim();
-
-    // DB를 통해 중복검사
-    $.ajax({
-      type: "POST",
-      url: "${path}/member/emailCheck",
-      data: {
-        userEmail,
-      },
-
-      success: (result) => {
-        console.log(result);
-        
-        if(result == 'success') {
-          // 중복 아이디 X
-          $("[name=emailDuplicateTest]").val("1");
-          $("#email_termsCheck").text("사용 가능한 이메일 입니다.");
-        } else {
-          // 중복 아이디 O
-          $("[name=emailDuplicateTest]").val("0");
-          $("#userEmail").val("").focus();
-          $("#email_termsCheck").text("이미 사용중인 이메일 입니다.");
-        }
-      } // success 종료
-
-    }); // ajax 종료
-
-    //아이디 중복검사 이후 id값 변경시 다시 중복검사 하게끔
-    $("#userEmail").change(function () {
-      $("[name=emailDuplicateTest]").val("0");
-    });
-
-  }); 
+    }
   </script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

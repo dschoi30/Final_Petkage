@@ -90,12 +90,19 @@
 	    </div>
 	  </div>
 
-	<%-- 카카오 api 테스트 --%>
-	<form name="kakaoForm" id="kakaoForm" method="POST" action="${path}/member/setKakaoInfo">
-		<input type="hidden" name="kakaoId" id="kakao_kakaoId" />
-		<input type="hidden" name="kakaoEmail" id="kakao_email" />
-		<input type="hidden" name="kakaoName" id="kakao_name" />
-		<input type="hidden" name="flag" id="flag" value="kakao" />
+	<%-- 카카오 회원가입 --%>
+	<form name="kakaoForm" id="kakaoEnrollForm" method="POST" action="${path}/member/setKakaoInfo">
+		<input type="hidden" name="kakao_kakaoId" id="kakao_kakaoId" />
+		<input type="hidden" name="kakao_email" id="kakao_email" />
+		<input type="hidden" name="kakao_name" id="kakao_name" />
+		<input type="hidden" name="enroll_Type" id="enroll_Type" value="KAKAO" />
+	</form>
+	<%-- 카카오 로그인 --%>
+	<form name="kakaoForm" id="kakaoLoginForm" method="POST" action="${path}/member/login_kakao">
+		<input type="hidden" name="kakaoId" id="kakaoId" />
+		<input type="hidden" name="kakaoEmail" id="kakaoEmail" />
+		<input type="hidden" name="kakaoName" id="kakaoName" />
+		<input type="hidden" name="enroll_Type" id="enrollType" value="KAKAO" />
 	</form>
 
 	</section>
@@ -148,34 +155,38 @@
 	} // loginWithKakao
 
 	function kakaoLoginPro(res){
-		var kakaoId = res.id; // 카카오 email
-		var kakaoEmail = res.kakao_account.email; // 카카오 닉네임(이름)
-		var kakaoName = res.properties.nickname; 
+		var kakao_kakaoId = res.id; // 카카오 email
+		var kakao_email = res.kakao_account.email; // 카카오 닉네임(이름)
+		var kakao_name = res.properties.nickname; 
 	
 		$.ajax({
 				type : 'POST',
 				url : '${path}/member/kakaoLoginPro',
 				data : {
-					kakaoId,
-					kakaoEmail,
-					kakaoName
+					kakao_kakaoId,
+					kakao_email,
+					kakao_name
 					},
 				dataType : 'text',
 				success : function(result){
 					console.log("result : " + result)
-					console.log("kakaoId : " + kakaoId)
+					console.log("kakaoId : " + kakao_kakaoId)
 
 					if(result == "Kakao_Login"){
-						alert("로그인되었습니다.");
-						location.href = '/'
+						$('#kakaoId').val(kakao_kakaoId);
+						$('#kakaoLoginForm').submit();
+
+						alert("[Petkage] 카카오톡으로 로그인되었습니다.");
 					} else if(result == "Kakao_Enroll"){
 						console.log("success : " + result)
-						console.log(kakaoId)
+						console.log(kakao_kakaoId)
 
-						$('#kakao_kakaoId').val(kakaoId);
-						$('#kakao_email').val(kakaoEmail);
-						$('#kakao_name').val(kakaoName);
-						$('#kakaoForm').submit();
+						$('#kakao_kakaoId').val(kakao_kakaoId);
+						$('#kakao_email').val(kakao_email);
+						$('#kakao_name').val(kakao_name);
+						$('#kakaoEnrollForm').submit();
+
+						alert("[Petkage] 카카오톡으로 가입을 시작합니다.");
 					} else {
 						alert("로그인에 실패했습니다");
 					}

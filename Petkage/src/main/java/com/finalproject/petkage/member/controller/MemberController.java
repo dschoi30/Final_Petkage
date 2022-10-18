@@ -394,35 +394,36 @@ public class MemberController {
 			return "member fail";
 		}
 	}
+
 	
-	@PostMapping("/kakaoApi")
-	@ResponseBody
-	public String kakaoApi() {
-		log.info("kakaoApi 전달");
-		String kakaoApi = "5b193b0622a9f557a7fdcc91e98cd2d0";
-		
-		return kakaoApi;
-	}
+//	 카카오 로그인 및 회원가입
 	
 	@PostMapping("/kakaoLoginPro")
 	@ResponseBody
-	public String kakaoLoginPro(@RequestParam String kakaoId, 
-								@RequestParam String kakaoEmail, 
-								@RequestParam String kakaoName, 
-								HttpSession session) {
+	public String kakaoLoginPro(HttpSession session,
+								@RequestParam String kakao_kakaoId, 
+								@RequestParam String kakao_email, 
+								@RequestParam String kakao_name) {
 		
-		System.out.println(kakaoEmail);
-		int result = service.emailCheck(kakaoEmail);
-		System.out.println(result);
+		int result = service.emailCheck(kakao_email);
+
+		log.info("kakaoLoginPro");
+		System.out.println(kakao_email);
+		
+		// 여기서 한번에 처리하고 싶은데 ...
+		// 이메일 정보가 있으면 로그인 
+		// 이메일 정보가 없으면 값을 model.addobject로 값 넣고 setviewname으로 페이지 넘기로 하는데 안됨 .. 이유는 몰러 ~~! ㅠㅠ 
 		if(result != 0) {
-			// 중복 이메일 O			
+			// 중복 이메일 O	
+			
 			return "Kakao_Login";
 		} else {
-			// 중복 이메일 X
+			// 중복 이메일 X 
 			return "Kakao_Enroll";
 		}
-		
 	}
+	
+	
 	
 	// 회원가입(카카오) 페이지 처리 - OK  
 	@GetMapping("/enrollKakaoPage")
@@ -433,20 +434,63 @@ public class MemberController {
 	}
 	
 	@PostMapping("/setKakaoInfo")
-	public String setKakaoInfo(ModelAndView model,
-							   @RequestParam String kakaoId, 
-							   @RequestParam String kakaoEmail, 
-							   @RequestParam String kakaoName, 
-							   @RequestParam String flag) {
+	public ModelAndView setKakaoInfo(ModelAndView model,
+								     @RequestParam String kakao_kakaoId, 
+								     @RequestParam String kakao_email, 
+								     @RequestParam String kakao_name, 
+								     @RequestParam String enroll_Type) {
 		
-		model.addObject("kakaoId", kakaoId);
-		model.addObject("kakaoEmail", kakaoEmail);
-		model.addObject("kakaoName", kakaoName);
-		model.addObject("flag", flag);
+		model.addObject("kakao_kakaoId", kakao_kakaoId);
+		model.addObject("kakao_email", kakao_email);
+		model.addObject("kakao_name", kakao_name);
+		model.addObject("enroll_Type", enroll_Type);
 		
-		return "member/enroll_Kakao";
+		model.setViewName("member/enroll_Kakao");
+		
+		return model;
 	}
 	
-	
+	// 로그인(카카오) 처리 - OK
+	@PostMapping("/login_kakao")
+	public ModelAndView loginKakao(HttpSession session, 
+							  	   ModelAndView model, 
+							  	   @RequestParam("kakaoId") String kakaoId) {
+		log.info("kakaoId : " + kakaoId);
+
+		Member loginMember = service.loginByKakao(kakaoId);
+		
+		System.out.println(loginMember);
+		if(loginMember != null) {
+			session.setAttribute("loginMember", loginMember);
+			
+			if(loginMember.getMemberRole().equals("ROLE_USER")) {
+				// 일반 회원 로그인 했을 경우
+				model.addObject("msg", "[Petkage] 당신은 Petkage의 일반 회원입니다.");
+				model.setViewName("common/msg");
+				System.out.println(loginMember.getMemberRole());
+				
+			} else if (loginMember.getMemberRole().equals("ROLE_SELLER")){
+				// 판매 회원 로그인 했을 경우
+				model.addObject("msg", "[Petkage] 당신은 Petkage의 판매자 회원입니다.");
+				model.setViewName("common/msg");
+				System.out.println(loginMember.getMemberRole());
+				
+			} else {
+				// 관리자 회원 로그인 했을 경우
+				model.addObject("msg", "[Petkage] 당신은 Petkage의 관리자입니다.");
+				model.setViewName("common/msg");
+				System.out.println(loginMember.getMemberRole());
+				
+			}
+		} else {
+			model.addObject("msg", "[Petkage] 카카오 계정을 확인해 주세요. ");
+			model.addObject("location", "/member/loginPage");
+			model.setViewName("common/msg");
+		}
+		
+		System.out.println(loginMember);
+		
+		return model;
+	}
 }
 

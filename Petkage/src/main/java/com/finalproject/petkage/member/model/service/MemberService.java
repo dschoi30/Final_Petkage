@@ -19,4 +19,6 @@ public interface MemberService {
 	int updateFindNum(String userId, int findNum);
 
 	int updatePwd(int no, String newPwd);
+
+	Member loginByKakao(String kakaoId);
 }
