@@ -90,11 +90,9 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
 	<!-- Food_dictionary 끝 -->
-
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

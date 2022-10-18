@@ -1,5 +1,7 @@
 package com.finalproject.petkage.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -392,7 +395,22 @@ public class MemberController {
 		}
 	}
 	
+	@PostMapping("/kakaoApi")
+	@ResponseBody
+	public String kakaoApi() {
+		System.out.println("kakaoApi");
+		
+		return "5b193b0622a9f557a7fdcc91e98cd2d0";
+	}
 	
-	
+	@PostMapping("/kakaoLoginPro")
+	@ResponseBody
+	public Map<String, Object> kakaoLoginPro(@RequestParam Map<String,Object> paramMap,HttpSession session) {
+		System.out.println("paramMap:" + paramMap);
+		
+		Map <String, Object> resultMap = new HashMap<String, Object>();
+		
+		return resultMap;
+	}
 }
 

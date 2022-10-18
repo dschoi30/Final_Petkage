@@ -55,11 +55,11 @@ btnLoginBox .login body {
   font-weight: 700;
 }
 
-.login #naverLogin {
+.login #naver_id_login {
   color: white;
   background-color: #92de63;
 }
-.login #naverLogin:hover {
+.login #naver_id_login:hover {
   background-color: #57b81b;
   font-weight: 700;
 }

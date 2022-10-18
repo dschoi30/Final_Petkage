@@ -1,17 +1,12 @@
 package com.finalproject.petkage.member.model.service;
 
-import org.apache.ibatis.annotations.Param;
-import org.mybatis.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.member.model.mapper.MemberMapper;
 import com.finalproject.petkage.member.model.vo.Member;
-
-import oracle.jdbc.logging.annotations.Log;
 
 @Service
 public class MemberServiceImpl implements MemberService {

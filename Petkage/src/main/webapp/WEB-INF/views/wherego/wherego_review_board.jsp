@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_board.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_board.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -128,6 +128,7 @@
         <div class="wgc_7">
             <div class="wgc7_list">
              	<c:forEach var="review" items="${review}">
+             	<c:set var="rename" value="${ review.revrenameimg }" />
 	                <div class="wgc7l_1">
 	                    <div class="wgc7l_1_1">
 	                        <div class="wgc7l_name">
@@ -137,21 +138,53 @@
 	                            </div>
 	                        </div>
 	                        <div class="wgc7l_img">
-	                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
+	                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" alt="">
 	                        </div>
 	                    </div>
 	                    <div class="wgc7l_1_2">
 	                        <div class="wgc7l_star">
-	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-	                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-	                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
+	                            <c:choose>
+	                            	<c:when test ="${review.revscore == 1}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 2}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 3}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 4}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 5}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+									</c:when>
+	                            </c:choose>
 	                        </div>
 	                        <div class="wgc7l_review">
-	                            ${review.revcoment}
+	                            <div class="wgc7l_revcoment">${review.revcoment}</div>
 	                            <div class="wgc7l_write_time">
-	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/> 작성</p>
+	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
 	                            </div>
 	                        </div>
 	                    </div>

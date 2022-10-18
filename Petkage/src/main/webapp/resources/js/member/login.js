@@ -6,7 +6,6 @@ $(document).ready(function () {
 
   userId.addEventListener("keyup", btnLoginActive);
   userPwd.addEventListener("keyup", btnLoginActive);
-  console.log("로그인 버튼 활성화");
 
   function btnLoginActive() {
     switch (!(userId.value && userPwd.value)) {

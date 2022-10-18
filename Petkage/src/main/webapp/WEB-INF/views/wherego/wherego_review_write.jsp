@@ -48,25 +48,25 @@
                     </div>
                 </div>
             </div>
-            <form action="">
+            <form action="${path}/review_write" method="post" enctype="multipart/form-data" >
                 <div class="wgc7_option">
                     <div class="wgc7_select">
                         <div class="wgc7_cate">
                             <label for="cate">카테고리</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>숙소</option>
-                                <option>카페</option>
-                                <option>맛집</option>
-                                <option>미용</option>
-                                <option>여행지</option>
-                                <option>동물병원</option>
-                                <option>유치원</option>
-                                <option>셀프목욕</option>
+                            <select class="form-control" id="exampleFormControlSelect1" name="revcategory">
+                                <option value="숙소">숙소</option>
+                                <option value="카페">카페</option>
+                                <option value="맛집">맛집</option>
+                                <option value="미용">미용</option>
+                                <option value="여행지">여행지</option>
+                                <option value="동물병원">동물병원</option>
+                                <option value="유치원">유치원</option>
+                                <option value="셀프목욕">셀프목욕</option>
                             </select>
                         </div>
                         <div class="wgc7_location">
                             <label for="location">장소 이름</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="장소 이름을 명확히 적어주세요!">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="revtitle" placeholder="장소 이름을 명확히 적어주세요!">
                         </div>
                     </div>
                     <div class="wgc7_score">
@@ -75,15 +75,15 @@
                         </div>
                         <div class="wgc7_star">
                             <fieldset>
-                                <input type="radio" name="reviewStar" value="5" id="rate1"><label
+                                <input type="radio" name="revscore" value="5" id="rate1"><label
                                     for="rate1">★</label>
-                                <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                                <input type="radio" name="revscore" value="4" id="rate2"><label
                                     for="rate2">★</label>
-                                <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                                <input type="radio" name="revscore" value="3" id="rate3"><label
                                     for="rate3">★</label>
-                                <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                                <input type="radio" name="revscore" value="2" id="rate4"><label
                                     for="rate4">★</label>
-                                <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                                <input type="radio" name="revscore" value="1" id="rate5"><label
                                     for="rate5">★</label>
                             </fieldset>
                         </div>
@@ -96,13 +96,13 @@
                             <label for="image">
                                 <div class="btn-upload">업로드</div>
                             </label>
-                            <input type="file" name="image" id="image" multiple>
+                            <input type="file" name="multiFile" id="image" multiple>
                             <div id="preview"></div>
                         </div>
                     </div>
                     <div class="wgc7w_text">
                         <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="리뷰를 적어주세요!"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="revcoment" rows="3" placeholder="리뷰를 적어주세요!"></textarea>
                         </div>
                     </div>
                 </div>
