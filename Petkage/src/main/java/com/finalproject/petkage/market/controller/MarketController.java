@@ -26,7 +26,9 @@ import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Cart;
+import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -288,14 +290,16 @@ public class MarketController {
 		return model;
 	}
 	
-	@GetMapping("/order")
-	public ModelAndView Payment (ModelAndView model, @RequestParam int no, @RequestParam int proNo) {
+	@GetMapping("/order/{no}")
+	public ModelAndView Payment (ModelAndView model, @ModelAttribute KakaoPayReady kakaoPayReady, @PathVariable("no") int no) {
 
-		Product product = null;
+//		model.addObject("orderList", kakaoPayService.getGoodsInfo(kakaoPayReady.getOrders()));
+		System.out.println("loginMember : " + no);
+		System.out.println("orderList : " + kakaoPayReady.getOrders());
+
+		model.addObject("orderList", kakaoPayService.getItemsInfo(kakaoPayReady.getOrders()));
+		model.addObject("memberInfo", kakaoPayService.getMemberInfo(no));
 		
-		product = service.findProductByNo(proNo);
-		
-		model.addObject("product", product);
 		model.setViewName("market/order");
 		
 		return model;
