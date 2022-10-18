@@ -29,7 +29,15 @@ public class KakaoPayReady {
     
     private String payMethod;
     
-    private int payTotalPrice;
+    private int totalDelFee;
+
+    private int totalPrice;
+    
+    private int usingPoint;
+    
+    private int totalSavingPoint;
+    
+    private int totalPriceAfterUsingPoint;
     
     private Date payCreatedAt;
     

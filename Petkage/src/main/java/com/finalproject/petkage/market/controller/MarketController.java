@@ -28,6 +28,7 @@ import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -294,7 +295,11 @@ public class MarketController {
 
 //		model.addObject("orderList", kakaoPayService.getGoodsInfo(kakaoPayReady.getOrders()));
 		System.out.println("loginMember : " + no);
-		System.out.println("orders : " + kakaoPayReady.getOrders());
+		System.out.println("orderList : " + kakaoPayReady.getOrders());
+
+		model.addObject("orderList", kakaoPayService.getItemsInfo(kakaoPayReady.getOrders()));
+		model.addObject("memberInfo", kakaoPayService.getMemberInfo(no));
+		
 		model.setViewName("market/order");
 		
 		return model;

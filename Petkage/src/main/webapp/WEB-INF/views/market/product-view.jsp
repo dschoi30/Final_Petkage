@@ -133,7 +133,7 @@
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
                         	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1" onkeyup="inputNumberFormat(this);">
                         	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
@@ -616,7 +616,20 @@
    			$(".order-form").find("input[name='orders[0].proCount']").val(proCount);
    			$(".order-form").submit();
    		})
-		
 	});
+	
+	function inputNumberFormat(obj) {
+	    obj.value = comma(uncomma(obj.value));
+	}
+	 
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
+
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

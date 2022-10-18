@@ -19,6 +19,7 @@ import com.finalproject.petkage.market.model.mapper.MarketMapper;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.PayItems;
+import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -114,11 +115,23 @@ public class KakaoPayService {
         return null;
     }
 
-	public List<PayItems> getGoodsInfo(List<PayItems> orders) {
+	public List<PayItems> getItemsInfo(List<PayItems> orders) {
 		
 		List<PayItems> result = new ArrayList<PayItems>();
 		
-		
+		for(PayItems payItems : orders) {
+			
+			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
+			
+			itemsInfo.setProCount(payItems.getProCount());
+			
+			result.add(itemsInfo);
+		}
 		return result;
+	}
+	
+	public Member getMemberInfo(int no) {
+		
+		return mapper.getMemberDeliveryInfo(no);
 	}
 }
