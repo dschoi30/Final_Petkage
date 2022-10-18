@@ -9,6 +9,8 @@ import com.finalproject.petkage.wherego.model.vo.Wherego;
 @Mapper
 public interface WheregoMapper {
 
+	List<Wherego> cafe_board();
+
 	List<Wherego> lodging_board();
 
 }

@@ -122,7 +122,7 @@
                         <span><fmt:formatNumber value="${ product.proSPrice * 0.05 }" pattern="#,###원"/></span> 적립 (5% 적립)
                     </div>
                     <div class="delivery-etd">
-                        지금 주문 시 9/19(월)에 발송됩니다.
+                        지금 주문 시 내일 발송됩니다.
                         <c:if test="${ product.proLTime.equals('1') }">
                         내일
                         </c:if>
@@ -133,7 +133,7 @@
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
                         	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1">
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1" onkeyup="inputNumberFormat(this);">
                         	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
@@ -144,8 +144,7 @@
                     <div class="prod-summary-footer">
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
 
-                        <button class="btn btn-light" style="width: 235px;"
-                        		onclick="location.href='${ path }/market/order?proNo=${ product.proNo }'">바로 구매</button>
+                        <button class="btn btn-light" id="btnBuy" style="width: 235px;">바로 구매</button>
 						<c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
 	                        <br><br>
 	                        <button class="btn btn-light" style="width: 235px;"
@@ -537,18 +536,19 @@
             </div>
         </div>
     </div>
-                        
+<!--                         
 	<form action="${ path }/market/cart/add" method="POST" class="add-cart-form">
 		<input type="hidden" name="proNo" class="update_proNo">
 		<input type="hidden" name="proCount" class="update_proCount">
 		<input type="hidden" name="no" value="${loginMember.no}">
 	</form>	
+ -->	
+	<form action="${ path }/market/order/${ loginMember.no }" method="GET" class="order-form">
+		<input type="hidden" name="orders[0].proNo" value="${ product.proNo }">
+		<input type="hidden" name="orders[0].proCount" value="">
+	</form>
 
     <script src="${path}/resources/js/market/product.js"></script>
-
-	<script>
-		
-	</script>
 
     <script>
 	$(document).ready(() => {
@@ -572,12 +572,12 @@
     	});
 
     	// 서버로 전송할 데이터
-    	
     	const form = {
     		no: '${ loginMember.no }',
      		proNo: '${ product.proNo }',
      		proCount: ''
    		}
+    	
     	// 장바구니 추가 버튼
    		$("#btnAddCart").on("click", function(e) {
 			form.proCount = $(".qty-input").val();
@@ -602,14 +602,34 @@
    			if(result == '0'){
    				alert("장바구니 추가에 실패했습니다.");
    			} else if(result == '1'){
-   				confirm("상품이 장바구니에 추가되었습니다.");
+   				alert("상품이 장바구니에 추가되었습니다.");
    			} else if(result == '2'){
    				alert("상품이 이미 장바구니에 있습니다.");
    			} else if(result == '5'){
    				alert("로그인이 필요합니다.");	
    			}
    		}
-		
+   		
+   		// 바로 구매 버튼
+   		$("#btnBuy").on("click", function() {
+   			let proCount = $(".qty-input").val();
+   			$(".order-form").find("input[name='orders[0].proCount']").val(proCount);
+   			$(".order-form").submit();
+   		})
 	});
+	
+	function inputNumberFormat(obj) {
+	    obj.value = comma(uncomma(obj.value));
+	}
+	 
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
+	}
+
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

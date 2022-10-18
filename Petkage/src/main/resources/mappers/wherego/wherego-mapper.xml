@@ -25,12 +25,20 @@
 		<result property="price" column="SPOT_PRICE" />
 		<result property="rimg" column="SPOT_RIMG" />
 		<result property="subinfo" column="SPOT_SUBINFO" />
-	
+		<result property="spotstatus" column="SPOT_STATUS" />
+		
 	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
 		SELECT *
 		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="cafe_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
 	</select>
 	
 </mapper>
