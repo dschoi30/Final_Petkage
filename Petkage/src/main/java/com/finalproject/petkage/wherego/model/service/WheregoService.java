@@ -8,6 +8,8 @@ public interface WheregoService {
 
 	List<Wherego> lodging_board();
 
+	List<Wherego> cafe_board();
+
 	
 	
 }

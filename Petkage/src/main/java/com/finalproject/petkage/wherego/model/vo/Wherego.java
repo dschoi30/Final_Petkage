@@ -43,4 +43,6 @@ public class Wherego {
 	private String rimg;
 	
 	private String subinfo;
+	
+	private String spotstatus;
 }

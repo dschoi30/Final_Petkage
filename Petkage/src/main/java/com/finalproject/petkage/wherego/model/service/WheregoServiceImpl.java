@@ -19,5 +19,11 @@ public class WheregoServiceImpl implements WheregoService {
 		return mapper.lodging_board();
 	}
 
+	@Override
+	public List<Wherego> cafe_board() {
+		
+		return mapper.cafe_board();
+	}
+
 	
 }
