@@ -874,30 +874,6 @@
     background-color: #fff;
 }
 
-.tc .map_content {
-    width: 100%;
-    padding: 40px;
-    background-color: #e2e2e2;
-    color: #6B6B6B;
-}
-
-.tc .map_content h5 {
-    color: #414141;
-}
-
-.tc .map_content .hAddr {
-    margin-top: 20px;
-    font-size: small;
-    font-weight: bold;
-}
-
-.tc .map_content .bAddr {
-    padding:5px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
 /* DICTIONARY 결과 CSS */
 .tc .dic_comment svg {
     width: 7em;
@@ -973,12 +949,12 @@
     opacity: 1;
     transform-origin: 0 1px;
     animation: 
-      blink 3s linear infinite,
-      blinkSqueeze 3s linear infinite;
+        blink 3s linear infinite,
+        blinkSqueeze 3s linear infinite;
 }
 
 .tc .soso #sBody {
-  fill: #fcd11ebc;
+    fill: #fcd11ebc;
 }
 
 @keyframes rotateLeftToRight {
@@ -1147,3 +1123,102 @@
     color: #ff2727 !important;
 }
 
+/* WalkOutRecommend CSS*/
+
+.tc .walkOut {
+    border-top: 0px solid; 
+}
+.tc .walkOut span {
+    margin: 0px;
+    border-bottom: 0px solid !important;
+}
+
+.tc .map_content {
+    width: 100%;
+    padding: 20px;
+    color: #6B6B6B;
+    /* #ebebeb */
+}
+
+.tc .map_content h5 {
+    color: #414141;
+}
+
+.tc .map_content .hAddr {
+    margin-top: 15px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.tc .map_content .bAddr {
+    padding:5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.tc .mapOverlay {
+	background: white; 
+	height: 30px; 
+	border-radius: 6px; 
+	font-size: 15px;
+	padding: 5px;
+}
+
+.tc .btnOverlay{
+	position: relative;
+    bottom: 1.5px;
+	background: white; 
+	border: 1px solid white; 
+	margin: 0px 3px 9px 5px;
+    font-size: 7px;
+}
+
+.tc .maplink {
+	text-decoration: none;
+	color: #803d3d;
+}
+
+.tc .weather_content {
+    margin: 50px;
+    margin-bottom: 0px;
+}
+
+.tc .wContents {
+    text-align: center;
+}
+
+.tc #petIcon{
+    width: 25%;
+    height: 25%;
+}
+
+.tc #weatherMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.tc .wnames {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 5px 0px 10px
+}
+
+.tc .wName {
+    display: inline-block;
+}
+.tc #weatherMain img {
+    width: 15%;
+    height: 15%;
+}
+
+.tc #weatherDesc {
+    margin-bottom: 3%;
+}
+
+.tc #description {
+    font-size: 20px;
+    font-weight: bold;
+}
