@@ -353,10 +353,16 @@ html {
     height: 150px;
 }
 
+.wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 .wgc7l_review .wgc7l_revcoment {
+	width: 70%;
+}
+
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_1_2 .wgc7l_review .wgc7l_write_time {
+    width: 20%;
     font-size: 1.6rem;
     font-weight: 600;
     color: #707070;
+    margin-left: 30px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_2 {

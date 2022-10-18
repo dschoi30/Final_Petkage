@@ -37,7 +37,7 @@
     </select>
     
     <insert id="review_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
-    	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, 213, 1, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, 5, 20, 'Y', 200, #{revrenameimg}, #{revcategory})
+    	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, 213, 1, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, 20, 'Y', 200, #{revrenameimg}, #{revcategory})
     </insert>
 
 </mapper>
