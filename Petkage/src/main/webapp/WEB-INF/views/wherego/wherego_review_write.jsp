@@ -53,7 +53,7 @@
                     <div class="wgc7_select">
                         <div class="wgc7_cate">
                             <label for="cate">카테고리</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="revcategory">
+                            <select class="form-control" id="exampleFormControlSelect1" name="revcategory" required="required">
                                 <option value="숙소">숙소</option>
                                 <option value="카페">카페</option>
                                 <option value="맛집">맛집</option>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="wgc7_location">
                             <label for="location">장소 이름</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" name="revtitle" placeholder="장소 이름을 명확히 적어주세요!">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="revtitle" placeholder="장소 이름을 명확히 적어주세요!" required="required">
                         </div>
                     </div>
                     <div class="wgc7_score">
@@ -102,7 +102,7 @@
                     </div>
                     <div class="wgc7w_text">
                         <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="revcoment" rows="3" placeholder="리뷰를 적어주세요!"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="revcoment" rows="3" placeholder="리뷰를 적어주세요!" required="required"></textarea>
                         </div>
                     </div>
                 </div>

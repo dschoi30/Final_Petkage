@@ -56,6 +56,152 @@ public class ReviewController {
 
     }
 	
+	@GetMapping("/review_cafe")
+    public ModelAndView review_cafe(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_cafe(), 10);
+        review = service.getReviewList_cafe(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_cafe");
+
+        System.out.println(review);
+        
+        return model;
+
+    }
+	
+	@GetMapping("/review_food")
+    public ModelAndView review_food(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_food(), 10);
+        review = service.getReviewList_food(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_food");
+
+        System.out.println(review);
+        
+        return model;
+
+    }
+	
+	@GetMapping("/review_hair")
+    public ModelAndView review_hair(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_hair(), 10);
+        review = service.getReviewList_hair(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_hair");
+
+        System.out.println(review);
+        
+        return model;
+
+    }
+	
+	@GetMapping("/review_trip")
+    public ModelAndView review_trip(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_trip(), 10);
+        review = service.getReviewList_trip(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_trip");
+
+        System.out.println(review);
+        
+        return model;
+
+    }
+	
+	@GetMapping("/review_hospital")
+    public ModelAndView review_hospital(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_hospital(), 10);
+        review = service.getReviewList_hospital(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_hospital");
+
+        System.out.println(review);
+        
+        return model;
+    }
+	
+	@GetMapping("/review_preschool")
+    public ModelAndView review_preschool(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_preschool(), 10);
+        review = service.getReviewList_preschool(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_preschool");
+
+        System.out.println(review);
+        
+        return model;
+    }
+	
+	@GetMapping("/review_bath")
+    public ModelAndView review_bath(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.getReviewAllCount_bath(), 10);
+        review = service.getReviewList_bath(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_bath");
+
+        System.out.println(review);
+        
+        return model;
+    }
+	
+	
+	
 	@GetMapping("/review_write")
     public String Review_write() {
         log.info("게시글 작성 페이지 요청");
@@ -142,6 +288,31 @@ public class ReviewController {
 		System.out.println(result);
 		return model;
 	}
+	
+	
+	@GetMapping("/review_search")
+    public ModelAndView review_search(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "review_search") String search) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.search_list(search), 10);
+        review = service.search_board(pageInfo, search);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_review_board");
+
+        System.out.println(review);
+        
+        return model;
+
+    }
+	
+		
 	
 	
 }

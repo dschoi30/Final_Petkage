@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div class="wg_cate">
+		<div class="wg_cate">
             <div class="wgc_1">
                 <div class="wgc_box">
 	                <a href="${ path }/review_list">
