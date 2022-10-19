@@ -69,6 +69,16 @@ btnLoginBox .login body {
   font-weight: 700;
 }
 
+.login #googleLogin {
+  color: white;
+  background-color: black;
+}
+.login #googleLogin:hover {
+  background-color: #f6f7fc;
+  color: black;
+  font-weight: 700;
+}
+
 .login #btnJoinMember {
   color: white;
   background-color: #803d3d;

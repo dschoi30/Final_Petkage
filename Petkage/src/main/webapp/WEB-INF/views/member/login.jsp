@@ -68,13 +68,17 @@
 	                <input type="submit" value="로그인" class="btn btn-block" id="btnLoin" disabled="">
 	
 	                <button type="button" class="btn btn-block" id="kakaoLogin" onclick = "location.href='javascript:loginWithKakao()'">
-	                  카카오톡으로 로그인
+	                	카카오톡으로 로그인
 	                </button>
 	
 	                <button type="button" class="btn btn-block" id="naver_id_login">
-	                  네이버로 로그인
+	                	네이버로 로그인
 	                </button>
 	
+					<button type="button" class="btn btn-block" id="googleLogin">
+	                	구글로 로그인
+	                </button>
+
 	                <span class="JoinMsg">
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
 	                  회원가입을 하시면 다양한 혜택이 준비되어 있습니다.
