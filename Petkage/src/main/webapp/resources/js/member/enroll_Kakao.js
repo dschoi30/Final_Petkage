@@ -59,11 +59,6 @@ function petInfoDisplay() {
 }
 
 // 정규식 표현
-//  아이디 - 대소문자 + 숫자 + 6자 이상 12자 이하
-var idCheck = /^[a-zA-z0-9]{6,12}$/;
-
-// 비밀번호 - 영대소문자, 숫자 모두 포함 8자리 이상
-var pwdCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,}$/;
 
 // 이름 - 한글 또는 영문만 5자 이내 입력 가능
 var nameCheck = /^[가-힣|a-z|A-Z]{2,5}$/;
@@ -83,56 +78,6 @@ var blankCheck = /\s/g;
 // 상호명 - 한글 또는 영문만 10자 입력 가능
 var bNameCheck = /^[가-힣|a-z|A-Z]{1,10}$/;
 
-// 아이디 유효성 검사
-$("#userId").keyup(function () {
-  if (!idCheck.test($("#userId").val())) {
-    $("#id_termsCheck").text("6~12자의 영문자와 숫자를 입력해 주세요.");
-    $("#userIdDuplicate").attr("disabled", true);
-    $("[name=idTest]").val("0");
-  } else {
-    $("#id_termsCheck").text("중복 확인을 해주세요 ");
-    $("#userIdDuplicate").attr("disabled", false);
-    $("[name=idTest]").val("1");
-  }
-});
-
-// 비밀번호 유효성 검사
-$("#userPwd").keyup(function () {
-  if (!pwdCheck.test($("#userPwd").val())) {
-    $("#pwd_termsCheck").text(
-      "영문자, 숫자 모두 포함해 8자리 이상 입력해 주세요."
-    );
-    $("[name=pwdTest]").val("0");
-  } else {
-    $("#pwd_termsCheck").text("");
-    $("[name=pwdTest]").val("1");
-    return true;
-  }
-});
-
-// 비밀번호 일치 여부
-$("#userPwdCheck").keyup(function () {
-  var userPwd = $("#userPwd").val();
-  var userPwdCheck = $("#userPwdCheck").val();
-
-  // 비밀번호 입력 안했을 경우
-  if (userPwd != "" && userPwdCheck == "") {
-    $("#pwd_doubleCheck").text("비밀번호를 확인해 주세요");
-  } else if (userPwd != "" || userPwdCheck != "") {
-    if (userPwd == userPwdCheck) {
-      // 비밀번호 일치 이벤트 실행
-      $("#pwd_doubleCheck").text("비밀번호가 일치합니다.");
-      // userPwdCheck == "1";
-      $("[name=pwdCheckTest]").val("1");
-    } else {
-      // 비밀번호 불일치 이벤트 실행
-      $("#pwd_doubleCheck").text("비밀번호가 일치하지 않습니다.");
-      $("[name=pwdCheckTest]").val("0");
-      return true;
-    }
-  }
-});
-
 // 이름 유효성 검사
 $("#userName").keyup(function () {
   if (!nameCheck.test($("#userName").val())) {
@@ -141,7 +86,7 @@ $("#userName").keyup(function () {
     $("#userName").val().length < 2 ||
     $("#userName").val().length > 6
   ) {
-    $("#name_termsCheck").text("3자 이상 5자 이하로 입력해 주세요.");
+    $("#name_termsCheck").text("2자 이상 5자 이하로 입력해 주세요.");
   } else {
     $("#name_termsCheck").text("");
     $("[name=nameTest]").val("1");
@@ -174,18 +119,6 @@ $("#addressSub").keyup(function () {
   }
 });
 
-// 이메일 유효성 검사
-// 이메일 인증하기 구현
-$("#userEmail").keyup(function () {
-  if (!emailCheck.test($("#userEmail").val())) {
-    $("#email_termsCheck").text("올바른 이메일을 입력해 주세요.");
-    $("#emailDuplicate").attr("disabled", true);
-  } else {
-    $("#emailDuplicate").attr("disabled", false);
-    $("#email_termsCheck").text("중복 확인을 해주세요.");
-  }
-});
-
 // 상호명 유효성 검사
 $("#bName").keyup(function () {
   if (!bNameCheck.test($("#bName").val())) {
@@ -209,42 +142,11 @@ $("#bNumber").keyup(function () {
   }
 });
 
-////////////////////////////////////
-//제출버튼 클릭시 모든 값 유무 확인
-// click -> submit으로 바꾸기 (지금 테스트용)
 $("#formJoin").submit(function () {
   // 약관 동의 체크
   if ($("[name=agreeTest]").val() != "1") {
     alert("약관에 동의해 주세요.");
     $("#btnAgree").focus();
-    return false;
-  }
-
-  // 아이디 유효성 검사
-  if ($("[name=idTest]").val() != "1") {
-    $("#id_termsCheck").text("아이디를 입력해 주세요.");
-    $("#userId").focus();
-    return false;
-  }
-
-  // 아이디 중복검사
-  if ($("[name=idDuplicateTest]").val() != "1") {
-    $("#id_termsCheck").text("중복 확인을 해주세요.");
-    $("#userId").focus();
-    return false;
-  }
-
-  // 비밀번호를 입력하지 않았을 경우
-  if ($("[name=pwdTest]").val() != "1") {
-    $("#pwd_termsCheck").text("비밀번호를 입력해 주세요.");
-    $("#userPwd").focus();
-    return false;
-  }
-
-  // 비밀번호를 확인하지 않았을 경우
-  if ($("[name=pwdCheckTest]").val() != "1") {
-    $("#pwd_doubleCheck").text("비밀번호 확인을 해주세요.");
-    $("#userPwdCheck").focus();
     return false;
   }
 
@@ -268,12 +170,7 @@ $("#formJoin").submit(function () {
     $("#addressSub").focus();
     return false;
   }
-  // 이메일 유효성 검사
-  if ($("[name=emailDuplicateTest]").val() != "1") {
-    $("#email_termsCheck").text("이메일 주소를 입력해 주세요.");
-    $("#userEmail").focus();
-    return false;
-  }
+
   // 판매자 회원일 경우
   if ($("input:radio[id=memberSeller]").is(":checked")) {
     // 상호명 유효성 검사
@@ -301,49 +198,3 @@ $("#pCat").click(function () {
   console.log("고영희 클릭");
   $("[name=petWeight]").attr("disabled", true);
 });
-
-/////////////////////////////////////////////
-// js 파일로 옮겼을 때 중복검사 ajax 안됨 !
-// var path = '<c:out value="${path}"/>';
-
-// // 아이디 중복 검사
-// $("#userIdDuplicate").on("click", () => {
-//   $("[name=idDuplicateTest]").val("1");
-//   // console.log($("[name=idDuplicateTest]").val() === "1");
-//   console.log("js 파일");
-//   $("#id_termsCheck").text("사용 가능한 아이디 입니다.");
-//   let userId = $("#userId").val().trim();
-
-//   // var $userId = $("#userId");
-//   // DB를 통해 중복검사
-//   $.ajax({
-//     type: "POST",
-//     url: "/member/idCheck",
-//     dataType: "json",
-//     data: {
-//       userId,
-//     },
-//     // success: (obj) => {
-//     //   console.log(obj);
-
-//     //   if (obj.duplicate === true) {
-//     //     $("#userId").val("").focus();
-//     //     $("#id_termsCheck").text("이미 사용중인 아이디 입니다.");
-//     //     alert("이미 사용중인 아이디 입니다.");
-//     //   } else {
-//     //     $("[name=idTest]").val("1");
-//     //     // console.log($("[name=idTest]").val());
-//     //     $("#id_termsCheck").text("사용 가능한 아이디 입니다.");
-//     //     // alert("사용 가능한 아이디 입니다.");
-//     //   }
-//     // },
-//     // error: (error) => {
-//     //   console.log(error);
-//     // },
-//   });
-
-//   //아이디 중복검사 이후 id값 변경시 다시 중복검사 하게끔
-//   $("#userId").change(function () {
-//     $("[name=idDuplicateTest]").val("0");
-//   });
-// });

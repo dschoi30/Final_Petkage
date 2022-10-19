@@ -45,6 +45,11 @@ btnLoginBox .login body {
   font-weight: 700;
 }
 
+.login #btnLoin:disabled {
+  background-color: #dfdfdf;
+  font-weight: 700;
+}
+
 .login #kakaoLogin {
   color: white;
   background-color: #fce620;
@@ -61,6 +66,16 @@ btnLoginBox .login body {
 }
 .login #naver_id_login:hover {
   background-color: #57b81b;
+  font-weight: 700;
+}
+
+.login #googleLogin {
+  color: white;
+  background-color: black;
+}
+.login #googleLogin:hover {
+  background-color: #f6f7fc;
+  color: black;
   font-weight: 700;
 }
 

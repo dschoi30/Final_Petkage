@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
-	// 15 + 2
+	// 17 + 2
 	private int no;
 	
 	private String userId;
@@ -45,6 +45,8 @@ public class Member {
 	private String petYN;
 	
 	private int findNum;
+	
+	private String enrollType;
 	
 	private Pet pet;
 	

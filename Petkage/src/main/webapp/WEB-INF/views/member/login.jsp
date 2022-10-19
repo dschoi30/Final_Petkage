@@ -67,14 +67,18 @@
 	              <div id="btnLoginBox">
 	                <input type="submit" value="로그인" class="btn btn-block" id="btnLoin" disabled="">
 	
-	                <button type="button" class="btn btn-block" id="kakaoLogin" onclick="loginWithKakao()">
-	                  카카오톡으로 로그인
+	                <button type="button" class="btn btn-block" id="kakaoLogin" onclick = "location.href='javascript:loginWithKakao()'">
+	                	카카오톡으로 로그인
 	                </button>
 	
 	                <button type="button" class="btn btn-block" id="naver_id_login">
-	                  네이버로 로그인
+	                	네이버로 로그인
 	                </button>
 	
+					<button type="button" class="btn btn-block" id="googleLogin">
+	                	구글로 로그인
+	                </button>
+
 	                <span class="JoinMsg">
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
 	                  회원가입을 하시면 다양한 혜택이 준비되어 있습니다.
@@ -89,102 +93,114 @@
 	      </div>
 	    </div>
 	  </div>
+
+	<%-- 카카오 회원가입 --%>
+	<form name="kakaoForm" id="kakaoEnrollForm" method="POST" action="${path}/member/setKakaoInfo">
+		<input type="hidden" name="kakao_kakaoId" id="kakao_kakaoId" />
+		<input type="hidden" name="kakao_email" id="kakao_email" />
+		<input type="hidden" name="kakao_name" id="kakao_name" />
+		<input type="hidden" name="enroll_Type" id="enroll_Type" value="KAKAO" />
+	</form>
+	<%-- 카카오 로그인 --%>
+	<form name="kakaoForm" id="kakaoLoginForm" method="POST" action="${path}/member/login_kakao">
+		<input type="hidden" name="kakaoId" id="kakaoId" />
+		<input type="hidden" name="kakaoEmail" id="kakaoEmail" />
+		<input type="hidden" name="kakaoName" id="kakaoName" />
+		<input type="hidden" name="enroll_Type" id="enrollType" value="KAKAO" />
+	</form>
+
 	</section>
 	
 	<script src="${ path }/js/member/jquery-3.6.0.js"></script>
-	<%-- <script src="${ path }/js/member/popper.min.js"></script>
-	<script src="${ path }/js/member/bootstrap.min.js"></script> --%>
-	<script src="${ path }/js/member/main.js"></script>
+	<script src="${ path }/js/member/popper.min.js"></script>
+	<%-- <script src="${ path }/js/member/bootstrap.min.js"></script>
+	<script src="${ path }/js/member/main.js"></script> --%>
 	<script src="${ path }/js/member/login.js"></script>
 
-	<!-- 카카오 로그인 -->
-	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-	
-	<%-- <script type="text/javascript">
-		Kakao.init('5b193b0622a9f557a7fdcc91e98cd2d0'); // 사용하려는 앱의 JavaScript 키 입력
+<%-- 카카오 JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
 
-		function loginWithKakao() {
-			Kakao.Auth.login({ 
-			redirectUri: 'http://localhost:8083/petkage/member/loginPage', // 등록한 리다이렉트uri 입력
-			scope: 'profile_nickname, account_email, gender',
-			success: function(authObj) {
-				console.log(authObj);
-				Kakao.API.request({
-					url:'/v2/user/me',
-					success: res => {
-						const kakao_acount = res.kakao.account;
-						console.log(kakao_accout);
-					}
-				})
-			}
-			});
-		} // loginWithKakao() 
+<%-- 카카오 스크립트 --%>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-	</script> --%>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$.ajax({
-				type: 'POST',
-				url : '${path}/member/kakaoApi',
-				data: {},
-				dataType: 'text',
-				success: function(data) {
-					Kakao.init(data);
+<script>
+	window.Kakao.init('5b193b0622a9f557a7fdcc91e98cd2d0'); // 카카오에서 발급받은 JavaScript 키 (초기화 함수 호출)
+	console.log(Kakao.isInitialized()); // sdk 초기화여부판단 
+
+	//카카오로그인
+	function loginWithKakao() {
+		Kakao.Auth.login({
+			success: function (res) {
+			Kakao.API.request({
+				url: '/v2/user/me',
+				data: {
+					property_keys: ['id', 'properties.nickname', 'kakao_account.email'],
 				},
-				error: function(xhr, status, error) {
-					alert("API 등록에 실패했습니다." + error);
-				}
-			})	
-		})
+				success: function (res) {
+					kakaoLoginPro(res)
+					console.log(res);
 
-		function loginWithKakao() {
-			Kakao.Auth.login({
-				success: function (response) {
-				Kakao.API.request({
-					url: '/v2/user/me',
-					})
-					.then(function(response) {
-						console.log(response);
-					})
-					.catch(function(error) {
-						console.log(error);
-					});
-				}
+					var token = Kakao.Auth.getAccessToken();
+					Kakao.Auth.setAccessToken(token);			// 토큰 설정
+					console.log("token: " + token);
+				},
+				
+				fail: function (error) {
+					// 카카오 로그인 실패 시 alert 창
+					alert('로그인에 실패하였습니다.');
+				},
 			})
-		} // loginWithKakao()
+			},
+			fail: function (error) {
+				location.href="${ path }/member/loginPage";
+			},
+		})
+	} // loginWithKakao
 
-		function kakaoLoginPro(response){
-			var data = {id:response.id, 
-						nickname:response.kakao_account.profile.nickname, 
-						email:response.kakao_account.account_email}
-			$.ajax({
+	function kakaoLoginPro(res){
+		var kakao_kakaoId = res.id; // 카카오 email
+		var kakao_email = res.kakao_account.email; // 카카오 닉네임(이름)
+		var kakao_name = res.properties.nickname; 
+	
+		$.ajax({
 				type : 'POST',
 				url : '${path}/member/kakaoLoginPro',
-				data : data,
-				dataType : 'json',
-				success : function(data){
-					console.log("data : " + data)
-					// if(data.JavaData == "YES"){
-					// 	alert("[Petkage] 카카오 계정으로 로그인되었습니다.");
-					// 	location.href = '/'
-					// } else if(data.JavaData == "register"){
-					// 	$("#kakaoId").val(response.id);
-					// 	$("#nickname").val(response.profile.nickname);
-					// 	$("#kakaoEmail").val(response.kakao_account.email);
-					// 	$("#kakaoGender").val(response.kakao_account.gender);
-					// 	$("#kakaoForm").submit();
-					// } else{
-					// 	alert("로그인에 실패했습니다");
-					// }
-					
-				},
+				data : {
+					kakao_kakaoId,
+					kakao_email,
+					kakao_name
+					},
+				dataType : 'text',
+				success : function(result){
+					console.log("result : " + result)
+					console.log("kakaoId : " + kakao_kakaoId)
+
+					if(result == "Kakao_Login"){
+						$('#kakaoId').val(kakao_kakaoId);
+						$('#kakaoLoginForm').submit();
+
+						alert("[Petkage] 카카오톡으로 로그인을 시작합니다.");
+					} else if(result == "Kakao_Enroll"){
+						console.log("success : " + result)
+						console.log(kakao_kakaoId)
+
+						$('#kakao_kakaoId').val(kakao_kakaoId);
+						$('#kakao_email').val(kakao_email);
+						$('#kakao_name').val(kakao_name);
+						$('#kakaoEnrollForm').submit();
+
+						alert("[Petkage] 카카오톡으로 가입을 시작합니다.");
+					} else {
+						alert("로그인에 실패했습니다");
+					}
+				}, // success
 				error: function(xhr, status, error){
 					alert("로그인에 실패했습니다."+error);
 				}
-			}); 
-		} // kakaoLoginPro()
-	</script>
+			}) // ajax
+	}; // kakaoLoginPro
+</script>
 
 	
 </body>

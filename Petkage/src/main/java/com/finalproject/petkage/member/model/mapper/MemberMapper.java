@@ -26,4 +26,10 @@ public interface MemberMapper {
 	int updateFindNum(@Param("userId") String userId, @Param("findNum") int findNum);
 
 	int updatePwd(@Param("no") int no, @Param("newPwd") String newPwd);
+
+	Member selectMemberByKakao(String kakaoId);
+	
+	int updateMember(Member member);
+	
+	int deleteMember(int no);
 }
