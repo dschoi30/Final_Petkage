@@ -98,7 +98,7 @@
           <div class="joinInfoBox">
             <table>
               <tbody>
-                <input type="hidden" name="enroll_Type" id="enrollType" value="KAKAO" />
+                <input type="hidden" name="enrollType" id="enrollType" value="KAKAO"/>
                 <tr>
                   <th>아이디</th>
                   <td>

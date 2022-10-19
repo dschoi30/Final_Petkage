@@ -264,6 +264,7 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
           <div class="joinInfoBox">
             <table>
               <tbody>
+                <input type="hidden" name="enrollType" id="enrollType" value="PETKAGE"/>
                 <tr>
                   <th>아이디</th>
                   <td>

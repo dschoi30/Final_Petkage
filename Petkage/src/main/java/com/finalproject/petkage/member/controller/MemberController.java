@@ -424,8 +424,6 @@ public class MemberController {
 		}
 	}
 	
-	
-	
 	// 회원가입(카카오) 페이지 처리 - OK  
 	@GetMapping("/enrollKakaoPage")
 	public String enrollKakaoPage() {

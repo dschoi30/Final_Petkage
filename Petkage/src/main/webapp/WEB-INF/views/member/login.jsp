@@ -117,7 +117,7 @@
 	<script src="${ path }/js/member/main.js"></script> --%>
 	<script src="${ path }/js/member/login.js"></script>
 
-<%-- JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
+<%-- 카카오 JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
 
 <%-- 카카오 스크립트 --%>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
@@ -180,7 +180,7 @@
 						$('#kakaoId').val(kakao_kakaoId);
 						$('#kakaoLoginForm').submit();
 
-						alert("[Petkage] 카카오톡으로 로그인되었습니다.");
+						alert("[Petkage] 카카오톡으로 로그인을 시작합니다.");
 					} else if(result == "Kakao_Enroll"){
 						console.log("success : " + result)
 						console.log(kakao_kakaoId)
