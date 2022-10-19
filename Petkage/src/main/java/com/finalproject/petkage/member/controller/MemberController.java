@@ -439,12 +439,20 @@ public class MemberController {
 								     @RequestParam String kakao_name, 
 								     @RequestParam String enroll_Type) {
 		
+		if(kakao_kakaoId != null) {
+			
 		model.addObject("kakao_kakaoId", kakao_kakaoId);
 		model.addObject("kakao_email", kakao_email);
 		model.addObject("kakao_name", kakao_name);
 		model.addObject("enroll_Type", enroll_Type);
 		
 		model.setViewName("member/enroll_Kakao");
+		} else {
+			model.addObject("msg", "[Petkage] 잘못된 접근입니다.");
+			model.addObject("location", "/");
+		
+			model.setViewName("common/msg");
+		}
 		
 		return model;
 	}

@@ -16,6 +16,8 @@
 <!-- <link rel="stylesheet" href="../CSS/owl.carousel.min.css"> -->
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${ path }/css/member/bootstrap.min.css">
+<%-- 구글 API --%>
+<meta name = "google-signin-client_id"content = "559389777930-5hlelo74k0i5stdbgln7arir9niljnoj.apps.googleusercontent.com">
 
 <link
   rel="stylesheet"
@@ -67,15 +69,15 @@
 	              <div id="btnLoginBox">
 	                <input type="submit" value="로그인" class="btn btn-block" id="btnLoin" disabled="">
 	
-	                <button type="button" class="btn btn-block" id="kakaoLogin" onclick = "location.href='javascript:loginWithKakao()'">
+	                <button type="button" class="btn btn-block" id="kakaoLogin" onclick="location.href='javascript:loginWithKakao()'">
 	                	카카오톡으로 로그인
 	                </button>
 	
-	                <button type="button" class="btn btn-block" id="naver_id_login">
+	                <button type="button" class="btn btn-block" id="naver_id_login" >
 	                	네이버로 로그인
 	                </button>
 	
-					<button type="button" class="btn btn-block" id="googleLogin">
+					<button type="button" class="btn btn-block" id="googleLogin" onclick="location.href='javascript:googleLogin()'">
 	                	구글로 로그인
 	                </button>
 
@@ -119,7 +121,7 @@
 
 <%-- 카카오 JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
 
-<%-- 카카오 스크립트 --%>
+<%-- 카카오 API --%>
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
   integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -202,7 +204,25 @@
 	}; // kakaoLoginPro
 </script>
 
+<%-- 구글 API --%>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script>
+function googleLogin(){
+	var auth2 = gapi.auth2.getAuthInstance()
 	
+	if(auth2.isSignedIn.get()){
+	 var profile = auth2.currentUser.get().getBasicProfile();
+	 googleLoginPro(profile)
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	
+	}
+	
+}
+</script>
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

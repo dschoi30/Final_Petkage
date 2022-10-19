@@ -64,7 +64,6 @@
                       <label class="form-check-label agreeAllTitle" for="checkAll" >
                         <strong><span style="color: #753422">Pet</span>kage</strong>의 이용약관 및 개인정보 수집 및 이용에 모두 동의합니다.
                       </label> <br>
-                      
                       <input class="form-check-input checkSep" id="check1" type="checkbox" value="">
                       <label class="form-check-label agreeTitle" for="check1">
                         <strong><span style="color: #753422">Pet</span>kage</strong>의 이용약관에 동의합니다.
