@@ -21,4 +21,8 @@ public interface MemberService {
 	int updatePwd(int no, String newPwd);
 
 	Member loginByKakao(String kakaoId);
+	
+	int delete(int no);
+	
+	Member findMemberById(String userId);
 }
