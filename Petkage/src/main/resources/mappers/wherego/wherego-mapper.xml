@@ -41,4 +41,46 @@
 		WHERE SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
 	</select>
 	
+	<select id="food_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '맛집' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="hair_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '미용' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="trip_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '여행지' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="hospital_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '동물병원' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="preschool_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '유치원' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="bath_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '셀프목욕' AND SPOT_STATUS = 'Y'
+	</select>
+	
+	<select id="petsitter_board" resultMap="wheregovo">
+		SELECT *
+		FROM WHEREWEGO
+		WHERE SPOT_CATEGORY = '펫시터' AND SPOT_STATUS = 'Y'
+	</select>
+	
 </mapper>

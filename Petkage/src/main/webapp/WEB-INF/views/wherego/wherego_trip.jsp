@@ -67,23 +67,42 @@
                 </select>
             </div>
         </div>
-        <div class="wg6_bottom">
+         <div class="wg6_bottom">
             <div class="wg6b_ca">
+                <c:forEach var="tripselect" items="${tripselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/cafedetail">
+	                <a href="${ path }/tripdetail">
 	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/카페1.png">
+	                        <img src="${ path }/resources/images/wherego/${tripselect.img}">
 	                    </div>
 	                    <div class="card_text">
-	                        <div class="ct_1">KH Cafe</div>
+	                        <div class="ct_1">${tripselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
 	                            <p>수리남 / 도보 148일 18시간</p>
-	                            <p>소형견 / 대형견</p>
+	                            <p>${tripselect.spotSize}</p>
 	                        </div>
 	                    </div>
 	                </a>
                 </div>
+                <!--  
+                <div class="wgc6_card">
+	                <a href="${ path }/cafedetail">
+	                    <div class="card_img">
+	                        <img src="${ path }/resources/images/wherego/${cafeselect.img}">
+	                    </div>
+	                    <div class="card_text">
+	                        <div class="ct_1">${cafeselect.spotName}</div>
+	                        <div class="ct_2">4.8점</div>
+	                        <div class="ct_3">
+	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${cafeselect.spotSize}</p>
+	                        </div>
+	                    </div>
+	                </a>
+                </div>
+                -->
+             <!-- 
                 <div class="wgc6_card">
                     <div class="card_img">
                         <img src="${ path }/resources/images/wherego/카페2.png">
@@ -97,7 +116,10 @@
                         </div>
                     </div>
                 </div>
+               -->
+            </c:forEach>   
             </div>
+            <!--  
             <div class="wg6b_ca">
                 <div class="wgc6_card">
                     <div class="card_img">
@@ -210,7 +232,9 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
+
 
 
     </section>

@@ -30,8 +30,8 @@
     <section class="wg_6">
         <div class="wg_top" id="wg_top">
             <div class="wg_title">
-                <img src="${ path }/resources/images/wherego/미용.png" alt="">
-                <p>미용</p>
+                <img src="${ path }/resources/images/wherego/전문가.png" alt="">
+                <p>펫시터</p>
             </div>
             <div class="ht_search2">
                 <form class="ht_12">
@@ -67,20 +67,20 @@
                 </select>
             </div>
         </div>
-        <div class="wg6_bottom">
+         <div class="wg6_bottom">
             <div class="wg6b_ca">
-                <c:forEach var="hairselect" items="${hairselect}">
+                <c:forEach var="petsitterselect" items="${petsitterselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/hairdetail">
+	                <a href="${ path }/petsitterdetail">
 	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${hairselect.img}">
+	                        <img src="${ path }/resources/images/wherego/${petsitterselect.img}">
 	                    </div>
 	                    <div class="card_text">
-	                        <div class="ct_1">${hairselect.spotName}</div>
+	                        <div class="ct_1">${petsitterselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
 	                            <p>수리남 / 도보 148일 18시간</p>
-	                            <p>${hairselect.spotSize}</p>
+	                            <p>${petsitterselect.spotSize}</p>
 	                        </div>
 	                    </div>
 	                </a>
@@ -234,6 +234,7 @@
             </div>
             -->
         </div>
+
 
     </section>
     

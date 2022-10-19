@@ -62,6 +62,131 @@ public class WheregoController {
 		return "wherego/wherego_lodging_detail";
 	}
 	
+	@GetMapping("/food")
+	public ModelAndView food(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.food_board(); 
+		
+		model.addObject("foodselect", wherego);
+		model.setViewName("wherego/wherego_food");
+		
+		return model;
+	}
+	
+	@GetMapping("/fooddetail")
+	public String fooddetail() {
+		
+		return "wherego/wherego_food_detail";
+	}
+	
+	@GetMapping("/hair")
+	public ModelAndView hair(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.hair_board(); 
+		
+		model.addObject("hairselect", wherego);
+		model.setViewName("wherego/wherego_hair");
+		
+		return model;
+	}
+	
+	@GetMapping("/hairdetail")
+	public String hairdetail() {
+		
+		return "wherego/wherego_hair_detail";
+	}
+	
+	@GetMapping("/trip")
+	public ModelAndView trip(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.trip_board(); 
+		
+		model.addObject("tripselect", wherego);
+		model.setViewName("wherego/wherego_trip");
+		
+		return model;
+	}
+	
+	@GetMapping("/tripdetail")
+	public String tripdetail() {
+		
+		return "wherego/wherego_trip_detail";
+	}
+	
+	@GetMapping("/hospital")
+	public ModelAndView hospital(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.hospital_board(); 
+		
+		model.addObject("hospitalselect", wherego);
+		model.setViewName("wherego/wherego_hospital");
+		
+		return model;
+	}
+	
+	@GetMapping("/hospitaldetail")
+	public String hospitaldetail() {
+		
+		return "wherego/wherego_hospital_detail";
+	}
+	
+	@GetMapping("/preschool")
+	public ModelAndView preschool(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.preschool_board(); 
+		
+		model.addObject("preschoolselect", wherego);
+		model.setViewName("wherego/wherego_preschool");
+		
+		return model;
+	}
+	
+	@GetMapping("/preschooldetail")
+	public String preschooldetail() {
+		
+		return "wherego/wherego_preschool_detail";
+	}
+	
+	@GetMapping("/bath")
+	public ModelAndView bath(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.bath_board(); 
+		
+		model.addObject("bathselect", wherego);
+		model.setViewName("wherego/wherego_bath");
+		
+		return model;
+	}
+	
+	@GetMapping("/bathdetail")
+	public String bathdetail() {
+		
+		return "wherego/wherego_bath_detail";
+	}
+	
+	@GetMapping("/petsitter")
+	public ModelAndView petsitter(ModelAndView model) {
+		List<Wherego> wherego = null;
+		
+		wherego = service.petsitter_board(); 
+		
+		model.addObject("petsitterselect", wherego);
+		model.setViewName("wherego/wherego_petsitter");
+		
+		return model;
+	}
+	
+	@GetMapping("/petsitterdetail")
+	public String petsitterdetail() {
+		
+		return "wherego/wherego_petsitter_detail";
+	}
 	
 	
 	
@@ -83,11 +208,6 @@ public class WheregoController {
 		return "wherego/wherego_review_write";
 	}
 	
-	@GetMapping("/petsitter")
-	public String petsitter() {
-		
-		return "wherego/wherego_petsitter_detail";
-	}
 	
 	@GetMapping("/manager1")
 	public String manager1() {

@@ -83,55 +83,67 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>맛집</p>
-                    </div>
+	                <a href="${ path }/food">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>맛집</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
-                    </div>
-                    <div class="wgcb_text" style="border-right: none;">
-                        <p>미용</p>
-                    </div>
+	                <a href="${ path }/hair">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>미용</p>
+	                    </div>
+	                </a>
                 </div>
             </div>
 
             <div class="wgc_2">
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>여행지</p>
-                    </div>
+	                <a href="${ path }/trip">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>여행지</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>동물병원</p>
-                    </div>
+	                <a href="${ path }/hospital">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>동물병원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>유치원</p>
-                    </div>
+	                <a href="${ path }/preschool">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>유치원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img" style="border-right: none;">
-                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>셀프목욕</p>
-                    </div>
+	                <a href="${ path }/bath">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>셀프목욕</p>
+	                    </div>
+	                </a>
                 </div>
             </div>
 
