@@ -1,13 +1,3 @@
-// PET 정보 추가 설정
-function petInfoDisplay() {
-  if ($("input:radio[id=petYes]").is(":checked")) {
-    $("#PetModifyBox").show();
-    console.log("PET O");
-  } else {
-    $("#PetModifyBox").hide();
-    console.log("PET X");
-  }
-}
 
 // 정규식 표현
 //  아이디 - 대소문자 + 숫자 + 6자 이상 12자 이하
@@ -178,7 +168,7 @@ $("#formJoin").submit(function () {
     return false;
   }
 
-  // // 아이디 중복검사
+  // 아이디 중복검사
   if ($("[name=idDuplicateTest]").val() != "1") {
     $("#id_termsCheck").text("중복 확인을 해주세요.");
     $("#userId").focus();
@@ -242,13 +232,14 @@ $("#formJoin").submit(function () {
   }
 });
 
-// 강아지 선택시에만 몸무게 선택 클릭 가능
-$("#pDog").click(function () {
-  console.log("강쥐 클릭");
-  $("[name=petWeight]").attr("disabled", false);
-});
+	// 강아지 선택시에만 몸무게 선택 클릭 가능
+	$("#pDog").click(function () {
+	  console.log("강쥐 클릭");
+	  $("[name=petWeight]").attr("disabled", false);
+	});
 
-$("#pCat").click(function () {
-  console.log("고영희 클릭");
-  $("[name=petWeight]").attr("disabled", true);
-});
+	$("#pCat").click(function () {
+	  console.log("고영희 클릭");
+	  $("[name=petWeight]").attr("disabled", true);
+	});
+
