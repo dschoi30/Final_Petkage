@@ -134,4 +134,20 @@ public class MemberServiceImpl implements MemberService {
 			return null;
 		}
 	}
+	
+	@Override
+	@Transactional
+	public int delete(int no) {
+		int result = 0;
+		
+		result = mapper.deleteMember(no);
+		
+		return result;
+	}
+
+	@Override
+	public Member findMemberById(String id) {
+		
+		return mapper.selectMemberById(id);
+	}
 }
