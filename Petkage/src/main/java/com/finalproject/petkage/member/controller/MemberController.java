@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
@@ -41,7 +42,7 @@ public class MemberController {
 	
 	@Autowired
     private JavaMailSender mailSender;
-		
+			
 	// 로그인 페이지 처리 - OK
 	@GetMapping("/loginPage")
 	public String loginPage() {
@@ -412,5 +413,65 @@ public class MemberController {
 		
 		return resultMap;
 	}
+	
+	// 회원정보수정
+	@GetMapping("/mypage/myPage_userModify")
+	public String myPage() {
+		log.info("회원 정보 수정 페이지 요청");
+		
+		return "mypage/myPage_userModify";
+	}
+	
+	@PostMapping("/update")
+	public ModelAndView update(
+			ModelAndView model,
+			@SessionAttribute("loginMember") Member loginMember,
+			@ModelAttribute Member member) {	
+		
+		log.info(member.toString());
+		log.info(loginMember.toString());
+		
+		int result = 0;
+		
+		member.setNo(loginMember.getNo());
+
+		result = service.saveMember(member);
+		
+		if(result > 0) {
+			model.addObject("loginMember", service.findMemberById(loginMember.getUserId()));
+			model.addObject("msg", "회원 정보 수정을 완료했습니다.");
+		} else {
+			model.addObject("msg", "회원 정보 수정을 실패했습니다.");
+		}
+		
+		model.addObject("location", "/mypage/myPage_userModify");
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+		
+	// 회원 탈퇴
+	@GetMapping("/delete")
+	public ModelAndView delete(
+			ModelAndView model,
+			@SessionAttribute("loginMember") Member loginMember) {
+		
+		int result = 0;
+		
+		result = service.delete(loginMember.getNo());
+		
+		if(result > 0) {
+			model.addObject("msg", "정상적으로 탈퇴되었습니다.");
+			model.addObject("location", "/member/logout");
+		} else {
+			model.addObject("msg", "회원 탈퇴를 실패하였습니다.");
+			model.addObject("location", "/mypage/myPage_userModify");
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+	
 }
 

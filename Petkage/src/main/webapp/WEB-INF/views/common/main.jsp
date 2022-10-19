@@ -158,12 +158,12 @@
 					</c:if>
 					
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_USER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/myPage_main'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_SELLER' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/myPage'" value="마이페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/mypage/sellerPage_list'" value="마이페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			

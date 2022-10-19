@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.member.model.mapper.MemberMapper;
 import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.member.model.vo.Pet;
+import com.finalproject.petkage.member.model.vo.Seller;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -41,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(member.getNo() != 0) {
 			// update
-//			result = mapper.updateMember(member);
+			result = mapper.updateMember(member);
 		} else {
 			// insert
 
@@ -119,4 +121,22 @@ public class MemberServiceImpl implements MemberService {
 		result = mapper.updatePwd(no, newPwd);
 		return result;
 	}
+	
+	@Override
+	@Transactional
+	public int delete(int no) {
+		int result = 0;
+		
+		result = mapper.deleteMember(no);
+		
+		return result;
+	}
+
+	@Override
+	public Member findMemberById(String userid) {
+		
+		return mapper.selectMemberById(userid);
+	}
+	
+	
 }

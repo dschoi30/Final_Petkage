@@ -222,4 +222,21 @@
 			SET MEM_FINDNUM =  #{ findNum }  
 		WHERE MEM_ID = #{ userId }
 	</update>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER 
+		SET 
+			MEM_PWD = #{ userPwd},
+			MEM_NAME = #{ userName },
+			MEM_PHONE = #{ userPhone },
+			MEM_ZONECODE = #{ zonecode },
+			MEM_ADDRESS = #{ userAddress },
+			MEM_EMAIL = #{ userEmail }
+		WHERE MEM_NO = #{ no }
+	</update>
+	
+	<delete id="deleteMember" parameterType="_int">
+		DELETE FROM MEMBER WHERE MEM_NO = #{ no }
+	</delete>
+	
 </mapper>
