@@ -31,12 +31,10 @@
                     </c:if>
                 </span>
             </div>
-            <div class="nt_inner">
-                <img src="${ path }/resources/images/notice/Rectangle 2051.png" id="nt_pic">
-                <div class="nt_text">
-                    <span style="color: white">전체</span>
-                    <span class="nt_color">${ noticeCount }</span>
-                </div>
+            <div class="nt_inner" style="color:white;">
+            	<br><br>
+            	전체
+	            <span style="color: #803D3D">${ noticeCount }</span>
             </div>
 
             <table class="table" style="margin: 0;">
@@ -114,6 +112,19 @@
     </section>
 
     <br>
+      
+ <!-- 
+    <style>
+    .nt .nt_inner{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+    background-image: url('${ path }/resources/images/notice/Rectangle 2051.png');
+    height : 150px;
+	}
+  --> 
+
+    </style> 
       
     <script> 
 	    $(document).ready(() => {			
