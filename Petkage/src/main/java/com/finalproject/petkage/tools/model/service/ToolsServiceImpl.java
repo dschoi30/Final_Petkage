@@ -14,9 +14,16 @@ public class ToolsServiceImpl implements ToolsService {
     
     @Override
     public Food findFood(String foodName) {
-        System.out.println("서비스임플 : " + foodName);
+        System.out.println("식품 검색 : " + foodName);
         
         return mapper.selectFoodByKeyWord(foodName);
+    }
+
+    @Override
+    public int addFood(Food food) {
+        System.out.println("새로운 식품 추가 : " + food);
+        
+        return mapper.insertFood(food);
     }
 
 }

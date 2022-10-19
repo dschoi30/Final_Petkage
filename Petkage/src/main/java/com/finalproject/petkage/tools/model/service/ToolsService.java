@@ -6,4 +6,6 @@ public interface ToolsService {
     
     Food findFood (String foodName);
 
+    int addFood(Food food);
+
 }

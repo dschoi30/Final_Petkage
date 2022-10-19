@@ -29,10 +29,28 @@
 		<include refid="selectFoodSql"/>
 	</select>
 	
- 	<!-- 음식 검색 -->
+ 	<!-- 식품 검색 -->
 	<select id="selectFoodByKeyWord" parameterType="String" resultMap="foodResultMap">
 		<include refid="selectFoodSql"/>
 		WHERE FOOD_NAME LIKE '%' || #{foodName} || '%'
 	</select>
+	
+	<!-- 식품 추가 -->
+	<insert id="insertFood" parameterType="Food"
+			useGeneratedKeys="true" keyColumn="FOOD_NO" keyProperty="no" >
+		INSERT INTO FOOD (
+		    FOOD_NO,
+		    FOOD_NAME,
+		    FOOD_COMMENT,
+		    FOOD_SUBCOMMENT,
+		    FOOD_EAT_THIS
+		) VALUES (
+		    SEQ_FOOD_NO.NEXTVAL,
+		    #{ foodName },
+		    #{ comment },
+		    #{ subComment },
+		    #{ eatThis }
+		)
+	</insert>
 	
 </mapper>
