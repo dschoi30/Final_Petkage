@@ -27,11 +27,12 @@
                         <tr>
                             <td>배송 주소</td>
                             <td>
-                                <input type="text" id="sample6_postcode" placeholder="우편번호" value="${ loginMember.zonecode }">
-                                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-                                &nbsp; <input type="checkbox" checked> 기본배송지 설정 &nbsp;<br>
-                                <input type="text" id="sample6_address" placeholder="주소" size="50" value="${ loginMember.userAddress }"><br>
-                                 <input type="text" id="sample6_detailAddress" placeholder="상세주소" size="50" value="${ loginMember.addressSub }">
+                                <input type="text" class="zonecode" id="postcode" placeholder="우편번호" size="10" data-zonecode="${ loginMember.zonecode }" style="margin-bottom: 5px;">
+                                <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">&nbsp; 
+                                <input type="checkbox" class="use-existing-address"> 기본배송지 설정 &nbsp;<br>
+                                <input type="text" class="address" id="address" placeholder="주소" size="50" data-address="${ loginMember.userAddress }" style="margin-bottom: 5px;"><br>
+                                <input type="text" class="subaddress" id="detailAddress" placeholder="상세주소" size="50" data-subaddress="${ loginMember.addressSub }">
+								
                             </td>
                         <tr>
                             <td>연락처</td>
@@ -39,7 +40,7 @@
                         </tr>
                         <tr>
                             <td>배송 요청사항</td>
-                            <td><input type="text" id="delibery-comment" size="50"></td>
+                            <td><input type="text" class="order-comment" size="50"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,12 +58,12 @@
                     <tbody>
 		                <c:forEach var="order" items="${ orderList }">
 		                	<tr>
-		                        <td rowspan="2" class="cart-list" style="width: 0%">
-		                        	<input type="hidden" class="cart-subtotal-price" value="${ order.proSPrice * order.proCount }"> 
-				                	<input type="hidden" class="cart-pro-count" value="${ order.proCount }"> 
-				                	<input type="hidden" class="cart-del-fee" value="${ order.proDelFee }"> 
-				                	<input type="hidden" class="cart-total-price" value="${ order.proSPrice * order.proCount + order.proDelFee }">
-				                	<input type="hidden" class="cart-pro-no" value="${ order.proNo }">
+		                        <td rowspan="2" class="order-list" style="width: 0%">
+		                        	<input type="hidden" class="order-subtotal-price" value="${ order.proSPrice * order.proCount }"> 
+				                	<input type="hidden" class="order-pro-count" value="${ order.proCount }"> 
+				                	<input type="hidden" class="order-del-fee" value="${ order.proDelFee }"> 
+				                	<input type="hidden" class="order-total-price" value="${ order.proSPrice * order.proCount + order.proDelFee }">
+				                	<input type="hidden" class="order-pro-no" value="${ order.proNo }">
 		                        </td>
 		                        <td rowspan="2" style="width: 10%"><a href="${ path }/market/product-view?proNo=${ order.proNo }"><img class="img" src="${path}/resources/upload/market/${ order.renamedFileName }" width="80" height="80"></a></td>
 		                        <td colspan="3" style="width: 56%"><a href="${ path }/market/product-view?proNo=${ order.proNo }">${ order.proName }</a></td>
@@ -85,7 +86,7 @@
                     <tbody>
                         <tr>
                             <td style="width: 13%">총 상품금액</td>
-                            <td>14,490원</td>
+                            <td><span class="set-total-price"></span>원</td>
                         </tr>
                         <tr>
                             <td>포인트 사용</td>
@@ -94,11 +95,15 @@
                         </tr>
                         <tr>
                             <td>배송비</td>
-                            <td>3,000원</td>
+                            <td><span class="set-total-del-fee"></span>원</td>
                         </tr>
                         <tr>
                             <td>총 결제금액</td>
-                            <td>17,490원</td>
+                            <td>
+                            	<span class="set-total-price-after-using-point"></span>원
+                            	<span style="padding-left: 80px;">결제 후 적립 포인트</span>
+                            	<span class="set-total-saving-point" style="padding-left: 10px;"></span>원
+                            </td>
                         </tr>
                         <tr>
                             <td>결제 방법</td>
@@ -118,13 +123,18 @@
             </div>
         </div>
         <div class="contents">
-            <button class="cart-pay-btn" id="kakaopay" value="kakaopay">결제하기</button>
+            <button class="pay-btn" id="kakaopay" value="kakaopay">결제하기</button>
         </div>
     </div>
 </div>
 
-<form action="${ path }/market/order-finished" method="POST" class="order-finished-form">
-	<input type="hidden" name="point" class="using-point">
+<form action="${ path }/market/order" method="POST" class="order-finished-form">
+	
+	<input type="hidden" name="no" value=${ loginMember.no }>	
+	<input type="hidden" name="zonecode">
+	<input type="hidden" name="address">
+	<input type="hidden" name="subAddress">
+	<input type="hidden" name="usingPoint">
 </form>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -133,7 +143,56 @@
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
+
+	$(document).ready(function() {
+		
+		setTotalInfo();
+	});
+
+	function execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var addr = ''; // 주소 변수
+	            var extraAddr = ''; // 참고항목 변수
+	
+	            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                addr = data.roadAddress;
+	            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                addr = data.jibunAddress;
+	            }
+	
+	            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	            if(data.userSelectedType === 'R'){
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	            } else {
+	                document.getElementById("extraAddress").value = '';
+	            }
+	
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById("postcode").value = data.zonecode;
+	            document.getElementById("address").value = addr;
+	            // 커서를 상세주소 필드로 이동한다.
+	            document.getElementById("detailAddress").focus();
+	        }
+	    }).open();
+	}
+
 	$("#kakaopay").click(function () {
 		var IMP = window.IMP;
 		// '' 안에 띄어쓰기 없이 가맹점 식별코드 삽입
@@ -147,16 +206,16 @@
 			 *  https://docs.iamport.kr/implementation/payment
 			 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 			 */
-			name: '주문명 : 아메리카노',
+			name: '${ order.proName }',
 			// 결제창에서 보여질 이름
 			// name: '주문명 : ${auction.a_title}',
 			// 위와같이 model에 담은 정보를 넣어 쓸 수도 있습니다.
 			amount: 2000,
 			// amount: ${bid.b_bid},
-			buyer_name: '이름',
+			buyer_name: '${ loginMember.userName }',
 			// 구매자 이름, 구매자 정보도 model 값으로 바꿀 수 있습니다.
 			// 구매자 정보에 여러가지도 있으므로, 자세한 내용은 링크를 참고해주세요.
-			buyer_postcode: '123-456',
+			buyer_postcode: '${ loginMember.zonecode }',
 			}, function (rsp) {
 				console.log(rsp);
 			if (rsp.success) {
@@ -172,6 +231,21 @@
 		});
 	});
 
+	$(".use-existing-address").on("change", function() {
+		const zonecode = $(this).parent("td").find("input").data("zonecode");
+		const address = $(this).parent("td").find("input").data("address");
+		const subaddress = $(this).parent("td").find("input").data("subaddress");
+		if($(".use-existing-address").prop("checked")) {
+			$(".zonecode").val(zonecode);
+//			$(".address").val(address);
+//			$(".subaddress").val(subaddress);
+		} else {
+			$(".zondcode").val(0);
+//			$(".address").val();
+//			$(".subaddress").val();
+		}
+	});
+	
 	$(".use-all-point").on("change", function() {
 		if($(".use-all-point").prop("checked")) {
 			const maxPoint = $(this).data("point");
@@ -182,30 +256,71 @@
 	});
 	
 	// 숫자 외 문자값 입력 방지, 천 단위 구분
-	 function inputNumberFormat(obj) {
-	     obj.value = comma(uncomma(obj.value));
-	 }
-	 
-	 function comma(str) {
-	     str = String(str);
-	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	 }
+	function inputNumberFormat(obj) {
+	    obj.value = comma(uncomma(obj.value));
+	}
+	
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
+	
+	// 0 이상 최대 포인트 이하
+	$(".using-point").on("propertychange change keyup paste input", function() {
+		const maxPoint = parseInt('${ loginMember.point }');
+		console.log(maxPoint);
+		let inputValue = parseInt($(this).val());
+		console.log(inputValue);
+		if(inputValue < 0) {
+			$(this).val(0);
+		} else if(inputValue > maxPoint) {
+			$(this).val(maxPoint);
+		}
+	});
 
-	 function uncomma(str) {
-	     str = String(str);
-	     return str.replace(/[^\d]+/g, '');
-	 }
-
-	 // 0 이상 최대 포인트 이하
-	 $(".using-point").on("propertychange change keyup paste input", function() {
-		 const maxPoint = parseInt('${ loginMember.point }');
-		 console.log(maxPoint);
-		 let inputValue = parseInt($(this).val());
-		 console.log(inputValue);
-		 if(inputValue < 0) {
-			 $(this).val(0);
-		 } else if(inputValue > maxPoint) {
-			 $(this).val(maxPoint);
-		 }
-	 });
+	function setTotalInfo() {
+		 
+		let totalPrice = 0;
+		let totalDelFee = 0;
+		let totalSavingPoint = 0;
+		let usingPoint = 0;
+		let totalPriceAfterUsingPoint = 0;
+		 
+		$(".order-list").each(function(index, element) {
+			totalPrice += parseInt($(element).find(".order-subtotal-price").val());
+			totalDelFee += parseInt($(element).find(".order-del-fee").val());
+		});
+		
+		totalSavingPoint = Math.ceil((totalPrice * 0.05) / 10) * 10;
+		usingPoint = $(".using-point").val();
+		totalPriceAfterUsingPoint = totalPrice + totalDelFee - usingPoint;
+		
+	 	$(".set-total-price").text(totalPrice.toLocaleString());
+	 	$(".set-total-del-fee").text(totalDelFee.toLocaleString());
+	 	$(".set-total-saving-point").text(totalSavingPoint.toLocaleString());
+	 	$(".set-total-price-after-using-point").text(totalPriceAfterUsingPoint.toLocaleString());
+	};
+/*	
+	$(".pay-btn").on("click", function() {
+		$("input[name='usingPoint']").val($(".using-point").val());
+		let order-form = "";
+		$(".order-list").each(function(index, element) {
+			let proNo = $(element).find(".order-subtotal-price").val();
+			let proCount = $(element).find(".order-pro-count").val();
+			let proNoInput = "<input type='hidden' name='orders[" + index "].proNo' value='" + proNo + "'>";
+			order-form += proNoInput;
+			let proCountInput = "<input type='hidden' name='orders[" + index "].proCount' value='" + proCount + "'>";
+			order-form += proCountInput;
+		});
+		$(".order-finished-form").append(order-form);
+		
+		$(".order-finished-form").submit();
+		
+	});
+*/
 </script>

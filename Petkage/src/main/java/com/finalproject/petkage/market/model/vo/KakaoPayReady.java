@@ -39,6 +39,10 @@ public class KakaoPayReady {
     
     private int totalPriceAfterUsingPoint;
     
+    private String orderComment;
+    
+    private String orderStatus;
+    
     private Date payCreatedAt;
     
     private Date payApprovedAt;

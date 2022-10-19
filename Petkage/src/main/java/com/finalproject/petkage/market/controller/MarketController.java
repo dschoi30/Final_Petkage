@@ -306,8 +306,10 @@ public class MarketController {
 	}
 	
 	@PostMapping("/order")
-	public String Payment() {
+	public String Payment(KakaoPayReady kakaoPayReady, HttpServletRequest request) {
 		log.info("결제 준비 PostMapping");
+		
+		System.out.println(kakaoPayReady);
 		
 		return "redirect:" + kakaoPayService.kakaoPayReady();
 	}

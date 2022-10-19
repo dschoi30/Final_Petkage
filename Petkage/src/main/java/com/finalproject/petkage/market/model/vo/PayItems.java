@@ -30,5 +30,7 @@ public class PayItems {
 	// 총 가격(상품 * 수량)
 	private int eachProTotalPrice;
 	
+	private int proPoint;
+	
 	private int savingPoint;
 }
