@@ -26,9 +26,9 @@
                 <p>리뷰 게시판</p>
             </div>
             <div class="ht_search2">
-                <form class="ht_12">
+                <form class="ht_12" action="review_search">
                     <div class="ht_22">
-                        <input type="text">
+                        <input type="text" name="review_search">
                         <button type="submit">
                             <img src="${ path }/resources/images/wherego/검색.png" alt="search">
                         </button>
