@@ -33,9 +33,15 @@ public class WheregoController {
 	}
 	
 	@GetMapping("/cafe")
-	public String cafe() {
+	public ModelAndView cafe(ModelAndView model) {
+		List<Wherego> wherego = null;
 		
-		return "wherego/wherego_cafe";
+		wherego = service.cafe_board(); 
+		
+		model.addObject("cafeselect", wherego);
+		model.setViewName("wherego/wherego_cafe");
+		
+		return model;
 	}
 	
 	@GetMapping("/lodging")
@@ -55,6 +61,15 @@ public class WheregoController {
 		
 		return "wherego/wherego_lodging_detail";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/reviewboard")
 	public String reivewboard() {

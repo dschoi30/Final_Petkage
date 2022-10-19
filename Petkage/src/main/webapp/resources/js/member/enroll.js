@@ -66,7 +66,7 @@ var idCheck = /^[a-zA-z0-9]{6,12}$/;
 var pwdCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9]).{8,}$/;
 
 // 이름 - 한글 또는 영문만 5자 이내 입력 가능
-var nameCheck = /^[가-힣|a-z|A-Z]{3,5}$/;
+var nameCheck = /^[가-힣|a-z|A-Z]{2,5}$/;
 
 // 핸드폰 번호 - 숫자만 입력 가능
 var phoneCheck = /^010[0-9]{8}$/;
@@ -138,8 +138,8 @@ $("#userName").keyup(function () {
   if (!nameCheck.test($("#userName").val())) {
     $("#name_termsCheck").text("한글 또는 영문만 입력해 주세요.");
   } else if (
-    $("#userName").val().length < 3 ||
-    $("#userName").val().length > 5
+    $("#userName").val().length < 2 ||
+    $("#userName").val().length > 6
   ) {
     $("#name_termsCheck").text("3자 이상 5자 이하로 입력해 주세요.");
   } else {

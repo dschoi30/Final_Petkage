@@ -225,6 +225,7 @@ html {
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .wg_6 .wg6_bottom .wg6b_ca .wgc6_card {

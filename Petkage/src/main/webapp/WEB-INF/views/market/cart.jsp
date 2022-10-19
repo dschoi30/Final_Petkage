@@ -32,7 +32,8 @@
 	                        	<input type="hidden" class="cart-subtotal-price" value="${ cart.proSPrice * cart.proCount }"> 
 			                	<input type="hidden" class="cart-pro-count" value="${ cart.proCount }"> 
 			                	<input type="hidden" class="cart-del-fee" value="${ cart.proDelFee }"> 
-			                	<input type="hidden" class="cart-total-price" value="${ cart.proSPrice * cart.proCount + cart.proDelFee }"> 
+			                	<input type="hidden" class="cart-total-price" value="${ cart.proSPrice * cart.proCount + cart.proDelFee }">
+			                	<input type="hidden" class="cart-pro-no" value="${ cart.proNo }">
 	                        	<input type="checkbox" class="check-pro" checked="checked">
 	                        </td>
 	                        <td rowspan="2" style="width: 10%"><img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80"></td>
@@ -46,7 +47,7 @@
 	                        <td>
 		                        <div class="col mt-0 p-0">
 		                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }">
+									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }" onkeyup="inputNumberFormat(this);">
 		                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
 		                        	<a class="btn btn-light change-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">변경</a>
 		                        	<a class="btn btn-light del-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">삭제</a>
@@ -65,7 +66,7 @@
             </div>
         </div>
         <div class="contents">
-            <button class="cart-pay-btn" onclick="location.href='${ path }/market/order?proNo=${ cart.proNo }'">총 <span class="totalKindCount"></span>건 주문하기</button>
+            <button class="cart-pay-btn order-btn">총 <span class="totalKindCount"></span>건 주문하기</button>
         </div>
     </div>
 </div>
@@ -81,6 +82,11 @@
 <form action="${ path }/market/cart/delete" method="POST" class="qty-del-form">
 	<input type="hidden" name="cartNo" class="del-cartNo">
 	<input type="hidden" name="no" value="${ loginMember.no }">
+</form>
+
+<!-- 주문 form -->
+<form action="${ path }/market/order/${ loginMember.no }" method="GET" class="order-form">
+
 </form>
 
 
@@ -171,7 +177,48 @@
 	    	$("#totalPrice").text(cartTotalPrice.toLocaleString());	
     		
 		}
+		
+		$(".order-btn").on("click", function() {
+			let formContents = '';
+			let orderNum = 0;
+			
+			$(".cart-list").each(function(index, element) {
+				
+				if($(element).find(".check-pro").is(":checked") === true) {
+					
+					let proNo = $(element).find(".cart-pro-no").val();
+					let proCount = $(element).find(".cart-pro-count").val();
+					
+					let proNoInput = "<input name='orders[" + orderNum + "].proNo' type='hidden' value='" + proNo + "'>";
+					formContents += proNoInput;
+					
+					let proCountInput = "<input name='orders[" + orderNum + "].proCount' type='hidden' value='" + proCount + "'>";
+					formContents += proCountInput;
+					
+					orderNum += 1;
+				}
+			});
+			
+			$(".order-form").html(formContents);
+			$(".order-form").submit();
+		});
+		
+		
 	});
+	
+	 function inputNumberFormat(obj) {
+	     obj.value = comma(uncomma(obj.value));
+	 }
+	 
+	 function comma(str) {
+	     str = String(str);
+	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	 }
+
+	 function uncomma(str) {
+	     str = String(str);
+	     return str.replace(/[^\d]+/g, '');
+	 }
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

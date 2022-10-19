@@ -179,7 +179,7 @@
 			                        <div class="ct_2">4.8점</div>
 			                        <div class="ct_3">
 			                            <p>강남구 | 역삼역 도보 1분</p>
-			                            <p>${lodgingselect.price}</p>
+			                            <p>${lodgingselect.price}원</p>
 			                        </div>
 			                    </div>
 		                    </a>

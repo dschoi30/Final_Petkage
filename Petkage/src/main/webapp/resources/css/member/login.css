@@ -45,6 +45,11 @@ btnLoginBox .login body {
   font-weight: 700;
 }
 
+.login #btnLoin:disabled {
+  background-color: #dfdfdf;
+  font-weight: 700;
+}
+
 .login #kakaoLogin {
   color: white;
   background-color: #fce620;
