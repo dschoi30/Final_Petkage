@@ -268,10 +268,13 @@
             }
         ];
 
-        // 마커 이미지의 이미지 주소입니다
-        var imageSrc = "https://cdn-icons-png.flaticon.com/128/2171/2171990.png"; 
-            
         for (var i = 0; i < positions.length; i ++) {
+        	overlayMarker(positions[i]);
+        }
+        
+        function overlayMarker(place){
+            // 마커 이미지의 이미지 주소입니다
+            var imageSrc = "https://cdn-icons-png.flaticon.com/128/2171/2171990.png"; 
             
             // 마커 이미지의 이미지 크기 입니다
             var imageSize = new kakao.maps.Size(30, 30); 
@@ -283,9 +286,33 @@
             var marker = new kakao.maps.Marker({
                 map: map, // 마커를 표시할 지도
                 position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image : markerImage // 마커 이미지 
             });
+            
+         	// 마커 위에 커스텀오버레이를 표시합니다
+        	var overlay = new kakao.maps.CustomOverlay({
+        		yAnchor:2.2,
+        	    position: marker.getPosition()       
+        	});
+        	
+        	var content = document.createElement('div');
+        		content.classList.add('mapOverlay');
+        		content.innerHTML =  positions[i].title	
+            
+            var closeBtn = document.createElement('button');
+            	closeBtn.classList.add('btnOverlay');
+            	closeBtn.innerHTML = 'X';
+            	closeBtn.onclick = function () {
+            	    overlay.setMap(null);
+            	};
+            
+            	content.appendChild(closeBtn);
+            	overlay.setContent(content);
+			
+    		// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+    		kakao.maps.event.addListener(marker, 'click', function() {
+    			overlay.setMap(map);
+    		});
         }
         
      // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
