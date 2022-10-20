@@ -159,6 +159,23 @@ html {
 }
 
 
+.wg_6 .mapOverlay {
+	background: white; 
+	height: 30px; 
+	border-radius: 6px; 
+	font-size: 15px;
+	padding: 5px;
+}
+
+.wg_6 .btnOverlay{
+	position: relative;
+    bottom: 1.5px;
+	background: white; 
+	border: 1px solid white; 
+	margin: 0px 3px 9px 5px;
+    font-size: 7px;
+}
+
 /* 미들라인 */
 .wg_6 .wg6_mid {
     width: 100%;

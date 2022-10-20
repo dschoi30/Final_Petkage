@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_petsitter_detail.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_petsitter_detail.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -110,11 +110,6 @@
                             <p class="text">정보</p>
                         </div>
                     </div>
-                    <div id="wg5b_tab_03" class="btnBox">
-                        <div class="textItem">
-                            <p class="text">리뷰</p>
-                        </div>
-                    </div>
                 </section>
             </div>
             <div class="wg5b_content">
@@ -183,110 +178,6 @@
                     </details>
                 </div>
             </div>    
-            <div class="wg5b_content">
-                <div id="wg5bc_3" class="content_container content_container_01">
-                    <div class="wg5nc_ts">
-                        <div class="wg5nc_text">별점</div>
-                        <div class="wg5nc_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                            <div class="wg5nc_sscore">
-                                4.8
-                            </div>
-                        </div>
-                        <div class="wg5nc_review">
-                            <a href="">전체 리뷰 <span>(67)</span></a>
-                        </div>
-                    </div>
-                    <div class="wg5nc_tr">
-                        <div class="wg5nc_name">
-                            <p>김창식</p>
-                        </div>
-                        <div class="wg5nc_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wg5nc_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                        <div class="wg5nc_image">
-                            <div class="wg5nc_images">
-                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
-                            </div>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wg5nc_tr">
-                        <div class="wg5nc_name">
-                            <p>김창식</p>
-                        </div>
-                        <div class="wg5nc_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wg5nc_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                        <div class="wg5nc_image">
-                            <div class="wg5nc_images">
-                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
-                            </div>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wg5nc_tr">
-                        <div class="wg5nc_name">
-                            <p>김창식</p>
-                        </div>
-                        <div class="wg5nc_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wg5nc_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                        <div class="wg5nc_image">
-                            <div class="wg5nc_images">
-                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
-                            </div>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>   
         </div>
 
         <script>

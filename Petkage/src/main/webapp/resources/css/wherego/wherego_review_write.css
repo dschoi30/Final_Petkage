@@ -76,7 +76,8 @@ html {
     width: 829px;
     height: 50px;
     border: 3px solid #753422;
-    border-radius: 30px;
+    border-radius: 20px;
+    font-size: 1.4rem;
 }
 
 .wg_3 .ht_search2 button {
@@ -84,13 +85,14 @@ html {
     height: 50px;
     border: 3px solid #753422;
     border-left: none;
-    border-radius: 30px;
+    border-radius: 20px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     background-color: rgb(255, 255, 255);
     position: relative;
     transform: translateX(-23px);
 }
+
 
 .wg_3 .ht_search2 button img{
     width: 23px;
