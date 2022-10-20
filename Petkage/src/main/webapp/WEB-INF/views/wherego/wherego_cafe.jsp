@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=7">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=8">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -55,6 +55,7 @@
                 </form>
             </div>
         </div>
+        <div class="wg6_manager"><button><img src="https://cdn-icons-png.flaticon.com/512/1719/1719458.png"></img></button></div>
         <div class="wg6_map">
             <div id="map" style="width: 100%; height: 350px; margin-top: 20px; margin-bottom: 20px;"></div>
         </div>
