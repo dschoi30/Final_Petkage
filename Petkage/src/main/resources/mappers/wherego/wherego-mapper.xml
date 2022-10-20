@@ -87,13 +87,13 @@
 	<select id="search_list_lod" resultType="_int" parameterType="String">
         SELECT COUNT(*) 
         FROM WHEREWEGO
-        WHERE SPOT_NAME LIKE '%'||#{search}||'%'
+        WHERE SPOT_NAME LIKE '%'||#{search_name}||'%'
     </select>
     
     <select id="search_board_lod" resultMap="wheregovo" parameterType="String">
    		SELECT * 
    		FROM WHEREWEGO
-   		WHERE SPOT_NAME LIKE '%'||#{search}||'%' 
+   		WHERE SPOT_NAME LIKE '%'||#{search_name}||'%' 
     </select>
 	
 </mapper>
