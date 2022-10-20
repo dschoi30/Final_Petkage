@@ -27,7 +27,7 @@
 <body>
 
     <section class="wg_9">
-        <form action="">
+        <form action="action="${ path }/lodging_write" method="post" enctype="multipart/form-data">
             <div class="wg5_top">
                 <div class="wg5t_1">
                     <div class="wgc7w_upload">
@@ -35,21 +35,21 @@
                             <label for="image">
                                 <div class="btn-upload">업로드</div>
                             </label>
-                            <input type="file" name="image" id="image" multiple>
+                            <input type="file" name="multiFile" id="image" multiple>
                             <div id="preview"></div>
                         </div>
                     </div>
                 </div>
                 <div class="wg5t_2">
                     <div class="wg5t2_name">
-                        <input type="text" name="name" placeholder="매장 명" required>
+                        <input type="text" name="spotName" placeholder="매장 명" required>
                     </div>
                     <div class="wg5t2_address">
-                        <input type="text" name="address" placeholder="호텔 주소" required>
+                        <input type="text" name="spotAddress" placeholder="호텔 주소" required>
                     </div>
       				<div class="wg5t2_location">
                         <div class="wg5t2_loca">지역</div>
-                        <select name="" id="" required>
+                        <select name="spotLocation" id="spotLocation" required>
                             <option disabled selected>지역선택</option>
                             <option>서울</option>
                             <option>부산</option>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="wg5t2_option">
                         <div class="wg5t2_size">크기</div>
-                        <div class="wg5t2_breed">
+                        <div class="wg5t2_breed" name="spotSize">
                             <input type="checkbox" name="small" id="small">
                             <label for="small">소형견</label>
                             <input type="checkbox" name="medium" id="medium">
@@ -73,7 +73,7 @@
                             <label for="large">대형견</label>
                         </div>
                     </div>
-                    <div class="wg5t2_amenities">
+                    <div class="wg5t2_amenities" name="ameni">
                         <div class="wg5t2_amentext">편의시설</div>
                         <div class="wgs_checkbox1">
                             <input type="checkbox" id="internet">
@@ -98,7 +98,7 @@
                             <label for="swimming">수영장</label>
                         </div>
                     </div>
-                    <div class="wg5t2_thema">
+                    <div class="wg5t2_thema" name="theme">
                         <div class="wg5t2_thematext">테마</div>
                         <div class="wgs_checkbox1">
                             <input type="checkbox" id="layer">
@@ -139,7 +139,7 @@
                             <label for="information">기본정보</label>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="information" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" name="minfo" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@
                             <label for="attre">편의시설</label>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="attre" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" name="mameni" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -179,20 +179,20 @@
                                         <label for="image_1">
                                             <div class="btn-upload">업로드</div>
                                         </label>
-                                        <input type="file" name="image_1" id="image_1" multiple>
+                                        <input type="file" name="roomimg" id="image_1" multiple>
                                         <div id="preview"></div>
                                     </div>
                                 </div>
                                 <div class="wg5bcr_text">
                                     <div class="te1">
-                                        <input type="text" name="room_name" required placeholder="룸 이름">
+                                        <input type="text" name="roomname" required placeholder="객실 이름">
                                     </div>
                                     <div class="te2">
                                         <div class="te2_1">
                                             가격
                                         </div>
                                         <div class="te2_2">
-                                            <input type="text" name="room_price" required>
+                                            <input type="text" name="roomprice" required>
                                         </div>
                                     </div>
                                     <div class="te3">

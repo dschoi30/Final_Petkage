@@ -1,7 +1,14 @@
 package com.finalproject.petkage.wherego.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -238,66 +245,90 @@ public class WheregoController {
 	}
 	
 	
-	@GetMapping("/manager1")
-	public String manager1() {
+	@GetMapping("/lodging_write")
+	public String lodging_write() {
 		
 		return "wherego/wherego_manager_1";
 	}
 	
-	@PostMapping("/manager1")
-    public ModelAndView write(
-                         ModelAndView model,
-                         @ModelAttribute Wherego wherego ,
-                         @RequestParam("upfile") MultipartFile upfile,
-                         @SessionAttribute("loginMember") Member loginMember) {
-        
+	@PostMapping("/lodging_write")
+    public ModelAndView lodging_write(
+                        ModelAndView model,
+                        @RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
+                        @ModelAttribute Wherego wherego) {
         int result = 0;
-        
-        log.info("Upfile is Empty : {}", upfile.isEmpty());
-        log.info("Upfile Name : {}", upfile.getOriginalFilename());
-        
-        // 파일 업로드 여부 확인 후 저장
-        if(upfile != null && !upfile.isEmpty()) {
-            String location = null;
-            String renamedFileName = null;
-            
-            try {
-                location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
+        // 받아온것 출력 확인
+                System.out.println("multiFileList : " + multiFileList);
+
+                // path 가져오기
+                String path = request.getSession().getServletContext().getRealPath("resources");
+                String root = path + "\\" + "uploadFiles";
                 
-                if(wherego.getRenamedFileName() != null) {
-                    MultipartFileUtil.delete(location + "/" + wherego.getRenamedFileName());
+                File fileCheck = new File(root);
+                
+                if(!fileCheck.exists()) fileCheck.mkdirs();
+                
+                String file1 = "";
+                String file2 = "";
+                
+                Map<String, String> map = new HashMap<>();
+                
+                for(int i = 0; i < multiFileList.size(); i++) {
+                    String img = multiFileList.get(i).getOriginalFilename();
+                    
+                    String renameimg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
+                            img.substring(img.lastIndexOf("."));
+                    int subFileName = Integer.parseInt(renameimg.substring(9, 18)) + i;
+                    renameimg = renameimg.substring(0, 9) + subFileName + renameimg.substring(18, renameimg.length());
+
+                    if(i == 0) {
+                        map.put("img", img);
+                        map.put("renameimg", renameimg);
+                    }
+                    else {
+                        map.put("img", map.get("img") + ", " + img);
+                        map.put("renameimg", map.get("renameimg") + ", " + renameimg);
+                    }
+                    
                 }
                 
-                renamedFileName = MultipartFileUtil.save(upfile, location);
+                file1 = map.get("img");
+                file2 = map.get("renameimg");
                 
-                System.out.println(location);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            if(renamedFileName != null) {
-                wherego.setRenamedFileName(renamedFileName);
-            }
-            
-        }
-        // 작성 내용을 DB에 저장
-        wherego.setSpotNo(loginMember.getNo());
-        System.out.println(wherego);
+                wherego.setImg(file1);
+                wherego.setRenameimg(file2);
+                
+                String[] fileList = map.get("renameimg").split(", ");
+                
+                try {
+                    for(int i = 0; i < multiFileList.size(); i++) {
+                        File uploadFile = new File(root + "\\" + fileList[i]);
+                        multiFileList.get(i).transferTo(uploadFile);
+                    }
+                    System.out.println("다중 파일 업로드 성공!");
+                    System.out.println("파일" + multiFileList);
+                    
+                } catch (IllegalStateException | IOException e) {
+                    System.out.println("다중 파일 업로드 실패 ㅠㅠ");
+                    // 만약 업로드 실패하면 파일 삭제
+                    for(int i = 0; i < multiFileList.size(); i++) {
+                        new File(root + "\\" + fileList[i]).delete();
+                    }
+                    e.printStackTrace();
+                }
         
-        result = service.save(wherego);
+        result = service.lodging_fupload(wherego);
         
+        // 게시글 관련 DB 저장
         if(result > 0) {
-            model.addObject("msg", "상품이 정상적으로 등록되었습니다.");
-            model.addObject("location", "/manager1?proNo=" + wherego.getSpotNo());
+            model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
+            model.addObject("location", "/lodging");
         } else {
-            model.addObject("msg", "상품 등록에 실패했습니다.");
-            model.addObject("location", "/manager1");
+            model.addObject("msg", "게시글 등록을 실패하였습니다.");
+            model.addObject("location", "./");
         }
-        
         model.setViewName("common/msg");
-        
-        
+        System.out.println(result);
         return model;
     }
 	

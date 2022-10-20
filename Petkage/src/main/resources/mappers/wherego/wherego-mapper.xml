@@ -23,10 +23,10 @@
 		<result property="minfo" column="SPOT_MINFO" />
 		<result property="mameni" column="SPOT_MAMENI" />
 		<result property="price" column="SPOT_PRICE" />
-		<result property="rimg" column="SPOT_RIMG" />
+		<result property="roomimg" column="SPOT_RIMG" />
 		<result property="subinfo" column="SPOT_SUBINFO" />
 		<result property="spotstatus" column="SPOT_STATUS" />
-		
+		<result property="renameimg" column="SPOT_RENAMEIMG" />
 	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
@@ -96,4 +96,43 @@
    		WHERE SPOT_NAME LIKE '%'||#{search}||'%' 
     </select>
 	
+	<insert id="lodging_fupload" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+    	INSERT INTO WHEREWEGO (
+    		SPOT_NO,
+			USER_NO,
+			SPOT_CATEGORY,
+			SPOT_LOCATION,
+			SPOT_NAME,
+			SPOT_ADDRESS,
+			SPOT_SIZE,
+			SPOT_AMENI,
+			SPOT_IMG,
+			SPOT_THEME,
+			SPOT_INTRODUCE,
+			SPOT_INFO,
+			SPOT_MINFO,
+			SPOT_MAMENI,
+			SPOT_PRICE,
+			SPOT_RIMG,
+			SPOT_SUBINFO,
+			SPOT_STATUS,
+			SPOT_RENAMEIMG
+    	) VALUES (
+	    	SEQ_SPOT_NO.NEXTVAL, 
+	    	1,
+	    	'lodging', 
+	    	#{ spotLocation }, 
+	    	#{ spotName }, 
+	    	#{ spotAddress }, 
+	    	#{revcoment}, 
+	    	#{revimg}, 
+	    	SYSDATE, 
+	    	#{revscore}, 
+	    	20, 
+	    	'Y', 
+	    	200, 
+	    	#{revrenameimg}, 
+	    	#{revcategory}
+    	)
+    </insert>
 </mapper>
