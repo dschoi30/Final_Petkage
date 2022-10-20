@@ -130,10 +130,10 @@
                 </div>
                 <div class="wgc_box">
 	                <a href="${ path }/review_bath">
-	                    <div class="wgcb_img">
+	                    <div class="wgcb_img" style="border-right: none;">
 	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
 	                    </div>
-	                    <div class="wgcb_text" style="border-right: none;">
+	                    <div class="wgcb_text">
 	                        <p>셀프목욕</p>
 	                    </div>
 	                </a>
