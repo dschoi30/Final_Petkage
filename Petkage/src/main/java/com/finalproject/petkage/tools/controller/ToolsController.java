@@ -107,25 +107,61 @@ public class ToolsController {
         return model;
 	}
 
+// 	@RequestMapping("/foodAdd")
+// 	@ResponseBody
+// 	public ModelAndView foodAdd (
+// 	       ModelAndView model,
+// 	       @ModelAttribute Food food
+// //	       @RequestParam(value = "food_name", required = false) String foodName,
+// //	       @RequestParam(value = "food_comment", required = false) String comment,
+// //	       @RequestParam(value = "food_subcomment", required = false) String subComment,
+// //	       @RequestParam(value = "eatThis_type", required = false) String eatThis
+// 	        ) {
+// 	    System.out.println(food); // PAYLOAD는 되는데 객체로 안찍힘
+//	    
+// //		int result = 0;
+// //
+// //		result = service.addFood(food);
+// //
+// //		if(result > 0) {
+// //			model.addObject("msg", "새로운 식품이 등록되었습니다.");
+// //		} else {
+// //			model.addObject("msg", "새로운 식품 등록에 실패하였습니다.");
+// //			model.addObject("location", "tools/foodDictionary");
+// //		}
+// //		model.setViewName("common/msg");
+//		
+//// 	    return model;
+//// 	}	
+
 	@RequestMapping("/foodAdd")
-	public ModelAndView foodAdd (
-	        ModelAndView model,
-			@ModelAttribute Food food) {
-	    System.out.println(food); // PAYLOAD는 되는데 객체로 안찍힘
-	    
-//		int result = 0;
-//
-//		result = service.addFood(food);
-//
-//		if(result > 0) {
-//			model.addObject("msg", "새로운 식품이 등록되었습니다.");
-//		} else {
-//			model.addObject("msg", "새로운 식품 등록에 실패하였습니다.");
-//			model.addObject("location", "tools/foodDictionary");
-//		}
-//		model.setViewName("common/msg");
+	@ResponseBody
+    public Map<String, Object> foodAdd(@RequestBody HashMap<String, Object> food){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-	    return model;
-	}	
-	
+        System.out.println("파라미터 객체 : " + food);
+        
+		int duplicateFood = service.duplicateFood(food);
+		int result = 0;
+
+		if(duplicateFood != 0) {
+		    System.out.println("중복 값 있음:" + duplicateFood);
+		    
+            resultMap.put("data", "fail");
+            return resultMap;
+		} else {
+		    System.out.println("중복 값 없음:" + duplicateFood);
+
+		    result = service.addFood(food);
+            
+            if(result > 0) {
+                System.out.println("값:" + result);
+                resultMap.put("data", "success");
+                return resultMap;
+            } else {
+                resultMap.put("data", "fail");
+                return resultMap;
+            }
+		} 
+    }
 }

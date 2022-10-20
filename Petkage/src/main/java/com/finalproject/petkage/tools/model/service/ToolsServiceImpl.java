@@ -1,5 +1,7 @@
 package com.finalproject.petkage.tools.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +22,16 @@ public class ToolsServiceImpl implements ToolsService {
     }
 
     @Override
-    public int addFood(Food food) {
+    public int addFood(HashMap<String, Object> food) {
         System.out.println("새로운 식품 추가 : " + food);
         
         return mapper.insertFood(food);
     }
 
+    @Override
+    public int duplicateFood(HashMap<String, Object> food) {
+        System.out.println("식품 중복 검사 : " + food);
+        
+        return mapper.foodCheck(food);
+    }
 }

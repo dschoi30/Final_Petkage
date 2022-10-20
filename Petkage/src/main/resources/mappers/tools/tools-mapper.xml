@@ -46,11 +46,18 @@
 		    FOOD_EAT_THIS
 		) VALUES (
 		    SEQ_FOOD_NO.NEXTVAL,
-		    #{ foodName },
-		    #{ comment },
-		    #{ subComment },
-		    #{ eatThis }
+		    #{ food_name },
+		    #{ food_comment },
+		    #{ food_subcomment },
+		    #{ eatThis_type }
 		)
 	</insert>
+	
+	<!-- 식품 중복 검사 -->
+	<select id="foodCheck" resultType="int">
+		SELECT COUNT(*) 
+		FROM FOOD 
+		WHERE FOOD_NAME = #{ food_name }
+	</select>
 	
 </mapper>
