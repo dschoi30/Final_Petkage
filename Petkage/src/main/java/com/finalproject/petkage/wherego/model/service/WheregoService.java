@@ -2,6 +2,7 @@ package com.finalproject.petkage.wherego.model.service;
 
 import java.util.List;
 
+import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface WheregoService {
@@ -23,6 +24,10 @@ public interface WheregoService {
 	List<Wherego> bath_board();
 
 	List<Wherego> petsitter_board();
+
+	int search_list_lod(String search);
+
+	List<Wherego> search_board_lod(PageInfo pageInfo, String search);
 
 	
 	

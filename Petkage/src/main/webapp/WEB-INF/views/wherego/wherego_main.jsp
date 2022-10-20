@@ -26,9 +26,9 @@
                 <p>어디가지?</p>
             </div>
             <div class="ht_search2">
-                <form class="ht_12">
+                <form class="ht_12" action="search_list_lod">
                     <div class="ht_22">
-                        <input type="text">
+                        <input type="text" name="search_list_lod">
                         <button type="submit">
                             <img src="${ path }/resources/images/wherego/검색.png" alt="search">
                         </button>

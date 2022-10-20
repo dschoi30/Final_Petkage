@@ -3,6 +3,7 @@ package com.finalproject.petkage.wherego.model.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -26,5 +27,9 @@ public interface WheregoMapper {
 	List<Wherego> bath_board();
 
 	List<Wherego> petsitter_board();
+
+	int search_list_lod(String search);
+
+	List<Wherego> search_board_lod(RowBounds rowBounds, String search);
 
 }

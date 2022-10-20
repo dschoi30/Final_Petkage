@@ -225,13 +225,6 @@ public class WheregoController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/reviewboard")
 	public String reivewboard() {
 		
@@ -313,4 +306,30 @@ public class WheregoController {
 		
 		return "wherego/wherego_manager_2";
 	}
+	
+	// lodging 검색 
+	
+	@GetMapping("/wherego_search_lod")
+    public ModelAndView wherego_search_lod(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "review_search") String search) {
+        List<Wherego> wherego = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, service.search_list_lod(search), 10);
+        wherego = service.search_board_lod(pageInfo, search);
+        
+        System.out.println(wherego);
+
+        model.addObject("wherego", wherego);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_lodging");
+
+        System.out.println(wherego);
+        
+        return model;
+
+    }
+	
+	
 }
