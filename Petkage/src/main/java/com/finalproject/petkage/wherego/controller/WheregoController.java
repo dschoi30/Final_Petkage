@@ -237,6 +237,12 @@ public class WheregoController {
 		return "wherego/wherego_manager_2";
 	}
 	
+	@GetMapping("/search_list")
+	public String search_list() {
+		
+		return "wherego/wherego_search_list";
+	}
+	
 	// lodging 검색 
 	
 	@GetMapping("/wherego_search_lod")
