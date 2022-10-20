@@ -1,24 +1,34 @@
 package com.finalproject.petkage.wherego.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.controller.MarketController;
+import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.review.model.service.ReviewService;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.service.WheregoService;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class WheregoController {
 	@Autowired
@@ -26,6 +36,9 @@ public class WheregoController {
 	
 	@Autowired
 	private ReviewService review_service;
+	
+	@Autowired
+    private ResourceLoader resourceLoader;
 	
 	
 	@GetMapping("/main")
@@ -237,6 +250,63 @@ public class WheregoController {
 		
 		return "wherego/wherego_manager_1";
 	}
+	
+	@PostMapping("/manager1")
+    public ModelAndView write(
+                         ModelAndView model,
+                         @ModelAttribute Wherego wherego ,
+                         @RequestParam("upfile") MultipartFile upfile,
+                         @SessionAttribute("loginMember") Member loginMember) {
+        
+        int result = 0;
+        
+        log.info("Upfile is Empty : {}", upfile.isEmpty());
+        log.info("Upfile Name : {}", upfile.getOriginalFilename());
+        
+        // 파일 업로드 여부 확인 후 저장
+        if(upfile != null && !upfile.isEmpty()) {
+            String location = null;
+            String renamedFileName = null;
+            
+            try {
+                location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
+                
+                if(wherego.getRenamedFileName() != null) {
+                    MultipartFileUtil.delete(location + "/" + wherego.getRenamedFileName());
+                }
+                
+                renamedFileName = MultipartFileUtil.save(upfile, location);
+                
+                System.out.println(location);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            if(renamedFileName != null) {
+                wherego.setRenamedFileName(renamedFileName);
+            }
+            
+        }
+        // 작성 내용을 DB에 저장
+        wherego.setSpotNo(loginMember.getNo());
+        System.out.println(wherego);
+        
+        result = service.save(wherego);
+        
+        if(result > 0) {
+            model.addObject("msg", "상품이 정상적으로 등록되었습니다.");
+            model.addObject("location", "/manager1?proNo=" + wherego.getSpotNo());
+        } else {
+            model.addObject("msg", "상품 등록에 실패했습니다.");
+            model.addObject("location", "/manager1");
+        }
+        
+        model.setViewName("common/msg");
+        
+        
+        return model;
+    }
 	
 	@GetMapping("/manager2")
 	public String manager2() {
