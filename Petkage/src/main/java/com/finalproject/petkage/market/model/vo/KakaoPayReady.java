@@ -23,9 +23,13 @@ public class KakaoPayReady {
     
     /* request */
     
-    private int payNo;
+    private String payNo;
     
     private int no;
+    
+    private String address;
+    
+    private String subaddress;
     
     private String payMethod;
     
@@ -49,4 +53,11 @@ public class KakaoPayReady {
     
     private List<PayItems> orders;
     
+    public void getPriceInfo() {
+    	for(PayItems payItems : orders) {
+    		totalPrice += payItems.getEachProTotalPrice();
+    		totalSavingPoint += payItems.getSavingPoint();
+    	}
+    	totalPriceAfterUsingPoint = totalPrice + totalSavingPoint - usingPoint;
+    }
 }

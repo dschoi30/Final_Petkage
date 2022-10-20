@@ -90,8 +90,11 @@
                         </tr>
                         <tr>
                             <td>포인트 사용</td>
-                            <td><span class="discount-point"><input type="text" class="using-point" placeholder="0" size="6" dir="rtl" onkeyup="inputNumberFormat(this);"/>&nbsp; 원</span> &nbsp; 
-                            	<input type="checkbox" class="use-all-point" id="usingPoint" data-point="${ loginMember.point }"> 전액 사용 ( 보유 포인트 : <fmt:formatNumber value="${ loginMember.point }" pattern="#,###"/>원 )&nbsp;</td>
+                            <td><span class="discount-point"><input type="text" class="using-point" placeholder="0" size="6" dir="rtl"/>&nbsp; 원</span> &nbsp; 
+<!--                             <td><span class="discount-point"><input type="text" class="using-point" placeholder="0" size="6" dir="rtl" onkeyup="inputNumberFormat(this);"/>&nbsp; 원</span> &nbsp;   -->
+                            	<input type="checkbox" class="use-all-point" id="usingPoint" data-point="${ loginMember.point }" 
+                            	oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 전액 사용 ( 보유 포인트 : <fmt:formatNumber value="${ loginMember.point }" pattern="#,###"/>원 )&nbsp;
+                            	</td>
                         </tr>
                         <tr>
                             <td>배송비</td>
@@ -101,7 +104,7 @@
                             <td>총 결제금액</td>
                             <td>
                             	<span class="set-total-price-after-using-point"></span>원
-                            	<span style="padding-left: 80px;">결제 후 적립 포인트</span>
+                            	<span style="padding-left: 86px;">결제 시 적립(5%) 포인트</span>
                             	<span class="set-total-saving-point" style="padding-left: 10px;"></span>원
                             </td>
                         </tr>
@@ -133,7 +136,7 @@
 	<input type="hidden" name="no" value=${ loginMember.no }>	
 	<input type="hidden" name="zonecode">
 	<input type="hidden" name="address">
-	<input type="hidden" name="subAddress">
+	<input type="hidden" name="subaddress">
 	<input type="hidden" name="usingPoint">
 </form>
 
@@ -254,7 +257,7 @@
 			$(".using-point").val(0);
 		}
 	});
-	
+/*	
 	// 숫자 외 문자값 입력 방지, 천 단위 구분
 	function inputNumberFormat(obj) {
 	    obj.value = comma(uncomma(obj.value));
@@ -269,12 +272,13 @@
 	    str = String(str);
 	    return str.replace(/[^\d]+/g, '');
 	}
-	
+*/	
 	// 0 이상 최대 포인트 이하
 	$(".using-point").on("propertychange change keyup paste input", function() {
 		const maxPoint = parseInt('${ loginMember.point }');
 		console.log(maxPoint);
 		let inputValue = parseInt($(this).val());
+		$(this).val(inputValue);
 		console.log(inputValue);
 		if(inputValue < 0) {
 			$(this).val(0);
@@ -282,7 +286,7 @@
 			$(this).val(maxPoint);
 		}
 	});
-
+	
 	function setTotalInfo() {
 		 
 		let totalPrice = 0;
@@ -305,22 +309,25 @@
 	 	$(".set-total-saving-point").text(totalSavingPoint.toLocaleString());
 	 	$(".set-total-price-after-using-point").text(totalPriceAfterUsingPoint.toLocaleString());
 	};
-/*	
+
 	$(".pay-btn").on("click", function() {
 		$("input[name='usingPoint']").val($(".using-point").val());
-		let order-form = "";
+		$("input[name='orderComment']").val($(".order-comment").val());
+		let orderForm = '';
 		$(".order-list").each(function(index, element) {
-			let proNo = $(element).find(".order-subtotal-price").val();
+			let proNo = $(element).find(".order-pro-no").val();
 			let proCount = $(element).find(".order-pro-count").val();
-			let proNoInput = "<input type='hidden' name='orders[" + index "].proNo' value='" + proNo + "'>";
-			order-form += proNoInput;
-			let proCountInput = "<input type='hidden' name='orders[" + index "].proCount' value='" + proCount + "'>";
-			order-form += proCountInput;
+			console.log(proNo);
+			console.log(proCount);
+			let proNoInput = "<input type='hidden' name='orders[" + index + "].proNo' value='" + proNo + "'>";
+			orderForm += proNoInput;
+			let proCountInput = "<input type='hidden' name='orders[" + index + "].proCount' value='" + proCount + "'>";
+			orderForm += proCountInput;
 		});
-		$(".order-finished-form").append(order-form);
+		$(".order-finished-form").append(orderForm);
 		
 		$(".order-finished-form").submit();
 		
 	});
-*/
+
 </script>

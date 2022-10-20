@@ -133,7 +133,8 @@
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
                         	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1" onkeyup="inputNumberFormat(this);">
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                         	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
@@ -617,20 +618,6 @@
    			$(".order-form").submit();
    		})
 	});
-	
-	function inputNumberFormat(obj) {
-	    obj.value = comma(uncomma(obj.value));
-	}
-	 
-	function comma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
-	}
-
-	function uncomma(str) {
-	    str = String(str);
-	    return str.replace(/[^\d]+/g, '');
-	}
 	
     // 상품 상세 페이지 상단바
 

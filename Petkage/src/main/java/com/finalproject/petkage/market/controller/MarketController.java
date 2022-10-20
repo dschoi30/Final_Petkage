@@ -293,7 +293,6 @@ public class MarketController {
 	@GetMapping("/order/{no}")
 	public ModelAndView Payment (ModelAndView model, @ModelAttribute KakaoPayReady kakaoPayReady, @PathVariable("no") int no) {
 
-//		model.addObject("orderList", kakaoPayService.getGoodsInfo(kakaoPayReady.getOrders()));
 		System.out.println("loginMember : " + no);
 		System.out.println("orderList : " + kakaoPayReady.getOrders());
 
@@ -306,12 +305,14 @@ public class MarketController {
 	}
 	
 	@PostMapping("/order")
-	public String Payment(KakaoPayReady kakaoPayReady, HttpServletRequest request) {
+	public String Payment(KakaoPayReady kakaoPayReady) {
 		log.info("결제 준비 PostMapping");
 		
-		System.out.println(kakaoPayReady);
+		System.out.println("주문페이지 진입 : " + kakaoPayReady);
 		
-		return "redirect:" + kakaoPayService.kakaoPayReady();
+//		kakaoPayService.setOrder(kakaoPayReady);
+		
+		return "redirect:" + kakaoPayService.kakaoPayReady(kakaoPayReady);
 	}
 
 	@GetMapping("/order-finished")

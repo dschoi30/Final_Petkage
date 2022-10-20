@@ -2,7 +2,9 @@ package com.finalproject.petkage.market.model.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
@@ -34,7 +37,38 @@ public class KakaoPayService {
 	@Autowired
 	private MarketMapper mapper;
 	
-	public String kakaoPayReady() {
+	@Transactional
+	public String kakaoPayReady(KakaoPayReady kakaoPayReady) {
+		
+		Member member = mapper.getMemberDeliveryInfo(kakaoPayReady.getNo());
+		
+		List<PayItems> orderList = new ArrayList<>();
+		
+		for(PayItems payItems : kakaoPayReady.getOrders()) {
+			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
+			
+			itemsInfo.setProCount(payItems.getProCount());
+			itemsInfo.initTotalInfo();
+			
+			orderList.add(itemsInfo);
+		}
+		
+		kakaoPayReady.setOrders(orderList);
+		kakaoPayReady.getPriceInfo();
+
+		
+		Date date = new Date();	
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDDHHmm");
+		String payNo = dateFormat.format(date) + member.getNo();
+		kakaoPayReady.setPayNo(payNo);
+		
+		mapper.placeOrder(kakaoPayReady);
+		for(PayItems payItems : kakaoPayReady.getOrders()) {
+			payItems.setPayNo(payNo);
+			mapper.placeOrderItems(payItems);
+		}
+		System.out.println(kakaoPayReady);
+		
 		RestTemplate restTemplate = new RestTemplate();
 
 		//서버로 요청할 Header
@@ -115,11 +149,11 @@ public class KakaoPayService {
         return null;
     }
 
-	public List<PayItems> getItemsInfo(List<PayItems> orders) {
+	public List<PayItems> getItemsInfo(List<PayItems> orderList) {
 		
 		List<PayItems> result = new ArrayList<PayItems>();
 		
-		for(PayItems payItems : orders) {
+		for(PayItems payItems : orderList) {
 			
 			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
 			
@@ -133,5 +167,38 @@ public class KakaoPayService {
 	public Member getMemberInfo(int no) {
 		
 		return mapper.getMemberDeliveryInfo(no);
+	}
+	
+	@Transactional
+	public void setOrder(KakaoPayReady kakaoPayReady) {
+		
+		Member member = mapper.getMemberDeliveryInfo(kakaoPayReady.getNo());
+		
+		List<PayItems> orderList = new ArrayList<>();
+		
+		for(PayItems payItems : kakaoPayReady.getOrders()) {
+			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
+			
+			itemsInfo.setProCount(payItems.getProCount());
+			itemsInfo.initTotalInfo();
+			
+			orderList.add(itemsInfo);
+		}
+		
+		kakaoPayReady.setOrders(orderList);
+		kakaoPayReady.getPriceInfo();
+
+		
+		Date date = new Date();	
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDDmm");
+		String payNo = dateFormat.format(date) + member.getNo();
+		kakaoPayReady.setPayNo(payNo);
+		
+		mapper.placeOrder(kakaoPayReady);
+		for(PayItems payItems : kakaoPayReady.getOrders()) {
+			payItems.setPayNo(payNo);
+			mapper.placeOrderItems(payItems);
+		}
+		System.out.println(kakaoPayReady);
 	}
 }

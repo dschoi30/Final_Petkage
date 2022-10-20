@@ -47,7 +47,8 @@
 	                        <td>
 		                        <div class="col mt-0 p-0">
 		                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }" onkeyup="inputNumberFormat(this);">
+									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 		                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
 		                        	<a class="btn btn-light change-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">변경</a>
 		                        	<a class="btn btn-light del-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">삭제</a>
@@ -188,10 +189,8 @@
 					
 					let proNo = $(element).find(".cart-pro-no").val();
 					let proCount = $(element).find(".cart-pro-count").val();
-					
 					let proNoInput = "<input name='orders[" + orderNum + "].proNo' type='hidden' value='" + proNo + "'>";
 					formContents += proNoInput;
-					
 					let proCountInput = "<input name='orders[" + orderNum + "].proCount' type='hidden' value='" + proCount + "'>";
 					formContents += proCountInput;
 					
@@ -205,20 +204,6 @@
 		
 		
 	});
-	
-	 function inputNumberFormat(obj) {
-	     obj.value = comma(uncomma(obj.value));
-	 }
-	 
-	 function comma(str) {
-	     str = String(str);
-	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	 }
-
-	 function uncomma(str) {
-	     str = String(str);
-	     return str.replace(/[^\d]+/g, '');
-	 }
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

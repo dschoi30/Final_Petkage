@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
+import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
@@ -47,4 +48,14 @@ public interface MarketMapper {
 	PayItems getItemsInfo(int proNo);
 	
 	Member getMemberDeliveryInfo(int no);
+	
+	int placeOrder(KakaoPayReady kakaoPayReady);
+	
+	int placeOrderItems(PayItems payItems);
+	
+	int deductMemberPoint(Member member);
+	
+	int deductProductStock(Product product);
+	
+	int deleteCartOrder(Cart cart);
 }
