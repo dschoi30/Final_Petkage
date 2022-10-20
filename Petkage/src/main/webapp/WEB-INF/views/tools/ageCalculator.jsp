@@ -148,7 +148,7 @@
 		
 						<div class="age_circle">
 							<!-- ! 이미지 수정하기 -->
-							<span class="age_img"><img class="human_img" id="dog_to_human" src="${ path }/resources/images/Agegroup_W1.png" alt="사람" /></span>
+							<span class="age_img"><img class="human_img" id="dog_to_human" alt="사람" /></span>
 							<span class="age_number" id="dog_age_cal">몇 살</span>
 						</div>
 		
@@ -167,7 +167,7 @@
 		
 						<div class="age_circle">
 							<!-- ! 이미지 수정하기 -->
-							<span class="age_img"><img class="human_img" id="cat_to_human" src="${ path }/resources/images/.png" alt="사람" /></span>
+							<span class="age_img"><img class="human_img" id="cat_to_human" alt="사람" /></span>
 							<span class="age_number" id="cat_age_cal">몇 살</span>
 						</div>
 		
