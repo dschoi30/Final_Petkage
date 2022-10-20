@@ -78,7 +78,7 @@
 						<div class="content_write walkOut">
 							<span class="content_write_input write_divline ">
 								<div class="weather_content">
-									<%-- <div class="weatherTitle">지금 현재 위치의 날씨는</div> --%>
+									<!--  <div class="weatherTitle">지금 현재 위치의 날씨는</div> -->
 									<div class="wContents" id="weatherIcon">
 										<img id="petIcon" src="">
 									</div>

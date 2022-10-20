@@ -34,20 +34,20 @@ public class Wherego {
 	
 	private String info; // 기본정보
 	
-	private String minfo; // 모달 기본정보
-	
-	private String mameni; // 모달 편의시설
-	
-	private String roomname; // 객실 이름
-
-	private String roomprice; // 객실 가격
-	
-	private String roomimg; // 객실 이미지(1개)
-	
 	private String spotstatus; // 어디가지 상태
 
 	private String renameimg; // 이미지 개명
 
-	private String mapLocation; // 지도 좌표
+	private String spotmap; // 지도 좌표
+	
+	private String roomname; // 객실 이름
+
+    private int roomprice; // 객실 가격
+    
+    private String roomimg; // 객실 이미지(1개)
+    
+    private String minfo; // 모달 기본정보
+    
+    private String mameni; // 모달 편의시설
 
 }

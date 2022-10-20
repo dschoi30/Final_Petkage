@@ -247,14 +247,14 @@ public class WheregoController {
 	
 	@GetMapping("/lodging_write")
 	public String lodging_write() {
-		
+	    log.info("숙소 게시글 작성 페이지 요청");
 		return "wherego/wherego_manager_1";
 	}
 	
 	@PostMapping("/lodging_write")
     public ModelAndView lodging_write(
                         ModelAndView model,
-                        @RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
+                        @RequestParam(value="multiFile") List<MultipartFile> multiFileList, HttpServletRequest request,
                         @ModelAttribute Wherego wherego) {
         int result = 0;
         // 받아온것 출력 확인
@@ -275,6 +275,7 @@ public class WheregoController {
                 
                 for(int i = 0; i < multiFileList.size(); i++) {
                     String img = multiFileList.get(i).getOriginalFilename();
+                    System.out.println("이미지" + img);
                     
                     String renameimg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
                             img.substring(img.lastIndexOf("."));
