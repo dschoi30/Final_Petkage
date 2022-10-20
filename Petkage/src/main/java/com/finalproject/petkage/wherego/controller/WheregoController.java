@@ -343,10 +343,10 @@ public class WheregoController {
 	@GetMapping("/wherego_search_lod")
     public ModelAndView wherego_search_lod(ModelAndView model, 
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "review_search") String search) {
+            @RequestParam(value = "search_name") String search) {
         List<Wherego> wherego = null;
         PageInfo pageInfo = null;
-
+        
         pageInfo = new PageInfo(page, 10, service.search_list_lod(search), 10);
         wherego = service.search_board_lod(pageInfo, search);
         
