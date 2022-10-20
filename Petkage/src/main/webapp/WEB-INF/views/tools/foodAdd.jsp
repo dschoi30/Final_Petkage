@@ -68,38 +68,8 @@
 			<!-- 사전 컨텐츠 -->
 			<div class="cal_content pr">
 
-				<!-- 식품 검색 박스 -->
-				<div class="cal_info_box" id="contents_tab_4">
-
-					<!-- 식품 검색 -->
-					<div class="cal_write">
-						<div class="content_write box_no_line">
-							<div id="search_box_cover">
-								<form method="GET" action="${ path }/tools/eatThis">
-									<div class="tb">
-										<div class="td"><input type="text" id="searchFood" name="foodName" placeholder="이거 먹어도 되나요?" value="${ param.foodName }" required></div>
-										<div class="td" id="s-cover">
-											<button type="submit">
-											<div id="s-circle"></div>
-											<span></span>
-											</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-
-					<!-- 관리자 식품 추가 버튼 -->
-					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-						<div class="cal_btn">
-							<div class="cal_result" id="result_btn" onclick="addFood()"><a>식품 추가</a></div>
-						</div>
-					</c:if>	
-				</div>
-
 				<!-- 식품 추가 박스 -->
-				<div class="dic_add_box" style="display:none">
+				<div class="dic_add_box">
 		
 					<!-- 식품 추가 -->
 					<form action="${ path }/tools/foodAdd" method="POST" enctype="multipart/form-data" >
@@ -154,11 +124,6 @@
 	<!-- Food_dictionary 끝 -->
 <script type="text/javascript">
 
-	function addFood() {
-		$(".dic_add_box").show();
-		$(".cal_info_box").hide();
-	}
-
 	function eatThis_choice(no) { 
         console.log(no + $("#food_type").val(no));
 
@@ -166,55 +131,35 @@
     }
 
 	$("#foodAddBtn").on("click", function() {
-
-		if ($("#food_name").val() !== "" && $("#food_comment").val() !== "" && $('input[name="eatThis_type"]').val() !== "" ) {	// 빈칸 완료
-			
-			var food = {
-				food_name : $("#food_name").val(),
-				food_comment : $("#food_comment").val(),
-				food_subcomment : $("#food_subcomment").val(),
-				eatThis_type : $('input[name="eatThis_type"]:checked').val()
-			}
-		
-			// var food_name = $("#food_name").val();
-			// var food_comment = $("#food_comment").val();
-			// var food_subcomment = $("#food_subcomment").val();
-			// var food_type = $('input[name="eatThis_type"]:checked').val();
-			
-			// console.log(food_name + ", " + food_comment + ", " + food_subcomment + ", " + food_type);
-					
-			$.ajax({
-				type: "POST",
-				url: "${ path }/tools/foodAdd",
-				dataType : "json",
-				contentType : "application/json",
-				data: JSON.stringify(food)
-				// {
-					// food_name,
-					// food_comment,
-					// food_subcomment,
-					// food_type
-				// } ,
-				,
-				success: (data) => {
-					console.log(data);
-					if (data['data'] == "success"){
-						alert("새로운 식품이 등록되었습니다.");
-					} else if (data['data'] == "fail") {
-						alert("이미 등록된 식품입니다.");
-					}
-				},
-				error: (error) => {
-					console.log(error);
-				}
-			});
+			if ($("#food_name").val() !== "" && $("#food_comment").val() !== "" && $('input[name="eatThis_type"]').val() !== "" ) {	// 빈칸 완료
 				
-		} else {
-			alert("빈칸을 채워주세요.")
-		}
-		
-		
-	});		
+				let  obj = {
+					"food_name" : $("#food_name").val(),
+		  		    "food_comment" : $("#food_comment").val(),
+					"food_subcomment" : $("#food_subcomment").val(),
+					"food_type" : $('input[name="eatThis_type"]:checked').val()
+				}
+
+				console.log(food_name + ", " + food_comment + ", " + food_subcomment + ", " + food_type);
+						
+				$.ajax({
+					type: "POST",
+					url: "${ path }/tools/foodAdd",
+					headers: {'content-Type': 'application/json'},
+					data: JSON.stringify(obj),
+					success: (obj) => {
+						console.log(obj);
+					},
+					error: (error) => {
+						console.log(error);
+					}
+				});
+					
+			} else {
+				alert("빈칸을 채워주세요.")
+			}
+			
+		});		
 
 </script>	
 </body>
