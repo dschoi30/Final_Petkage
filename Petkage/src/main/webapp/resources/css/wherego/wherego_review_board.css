@@ -285,12 +285,17 @@ html {
     height: 230px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     align-items: center;
-    margin-bottom: 5px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1:hover {
     background-color: #bdbdbd2d;
 }
+
+.wg_2 .wgc_7 .wgc7_list .wgc7l_1,
+.wg_2 .wgc_7 .wgc7_list .wgc7l_2 {
+	padding: 10px;
+}
+
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_img {
     width: 250px;

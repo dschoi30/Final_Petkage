@@ -24,6 +24,22 @@
 	
 	</resultMap>
 	
+	<select id="getReviewAllCount_review_all" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_STATUS = 'Y'
+        ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewList_review_all" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+	
 	<select id="getReviewAllCount" resultType="_int">
         SELECT COUNT(*) 
         FROM REVIEW

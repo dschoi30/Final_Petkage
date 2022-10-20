@@ -48,4 +48,8 @@ public interface Reviewmapper {
 
 	List<Review> getReviewList_bath(RowBounds rowBounds);
 
+	int getReviewAllCount_review_all();
+
+	List<Review> getReviewList_review_all(RowBounds rowBounds);
+
 }

@@ -45,5 +45,9 @@ public interface ReviewService {
 
 	List<Review> getReviewList_bath(PageInfo pageInfo);
 
+	int getReviewAllCount_review_all();
+
+	List<Review> getReviewList_review_all(PageInfo pageInfo);
+
 	
 }

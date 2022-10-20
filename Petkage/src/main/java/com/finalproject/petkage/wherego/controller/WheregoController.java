@@ -8,9 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.controller.MarketController;
+import com.finalproject.petkage.review.model.service.ReviewService;
+import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.service.WheregoService;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -20,11 +24,30 @@ public class WheregoController {
 	@Autowired
 	private WheregoService service;
 	
+	@Autowired
+	private ReviewService review_service;
+	
+	
 	@GetMapping("/main")
-	public String main() {
-		
-		return "wherego/wherego_main";
-	}
+    public ModelAndView review_all(ModelAndView model, 
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        List<Review> review = null;
+        PageInfo pageInfo = null;
+
+        pageInfo = new PageInfo(page, 10, review_service.getReviewAllCount_review_all(), 10);
+        review = review_service.getReviewList_review_all(pageInfo);
+        
+        System.out.println(review);
+
+        model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+        model.setViewName("wherego/wherego_main");
+
+        System.out.println("담기전" + review);
+        
+        return model;
+
+    }
 	
 	@GetMapping("/cafedetail")
 	public String cafedetail() {

@@ -18,6 +18,22 @@ public class ReviewServiceImpl implements ReviewService {
 	private Reviewmapper reviewmapper;
 	
 	@Override
+	public int getReviewAllCount_review_all() {
+		
+		return reviewmapper.getReviewAllCount_review_all();
+	}
+
+	@Override
+	public List<Review> getReviewList_review_all(PageInfo pageInfo) {
+		
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+        int limit = pageInfo.getListLimit();
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        
+        return reviewmapper.getReviewList_review_all(rowBounds);
+	}
+	
+	@Override
 	public int getReviewAllCount() {
 		
 		return reviewmapper.getReviewAllCount();

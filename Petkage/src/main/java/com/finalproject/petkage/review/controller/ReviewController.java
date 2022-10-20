@@ -35,6 +35,7 @@ public class ReviewController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
+	
 	@GetMapping("/review_list")
     public ModelAndView all_list(ModelAndView model, 
             @RequestParam(value = "page", defaultValue = "1") int page) {
