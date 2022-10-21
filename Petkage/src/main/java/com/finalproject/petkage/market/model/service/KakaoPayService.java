@@ -39,38 +39,10 @@ public class KakaoPayService {
 	
 	@Transactional
 	public String kakaoPayReady(KakaoPayReady kakaoPayReady) {
-		
-		Member member = mapper.getMemberDeliveryInfo(kakaoPayReady.getNo());
-		
-		List<PayItems> orderList = new ArrayList<>();
-		
-		for(PayItems payItems : kakaoPayReady.getOrders()) {
-			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
-			
-			itemsInfo.setProCount(payItems.getProCount());
-			itemsInfo.initTotalInfo();
-			
-			orderList.add(itemsInfo);
-		}
-		
-		kakaoPayReady.setOrders(orderList);
-		kakaoPayReady.getPriceInfo();
 
-		
-		Date date = new Date();	
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDDHHmm");
-		String payNo = dateFormat.format(date) + member.getNo();
-		kakaoPayReady.setPayNo(payNo);
-		
-		mapper.placeOrder(kakaoPayReady);
-		for(PayItems payItems : kakaoPayReady.getOrders()) {
-			payItems.setPayNo(payNo);
-			mapper.placeOrderItems(payItems);
-		}
-		System.out.println(kakaoPayReady);
-		
 		RestTemplate restTemplate = new RestTemplate();
-
+		
+		
 		//서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "a2c23a946b5f644401b0fc455309f81c");
@@ -80,11 +52,11 @@ public class KakaoPayService {
 		// 서버로 요청할 Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
-		params.add("partner_order_id", "1001");
-		params.add("partner_user_id", "ds0631");
-		params.add("item_name", "탐사 6free 강아지 사료 연어 레시피, 3kg");
-		params.add("quantity", "1");
-		params.add("total_amount", "17490");
+		params.add("partner_order_id", Integer.toString(kakaoPayReady.getNo()));
+		params.add("partner_user_id", Integer.toString(kakaoPayReady.getNo()));
+		params.add("item_name", kakaoPayReady.getOrders().get(0).getProName() + "외 " + (kakaoPayReady.getOrders().size() - 1)+ "건");
+		params.add("quantity", Integer.toString(kakaoPayReady.getOrders().size()));
+		params.add("total_amount", Integer.toString(kakaoPayReady.getTotalPriceAfterUsingPoint()));
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8083/petkage/market/order-finished");
 		params.add("cancel_url", "http://localhost:8083/petkage/market/order-canceled");
@@ -109,10 +81,9 @@ public class KakaoPayService {
     }
 	
     public KakaoPayApproval kakaoPayInfo(String pg_token) {
-   	
-        log.info("KakaoPayInfo............................................");
-        log.info("-----------------------------");
-        
+    	System.out.println(kakaoPayReady);
+        log.info("KakaoPayInfo 호출");
+        log.info(pg_token);
         RestTemplate restTemplate = new RestTemplate();
 
         // 서버로 요청할 Header
@@ -125,10 +96,10 @@ public class KakaoPayService {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReady.getTid());
-        params.add("partner_order_id", "1001");
-        params.add("partner_user_id", "ds0631");
+        params.add("partner_order_id", Integer.toString(kakaoPayReady.getNo()));
+        params.add("partner_user_id", Integer.toString(kakaoPayReady.getNo()));
         params.add("pg_token", pg_token);
-        params.add("total_amount", "17490");
+        params.add("total_amount", Integer.toString(kakaoPayReady.getTotalPriceAfterUsingPoint()));
         
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         
@@ -171,7 +142,7 @@ public class KakaoPayService {
 	
 	@Transactional
 	public void setOrder(KakaoPayReady kakaoPayReady) {
-		
+
 		Member member = mapper.getMemberDeliveryInfo(kakaoPayReady.getNo());
 		
 		List<PayItems> orderList = new ArrayList<>();

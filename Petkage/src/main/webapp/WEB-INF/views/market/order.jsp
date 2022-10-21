@@ -98,14 +98,14 @@
                         </tr>
                         <tr>
                             <td>배송비</td>
-                            <td><span class="set-total-del-fee"></span>원</td>
+                            <td><span class="total-del-fee"></span>원</td>
                         </tr>
                         <tr>
                             <td>총 결제금액</td>
                             <td>
-                            	<span class="set-total-price-after-using-point"></span>원
+                            	<span class="total-price-after-using-point"></span>원
                             	<span style="padding-left: 86px;">결제 시 적립(5%) 포인트</span>
-                            	<span class="set-total-saving-point" style="padding-left: 10px;"></span>원
+                            	<span class="total-saving-point" style="padding-left: 10px;"></span>원
                             </td>
                         </tr>
                         <tr>
@@ -131,13 +131,18 @@
     </div>
 </div>
 
-<form action="${ path }/market/order" method="POST" class="order-finished-form">
+<form action="${ path }/market/order" method="POST" class="order-request-form">
 	
 	<input type="hidden" name="no" value=${ loginMember.no }>	
 	<input type="hidden" name="zonecode">
 	<input type="hidden" name="address">
 	<input type="hidden" name="subaddress">
+	<input type="hidden" name="totalDelFee">
+	<input type="hidden" name="totalPrice">
 	<input type="hidden" name="usingPoint">
+	<input type="hidden" name="totalSavingPoint">
+	<input type="hidden" name="totalPriceAfterUsingPoint">
+	<input type="hidden" name="orderComment">
 </form>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -202,14 +207,14 @@
 		IMP.init('imp71578272');
 		IMP.request_pay({
 			pg: 'kakao',
-			pay_method: 'card',
+			pay_method: 'cash',
 			merchant_uid: 'merchant_' + new Date().getTime(),
 			/* 
 			 *  merchant_uid의 경우 
 			 *  https://docs.iamport.kr/implementation/payment
 			 *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 			 */
-			name: '${ order.proName }',
+			name: '탐사',
 			// 결제창에서 보여질 이름
 			// name: '주문명 : ${auction.a_title}',
 			// 위와같이 model에 담은 정보를 넣어 쓸 수도 있습니다.
@@ -240,12 +245,12 @@
 		const subaddress = $(this).parent("td").find("input").data("subaddress");
 		if($(".use-existing-address").prop("checked")) {
 			$(".zonecode").val(zonecode);
-//			$(".address").val(address);
-//			$(".subaddress").val(subaddress);
+			$(".address").val(address);
+			$(".subaddress").val(subaddress);
 		} else {
 			$(".zondcode").val(0);
-//			$(".address").val();
-//			$(".subaddress").val();
+			$(".address").val();
+			$(".subaddress").val();
 		}
 	});
 	
@@ -287,13 +292,14 @@
 		}
 	});
 	
+let totalPrice = 0;
+let totalDelFee = 0;
+let totalSavingPoint = 0;
+let usingPoint = 0;
+let totalPriceAfterUsingPoint = 0;
 	function setTotalInfo() {
 		 
-		let totalPrice = 0;
-		let totalDelFee = 0;
-		let totalSavingPoint = 0;
-		let usingPoint = 0;
-		let totalPriceAfterUsingPoint = 0;
+
 		 
 		$(".order-list").each(function(index, element) {
 			totalPrice += parseInt($(element).find(".order-subtotal-price").val());
@@ -305,13 +311,20 @@
 		totalPriceAfterUsingPoint = totalPrice + totalDelFee - usingPoint;
 		
 	 	$(".set-total-price").text(totalPrice.toLocaleString());
-	 	$(".set-total-del-fee").text(totalDelFee.toLocaleString());
-	 	$(".set-total-saving-point").text(totalSavingPoint.toLocaleString());
-	 	$(".set-total-price-after-using-point").text(totalPriceAfterUsingPoint.toLocaleString());
+	 	$(".total-del-fee").text(totalDelFee.toLocaleString());
+	 	$(".total-saving-point").text(totalSavingPoint.toLocaleString());
+	 	$(".total-price-after-using-point").text(totalPriceAfterUsingPoint.toLocaleString());
 	};
 
 	$(".pay-btn").on("click", function() {
+		$("input[name='zonecode']").val($(".zonecode").val());
+		$("input[name='address']").val($(".address").val());
+		$("input[name='subaddress']").val($(".subaddress").val());
+		$("input[name='totalDelFee']").val(totalDelFee);
+		$("input[name='totalPrice']").val(totalPrice);
 		$("input[name='usingPoint']").val($(".using-point").val());
+		$("input[name='totalSavingPoint']").val(totalSavingPoint);
+		$("input[name='totalPriceAfterUsingPoint']").val(totalPriceAfterUsingPoint);
 		$("input[name='orderComment']").val($(".order-comment").val());
 		let orderForm = '';
 		$(".order-list").each(function(index, element) {
@@ -324,9 +337,9 @@
 			let proCountInput = "<input type='hidden' name='orders[" + index + "].proCount' value='" + proCount + "'>";
 			orderForm += proCountInput;
 		});
-		$(".order-finished-form").append(orderForm);
+		$(".order-request-form").append(orderForm);
 		
-		$(".order-finished-form").submit();
+		$(".order-request-form").submit();
 		
 	});
 

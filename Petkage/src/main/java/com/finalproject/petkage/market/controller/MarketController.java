@@ -309,7 +309,7 @@ public class MarketController {
 		log.info("결제 준비 PostMapping");
 		
 		System.out.println("주문페이지 진입 : " + kakaoPayReady);
-		
+		kakaoPayService.setOrder(kakaoPayReady);
 //		kakaoPayService.setOrder(kakaoPayReady);
 		
 		return "redirect:" + kakaoPayService.kakaoPayReady(kakaoPayReady);
@@ -319,9 +319,15 @@ public class MarketController {
 	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
 		log.info("결제 성공 GetMapping");
 		log.info("pg_token : {}", pg_token);
+		
         model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
 		model.setViewName("market/order-finished");
 		
 		return model;
+	}
+	
+	@PostMapping("/order-finished")
+	public void PaymentFinished(KakaoPayReady kakaoPayReady) {
+
 	}
 }
