@@ -245,10 +245,10 @@ public class WheregoController {
 	
 	// lodging 검색 
 	
-	@GetMapping("/wherego_search_lod")
-    public ModelAndView wherego_search_lod(ModelAndView model, 
+	@GetMapping("/search_list_lod")
+    public ModelAndView wherego_search_list(ModelAndView model, 
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "search_name") String search) {
+            @RequestParam(value = "all_search") String search) {
         List<Wherego> wherego = null;
         PageInfo pageInfo = null;
         
@@ -259,7 +259,7 @@ public class WheregoController {
 
         model.addObject("wherego", wherego);
         model.addObject("pageInfo", pageInfo);
-        model.setViewName("wherego/wherego_lodging");
+        model.setViewName("wherego/wherego_search_list");
 
         System.out.println(wherego);
         
