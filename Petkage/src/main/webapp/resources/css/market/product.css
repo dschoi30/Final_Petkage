@@ -450,7 +450,7 @@
     font-size: 24px;
 }
 
-#wrap-all-prod .cart-pay-btn {
+#wrap-all-prod .cart-pay-btn, .pay-btn {
     width: 500px;
     height: 50px;
     display: block;

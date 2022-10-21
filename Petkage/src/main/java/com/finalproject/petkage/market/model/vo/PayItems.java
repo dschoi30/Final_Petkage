@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class PayItems {
-	private int payNo;
+	private int payItemNo;
+	
+	private String payNo;
 	
 	// view에서 받아올 값
 	private int proNo;
@@ -31,4 +33,9 @@ public class PayItems {
 	private int eachProTotalPrice;
 	
 	private int savingPoint;
+	
+	public void initTotalInfo() {
+		this.eachProTotalPrice = this.proSPrice * this.proCount;
+		this.savingPoint = (int)(Math.ceil(this.proSPrice * 0.05)) * this.proCount;
+	}
 }
