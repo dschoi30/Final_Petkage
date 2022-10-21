@@ -27,11 +27,11 @@
                         <tr>
                             <td>배송 주소</td>
                             <td>
-                                <input type="text" class="zonecode" id="postcode" placeholder="우편번호" size="10" data-zonecode="${ loginMember.zonecode }" style="margin-bottom: 5px;">
+                                <input type="text" class="zonecode" id="postcode" placeholder="우편번호" size="10" data-zonecode="${ loginMember.zonecode }" style="margin-bottom: 5px;" value="${ loginMember.zonecode }">
                                 <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">&nbsp; 
-                                <input type="checkbox" class="use-existing-address"> 기본배송지 설정 &nbsp;<br>
-                                <input type="text" class="address" id="address" placeholder="주소" size="50" data-address="${ loginMember.userAddress }" style="margin-bottom: 5px;"><br>
-                                <input type="text" class="subaddress" id="detailAddress" placeholder="상세주소" size="50" data-subaddress="${ loginMember.addressSub }">
+                                <input type="checkbox" class="use-existing-address" checked="checked"> 기본배송지 설정 &nbsp;<br>
+                                <input type="text" class="address" id="address" placeholder="주소" size="50" data-address="${ loginMember.userAddress }" style="margin-bottom: 5px;" value="${ loginMember.userAddress }"><br>
+                                <input type="text" class="subaddress" id="detailAddress" placeholder="상세주소" size="50" data-subaddress="${ loginMember.addressSub }" value="${ loginMember.addressSub }">
 								
                             </td>
                         <tr>
@@ -90,7 +90,7 @@
                         </tr>
                         <tr>
                             <td>포인트 사용</td>
-                            <td><span class="discount-point"><input type="text" class="using-point" placeholder="0" size="6" dir="rtl"/>&nbsp; 원</span> &nbsp; 
+                            <td><span class="discount-point"><input type="text" class="using-point" size="6" dir="rtl" value="0"/>&nbsp; 원</span> &nbsp; 
 <!--                             <td><span class="discount-point"><input type="text" class="using-point" placeholder="0" size="6" dir="rtl" onkeyup="inputNumberFormat(this);"/>&nbsp; 원</span> &nbsp;   -->
                             	<input type="checkbox" class="use-all-point" id="usingPoint" data-point="${ loginMember.point }" 
                             	oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"> 전액 사용 ( 보유 포인트 : <fmt:formatNumber value="${ loginMember.point }" pattern="#,###"/>원 )&nbsp;
@@ -290,16 +290,15 @@
 			$(this).val(maxPoint);
 		}
 	});
+		
+	let totalPrice = 0;
+	let totalDelFee = 0;
+	let totalSavingPoint = 0;
+	let usingPoint = 0;
+	let totalPriceAfterUsingPoint = 0;
 	
-let totalPrice = 0;
-let totalDelFee = 0;
-let totalSavingPoint = 0;
-let usingPoint = 0;
-let totalPriceAfterUsingPoint = 0;
 	function setTotalInfo() {
-		 
-
-		 
+		
 		$(".order-list").each(function(index, element) {
 			totalPrice += parseInt($(element).find(".order-subtotal-price").val());
 			totalDelFee += parseInt($(element).find(".order-del-fee").val());
@@ -339,7 +338,6 @@ let totalPriceAfterUsingPoint = 0;
 		$(".order-request-form").append(orderForm);
 		
 		$(".order-request-form").submit();
-		
 	});
 
 </script>
