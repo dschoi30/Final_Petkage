@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 		Member member = null;
 		
 		member = mapper.selectMemberById(userId);
+		System.out.println("member : " + member);
 		System.out.println("encode() : " + passwordEncoder.encode(userPwd));
 		
 		if(member != null && passwordEncoder.matches(userPwd, member.getUserPwd())) {
@@ -118,5 +119,35 @@ public class MemberServiceImpl implements MemberService {
 		
 		result = mapper.updatePwd(no, newPwd);
 		return result;
+	}
+
+	
+	@Override
+	public Member loginByKakao(String kakaoId) {
+		Member member = null;
+		
+		member = mapper.selectMemberByKakao(kakaoId);
+
+		if(member != null) {
+			return member;
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
+	@Transactional
+	public int delete(int no) {
+		int result = 0;
+		
+		result = mapper.deleteMember(no);
+		
+		return result;
+	}
+
+	@Override
+	public Member findMemberById(String id) {
+		
+		return mapper.selectMemberById(id);
 	}
 }

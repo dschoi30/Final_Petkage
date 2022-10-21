@@ -33,7 +33,7 @@
         </div>
         <div class="btnBox" style="margin-top: 15px; margin-bottom:15em;">
             <button type="button" id="btnHome" class="btn_login_home" onclick="location.href='${ path }'">홈으로</button>
-            <button type="button" id="btnNext" class="btn_login" onclick="location.href='${ path }/member/login'">로그인</button>    
+            <button type="button" id="btnNext" class="btn_login" onclick="location.href='${ path }/member/loginPage'">로그인</button>    
         </div>
        </div>     
       </c:if>

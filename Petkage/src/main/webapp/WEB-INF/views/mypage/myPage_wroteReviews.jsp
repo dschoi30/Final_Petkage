@@ -36,9 +36,10 @@
                 <div class="tab-pane fade show active" id="product">                    
                     <table class="table" id="tb1">
 
-                        <tbody>
-                            <tr>
-                                <th scope="row">사진</th>
+                   <tbody>
+                       <tr>
+                            <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>씨그램 레몬</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -49,6 +50,7 @@
                         </tr>
                         <tr>
                             <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>씨그램 레몬</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -59,6 +61,7 @@
                         </tr>
                         <tr>
                             <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>씨그램 레몬</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -76,6 +79,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>여행지</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -86,6 +90,7 @@
                         </tr>
                         <tr>
                             <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>여행지</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -96,6 +101,7 @@
                         </tr>
                         <tr>
                             <th scope="row">사진</th>
+                            <td>2000-01-01</td>
                             <td>여행지</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">

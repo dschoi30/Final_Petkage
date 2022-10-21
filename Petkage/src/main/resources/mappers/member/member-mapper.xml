@@ -17,7 +17,8 @@
 		       MEM_ROLE,
 		       MEM_STATUS,
 		       MEM_ENROLLDATE,
-		       MEM_FINDNUM
+		       MEM_FINDNUM,
+		       MEM_ENROLLTYPE
 		FROM MEMBER
 	</sql>
 
@@ -38,6 +39,7 @@
 		<result property="enrolldate" column="MEM_ENROLLDATE"/>
 		<result property="petYN" column="MEM_PETYN"/>
 		<result property="findNum" column="MEM_FINDNUM"/>
+		<result property="enrollType" column="MEM_ENROLLTYPE"/>
 	</resultMap>
 	
 	<!-- pet -->
@@ -79,6 +81,12 @@
 	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql" />
 		WHERE MEM_ID= #{ userId } AND MEM_STATUS ='Y'
+	</select>
+	
+ 	<!-- 로그인(카카오) -->
+	<select id="selectMemberByKakao" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql" />
+		WHERE MEM_ID= #{ kakaoId } AND MEM_STATUS ='Y' AND MEM_ENROLLTYPE = 'KAKAO'
 	</select>
  	
  	<!-- 이메일로 아이디/비밀번호 찾기-->
@@ -136,7 +144,9 @@
 		    MEM_ROLE,
 		    MEM_STATUS,
 		    MEM_ENROLLDATE,
-		    MEM_PETYN
+		    MEM_PETYN,
+		    MEM_FINDNUM,
+		    MEM_ENROLLTYPE
 		) VALUES (
 		    SEQ_MEM_NO.NEXTVAL,
 		    #{ userId },
@@ -152,7 +162,9 @@
 		    #{ memberRole }, 
 		    DEFAULT,
 		    DEFAULT,
-		    #{ petYN }
+		    #{ petYN },
+		    DEFAULT,
+		    #{ enrollType }
 		)
 	</insert>
 	
@@ -222,4 +234,21 @@
 			SET MEM_FINDNUM =  #{ findNum }  
 		WHERE MEM_ID = #{ userId }
 	</update>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER 
+		SET 
+			MEM_PWD = #{ userPwd},
+			MEM_NAME = #{ userName },
+			MEM_PHONE = #{ userPhone },
+			MEM_ZONECODE = #{ zonecode },
+			MEM_ADDRESS = #{ userAddress },
+			MEM_EMAIL = #{ userEmail }
+		WHERE MEM_NO = #{ no }
+	</update>
+	
+	<delete id="deleteMember" parameterType="_int">
+		DELETE FROM MEMBER WHERE MEM_NO = #{ no }
+	</delete>
+	
 </mapper>

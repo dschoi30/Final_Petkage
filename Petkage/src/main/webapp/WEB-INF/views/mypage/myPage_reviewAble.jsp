@@ -38,6 +38,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>씨그램 레몬</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
@@ -45,6 +46,7 @@
                     </tr>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>씨그램 레몬</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
@@ -52,6 +54,7 @@
                     </tr>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>씨그램 레몬</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
@@ -66,6 +69,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>여행지</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
@@ -73,6 +77,7 @@
                     </tr>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>여행지</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
@@ -80,6 +85,7 @@
                     </tr>
                     <tr>
                         <th scope="row">사진</th>
+                        <td>2000-01-01</td>
                         <td>여행지</td>
                         <td>
                             <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>

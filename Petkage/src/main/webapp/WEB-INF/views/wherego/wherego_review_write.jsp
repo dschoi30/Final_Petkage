@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_write.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_write.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -53,7 +53,7 @@
                     <div class="wgc7_select">
                         <div class="wgc7_cate">
                             <label for="cate">카테고리</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="revcategory">
+                            <select class="form-control" id="exampleFormControlSelect1" name="revcategory" required="required">
                                 <option value="숙소">숙소</option>
                                 <option value="카페">카페</option>
                                 <option value="맛집">맛집</option>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="wgc7_location">
                             <label for="location">장소 이름</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" name="revtitle" placeholder="장소 이름을 명확히 적어주세요!">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="revtitle" placeholder="장소 이름을 명확히 적어주세요!" required="required">
                         </div>
                     </div>
                     <div class="wgc7_score">
@@ -102,7 +102,7 @@
                     </div>
                     <div class="wgc7w_text">
                         <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" name="revcoment" rows="3" placeholder="리뷰를 적어주세요!"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="revcoment" rows="3" placeholder="리뷰를 적어주세요!" required="required"></textarea>
                         </div>
                     </div>
                 </div>

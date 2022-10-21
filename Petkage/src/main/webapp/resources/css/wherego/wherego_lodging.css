@@ -177,14 +177,24 @@ html {
     .wg_4 .wg_filter button {
         width: 150px;
         margin: 0 auto;
-        margin-left: 50px;
+        margin-left: 30px;
     }
 }
 
+.wg_4 .wg_filter #wgf_manager_btn,
 .wg_4 .wg_filter #wgf_btn1,
 .wg_4 .wg_filter #wgf_btn2,
 .wg_4 .wg_filter #wgf_btn3 {
     margin-right: 37px;
+}
+
+@media (max-width: 1023px) {
+    .wg_4 .wg_filter #wgf_manager_btn,
+	.wg_4 .wg_filter #wgf_btn1,
+	.wg_4 .wg_filter #wgf_btn2,
+	.wg_4 .wg_filter #wgf_btn3 {
+    margin-right: 0px;
+}
 }
 
 .wg_4 .wg_filter .wgfbtn:hover {

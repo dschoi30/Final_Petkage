@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=6">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=8">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -26,9 +26,9 @@
                 <p>어디가지?</p>
             </div>
             <div class="ht_search2">
-                <form class="ht_12">
+                <form class="ht_12" action="search_list_lod">
                     <div class="ht_22">
-                        <input type="text">
+                        <input type="text" name="search_name">
                         <button type="submit">
                             <img src="${ path }/resources/images/wherego/검색.png" alt="search">
                         </button>
@@ -83,55 +83,67 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>맛집</p>
-                    </div>
+	                <a href="${ path }/food">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>맛집</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
-                    </div>
-                    <div class="wgcb_text" style="border-right: none;">
-                        <p>미용</p>
-                    </div>
+	                <a href="${ path }/hair">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text" style="border-right-style: none;">
+	                        <p>미용</p>
+	                    </div>
+	                </a>
                 </div>
             </div>
 
             <div class="wgc_2">
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>여행지</p>
-                    </div>
+	                <a href="${ path }/trip">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>여행지</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>동물병원</p>
-                    </div>
+	                <a href="${ path }/hospital">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>동물병원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>유치원</p>
-                    </div>
+	                <a href="${ path }/preschool">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>유치원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img" style="border-right: none;">
-                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>셀프목욕</p>
-                    </div>
+	                <a href="${ path }/bath">
+	                    <div class="wgcb_img" style="border-right-style: none;">
+	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>셀프목욕</p>
+	                    </div>
+	                </a>
                 </div>
             </div>
 
@@ -973,85 +985,73 @@
                     <button onclick="location.href='${ path }/review_list'"><p>더보기</p></button>
                 </div>
             </div>
+           
             <div class="wgc7_list">
-                <div class="wgc7l_1">
-                    <div class="wgc7l_1_1">
-                        <div class="wgc7l_name">
-                            <p>AC호텔 메리어트</p>
-                        </div>
-                        <div class="wgc7l_img">
-                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="wgc7l_1_2">
-                        <div class="wgc7l_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wgc7l_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                    </div>
-                </div>
-                <div class="wgc7l_1">
-                    <div class="wgc7l_1_1">
-                        <div class="wgc7l_name">
-                            <p>AC호텔 메리어트</p>
-                        </div>
-                        <div class="wgc7l_img">
-                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="wgc7l_1_2">
-                        <div class="wgc7l_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wgc7l_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                    </div>
-                </div>
-                <div class="wgc7l_1">
-                    <div class="wgc7l_1_1">
-                        <div class="wgc7l_name">
-                            <p>AC호텔 메리어트</p>
-                        </div>
-                        <div class="wgc7l_img">
-                            <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                        </div>
-                    </div>
-                    <div class="wgc7l_1_2">
-                        <div class="wgc7l_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wgc7l_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+             	<c:forEach var="review" items="${review}" begin="0" end="2" step="1">
+             	<c:set var="rename" value="${ review.revrenameimg }" />
+	                <div class="wgc7l_1">
+	                    <div class="wgc7l_1_1">
+	                        <div class="wgc7l_name">
+	                            <p>${review.revtitle}</p>
+	                            <div class="wgc7l_nickname">
+	                                <p>${review.memname}</p>
+	                            </div>
+	                        </div>
+	                        <div class="wgc7l_img">
+	                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" alt="">
+	                        </div>
+	                    </div>
+	                    <div class="wgc7l_1_2">
+	                        <div class="wgc7l_star">
+	                            <c:choose>
+	                            	<c:when test ="${review.revscore == 1}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 2}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 3}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 4}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 5}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+									</c:when>
+	                            </c:choose>
+	                        </div>
+	                        <div class="wgc7l_review">
+	                            <div class="wgc7l_revcoment">${review.revcoment}</div>
+	                            <div class="wgc7l_write_time">
+	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>    
+	        </div>
+	    </div>
 
 
     </section>

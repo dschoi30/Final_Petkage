@@ -24,8 +24,26 @@
 	
 	</resultMap>
 	
+	<select id="getReviewAllCount_review_all" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_STATUS = 'Y'
+        ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewList_review_all" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+	
 	<select id="getReviewAllCount" resultType="_int">
-        SELECT COUNT(*) FROM REVIEW
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '숙소' AND REV_STATUS = 'Y'
     </select>
     
     <select id="getReviewList" resultMap="ReviewList">
@@ -33,11 +51,129 @@
 		FROM REVIEW R
 		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
 		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '숙소' AND REV_STATUS = 'Y'
 		ORDER BY REV_NO DESC
     </select>
     
     <insert id="review_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
     	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, 213, 1, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, 20, 'Y', 200, #{revrenameimg}, #{revcategory})
     </insert>
+    
+    <select id="review_search" resultType="_int" parameterType="String">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_TITLE LIKE '%'||#{search}||'%'
+    </select>
+    
+    <select id="search_mboard" resultMap="ReviewList" parameterType="String">
+   		SELECT * 
+   		FROM REVIEW
+   		WHERE REV_TITLE LIKE '%'||#{search}||'%' 
+    </select>
+    
+    <select id="getReviewAllCount_cafe" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '카페' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_cafe" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '카페' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_food" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '맛집' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_food" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '맛집' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_hair" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '미용' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_hair" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '미용' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_trip" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '여행지' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_trip" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '여행지' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_hospital" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '동물병원' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_hospital" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '동물병원' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_preschool" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '유치원' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_preschool" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '유치원' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getReviewAllCount_bath" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '셀프목욕' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_bath" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_CATEGORY = '셀프목욕' AND REV_STATUS = 'Y'
+		ORDER BY REV_NO DESC
+    </select>
 
 </mapper>

@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_board.css?ver=4">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_review_board.css?ver=6">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -26,9 +26,9 @@
                 <p>리뷰 게시판</p>
             </div>
             <div class="ht_search2">
-                <form class="ht_12">
+                <form class="ht_12" action="review_search">
                     <div class="ht_22">
-                        <input type="text">
+                        <input type="text" name="review_search">
                         <button type="submit">
                             <img src="${ path }/resources/images/wherego/검색.png" alt="search">
                         </button>
@@ -56,71 +56,87 @@
         <div class="wg_cate">
             <div class="wgc_1">
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>숙소</p>
-                    </div>
+	                <a href="${ path }/review_list">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>숙소</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>카페</p>
-                    </div>
+	                <a href="${ path }/review_cafe">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>카페</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>맛집</p>
-                    </div>
+	                <a href="${ path }/review_food">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>맛집</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
-                    </div>
-                    <div class="wgcb_text" style="border-right: none;">
-                        <p>미용</p>
-                    </div>
+                	<a href="${ path }/review_hair">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text" style="border-right: none;">
+	                        <p>미용</p>
+	                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="wgc_2">
-                <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>여행지</p>
-                    </div>
+				<div class="wgc_box">
+	                <a href="${ path }/review_trip">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>여행지</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>동물병원</p>
-                    </div>
+	                <a href="${ path }/review_hospital">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>동물병원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img">
-                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>유치원</p>
-                    </div>
+	                <a href="${ path }/review_preschool">
+	                    <div class="wgcb_img">
+	                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>유치원</p>
+	                    </div>
+	                </a>
                 </div>
                 <div class="wgc_box">
-                    <div class="wgcb_img" style="border-right: none;">
-                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
-                    </div>
-                    <div class="wgcb_text">
-                        <p>셀프목욕</p>
-                    </div>
+	                <a href="${ path }/review_bath">
+	                    <div class="wgcb_img" style="border-right: none;">
+	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
+	                    </div>
+	                    <div class="wgcb_text">
+	                        <p>셀프목욕</p>
+	                    </div>
+	                </a>
                 </div>
             </div>
         </div>
