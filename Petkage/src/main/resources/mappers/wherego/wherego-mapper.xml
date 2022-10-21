@@ -87,13 +87,19 @@
 	<select id="search_list_lod" resultType="_int" parameterType="String">
         SELECT COUNT(*) 
         FROM WHEREWEGO
-        WHERE SPOT_NAME LIKE '%'||#{all_search}||'%'
+        WHERE SPOT_NAME LIKE '%'||#{all_search}||'%' OR
+        	  SPOT_NAME LIKE INITCAP('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE LOWER('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE UPPER('%'||#{all_search}||'%')
     </select>
     
     <select id="search_board_lod" resultMap="wheregovo" parameterType="String">
    		SELECT * 
    		FROM WHEREWEGO
-   		WHERE SPOT_NAME LIKE '%'||#{all_search}||'%' 
+   		WHERE SPOT_NAME LIKE '%'||#{all_search}||'%' OR
+        	  SPOT_NAME LIKE INITCAP('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE LOWER('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE UPPER('%'||#{all_search}||'%')
     </select>
 	
 </mapper>

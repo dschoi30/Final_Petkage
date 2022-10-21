@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.PageInfo;
@@ -20,6 +21,7 @@ import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 
 @Controller
+@SessionAttributes("loginMember")
 public class WheregoController {
 	@Autowired
 	private WheregoService service;
