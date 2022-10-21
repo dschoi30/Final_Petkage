@@ -27,6 +27,7 @@ import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
+import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
@@ -291,12 +292,12 @@ public class MarketController {
 	}
 	
 	@GetMapping("/order/{no}")
-	public ModelAndView Payment (ModelAndView model, @ModelAttribute KakaoPayReady kakaoPayReady, @PathVariable("no") int no) {
+	public ModelAndView Payment (ModelAndView model, @ModelAttribute Payment payment, @PathVariable("no") int no) {
 
 		System.out.println("loginMember : " + no);
-		System.out.println("orderList : " + kakaoPayReady.getOrders());
+		System.out.println("orderList : " + payment.getOrders());
 
-		model.addObject("orderList", kakaoPayService.getItemsInfo(kakaoPayReady.getOrders()));
+		model.addObject("orderList", kakaoPayService.getItemsInfo(payment.getOrders()));
 		model.addObject("memberInfo", kakaoPayService.getMemberInfo(no));
 		
 		model.setViewName("market/order");
@@ -305,29 +306,22 @@ public class MarketController {
 	}
 	
 	@PostMapping("/order")
-	public String Payment(KakaoPayReady kakaoPayReady) {
+	public String Payment(Payment payment, KakaoPayReady kakaoPayReady) {
 		log.info("결제 준비 PostMapping");
+
+		kakaoPayService.setOrder(payment);
 		
-		System.out.println("주문페이지 진입 : " + kakaoPayReady);
-		kakaoPayService.setOrder(kakaoPayReady);
-//		kakaoPayService.setOrder(kakaoPayReady);
-		
-		return "redirect:" + kakaoPayService.kakaoPayReady(kakaoPayReady);
+		return "redirect:" + kakaoPayService.kakaoPayReady(payment);
 	}
 
 	@GetMapping("/order-finished")
-	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
+	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, Payment payment, ModelAndView model) {
 		log.info("결제 성공 GetMapping");
 		log.info("pg_token : {}", pg_token);
 		
-        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
+        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token, payment));
 		model.setViewName("market/order-finished");
 		
 		return model;
-	}
-	
-	@PostMapping("/order-finished")
-	public void PaymentFinished(KakaoPayReady kakaoPayReady) {
-
 	}
 }

@@ -37,7 +37,7 @@
 		<result property="proLTime" column="PRO_LTIME"/>
 	</resultMap>
 
-	<resultMap type="KakaoPayReady" id="orderResultMap">
+	<resultMap type="Payment" id="orderResultMap">
 		<id property="payNo" column="PAY_NO"/>
 		<result property="no" column="PAY_MEM_NO"/>
 		<result property="address" column="PAY_ADDRESS"/>
@@ -51,7 +51,6 @@
 		<result property="orderComment" column="PAY_COMMENT"/>
 		<result property="orderStatus" column="PAY_STATUS"/>
 		<result property="payCreatedAt" column="PAY_CREATED_AT"/>
-		<result property="payApprovedAt" column="PAY_APPROVED_AT"/>
 	</resultMap>
 
 	<resultMap type="PayItems" id="orderListResultMap">
@@ -356,8 +355,7 @@
 			PAY_FINAL_PRICE,
 			PAY_COMMENT,
 			PAY_STATUS,
-			PAY_CREATED_AT,
-			PAY_APPROVED_AT
+			PAY_CREATED_AT
 		) VALUES (
 			#{ payNo },
 			#{ no },
@@ -371,8 +369,7 @@
 			#{ totalPriceAfterUsingPoint },
 			#{ orderComment },
 			'결제완료',
-			#{ payCreatedAt },
-			#{ payApprovedAt }
+			#{ payCreatedAt }
 		)
 	</insert>
 	

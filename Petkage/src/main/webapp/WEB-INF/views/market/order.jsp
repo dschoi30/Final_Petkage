@@ -207,7 +207,6 @@
 		IMP.init('imp71578272');
 		IMP.request_pay({
 			pg: 'kakao',
-			pay_method: 'cash',
 			merchant_uid: 'merchant_' + new Date().getTime(),
 			/* 
 			 *  merchant_uid의 경우 

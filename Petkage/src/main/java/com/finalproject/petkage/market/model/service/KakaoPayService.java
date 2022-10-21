@@ -22,6 +22,7 @@ import com.finalproject.petkage.market.model.mapper.MarketMapper;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.PayItems;
+import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class KakaoPayService {
 	private MarketMapper mapper;
 	
 	@Transactional
-	public String kakaoPayReady(KakaoPayReady kakaoPayReady) {
+	public String kakaoPayReady(Payment payment) {
 
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -52,11 +53,11 @@ public class KakaoPayService {
 		// 서버로 요청할 Body
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
-		params.add("partner_order_id", Integer.toString(kakaoPayReady.getNo()));
-		params.add("partner_user_id", Integer.toString(kakaoPayReady.getNo()));
-		params.add("item_name", kakaoPayReady.getOrders().get(0).getProName() + "외 " + (kakaoPayReady.getOrders().size() - 1)+ "건");
-		params.add("quantity", Integer.toString(kakaoPayReady.getOrders().size()));
-		params.add("total_amount", Integer.toString(kakaoPayReady.getTotalPriceAfterUsingPoint()));
+		params.add("partner_order_id", "seller1");
+		params.add("partner_user_id", "user1");
+		params.add("item_name", payment.getOrders().get(0).getProName() + " 외 " + (payment.getOrders().size() - 1)+ "건");
+		params.add("quantity", Integer.toString(payment.getOrders().size()));
+		params.add("total_amount", Integer.toString(payment.getTotalPriceAfterUsingPoint()));
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8083/petkage/market/order-finished");
 		params.add("cancel_url", "http://localhost:8083/petkage/market/order-canceled");
@@ -80,10 +81,10 @@ public class KakaoPayService {
        return "/order";
     }
 	
-    public KakaoPayApproval kakaoPayInfo(String pg_token) {
+    public KakaoPayApproval kakaoPayInfo(String pg_token, Payment payment) {
     	System.out.println(kakaoPayReady);
         log.info("KakaoPayInfo 호출");
-        log.info(pg_token);
+        
         RestTemplate restTemplate = new RestTemplate();
 
         // 서버로 요청할 Header
@@ -96,10 +97,9 @@ public class KakaoPayService {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReady.getTid());
-        params.add("partner_order_id", Integer.toString(kakaoPayReady.getNo()));
-        params.add("partner_user_id", Integer.toString(kakaoPayReady.getNo()));
+        params.add("partner_order_id", "seller1");
+        params.add("partner_user_id", "user1");
         params.add("pg_token", pg_token);
-        params.add("total_amount", Integer.toString(kakaoPayReady.getTotalPriceAfterUsingPoint()));
         
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         
@@ -141,13 +141,13 @@ public class KakaoPayService {
 	}
 	
 	@Transactional
-	public void setOrder(KakaoPayReady kakaoPayReady) {
+	public void setOrder(Payment payment) {
 
-		Member member = mapper.getMemberDeliveryInfo(kakaoPayReady.getNo());
+		Member member = mapper.getMemberDeliveryInfo(payment.getNo());
 		
 		List<PayItems> orderList = new ArrayList<>();
 		
-		for(PayItems payItems : kakaoPayReady.getOrders()) {
+		for(PayItems payItems : payment.getOrders()) {
 			PayItems itemsInfo = mapper.getItemsInfo(payItems.getProNo());
 			
 			itemsInfo.setProCount(payItems.getProCount());
@@ -155,21 +155,23 @@ public class KakaoPayService {
 			
 			orderList.add(itemsInfo);
 		}
-		
-		kakaoPayReady.setOrders(orderList);
-		kakaoPayReady.getPriceInfo();
 
-		
 		Date date = new Date();	
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDDmm");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMDDHHmmss");
+		SimpleDateFormat payTimeFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
 		String payNo = dateFormat.format(date) + member.getNo();
-		kakaoPayReady.setPayNo(payNo);
-		
-		mapper.placeOrder(kakaoPayReady);
-		for(PayItems payItems : kakaoPayReady.getOrders()) {
+		String payCreatedAt = payTimeFormat.format(date);
+
+		payment.setPayCreatedAt(payCreatedAt);
+		payment.setOrders(orderList);
+		payment.getPriceInfo();
+		payment.setPayNo(payNo);
+		payment.setPayMethod("Kakaopay");
+		mapper.placeOrder(payment);
+		for(PayItems payItems : payment.getOrders()) {
 			payItems.setPayNo(payNo);
 			mapper.placeOrderItems(payItems);
 		}
-		System.out.println(kakaoPayReady);
+		System.out.println(payment);
 	}
 }
