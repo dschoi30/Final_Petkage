@@ -1,7 +1,5 @@
 package com.finalproject.petkage.market.model.vo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -43,10 +41,7 @@ public class Payment {
     private List<PayItems> orders;
     
     public void getPriceInfo() {
-    	for(PayItems payItems : orders) {
-    		totalPrice += payItems.getEachProTotalPrice();
-    		totalSavingPoint += payItems.getSavingPoint();
-    	}
+    	
     	totalPriceAfterUsingPoint = totalPrice + totalDelFee - usingPoint;
     }
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
 import com.finalproject.petkage.market.model.vo.Cart;
+import com.finalproject.petkage.market.model.vo.ProRating;
 import com.finalproject.petkage.market.model.vo.Product;
 
 @Service
@@ -119,5 +121,20 @@ public class MarketServiceImpl implements MarketService {
 		List<Cart> cart = mapper.getCartList(no);
 		
 		return cart;
+	}
+
+	@Override
+	public void setProductRating(int proNo) {
+		Double proRating = mapper.getProductRating(proNo);
+		
+		if(proRating == null) {
+			proRating = 0.0;
+		}
+		
+		ProRating rating = new ProRating();
+		rating.setProNo(proNo);
+		rating.setProRatingAvg(proRating);
+		
+		mapper.updateProductRating(rating);
 	}
 }

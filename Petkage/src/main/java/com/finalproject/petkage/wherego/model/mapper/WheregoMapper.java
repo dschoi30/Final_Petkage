@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 @Mapper
@@ -34,6 +35,6 @@ public interface WheregoMapper {
 
     int insertWherego(Wherego wherego);
 
-	Wherego findBoardByNo(int no);
+    int insertRoom(Room room);
 
 }

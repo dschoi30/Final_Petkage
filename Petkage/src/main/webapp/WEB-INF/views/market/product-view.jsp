@@ -100,14 +100,15 @@
                         <h3>${ product.proName }</h3>
                     </div>
                     <div class="wrap-rating">
-                        <span class="rating">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
+                        <span class="rating" >
+                            <c:forEach var="i" begin="1" end="${ product.proRating }">
+                            	<img src="${ path }/resources/images/market/star_filled.png" width="20" height="20" alt="star" style="transform: translateY(-2px);">                                      
+                            </c:forEach>											
+							<c:forEach var="j" begin="1" end="${ 5 - product.proRating + 0.9}">	
+                               	<img src="${ path }/resources/images/market/star_unfilled.png" width="20" height="20" alt="star" style="transform: translateY(-2px);">                                      
+							</c:forEach>
                         </span>
-                        <span class="review-count">99개 상품평</span>
+                        <span class="review-count">${ product.proRevCount }개 상품평</span>
                         <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
@@ -116,7 +117,7 @@
                     </div>
                     <div class="prod-sale-price">
                         <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></span>
-                        <span clas="sale-price-info">(할인가)</span>
+                        <span class="sale-price-info">(할인가)</span>
                     </div>
                     <div class="reward-point">
                         <span><fmt:formatNumber value="${ product.proSPrice * 0.05 }" pattern="#,###원"/></span> 적립 (5% 적립)
@@ -144,7 +145,6 @@
                     <br>
                     <div class="prod-summary-footer">
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
-
                         <button class="btn btn-light" id="btnBuy" style="width: 235px;">바로 구매</button>
 						<c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
 	                        <br><br>

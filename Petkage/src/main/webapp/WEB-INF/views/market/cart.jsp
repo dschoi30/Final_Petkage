@@ -36,7 +36,11 @@
 			                	<input type="hidden" class="cart-pro-no" value="${ cart.proNo }">
 	                        	<input type="checkbox" class="check-pro" checked="checked">
 	                        </td>
-	                        <td rowspan="2" style="width: 10%"><img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80"></td>
+	                        <td rowspan="2" style="width: 10%">
+	                        	<a href="${ path }/market/product-view?proNo=${ cart.proNo }">
+	                        		<img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80">
+	                        	</a>		
+	                        </td>
 	                        <td colspan="3" style="width: 60%"><a href="${ path }/market/product-view?proNo=${ cart.proNo }">${ cart.proName }</a></td>
 	                        <td rowspan="2" style="width: 14%; text-align: center;"><br><strong><fmt:formatNumber value="${ cart.proSPrice * cart.proCount }" pattern="#,###"/>원</strong><br><del><fmt:formatNumber value="${ cart.proOPrice * cart.proCount }" pattern="#,###"/>원</del></td>
 	                        <td rowspan="2" style="width: 13%; text-align: center;"><br><fmt:formatNumber value="${ cart.proDelFee }" pattern="#,###"/>원</td>
