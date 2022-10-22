@@ -20,7 +20,8 @@
 		<result property="proContent" column="PRO_CONTENT"/>
 		<result property="proRDate" column="PRO_RDATE"/>
 		<result property="proStatus" column="PRO_STATUS"/>
-		<result property="proRepCount" column="PRO_REP_COUNT"/>
+		<result property="proRevCount" column="PRO_REVIEW_COUNT"/>
+		<result property="proRating" column="PRO_RATING"/>
 	</resultMap>
 	
 	<resultMap type="Cart" id="cartListResultMap">
@@ -88,6 +89,12 @@
 		<result property="findNum" column="MEM_FINDNUM"/>
 	</resultMap>
 
+	<resultMap type="Review" id="reviewResultMap">
+		<id property="revno" column="REV_NO"/>
+		<result property="prono" column="REV_PRO_NO"/>
+		<result property="revscore" column="REV_SCORE"/>
+	</resultMap>
+
 	<sql id="productListSql">
 		SELECT P.PRO_NO,
 			   P.PRO_SEL_NO,
@@ -105,7 +112,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' 
@@ -149,7 +157,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' 
@@ -174,7 +183,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
@@ -198,7 +208,8 @@
 		    PRO_CONTENT,
 		    PRO_RDATE,
 		    PRO_STATUS,
-		    PRO_REP_COUNT
+		    PRO_REVIEW_COUNT,
+		    PRO_RATING
 		) VALUES (
 		    SEQ_PRO_NO.NEXTVAL,
 		    #{proSelNo},
@@ -216,7 +227,8 @@
 			#{proContent},
 			DEFAULT,
 			DEFAULT,
-			DEFAULT
+			DEFAULT,
+			#{proRating}
 		)
 	</insert>
 	
@@ -404,4 +416,16 @@
 			#{ savingPoint }
 		)
 	</insert>
+	
+	<select id="getProductRating">
+		SELECT AVG(REV_SCORE)
+		FROM REVIEW
+		WHERE REV_PRO_NO = #{ proNo }
+	</select>
+
+	<update id="updateProductRating">
+		UPDATE PRODUCT SET PRO_RATING = #{ proRatingAvg }
+		WHERE PRO_NO = #{ proNo }
+	</update>	
+	
 </mapper>

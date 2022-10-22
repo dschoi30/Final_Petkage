@@ -32,4 +32,5 @@ public interface MarketService {
 	
 	List<Cart> getCartList(int no);
 
+	void setProductRating(int proNo);
 }
