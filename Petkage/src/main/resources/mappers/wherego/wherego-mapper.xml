@@ -195,7 +195,7 @@
     
     <!-- 어디가지 객실 insert -->
 	<insert id="insertRoom" parameterType="Room" useGeneratedKeys="true" keyProperty="roomNo" keyColumn="ROOM_NO">
-	    INSERT INTO WHEREWEGO (
+	    INSERT INTO ROOM (
 	    		ROOM_NO,
 				SPOT_NO,
 				ROOM_TYPE_NO,
@@ -205,7 +205,7 @@
 				ROOM_RENAMEIMG,
 				ROOM_MINFO,
 				ROOM_MAMENI,
-				ROOM_STATUS,
+				ROOM_STATUS
 	    	) VALUES (
 		    	SEQ_ROOM_NO.NEXTVAL, 
 		    	#{ spotNo },
@@ -216,7 +216,7 @@
 		    	#{ renameRoomImg }, 
 		    	#{ mInfo }, 
 		    	#{ mAmeni }, 
-		    	#{ roomStatus }
+		    	DEFAULT
 	    	)
    	</insert>
 </mapper>

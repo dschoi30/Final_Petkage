@@ -251,7 +251,7 @@ public class WheregoController {
 		return "wherego/wherego_lodging_write";
 	}
 	
-	@PostMapping("/lodging_write")
+	@PostMapping("/wherego/lodging_write")
     public ModelAndView lodging_write(
                         ModelAndView model,
                         @RequestParam(value="multiFile") List<MultipartFile> multiFileList,

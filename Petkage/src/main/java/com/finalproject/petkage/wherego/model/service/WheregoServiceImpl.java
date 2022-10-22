@@ -92,8 +92,11 @@ public class WheregoServiceImpl implements WheregoService {
         int roomNum = wherego.getRoomNum();
         int roomTypeNo = wherego.getRoom().getRoomTypeNo();
         
-        // roomNum 갯수 따라서 객실 입력 반복
+        System.out.println("객실수" + roomNum);
+        System.out.println("객실타입번호" + roomTypeNo); 
         
+        // 조건문 만들어서 INSERT
+//        if 
         
         result = mapper.insertWherego(wherego);
         wherego.getRoom().setSpotNo(wherego.getSpotNo());
@@ -101,8 +104,4 @@ public class WheregoServiceImpl implements WheregoService {
         
         return result;
     }
-    
-
-
-	
 }
