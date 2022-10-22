@@ -156,7 +156,8 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1" id="room_1" name="roomTypeNo" value="1" style="height: 100%;">
+                            <div class="wg5bcr_1" id="room_1" style="height: 100%;">
+                                <input type="hidden" name="roomTypeNo" value="1">
                                 <div class="wgc7w_upload">
                                     <div>
                                         <label for="image_1">
@@ -205,7 +206,8 @@
                                 </div>
                             </div>
                         </div>
-                            <button type="button" name="roomNum" value="1" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
+                            <input type="hidden" name="roomNum" value="1">
+                            <button type="button" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
                     </div>
                 </div>    
                 <div class="wg5b_content">
@@ -248,7 +250,8 @@
                 $("[name=roomNum]").attr("value", i);
                 console.log($("[name=roomNum]").attr("value"));
 
-                var html = "<div class='wg5bcr_1' id='room_"+ i + "' name='roomTypeNo' value='" + i + "' style='height: 100%;'>"
+                var html = "<div class='wg5bcr_1' id='room_"+ i + "' style='height: 100%;'>"
+                    html += "    <input type='hidden' name='roomTypeNo' value='"+ i +"'>"
                     html += "    <div class='wgc7w_upload'>"
                     html += "        <div>"
                     html += "            <label for='image_1'>"
@@ -260,14 +263,14 @@
                     html += "    </div>"
                     html += "    <div class='wg5bcr_text'>"
                     html += "        <div class='te1'>"
-                    html += "            <input type='text' name='roomname' required placeholder='객실 이름'>"
+                    html += "            <input type='text' name='roomName' required placeholder='객실 이름'>"
                     html += "        </div>"
                     html += "        <div class='te2'>"
                     html += "            <div class='te2_1'>"
                     html += "                가격"
                     html += "            </div>"
                     html += "            <div class='te2_2'>"
-                    html += "                <input type='text' name='roomprice' required>"
+                    html += "                <input type='text' name='roomPrice' required>"
                     html += "            </div>"
                     html += "        </div>"
                     html += "        <div class='wg5t2_info'>"
@@ -275,7 +278,7 @@
                     html += "                <label for='information'>기본정보</label>"
                     html += "            </div>"
                     html += "            <div class='form-group'>"
-                    html += "                <textarea class='form-control' name='minfo' id='exampleFormControlTextarea1' rows='5'></textarea>"
+                    html += "                <textarea class='form-control' name='mInfo' id='exampleFormControlTextarea1' rows='5'></textarea>"
                     html += "            </div>"
                     html += "        </div>"
                     html += "        <div class='wg5t2_info'>"
@@ -283,7 +286,7 @@
                     html += "                <label for='attre'>편의시설</label>"
                     html += "            </div>"
                     html += "            <div class='form-group'>"
-                    html += "                <textarea class='form-control' name='mameni' id='exampleFormControlTextarea1' rows='5'></textarea>"
+                    html += "                <textarea class='form-control' name='mAmeni' id='exampleFormControlTextarea1' rows='5'></textarea>"
                     html += "            </div>"
                     html += "        </div>"
                     html += "        <div class='te4'>"
