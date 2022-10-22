@@ -38,8 +38,9 @@ public class Wherego {
 
 	private String spotMap; // 지도 좌표
 	
+	private int roomNum; // 객실수
+
 	private Room room; // 객실
 	
-	private int roomNum; // 객실 추가수
 
 }

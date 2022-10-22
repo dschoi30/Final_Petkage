@@ -24,6 +24,7 @@
 		<result property="info" column="SPOT_INFO" />
 		<result property="spotStatus" column="SPOT_STATUS" />
 		<result property="spotMap" column="SPOT_MAP" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
 	</resultMap>
 	
 	<!-- room -->
@@ -131,7 +132,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP
+			SPOT_MAP,
+			SPOT_ROOMNUM
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
 	    	1,
@@ -142,12 +144,13 @@
 	    	#{ spotSize }, 
 	    	#{ ameni }, 
 	    	#{ img }, 
-	    	#{ renameimg }, 
+	    	#{ renameImg }, 
 	    	#{ theme }, 
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotmap }
+	    	#{ spotMap },
+	    	#{ roomNum }
     	)
     </insert>
     
