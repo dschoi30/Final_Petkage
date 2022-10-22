@@ -29,6 +29,11 @@
 		<result property="spotmap" column="SPOT_MAP" />
 	</resultMap>
 	
+	<resultMap type="Heart" id="Heart_vo">
+		<id property="spotNo" column="SPOT_NO" />
+		<id property="userNo" column="USER_NO" />
+	</resultMap>
+	
 	<select id="lodging_board" resultMap="wheregovo">
 		SELECT *
 		FROM WHEREWEGO

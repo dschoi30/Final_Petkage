@@ -372,4 +372,13 @@ public class WheregoController {
     }
 	
 	
+	// 찜 
+	
+	@GetMapping("/wherego_like")
+	public String Wherego_like() {
+		
+		return "mypage/mypage_heart";
+	}
+	
+	
 }

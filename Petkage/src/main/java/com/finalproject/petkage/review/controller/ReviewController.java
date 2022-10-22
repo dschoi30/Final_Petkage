@@ -216,12 +216,16 @@ public class ReviewController {
 	public ModelAndView Review_write(
 						ModelAndView model,
 						@RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
-						@ModelAttribute Review review) {
+						@ModelAttribute Review review,
+						@SessionAttribute("loginMember") Member loginMember) {
 
 		
 		
 		
 		int result = 0;
+		
+		
+		System.out.println(loginMember);
 		
 		// 받아온것 출력 확인
 				System.out.println("multiFileList : " + multiFileList);
@@ -282,7 +286,7 @@ public class ReviewController {
 					}
 					e.printStackTrace();
 				}
-		
+		review.setWriterno(loginMember.getNo());
 		result = service.review_fupload(review);
 		
 		
