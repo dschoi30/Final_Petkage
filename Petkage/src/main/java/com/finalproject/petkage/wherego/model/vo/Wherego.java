@@ -42,5 +42,5 @@ public class Wherego {
 
 	private Room room; // 객실
 	
-
+	private int price; // 가격
 }

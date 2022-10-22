@@ -90,11 +90,14 @@ public class WheregoServiceImpl implements WheregoService {
     public int insertWherego(Wherego wherego) {
         int result = 0;
         int roomNum = wherego.getRoomNum();
+        int roomTypeNo = wherego.getRoom().getRoomTypeNo();
         
         // roomNum 갯수 따라서 객실 입력 반복
         
         
         result = mapper.insertWherego(wherego);
+        wherego.getRoom().setSpotNo(wherego.getSpotNo());
+        result = mapper.insertRoom(wherego.getRoom());
         
         return result;
     }

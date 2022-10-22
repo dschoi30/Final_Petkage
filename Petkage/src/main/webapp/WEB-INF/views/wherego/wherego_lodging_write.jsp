@@ -27,7 +27,7 @@
 <body>
 
     <section class="wg_9">
-        <form action="${ path }/lodging_write" method="post" enctype="multipart/form-data">
+        <form action="${ path }/wherego/lodging_write" method="post" enctype="multipart/form-data">
             <div class="wg5_top">
                 <div class="wg5t_1">
                     <div class="wgc7w_upload">
@@ -156,7 +156,7 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1" id="room_1" style="height: 100%;">
+                            <div class="wg5bcr_1" id="room_1" name="roomTypeNo" value="1" style="height: 100%;">
                                 <div class="wgc7w_upload">
                                     <div>
                                         <label for="image_1">
@@ -248,7 +248,7 @@
                 $("[name=roomNum]").attr("value", i);
                 console.log($("[name=roomNum]").attr("value"));
 
-                var html = "<div class='wg5bcr_1' id='room_"+ i + "'style='height: 100%;'>"
+                var html = "<div class='wg5bcr_1' id='room_"+ i + "' name='roomTypeNo' value='" + i + "' style='height: 100%;'>"
                     html += "    <div class='wgc7w_upload'>"
                     html += "        <div>"
                     html += "            <label for='image_1'>"

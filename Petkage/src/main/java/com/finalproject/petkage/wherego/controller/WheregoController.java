@@ -86,9 +86,11 @@ public class WheregoController {
 	
 	@GetMapping("/lodging")
 	public ModelAndView lodging(ModelAndView model) {
-		List<Wherego> wherego = null;
+		List<Wherego> wherego = null;		
+		System.out.println("전" + wherego);
 		
 		wherego = service.lodging_board(); 
+		System.out.println("후" + wherego);
 		
 		model.addObject("lodgingselect", wherego);
 		System.out.println("숙소 게시글 조회 : " + model);
