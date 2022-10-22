@@ -32,6 +32,6 @@ public interface WheregoMapper {
 
 	List<Wherego> search_board_lod(RowBounds rowBounds, String search);
 
-    int lodging_fupload(Wherego wherego);
+    int insertWherego(Wherego wherego);
 
 }
