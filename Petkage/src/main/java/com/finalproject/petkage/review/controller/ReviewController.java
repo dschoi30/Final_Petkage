@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -31,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("/review")
 @SessionAttributes("loginMember")
 public class ReviewController {
 
@@ -209,7 +211,7 @@ public class ReviewController {
 	@GetMapping("/review_write")
     public String Review_write() {
         log.info("게시글 작성 페이지 요청");
-        return "wherego/review_write";
+        return "wherego/wherego_review_write";
     }
 	
 	@PostMapping("/review_write")
@@ -295,7 +297,7 @@ public class ReviewController {
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
-			model.addObject("location", "/review_list");
+			model.addObject("location", "/review/review_list");
 		} else {
 			model.addObject("msg", "게시글 등록을 실패하였습니다.");
 			model.addObject("location", "./");

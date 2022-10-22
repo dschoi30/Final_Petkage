@@ -34,4 +34,6 @@ public interface WheregoMapper {
 
     int insertWherego(Wherego wherego);
 
+	Wherego findBoardByNo(int no);
+
 }

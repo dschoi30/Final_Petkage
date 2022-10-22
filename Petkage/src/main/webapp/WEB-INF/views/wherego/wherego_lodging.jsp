@@ -54,7 +54,7 @@
         </div>
 
         <div class="wg_filter">
-        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/lodging_write'">글 작성</button>
+        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/wherego/lodging_write'">글 작성</button>
             <button id="wgf_btn1" class="wgfbtn active">추천순</button>
             <button id="wgf_btn2" class="wgfbtn">평점순</button>
             <button id="wgf_btn3" class="wgfbtn">낮은가격</button>
@@ -171,7 +171,7 @@
             <div class="wg_content_card">
             	<c:forEach var="lodgingselect" items="${lodgingselect}">
 		                <div class="wgc4_card">
-		                	<a href="${ path }/lodgingdetail">
+		                	<a href="${ path }/wherego/lodgingdetail">
 			                    <div class="card_img">
 			                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
 			                    </div>

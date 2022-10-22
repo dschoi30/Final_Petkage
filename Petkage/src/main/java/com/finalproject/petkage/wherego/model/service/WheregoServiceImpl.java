@@ -97,6 +97,12 @@ public class WheregoServiceImpl implements WheregoService {
         
         return result;
     }
+
+	@Override
+	public Wherego findBoardByNo(int no) {
+
+		return mapper.findBoardByNo(no);
+	}
     
 
 

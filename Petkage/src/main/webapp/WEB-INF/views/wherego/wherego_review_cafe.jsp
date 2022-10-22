@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button onclick="location.href='${ path }/reviewwrite'"><p>리뷰작성</p></button>
+                    <button id="insBtn"><p>리뷰작성</p></button>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="wg_cate">
             <div class="wgc_1">
                 <div class="wgc_box">
-	                <a href="${ path }/review_list">
+	                <a href="${ path }/review/review_list">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
 	                    </div>
@@ -66,7 +66,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/review_cafe">
+	                <a href="${ path }/review/review_cafe">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
 	                    </div>
@@ -76,7 +76,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/review_food">
+	                <a href="${ path }/review/review_food">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
 	                    </div>
@@ -86,7 +86,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-                	<a href="${ path }/review_hair">
+                	<a href="${ path }/review/review_hair">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
 	                    </div>
@@ -99,7 +99,7 @@
 
             <div class="wgc_2">
 				<div class="wgc_box">
-	                <a href="${ path }/review_trip">
+	                <a href="${ path }/review/review_trip">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
 	                    </div>
@@ -109,7 +109,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/review_hospital">
+	                <a href="${ path }/review/review_hospital">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
 	                    </div>
@@ -119,7 +119,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/review_preschool">
+	                <a href="${ path }/review/review_preschool">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
 	                    </div>
@@ -129,7 +129,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/review_bath">
+	                <a href="${ path }/review/review_bath">
 	                    <div class="wgcb_img" style="border-right: none;">
 	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
 	                    </div>
@@ -208,17 +208,17 @@
                 </c:forEach>
                 <div class="wgc7l_2">
                     <div id="pageBar">
-                        <button onclick="location.href='${ path }/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
+                        <button onclick="location.href='${ path }/review/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
                       	<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 							<c:if test="${ status.current == pageInfo.currentPage }">
 								<button disabled class="checked">${ status.current }</button>
 							</c:if>
 							<c:if test="${ status.current != pageInfo.currentPage }">
-								<button onclick="location.href='${ path }/review_list?page=${ status.current }'">${ status.current }</button>
+								<button onclick="location.href='${ path }/review/review_list?page=${ status.current }'">${ status.current }</button>
 							</c:if>
 						</c:forEach>
 
-                        <button onclick="location.href='${ path }/review_list?page=${ pageInfo.nextPage }'">&rsaquo;</button>
+                        <button onclick="location.href='${ path }/review/review_list?page=${ pageInfo.nextPage }'">&rsaquo;</button>
                     </div>
                     <div class="top_link">
                         <a href="#wg_top">▲ TOP</a>
@@ -228,6 +228,21 @@
         </div>    
 
     </section>
+
+    <script type="text/javascript">
+
+	 $(document).ready(() => {
+		 $("#insBtn").on("click", () => {
+			 if(${empty loginMember}) {
+				 alert("로그인이 필요합니다 :)");
+				 location.href="${path}/member/loginPage"
+			 } else {
+				 location.href="${path}/review/review_write"
+			 }
+		 });
+	 });
+    	
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>

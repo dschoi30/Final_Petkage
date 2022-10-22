@@ -18,15 +18,12 @@
 </head>
 <body>
 
+<section class="wg_15">
 	<jsp:include page="/WEB-INF/views/mypage/myPage_nav.jsp" />
 	
-	<section class="wg_15">
 		<div class="wg6_bottom">
             <div class="wg6b_ca">
-            	<!-- 
-                <c:forEach var="wherego" items="${wherego}">
-                <c:set var="rename" value="${ wherego.rimg }" />
-                -->
+                
                 <div class="wgc6_card">
 	                <a href="${ path }/cafedetail">
 	                    <div class="card_img">
@@ -42,9 +39,7 @@
 	                    </div>
 	                </a>
                 </div>
-                <!--  
-            </c:forEach>
-            -->  
+
             </div>
             
             <div class="wgc7l_2">

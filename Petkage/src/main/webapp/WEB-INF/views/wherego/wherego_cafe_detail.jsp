@@ -440,6 +440,9 @@
             if($("#heart").hasClass("liked")){
             $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
             $("#heart").removeClass("liked");
+            
+            let spotNo = "${wherego.spotNo}"
+            
             }else{
             $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
             $("#heart").addClass("liked");

@@ -71,7 +71,7 @@
             <div class="wg6b_ca">
                 <c:forEach var="hospitalselect" items="${hospitalselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/hospitaldetail">
+	                <a href="${ path }/wherego/hospitaldetail">
 	                    <div class="card_img">
 	                        <img src="${ path }/resources/images/wherego/${hospitalselect.img}">
 	                    </div>

@@ -13,6 +13,6 @@ public class Heart {
 	private int spotNo; // 어디가지 번호
 	
 	private int userNo; // 작성자(예약 회원)
-	
+
 	
 }

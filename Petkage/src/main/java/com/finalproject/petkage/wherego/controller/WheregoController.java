@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequestMapping("/wherego")
 @SessionAttributes("loginMember")
 public class WheregoController {
 	@Autowired
@@ -394,6 +396,23 @@ public class WheregoController {
         return model;
 
     }
+	
+	
+	// 게시글 상세 조회
+	@GetMapping("/wherego_lodging_detail")
+	public ModelAndView wherego_lodging_detail(ModelAndView model,
+			@RequestParam int no) {
+		
+		Wherego wherego = null;
+		
+		wherego = service.findBoardByNo(no);
+		
+		model.addObject("wherego", wherego);
+		model.setViewName("wherego/wherego_lodging_detail");
+		
+		return model;
+	}
+	
 	
 	
 	// 찜 

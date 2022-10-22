@@ -31,6 +31,8 @@ public interface WheregoService {
 
     int insertWherego(Wherego wherego);
 
+	Wherego findBoardByNo(int no);
+
 	
 	
 }
