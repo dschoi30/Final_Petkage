@@ -92,7 +92,7 @@ public class WheregoServiceImpl implements WheregoService {
         int roomNum = wherego.getRoomNum();
         
         // roomNum 갯수 따라서 객실 입력 반복
-        if
+        
         
         result = mapper.insertWherego(wherego);
         

@@ -91,6 +91,7 @@ public class WheregoController {
 		wherego = service.lodging_board(); 
 		
 		model.addObject("lodgingselect", wherego);
+		System.out.println("숙소 게시글 조회 : " + model);
 		model.setViewName("wherego/wherego_lodging");
 		
 		return model;
