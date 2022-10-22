@@ -253,7 +253,7 @@ public class WheregoController {
 		return "wherego/wherego_lodging_write";
 	}
 	
-	@PostMapping("/wherego/lodging_write")
+	@PostMapping("/lodging_write")
     public ModelAndView lodging_write(
                         ModelAndView model,
                         @RequestParam(value="multiFile") List<MultipartFile> multiFileList,
@@ -350,7 +350,7 @@ public class WheregoController {
 			
 		wherego.setRoom(room);
         
-        result = service.insertWherego(wherego);
+        result = service.insertWherego_lodging(wherego);
         
         // 게시글 관련 DB 저장
         if(result > 0) {
@@ -361,15 +361,122 @@ public class WheregoController {
             model.addObject("location", "./");
         }
         model.setViewName("common/msg");
-        System.out.println(result);
+        System.out.println("숙소등록 결과" + result);
         return model;
     }
 	
-	@GetMapping("/manager2")
-	public String manager2() {
-		
-		return "wherego/wherego_manager_2";
+	@GetMapping("/others_write")
+	public String others_write() {
+	    log.info("어디가지 게시글 작성 페이지 요청");
+		return "wherego/wherego_others_write";
 	}
+	
+	@PostMapping("/others_write")
+    public ModelAndView others_write(
+                        ModelAndView model,
+                        @RequestParam(value="multiFile") List<MultipartFile> multiFileList,
+                        HttpServletRequest request,
+                        @ModelAttribute Wherego wherego) {
+        int result = 0;
+        
+        System.out.println("어디가지 : " + wherego);
+        
+        // 받아온것 출력 확인
+            System.out.println("multiFileList : " + multiFileList);
+
+            // path 가져오기
+            String path = request.getSession().getServletContext().getRealPath("resources");
+            String root = path + "\\" + "upload/wherego";
+            
+            File fileCheck = new File(root);
+            
+            if(!fileCheck.exists()) fileCheck.mkdirs();
+            
+            String file1 = "";
+            String file2 = "";
+            
+            Map<String, String> map = new HashMap<>();
+            
+            for(int i = 0; i < multiFileList.size(); i++) {
+                String img = multiFileList.get(i).getOriginalFilename();
+                System.out.println("이미지" + img);
+                
+                String renameImg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
+                        img.substring(img.lastIndexOf("."));
+                int subFileName = Integer.parseInt(renameImg.substring(9, 18)) + i;
+                renameImg = renameImg.substring(0, 9) + subFileName + renameImg.substring(18, renameImg.length());
+
+                if(i == 0) {
+                    map.put("img", img);
+                    map.put("renameImg", renameImg);
+                }
+                else {
+                    map.put("img", map.get("img") + ", " + img);
+                    map.put("renameImg", map.get("renameImg") + ", " + renameImg);
+                }
+            }
+            
+            file1 = map.get("img");
+            file2 = map.get("renameImg");
+            
+            wherego.setImg(file1);
+            wherego.setRenameImg(file2);
+            
+            String[] fileList = map.get("renameImg").split(", ");
+            
+            try {
+                for(int i = 0; i < multiFileList.size(); i++) {
+                    File uploadFile = new File(root + "\\" + fileList[i]);
+                    multiFileList.get(i).transferTo(uploadFile);
+                }
+                System.out.println("다중 파일 업로드 성공!");
+                System.out.println("파일" + multiFileList);
+                
+            } catch (IllegalStateException | IOException e) {
+                System.out.println("다중 파일 업로드 실패 ㅠㅠ");
+                // 만약 업로드 실패하면 파일 삭제
+                for(int i = 0; i < multiFileList.size(); i++) {
+                    new File(root + "\\" + fileList[i]).delete();
+                }
+                e.printStackTrace();
+            }
+            
+        String category = wherego.getSpotCategory();
+        
+        // 카테고리 매핑구문 변환
+        if(category.equals("카페")) {
+            category = category.replace("카페", "cafe");
+        } else if(category.equals("맛집")) {
+            category = category.replace("맛집", "food");
+        } else if(category.equals("미용")) {
+            category = category.replace("미용", "hair");
+        } else if(category.equals("여행지")) {
+            category = category.replace("여행지", "trip");
+        } else if(category.equals("동물병원")) {
+            category = category.replace("동물병원", "hospital");
+        } else if(category.equals("유치원")) {
+            category = category.replace("유치원", "preschool");
+        } else if(category.equals("셀프목욕")) {
+            category = category.replace("셀프목욕", "bath");
+        } else if(category.equals("펫시터")) {
+            category = category.replace("펫시터", "petsitter");
+        }
+        
+        result = service.insertWherego_others(wherego);
+        System.out.println("카테고리 : " + category);
+        
+        // 게시글 관련 DB 저장
+        if(result > 0) {
+            model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
+            model.addObject("location", "/wherego/" + category);
+        } else {
+            model.addObject("msg", "게시글 등록을 실패하였습니다.");
+            model.addObject("location", "./");
+        }
+        model.setViewName("common/msg");
+        System.out.println(wherego.getSpotCategory() + " 등록 결과 : " + result);
+        return model;
+    }
 	
 	@GetMapping("/search_list")
 	public String search_list() {

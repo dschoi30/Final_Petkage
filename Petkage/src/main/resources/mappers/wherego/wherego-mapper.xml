@@ -43,6 +43,7 @@
 		<result property="theme" column="SPOT_THEME" />
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
 		<result property="spotStatus" column="SPOT_STATUS" />
 		<result property="spotMap" column="SPOT_MAP" />
 		<result property="roomNum" column="SPOT_ROOMNUM" />
@@ -156,7 +157,7 @@
     </select>
 	
 	<!-- 어디가지 숙소 insert -->
-	<insert id="insertWherego" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+	<insert id="insertWherego_lodging" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
     	INSERT INTO WHEREWEGO (
     		SPOT_NO,
 			USER_NO,
@@ -220,6 +221,44 @@
 		    	DEFAULT
 	    	)
    	</insert>
+   	
+   	<!-- 어디가지 insert -->
+	<insert id="insertWherego_others" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+    	INSERT INTO WHEREWEGO (
+    		SPOT_NO,
+			USER_NO,
+			SPOT_CATEGORY,
+			SPOT_LOCATION,
+			SPOT_NAME,
+			SPOT_ADDRESS,
+			SPOT_SIZE,
+			SPOT_AMENI,
+			SPOT_IMG,
+			SPOT_RENAMEIMG,
+			SPOT_INTRODUCE,
+			SPOT_INFO,
+			SPOT_STATUS,
+			SPOT_MAP,
+			SPOT_MENU	
+    	) VALUES (
+	    	SEQ_SPOT_NO.NEXTVAL, 
+	    	1,
+	    	#{ spotCategory }, 
+	    	#{ spotLocation }, 
+	    	#{ spotName }, 
+	    	#{ spotAddress }, 
+	    	#{ spotSize }, 
+	    	#{ ameni }, 
+	    	#{ img }, 
+	    	#{ renameImg }, 
+	    	#{ introduce }, 
+	    	#{ info }, 
+	    	DEFAULT, 
+	    	#{ spotMap },
+	    	#{ menu }
+    	)
+    </insert>
+   	
    	
    	
    	<!-- 상세조회 -->

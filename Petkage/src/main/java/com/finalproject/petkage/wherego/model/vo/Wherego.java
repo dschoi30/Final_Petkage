@@ -33,6 +33,8 @@ public class Wherego {
 	private String introduce; // 소개
 	
 	private String info; // 기본정보
+
+	private String menu; // 메뉴
 	
 	private String spotStatus; // 어디가지 상태
 
