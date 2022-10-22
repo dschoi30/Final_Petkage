@@ -86,11 +86,14 @@ public class WheregoController {
 	
 	@GetMapping("/lodging")
 	public ModelAndView lodging(ModelAndView model) {
-		List<Wherego> wherego = null;
+		List<Wherego> wherego = null;		
+		System.out.println("전" + wherego);
 		
 		wherego = service.lodging_board(); 
+		System.out.println("후" + wherego);
 		
 		model.addObject("lodgingselect", wherego);
+		System.out.println("숙소 게시글 조회 : " + model);
 		model.setViewName("wherego/wherego_lodging");
 		
 		return model;
@@ -245,7 +248,7 @@ public class WheregoController {
 	@GetMapping("/lodging_write")
 	public String lodging_write() {
 	    log.info("숙소 게시글 작성 페이지 요청");
-		return "wherego/wherego_manager_1";
+		return "wherego/wherego_lodging_write";
 	}
 	
 	@PostMapping("/lodging_write")
@@ -258,7 +261,8 @@ public class WheregoController {
                         @ModelAttribute Room room) {
         int result = 0;
         
-        
+        System.out.println("어디가지 : " + wherego);
+        System.out.println("객실 : " + room);
         
         // 받아온것 출력 확인
 			System.out.println("multiFileList : " + multiFileList);
@@ -280,28 +284,28 @@ public class WheregoController {
 				String img = multiFileList.get(i).getOriginalFilename();
 				System.out.println("이미지" + img);
 				
-				String renameimg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
+				String renameImg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
 						img.substring(img.lastIndexOf("."));
-				int subFileName = Integer.parseInt(renameimg.substring(9, 18)) + i;
-				renameimg = renameimg.substring(0, 9) + subFileName + renameimg.substring(18, renameimg.length());
+				int subFileName = Integer.parseInt(renameImg.substring(9, 18)) + i;
+				renameImg = renameImg.substring(0, 9) + subFileName + renameImg.substring(18, renameImg.length());
 
 				if(i == 0) {
 					map.put("img", img);
-					map.put("renameimg", renameimg);
+					map.put("renameImg", renameImg);
 				}
 				else {
 					map.put("img", map.get("img") + ", " + img);
-					map.put("renameimg", map.get("renameimg") + ", " + renameimg);
+					map.put("renameImg", map.get("renameImg") + ", " + renameImg);
 				}
 			}
 			
 			file1 = map.get("img");
-			file2 = map.get("renameimg");
+			file2 = map.get("renameImg");
 			
 			wherego.setImg(file1);
 			wherego.setRenameImg(file2);
 			
-			String[] fileList = map.get("renameimg").split(", ");
+			String[] fileList = map.get("renameImg").split(", ");
 			
 			try {
 				for(int i = 0; i < multiFileList.size(); i++) {
