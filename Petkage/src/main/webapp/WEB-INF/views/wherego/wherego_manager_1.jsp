@@ -65,61 +65,61 @@
                     <div class="wg5t2_option">
                         <div class="wg5t2_size">크기</div>
                         <div class="wg5t2_breed">
-                            <input type="checkbox" name="spotSize" id="small">
+                            <input type="checkbox" name="spotSize" id="small" value="소형견">
                             <label for="small">소형견</label>
-                            <input type="checkbox" name="spotSize" id="medium">
+                            <input type="checkbox" name="spotSize" id="medium" value="중형견">
                             <label for="medium">중형견</label>
-                            <input type="checkbox" name="spotSize" id="large">
+                            <input type="checkbox" name="spotSize" id="large" value="대형견">
                             <label for="large">대형견</label>
                         </div>
                     </div>
                     <div class="wg5t2_amenities">
                         <div class="wg5t2_amentext">편의시설</div>
                         <div class="wgs_checkbox1">
-                            <input type="checkbox" id="internet" name="ameni">
+                            <input type="checkbox" id="internet" name="ameni" value="무선 인터넷">
                             <label for="internet">무선 인터넷</label>
-                            <input type="checkbox" id="bbq" name="ameni">
+                            <input type="checkbox" id="bbq" name="ameni" value="개별바베큐">
                             <label for="bbq">개별바베큐</label>
-                            <input type="checkbox" id="breakfast" name="ameni">
+                            <input type="checkbox" id="breakfast" name="ameni" value="아침식사">
                             <label for="breakfast">아침식사</label>
                         </div>
                         <div class="wgs_checkbox2">
-                            <input type="checkbox" id="parking" name="ameni">
+                            <input type="checkbox" id="parking" name="ameni" value="무료주차">
                             <label for="parking">무료주차</label>
-                            <input type="checkbox" id="karaoke" name="ameni">
+                            <input type="checkbox" id="karaoke" name="ameni" value="노래방">
                             <label for="karaoke">노래방</label>
-                            <input type="checkbox" id="spa" name="ameni">
+                            <input type="checkbox" id="spa" name="ameni" value="스파/월풀">
                             <label for="spa">스파/월풀</label>
                         </div>
                         <div class="wgs_checkbox3">
-                            <input type="checkbox" id="cafe" name="ameni">
+                            <input type="checkbox" id="cafe" name="ameni" value="카페">
                             <label for="cafe">카페</label>
-                            <input type="checkbox" id="swimming" name="ameni">
+                            <input type="checkbox" id="swimming" name="ameni" value="수영장">
                             <label for="swimming">수영장</label>
                         </div>
                     </div>
                     <div class="wg5t2_thema" >
                         <div class="wg5t2_thematext">테마</div>
                         <div class="wgs_checkbox1">
-                            <input type="checkbox" id="layer" name="theme">
+                            <input type="checkbox" id="layer" name="theme" value="복층">
                             <label for="layer">복층</label>
-                            <input type="checkbox" id="detached" name="theme">
+                            <input type="checkbox" id="detached" name="theme" value="독채">
                             <label for="detached">독채</label>
-                            <input type="checkbox" id="hotwater" name="theme">
+                            <input type="checkbox" id="hotwater" name="theme" value="온수풀">
                             <label for="hotwater">온수풀</label>
                         </div>
                         <div class="wgs_checkbox2">
-                            <input type="checkbox" id="hokangs" name="theme">
+                            <input type="checkbox" id="hokangs" name="theme" value="호캉스">
                             <label for="hokangs">호캉스</label>
-                            <input type="checkbox" id="pool" name="theme">
+                            <input type="checkbox" id="pool" name="theme" value="풀빌라"
                             <label for="pool">풀빌라</label>
-                            <input type="checkbox" id="glamping" name="theme">
+                            <input type="checkbox" id="glamping" name="theme" value="글램핑">
                             <label for="glamping">글램핑</label>
                         </div>
                         <div class="wgs_checkbox3">
-                            <input type="checkbox" id="caravan" name="theme">
+                            <input type="checkbox" id="caravan" name="theme" value="카라반">
                             <label for="caravan">카라반</label>
-                            <input type="checkbox" id="hanok" name="theme">
+                            <input type="checkbox" id="hanok" name="theme" value="한옥">
                             <label for="hanok">한옥</label>
                         </div>
                     </div>
@@ -202,135 +202,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_2">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="multiFile" id="image_2" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="roomname" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="roomprice" required>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_3">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="multiFile" id="image_3" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="roomname" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="roomprice" required>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_4">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="multiFile" id="image_4" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="roomname" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="roomprice" required>
-                                        </div>
-                                    </div>
-                                    <div class="te3">
-                                        <a data-toggle="modal" href=".modal" id="modala">객실 이용 안내 ></a>
-                                        <!-- Vertically centered scrollable modal -->
-                                        <div class="modal" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title">객실 이용 안내</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>기본정보</p>
-                                                    <ul>
-                                                        <li>
-                                                            2인 기준 최대 2인
-                                                        </li>
-                                                        <li>
-                                                            더블베드 1개
-                                                        </li>
-                                                        <li>
-                                                            반려동물 베드 1개
-                                                        </li>
-                                                    </ul>
-                                                    <hr>
-                                                    <p>편의시설</p>
-                                                    <ul>
-                                                        <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <button id="wgf_manager_btn" class="wgfbtn" onclick="addRoom()">글 작성</button>
+           
                         </div>
                     </div>
                 </div>    

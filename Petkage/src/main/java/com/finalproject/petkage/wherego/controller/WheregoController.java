@@ -19,12 +19,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.SessionAttributes;
-=======
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> EUM
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.MultipartFileUtil;
