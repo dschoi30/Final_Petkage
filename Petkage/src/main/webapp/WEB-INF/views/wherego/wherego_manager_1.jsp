@@ -111,7 +111,7 @@
                         <div class="wgs_checkbox2">
                             <input type="checkbox" id="hokangs" name="theme" value="호캉스">
                             <label for="hokangs">호캉스</label>
-                            <input type="checkbox" id="pool" name="theme" value="풀빌라"
+                            <input type="checkbox" id="pool" name="theme" value="풀빌라">
                             <label for="pool">풀빌라</label>
                             <input type="checkbox" id="glamping" name="theme" value="글램핑">
                             <label for="glamping">글램핑</label>
@@ -173,13 +173,13 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1">
+                            <div class="wg5bcr_1" id="room_1">
                                 <div class="wgc7w_upload">
                                     <div>
                                         <label for="image_1">
                                             <div class="btn-upload">업로드</div>
                                         </label>
-                                        <input type="file" name="multiFile" id="image_1" multiple>
+                                        <input type="file" name="upfile" id="image_1" multiple>
                                         <div id="preview"></div>
                                     </div>
                                 </div>
@@ -197,14 +197,13 @@
                                     </div>
                                     <div class="te4">
                                         <button class="te4_btn active">
-                                            예약
+                                            등록
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <button id="wgf_manager_btn" class="wgfbtn" onclick="addRoom()">글 작성</button>
-           
                         </div>
+                            <button type="button" name="roomNum" value="1" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
                     </div>
                 </div>    
                 <div class="wg5b_content">
@@ -236,41 +235,86 @@
             </div>
         </form>
 
-        <script>
-            jQuery(document).ready(function ($) {
-        
-                var btnAll = $('.wg_9 .wg5_bottom .wg5b_btn section .btnBox');
-                var tabAll = $('.wg_9 .wg5b_content .content_container');
-            
-            
-                // 객실안내
-                $('#wg5b_tab_01').click(function () {
-                    if ($(this).hasClass('active') === false) {
-                        // 초기화
-                        btnAll.removeClass('active');
-                        tabAll.removeClass('active');
-                        // 활성화
-                        $(this).addClass('active');
-                        $('#wg5bc_1').addClass('active');
-                    }
-                });
-
-                // 숙소정보
-                $('#wg5b_tab_02').click(function () {
-                    if ($(this).hasClass('active') === false) {
-                        // 초기화
-                        btnAll.removeClass('active');
-                        tabAll.removeClass('active');
-                        // 활성화
-                        $(this).addClass('active');
-                        $('#wg5bc_2').addClass('active');
-                    }
-                });
-
-            });
-        </script>
         
     </section>
+
+    <script>
+        $(document).ready(function() {
+            
+            var i = 2; // 변수 설정은 함수의 바깥에 설정!
+            $("#wgf_manager_add").click(function() {
+
+                var html = "<div class='wg5bcr_1' id='room_"+ i + "'>"
+                    html += "    <div class='wgc7w_upload'>"
+                    html += "        <div>"
+                    html += "            <label for='image_1'>"
+                    html += "                <div class='btn-upload'>업로드</div>"
+                    html += "            </label>"
+                    html += "            <input type='file' name='upfile' id='image_"+ i + "' multiple>"
+                    html += "            <div id='preview'></div>"
+                    html += "        </div>"
+                    html += "    </div>"
+                    html += "    <div class='wg5bcr_text'>"
+                    html += "        <div class='te1'>"
+                    html += "            <input type='text' name='roomname' required placeholder='객실 이름'>"
+                    html += "        </div>"
+                    html += "        <div class='te2'>"
+                    html += "            <div class='te2_1'>"
+                    html += "                가격"
+                    html += "            </div>"
+                    html += "            <div class='te2_2'>"
+                    html += "                <input type='text' name='roomprice' required>"
+                    html += "            </div>"
+                    html += "        </div>"
+                    html += "        <div class='te4'>"
+                    html += "            <button class='te4_btn active'>"
+                    html += "                등록"
+                    html += "            </button>"
+                    html += "        </div>"
+                    html += "    </div>"
+                    html += "</div>"
+                
+                $(".wg5bc_room").append(html);
+                
+                i++; // 함수 내 하단에 증가문 설정
+                
+            });
+        });
+    </script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+    
+            var btnAll = $('.wg_9 .wg5_bottom .wg5b_btn section .btnBox');
+            var tabAll = $('.wg_9 .wg5b_content .content_container');
+        
+        
+            // 객실안내
+            $('#wg5b_tab_01').click(function () {
+                if ($(this).hasClass('active') === false) {
+                    // 초기화
+                    btnAll.removeClass('active');
+                    tabAll.removeClass('active');
+                    // 활성화
+                    $(this).addClass('active');
+                    $('#wg5bc_1').addClass('active');
+                }
+            });
+
+            // 숙소정보
+            $('#wg5b_tab_02').click(function () {
+                if ($(this).hasClass('active') === false) {
+                    // 초기화
+                    btnAll.removeClass('active');
+                    tabAll.removeClass('active');
+                    // 활성화
+                    $(this).addClass('active');
+                    $('#wg5bc_2').addClass('active');
+                }
+            });
+
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function (e){

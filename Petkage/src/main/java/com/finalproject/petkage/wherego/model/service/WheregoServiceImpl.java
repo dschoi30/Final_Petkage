@@ -87,9 +87,13 @@ public class WheregoServiceImpl implements WheregoService {
 
     @Override
     @Transactional
-    public int lodging_fupload(Wherego wherego) {
+    public int insertWherego(Wherego wherego) {
         int result = 0;
-        result = mapper.lodging_fupload(wherego);
+        int roomNum = wherego.getRoomNum();
+        
+        // roomNum 갯수 따라서 객실 입력 반복
+        
+        result = mapper.insertWherego(wherego);
         
         return result;
     }

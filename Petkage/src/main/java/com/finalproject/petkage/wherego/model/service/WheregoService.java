@@ -29,7 +29,7 @@ public interface WheregoService {
 
 	List<Wherego> search_board_lod(PageInfo pageInfo, String search);
 
-    int lodging_fupload(Wherego wherego);
+    int insertWherego(Wherego wherego);
 
 	
 	
