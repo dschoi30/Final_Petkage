@@ -71,16 +71,16 @@
             </div>
             <div class="wg5t_2">
                 <div class="wg5t2_name">
-                    KH 정보 교육원 앞에 있는 거기
+                    ${wherego.spotName}
                     <div>
                         <span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
                     </div>
                 </div>
                 <div class="wg5t2_score">
-                    4.8  추천해요!
+                    4.8 점
                 </div>
                 <div class="wg5t2_address">
-                    서울 특별시 강남구 테헤란로25길 10
+                    ${wherego.spotAddress}
                 </div>
                 <div class="wg5t2_option">
                     <div class="wg5t2_icon">
@@ -109,8 +109,7 @@
                     </div>
                 </div>
                 <div class="wg5t2_info">
-                    <p>강남 한가운데 마당 있는 애견 동반 카페</p>
-                    <p>강형욱도 인정한 대한민국 NO.1 애견 카페</p>
+                   	${wherego.introduce}
                 </div>
             </div>    
         </div>
@@ -135,27 +134,7 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">기본 정보</summary>
                         <div class="wg5bci_content">
-                            <h5>주변 정보</h5>
-                            <ul>
-                                <li>역삼역 도보 1분</li>
-                                <li>선정릉 차량 8분</li>
-                                <li>잠원 한강 공원 차량 12분</li>
-                            </ul>
-                            <h5>기본 정보</h5>
-                            <ul>
-                                <li>체크인 : 15:00 | 체크아웃 : 12:00</li>
-                                <li>22시 이후 체크인 시 호텔 프론트 문의</li>
-                                <li>무료 Wi-Fi</li>
-                                <li>전 객실 금연 (흡연 적발 시 300,000원 위약금이 발생됩니다)</li>
-                                <li>Bath Amenity (치약, 칫솔 무료)</li>
-                                <li>주차 가능 (발렛파킹만 가능 / 박 당 10,000원)</li>
-                            </ul>
-                            <h5>인원 추가 정보</h5>
-                            <ul>
-                                <li>기준인원 외 추가 시, 1인 33,000원 (만 12세 이상~성인), 만 12세 미만 무료</li>
-                                <li>영유아 인원수 포함 / 최대인원 초과 불가</li>
-                                <li>반려동물 1마리 (추가금액 없음)</li>
-                            </ul>
+                           ${wherego.info}
                         </div>
                     </details>
                     <details class="wg5bc_inf" open>

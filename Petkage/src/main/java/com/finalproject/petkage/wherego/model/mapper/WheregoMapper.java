@@ -37,4 +37,8 @@ public interface WheregoMapper {
 
     int insertRoom(Room room);
 
+	Wherego findBoardByNo_lodging(int no);
+
+	Wherego findBoardByNo_cafe(int no);
+
 }

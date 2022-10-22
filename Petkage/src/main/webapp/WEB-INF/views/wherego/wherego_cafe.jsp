@@ -72,7 +72,7 @@
             <div class="wg6b_ca">
                 <c:forEach var="cafeselect" items="${cafeselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/wherego/cafedetail">
+	                <a href="${ path }/wherego/wherego_cafe_detail?no=${cafeselect.spotNo}">
 	                    <div class="card_img">
 	                        <img src="${ path }/resources/images/wherego/${cafeselect.img}">
 	                    </div>

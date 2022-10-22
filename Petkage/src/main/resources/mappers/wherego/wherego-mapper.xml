@@ -222,11 +222,19 @@
    	</insert>
    	
    	
+   	<!-- 상세조회 -->
    	
+   	<select id="findBoardByNo_lodging" resultMap="wheregovo">
+   		SELECT *
+   		FROM WHEREWEGO
+   		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
+   	</select>
    	
-   	
-   	
-   	
+   	<select id="findBoardByNo_cafe" resultMap="wheregovo">
+   		SELECT *
+   		FROM WHEREWEGO
+   		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
+   	</select>
    	
    	
    	

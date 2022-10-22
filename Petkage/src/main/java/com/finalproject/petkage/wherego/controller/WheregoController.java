@@ -409,10 +409,24 @@ public class WheregoController {
 		
 		Wherego wherego = null;
 		
-		wherego = service.findBoardByNo(no);
+		wherego = service.findBoardByNo_lodging(no);
 		
 		model.addObject("wherego", wherego);
 		model.setViewName("wherego/wherego_lodging_detail");
+		
+		return model;
+	}
+	
+	@GetMapping("/wherego_cafe_detail")
+	public ModelAndView wherego_cafe_detail(ModelAndView model,
+			@RequestParam int no) {
+		
+		Wherego wherego = null;
+		
+		wherego = service.findBoardByNo_cafe(no);
+		
+		model.addObject("wherego", wherego);
+		model.setViewName("wherego/wherego_cafe_detail");
 		
 		return model;
 	}
