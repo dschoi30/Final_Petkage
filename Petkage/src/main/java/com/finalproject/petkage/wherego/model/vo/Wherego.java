@@ -1,7 +1,5 @@
 package com.finalproject.petkage.wherego.model.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,39 +8,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Wherego {
-	private int spotNo;
+	private int spotNo; // 어디가지 번호
 	
-	private int userNo;
+	private int userNo; // 작성자(관리자)
 	
-	private String spotCategory;
+	private String spotCategory; // 어디가지 카테고리
 
-	private String spotLocation;
+	private String spotLocation; // 지역
 	
-	private String spotName;
+	private String spotName; // 매장명
 	
-	private String spotAddress;
+	private String spotAddress; // 매장주소
 	
-	private String spotSize;
+	private String spotSize; // 강아지 크기
 	
-	private String ameni;
+	private String ameni; // 편의시설
 	
-	private String img;
+	private String img; // 이미지(4개)
 	
-	private String theme;
+	private String renameImg; // 이미지 개명
+    
+	private String theme; // 테마
 	
-	private String introduce;
+	private String introduce; // 소개
 	
-	private String info;
+	private String info; // 기본정보
 	
-	private String minfo;
+	private String spotStatus; // 어디가지 상태
+
+	private String spotMap; // 지도 좌표
 	
-	private String mameni;
+	private Room room; // 객실
 	
-	private String price;
-	
-	private String rimg;
-	
-	private String subinfo;
-	
-	private String spotstatus;
+	private int roomNum; // 객실 추가수
+
 }

@@ -200,6 +200,7 @@
 					console.log(data);
 					if (data['data'] == "success"){
 						alert("새로운 식품이 등록되었습니다.");
+						location.reload();
 					} else if (data['data'] == "fail") {
 						alert("이미 등록된 식품입니다.");
 					}

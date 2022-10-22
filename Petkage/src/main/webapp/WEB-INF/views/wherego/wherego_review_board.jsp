@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button onclick="location.href='${ path }/reviewwrite'"><p>리뷰작성</p></button>
+                    <button id="insBtn"><p>리뷰작성</p></button>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
 	                <div class="wgc7l_1">
 	                    <div class="wgc7l_1_1">
 	                        <div class="wgc7l_name">
-	                            <p>${review.revtitle}</p>
+	                            <p>${review.revtitle} </p>
 	                            <div class="wgc7l_nickname">
 	                                <p>${review.memname}</p>
 	                            </div>
@@ -228,6 +228,20 @@
         </div>    
 
     </section>
+    <script type="text/javascript">
+
+	 $(document).ready(() => {
+		 $("#insBtn").on("click", () => {
+			 if(${empty loginMember}) {
+				 alert("로그인이 필요합니다 :)");
+				 location.href="${path}/member/loginPage"
+			 } else {
+				 location.href="${path}/reviewwrite"
+			 }
+		 });
+	 });
+    	
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>

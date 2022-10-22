@@ -157,6 +157,7 @@ public class ToolsController {
             if(result > 0) {
                 System.out.println("값:" + result);
                 resultMap.put("data", "success");
+                resultMap.put("food", food);
                 return resultMap;
             } else {
                 resultMap.put("data", "fail");

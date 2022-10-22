@@ -7,6 +7,7 @@
 		FROM WHEREWEGO
 	</sql>
 	
+	<!-- wherego -->
 	<resultMap type="Wherego" id="wheregovo">
 		<id property="spotNo" column="SPOT_NO" />
 		<result property="userNo" column="USER_NO" />
@@ -17,16 +18,33 @@
 		<result property="spotSize" column="SPOT_SIZE" />
 		<result property="ameni" column="SPOT_AMENI" />
 		<result property="img" column="SPOT_IMG" />
+		<result property="renameImg" column="SPOT_RENAMEIMG" />
 		<result property="theme" column="SPOT_THEME" />
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
-		<result property="minfo" column="SPOT_MINFO" />
-		<result property="mameni" column="SPOT_MAMENI" />
-		<result property="price" column="SPOT_PRICE" />
-		<result property="rimg" column="SPOT_RIMG" />
-		<result property="subinfo" column="SPOT_SUBINFO" />
-		<result property="spotstatus" column="SPOT_STATUS" />
-		
+		<result property="spotStatus" column="SPOT_STATUS" />
+		<result property="spotMap" column="SPOT_MAP" />
+	</resultMap>
+	
+	<!-- room -->
+	<resultMap type="Room" id="RoomResultMap">
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="spotNo" column="SPOT_NO" />
+		<result property="roomName" column="ROOM_NAME" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="roomImg" column="ROOM_IMG" />
+		<result property="renamdRoomImg" column="ROOM_RENAMEIMG" />
+		<result property="mInfo" column="ROOM_MINFO" />
+		<result property="mAmeni" column="ROOM_MAMENI" />
+		<result property="roomStatus" column="ROOM_STATUS" />
+	</resultMap>
+	<resultMap type="Wherego" id="inRoomResultMap" extends="wheregovo">
+		<collection property="Room" javaType="arraylist" columnPrefix="R_" resultMap="RoomResultMap" />
+	</resultMap>
+	
+	<resultMap type="Heart" id="Heart_vo">
+		<id property="spotNo" column="SPOT_NO" />
+		<id property="userNo" column="USER_NO" />
 	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
@@ -83,17 +101,83 @@
 		WHERE SPOT_CATEGORY = '펫시터' AND SPOT_STATUS = 'Y'
 	</select>
 	
-	
 	<select id="search_list_lod" resultType="_int" parameterType="String">
         SELECT COUNT(*) 
         FROM WHEREWEGO
-        WHERE SPOT_NAME LIKE '%'||#{search_name}||'%'
+        WHERE SPOT_NAME LIKE '%'||#{all_search}||'%' OR
+        	  SPOT_NAME LIKE INITCAP('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE LOWER('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE UPPER('%'||#{all_search}||'%')
     </select>
     
     <select id="search_board_lod" resultMap="wheregovo" parameterType="String">
    		SELECT * 
    		FROM WHEREWEGO
-   		WHERE SPOT_NAME LIKE '%'||#{search_name}||'%' 
+   		WHERE SPOT_NAME LIKE '%'||#{all_search}||'%' OR
+        	  SPOT_NAME LIKE INITCAP('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE LOWER('%'||#{all_search}||'%') OR
+        	  SPOT_NAME LIKE UPPER('%'||#{all_search}||'%')
     </select>
 	
+	<!-- 어디가지 숙소 insert -->
+	<insert id="insertWherego" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+    	INSERT INTO WHEREWEGO (
+    		SPOT_NO,
+			USER_NO,
+			SPOT_CATEGORY,
+			SPOT_LOCATION,
+			SPOT_NAME,
+			SPOT_ADDRESS,
+			SPOT_SIZE,
+			SPOT_AMENI,
+			SPOT_IMG,
+			SPOT_RENAMEIMG,
+			SPOT_THEME,
+			SPOT_INTRODUCE,
+			SPOT_INFO,
+			SPOT_STATUS,
+			SPOT_MAP
+    	) VALUES (
+	    	SEQ_SPOT_NO.NEXTVAL, 
+	    	1,
+	    	'숙소', 
+	    	#{ spotLocation }, 
+	    	#{ spotName }, 
+	    	#{ spotAddress }, 
+	    	#{ spotSize }, 
+	    	#{ ameni }, 
+	    	#{ img }, 
+	    	#{ renameimg }, 
+	    	#{ theme }, 
+	    	#{ introduce }, 
+	    	#{ info }, 
+	    	DEFAULT, 
+	    	#{ spotmap }
+    	)
+    </insert>
+    
+    <!-- 어디가지 객실 insert -->
+	<insert id="insertRoom" parameterType="Room" useGeneratedKeys="true" keyProperty="roomNo" keyColumn="ROOM_NO">
+	    INSERT INTO WHEREWEGO (
+	    		ROOM_NO,
+				SPOT_NO,
+				ROOM_NAME,
+				ROOM_PRICE,
+				ROOM_IMG,
+				ROOM_RENAMEIMG,
+				ROOM_MINFO,
+				ROOM_MAMENI,
+				ROOM_STATUS,
+	    	) VALUES (
+		    	SEQ_ROOM_NO.NEXTVAL, 
+		    	#{ spotNo },
+		    	#{ roomName }, 
+		    	#{ roomPrice }, 
+		    	#{ roomImg }, 
+		    	#{ renameRoomImg }, 
+		    	#{ mInfo }, 
+		    	#{ mAmeni }, 
+		    	#{ roomStatus }
+	    	)
+   	</insert>
 </mapper>

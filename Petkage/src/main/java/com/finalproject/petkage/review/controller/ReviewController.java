@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.review.model.service.ReviewService;
 import com.finalproject.petkage.review.model.vo.Review;
 
@@ -28,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@SessionAttributes("loginMember")
 public class ReviewController {
 
 	@Autowired
@@ -46,7 +50,6 @@ public class ReviewController {
         review = service.getReviewList(pageInfo);
         
         System.out.println(review);
-
         model.addObject("review", review);
         model.addObject("pageInfo", pageInfo);
         model.setViewName("wherego/wherego_review_board");
@@ -213,8 +216,17 @@ public class ReviewController {
 	public ModelAndView Review_write(
 						ModelAndView model,
 						@RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
-						@ModelAttribute Review review) {
+						@ModelAttribute Review review,
+						@SessionAttribute("loginMember") Member loginMember) {
+
+		
+		
+		
 		int result = 0;
+		
+		
+		System.out.println(loginMember);
+		
 		// 받아온것 출력 확인
 				System.out.println("multiFileList : " + multiFileList);
 
@@ -274,10 +286,13 @@ public class ReviewController {
 					}
 					e.printStackTrace();
 				}
-		
+		review.setWriterno(loginMember.getNo());
 		result = service.review_fupload(review);
 		
+		
 		// 게시글 관련 DB 저장
+		
+		
 		if(result > 0) {
 			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
 			model.addObject("location", "/review_list");
@@ -288,6 +303,7 @@ public class ReviewController {
 		model.setViewName("common/msg");
 		System.out.println(result);
 		return model;
+		
 	}
 	
 	

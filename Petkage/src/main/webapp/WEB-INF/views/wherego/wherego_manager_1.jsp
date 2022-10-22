@@ -27,7 +27,7 @@
 <body>
 
     <section class="wg_9">
-        <form action="">
+        <form action="${ path }/lodging_write" method="post" enctype="multipart/form-data">
             <div class="wg5_top">
                 <div class="wg5t_1">
                     <div class="wgc7w_upload">
@@ -35,91 +35,91 @@
                             <label for="image">
                                 <div class="btn-upload">업로드</div>
                             </label>
-                            <input type="file" name="image" id="image" multiple>
+                            <input type="file" name="multiFile" id="image" multiple>
                             <div id="preview"></div>
                         </div>
                     </div>
                 </div>
                 <div class="wg5t_2">
                     <div class="wg5t2_name">
-                        <input type="text" name="name" placeholder="매장 명" required>
+                        <input type="text" name="spotName" placeholder="매장 명" required>
                     </div>
                     <div class="wg5t2_address">
-                        <input type="text" name="address" placeholder="호텔 주소" required>
+                        <input type="text" name="spotAddress" placeholder="호텔 주소" required>
                     </div>
       				<div class="wg5t2_location">
                         <div class="wg5t2_loca">지역</div>
-                        <select name="" id="" required>
+                        <select name="spotLocation" id="spotLocation" required>
                             <option disabled selected>지역선택</option>
-                            <option>서울</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>경상</option>
-                            <option>전라</option>
-                            <option>충청</option>
+                            <option value="서울">서울</option>
+                            <option value="부산">부산</option>
+                            <option value="제주">제주</option>
+                            <option value="경기">경기</option>
+                            <option value="인천">인천</option>
+                            <option value="강원">강원</option>
+                            <option value="경상">경상</option>
+                            <option value="전라">전라</option>
+                            <option value="충청">충청</option>
                         </select>
                     </div>
                     <div class="wg5t2_option">
                         <div class="wg5t2_size">크기</div>
                         <div class="wg5t2_breed">
-                            <input type="checkbox" name="small" id="small">
+                            <input type="checkbox" name="spotSize" id="small" value="소형견">
                             <label for="small">소형견</label>
-                            <input type="checkbox" name="medium" id="medium">
+                            <input type="checkbox" name="spotSize" id="medium" value="중형견">
                             <label for="medium">중형견</label>
-                            <input type="checkbox" name="large" id="large">
+                            <input type="checkbox" name="spotSize" id="large" value="대형견">
                             <label for="large">대형견</label>
                         </div>
                     </div>
                     <div class="wg5t2_amenities">
                         <div class="wg5t2_amentext">편의시설</div>
                         <div class="wgs_checkbox1">
-                            <input type="checkbox" id="internet">
+                            <input type="checkbox" id="internet" name="ameni" value="무선 인터넷">
                             <label for="internet">무선 인터넷</label>
-                            <input type="checkbox" id="bbq">
+                            <input type="checkbox" id="bbq" name="ameni" value="개별바베큐">
                             <label for="bbq">개별바베큐</label>
-                            <input type="checkbox" id="breakfast">
+                            <input type="checkbox" id="breakfast" name="ameni" value="아침식사">
                             <label for="breakfast">아침식사</label>
                         </div>
                         <div class="wgs_checkbox2">
-                            <input type="checkbox" id="parking">
+                            <input type="checkbox" id="parking" name="ameni" value="무료주차">
                             <label for="parking">무료주차</label>
-                            <input type="checkbox" id="karaoke">
+                            <input type="checkbox" id="karaoke" name="ameni" value="노래방">
                             <label for="karaoke">노래방</label>
-                            <input type="checkbox" id="spa">
+                            <input type="checkbox" id="spa" name="ameni" value="스파/월풀">
                             <label for="spa">스파/월풀</label>
                         </div>
                         <div class="wgs_checkbox3">
-                            <input type="checkbox" id="cafe">
+                            <input type="checkbox" id="cafe" name="ameni" value="카페">
                             <label for="cafe">카페</label>
-                            <input type="checkbox" id="swimming">
+                            <input type="checkbox" id="swimming" name="ameni" value="수영장">
                             <label for="swimming">수영장</label>
                         </div>
                     </div>
-                    <div class="wg5t2_thema">
+                    <div class="wg5t2_thema" >
                         <div class="wg5t2_thematext">테마</div>
                         <div class="wgs_checkbox1">
-                            <input type="checkbox" id="layer">
+                            <input type="checkbox" id="layer" name="theme" value="복층">
                             <label for="layer">복층</label>
-                            <input type="checkbox" id="detached">
+                            <input type="checkbox" id="detached" name="theme" value="독채">
                             <label for="detached">독채</label>
-                            <input type="checkbox" id="hotwater">
+                            <input type="checkbox" id="hotwater" name="theme" value="온수풀">
                             <label for="hotwater">온수풀</label>
                         </div>
                         <div class="wgs_checkbox2">
-                            <input type="checkbox" id="hokangs">
+                            <input type="checkbox" id="hokangs" name="theme" value="호캉스">
                             <label for="hokangs">호캉스</label>
-                            <input type="checkbox" id="pool">
+                            <input type="checkbox" id="pool" name="theme" value="풀빌라">
                             <label for="pool">풀빌라</label>
-                            <input type="checkbox" id="glamping">
+                            <input type="checkbox" id="glamping" name="theme" value="글램핑">
                             <label for="glamping">글램핑</label>
                         </div>
                         <div class="wgs_checkbox3">
-                            <input type="checkbox" id="caravan">
+                            <input type="checkbox" id="caravan" name="theme" value="카라반">
                             <label for="caravan">카라반</label>
-                            <input type="checkbox" id="hanok">
+                            <input type="checkbox" id="hanok" name="theme" value="한옥">
                             <label for="hanok">한옥</label>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                             <label for="information">기본정보</label>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="information" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" name="minfo" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -148,7 +148,7 @@
                             <label for="attre">편의시설</label>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" name="attre" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea class="form-control" name="mameni" id="exampleFormControlTextarea1" rows="5"></textarea>
                         </div>
                     </div>
 
@@ -173,267 +173,37 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1">
+                            <div class="wg5bcr_1" id="room_1">
                                 <div class="wgc7w_upload">
                                     <div>
                                         <label for="image_1">
                                             <div class="btn-upload">업로드</div>
                                         </label>
-                                        <input type="file" name="image_1" id="image_1" multiple>
+                                        <input type="file" name="upfile" id="image_1" multiple>
                                         <div id="preview"></div>
                                     </div>
                                 </div>
                                 <div class="wg5bcr_text">
                                     <div class="te1">
-                                        <input type="text" name="room_name" required placeholder="룸 이름">
+                                        <input type="text" name="roomname" required placeholder="객실 이름">
                                     </div>
                                     <div class="te2">
                                         <div class="te2_1">
                                             가격
                                         </div>
                                         <div class="te2_2">
-                                            <input type="text" name="room_price" required>
-                                        </div>
-                                    </div>
-                                    <div class="te3">
-                                        <a data-toggle="modal" href=".modal" id="modala">객실 이용 안내 ></a>
-                                        <!-- Vertically centered scrollable modal -->
-                                        <div class="modal" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title">객실 이용 안내</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>기본정보</p>
-                                                    <ul>
-                                                        <li>
-                                                            2인 기준 최대 2인
-                                                        </li>
-                                                        <li>
-                                                            더블베드 1개
-                                                        </li>
-                                                        <li>
-                                                            반려동물 베드 1개
-                                                        </li>
-                                                    </ul>
-                                                    <hr>
-                                                    <p>편의시설</p>
-                                                    <ul>
-                                                        <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                                                </div>
-                                            </div>
-                                            </div>
+                                            <input type="text" name="roomprice" required>
                                         </div>
                                     </div>
                                     <div class="te4">
                                         <button class="te4_btn active">
-                                            예약
+                                            등록
                                         </button>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_2">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="image_2" id="image_2" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="room_name" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="room_price" required>
-                                        </div>
-                                    </div>
-                                    <div class="te3">
-                                        <a data-toggle="modal" href=".modal" id="modala">객실 이용 안내 ></a>
-                                        <!-- Vertically centered scrollable modal -->
-                                        <div class="modal" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title">객실 이용 안내</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>기본정보</p>
-                                                    <ul>
-                                                        <li>
-                                                            2인 기준 최대 2인
-                                                        </li>
-                                                        <li>
-                                                            더블베드 1개
-                                                        </li>
-                                                        <li>
-                                                            반려동물 베드 1개
-                                                        </li>
-                                                    </ul>
-                                                    <hr>
-                                                    <p>편의시설</p>
-                                                    <ul>
-                                                        <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_3">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="image_3" id="image_3" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="room_name" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="room_price" required>
-                                        </div>
-                                    </div>
-                                    <div class="te3">
-                                        <a data-toggle="modal" href=".modal" id="modala">객실 이용 안내 ></a>
-                                        <!-- Vertically centered scrollable modal -->
-                                        <div class="modal" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title">객실 이용 안내</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>기본정보</p>
-                                                    <textarea name="moinfo" id="moinfo" cols="30" rows="10"></textarea>
-                                                    <hr>
-                                                    <p>편의시설</p>
-                                                    <textarea name="ameinfo" id="ameinfo" cols="30" rows="10"></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="wg5bcr_1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_4">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="image_4" id="image_4" multiple>
-                                        <div id="preview"></div>
-                                    </div>
-                                </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="room_name" required placeholder="룸 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
-                                        </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="room_price" required>
-                                        </div>
-                                    </div>
-                                    <div class="te3">
-                                        <a data-toggle="modal" href=".modal" id="modala">객실 이용 안내 ></a>
-                                        <!-- Vertically centered scrollable modal -->
-                                        <div class="modal" tabindex="-1">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title">객실 이용 안내</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>기본정보</p>
-                                                    <ul>
-                                                        <li>
-                                                            2인 기준 최대 2인
-                                                        </li>
-                                                        <li>
-                                                            더블베드 1개
-                                                        </li>
-                                                        <li>
-                                                            반려동물 베드 1개
-                                                        </li>
-                                                    </ul>
-                                                    <hr>
-                                                    <p>편의시설</p>
-                                                    <ul>
-                                                        <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            예약
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
+                            <button type="button" name="roomNum" value="1" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
                     </div>
                 </div>    
                 <div class="wg5b_content">
@@ -442,7 +212,7 @@
                             <summary class="wg5bci_1">기본 정보</summary>
                             <div class="wg5bci_content">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="info"rows="5"></textarea>
                                 </div>
                             </div>
                         </details>
@@ -452,7 +222,7 @@
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
                                     <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="Coord" required></span>
+                                    <span id="centerAddr"><input type="text" name="spotmap" required></span>
                                 </div>
                             </div>
                         </details>
@@ -465,41 +235,86 @@
             </div>
         </form>
 
-        <script>
-            jQuery(document).ready(function ($) {
-        
-                var btnAll = $('.wg_9 .wg5_bottom .wg5b_btn section .btnBox');
-                var tabAll = $('.wg_9 .wg5b_content .content_container');
-            
-            
-                // 객실안내
-                $('#wg5b_tab_01').click(function () {
-                    if ($(this).hasClass('active') === false) {
-                        // 초기화
-                        btnAll.removeClass('active');
-                        tabAll.removeClass('active');
-                        // 활성화
-                        $(this).addClass('active');
-                        $('#wg5bc_1').addClass('active');
-                    }
-                });
-
-                // 숙소정보
-                $('#wg5b_tab_02').click(function () {
-                    if ($(this).hasClass('active') === false) {
-                        // 초기화
-                        btnAll.removeClass('active');
-                        tabAll.removeClass('active');
-                        // 활성화
-                        $(this).addClass('active');
-                        $('#wg5bc_2').addClass('active');
-                    }
-                });
-
-            });
-        </script>
         
     </section>
+
+    <script>
+        $(document).ready(function() {
+            
+            var i = 2; // 변수 설정은 함수의 바깥에 설정!
+            $("#wgf_manager_add").click(function() {
+
+                var html = "<div class='wg5bcr_1' id='room_"+ i + "'>"
+                    html += "    <div class='wgc7w_upload'>"
+                    html += "        <div>"
+                    html += "            <label for='image_1'>"
+                    html += "                <div class='btn-upload'>업로드</div>"
+                    html += "            </label>"
+                    html += "            <input type='file' name='upfile' id='image_"+ i + "' multiple>"
+                    html += "            <div id='preview'></div>"
+                    html += "        </div>"
+                    html += "    </div>"
+                    html += "    <div class='wg5bcr_text'>"
+                    html += "        <div class='te1'>"
+                    html += "            <input type='text' name='roomname' required placeholder='객실 이름'>"
+                    html += "        </div>"
+                    html += "        <div class='te2'>"
+                    html += "            <div class='te2_1'>"
+                    html += "                가격"
+                    html += "            </div>"
+                    html += "            <div class='te2_2'>"
+                    html += "                <input type='text' name='roomprice' required>"
+                    html += "            </div>"
+                    html += "        </div>"
+                    html += "        <div class='te4'>"
+                    html += "            <button class='te4_btn active'>"
+                    html += "                등록"
+                    html += "            </button>"
+                    html += "        </div>"
+                    html += "    </div>"
+                    html += "</div>"
+                
+                $(".wg5bc_room").append(html);
+                
+                i++; // 함수 내 하단에 증가문 설정
+                
+            });
+        });
+    </script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+    
+            var btnAll = $('.wg_9 .wg5_bottom .wg5b_btn section .btnBox');
+            var tabAll = $('.wg_9 .wg5b_content .content_container');
+        
+        
+            // 객실안내
+            $('#wg5b_tab_01').click(function () {
+                if ($(this).hasClass('active') === false) {
+                    // 초기화
+                    btnAll.removeClass('active');
+                    tabAll.removeClass('active');
+                    // 활성화
+                    $(this).addClass('active');
+                    $('#wg5bc_1').addClass('active');
+                }
+            });
+
+            // 숙소정보
+            $('#wg5b_tab_02').click(function () {
+                if ($(this).hasClass('active') === false) {
+                    // 초기화
+                    btnAll.removeClass('active');
+                    tabAll.removeClass('active');
+                    // 활성화
+                    $(this).addClass('active');
+                    $('#wg5bc_2').addClass('active');
+                }
+            });
+
+        });
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function (e){

@@ -29,6 +29,8 @@ public interface WheregoService {
 
 	List<Wherego> search_board_lod(PageInfo pageInfo, String search);
 
+    int insertWherego(Wherego wherego);
+
 	
 	
 }
