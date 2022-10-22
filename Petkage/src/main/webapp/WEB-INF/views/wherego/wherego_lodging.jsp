@@ -54,7 +54,7 @@
         </div>
 
         <div class="wg_filter">
-        	<button id="wgf_manager_btn" class="wgfbtn">글 작성</button>
+        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/lodging_write'">글 작성</button>
             <button id="wgf_btn1" class="wgfbtn active">추천순</button>
             <button id="wgf_btn2" class="wgfbtn">평점순</button>
             <button id="wgf_btn3" class="wgfbtn">낮은가격</button>
@@ -180,7 +180,7 @@
 			                        <div class="ct_2">4.8점</div>
 			                        <div class="ct_3">
 			                            <p>강남구 | 역삼역 도보 1분</p>
-			                            <p>${lodgingselect.price}원</p>
+			                            <p>${lodgingselect.roomprice}원</p>
 			                        </div>
 			                    </div>
 		                    </a>

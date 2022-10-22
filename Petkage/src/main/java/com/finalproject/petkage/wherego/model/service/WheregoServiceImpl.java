@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.wherego.model.mapper.WheregoMapper;
@@ -83,6 +84,17 @@ public class WheregoServiceImpl implements WheregoService {
         
 		return mapper.search_board_lod(rowBounds, search);
 	}
+
+    @Override
+    @Transactional
+    public int lodging_fupload(Wherego wherego) {
+        int result = 0;
+        result = mapper.lodging_fupload(wherego);
+        
+        return result;
+    }
+    
+
 
 	
 }

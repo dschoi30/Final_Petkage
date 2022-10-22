@@ -17,16 +17,16 @@
 		<result property="spotSize" column="SPOT_SIZE" />
 		<result property="ameni" column="SPOT_AMENI" />
 		<result property="img" column="SPOT_IMG" />
+		<result property="renameimg" column="SPOT_RENAMEIMG" />
 		<result property="theme" column="SPOT_THEME" />
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
 		<result property="minfo" column="SPOT_MINFO" />
 		<result property="mameni" column="SPOT_MAMENI" />
-		<result property="price" column="SPOT_PRICE" />
-		<result property="rimg" column="SPOT_RIMG" />
-		<result property="subinfo" column="SPOT_SUBINFO" />
+		<result property="roomprice" column="SPOT_RPRICE" />
+		<result property="roomimg" column="SPOT_RIMG" />
 		<result property="spotstatus" column="SPOT_STATUS" />
-		
+		<result property="spotmap" column="SPOT_MAP" />
 	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
@@ -102,4 +102,47 @@
         	  SPOT_NAME LIKE UPPER('%'||#{all_search}||'%')
     </select>
 	
+	<insert id="lodging_fupload" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+    	INSERT INTO WHEREWEGO (
+    		SPOT_NO,
+			USER_NO,
+			SPOT_CATEGORY,
+			SPOT_LOCATION,
+			SPOT_NAME,
+			SPOT_ADDRESS,
+			SPOT_SIZE,
+			SPOT_AMENI,
+			SPOT_IMG,
+			SPOT_RENAMEIMG,
+			SPOT_THEME,
+			SPOT_INTRODUCE,
+			SPOT_INFO,
+			SPOT_MINFO,
+			SPOT_MAMENI,
+			SPOT_RPRICE,
+			SPOT_RIMG,
+			SPOT_STATUS,
+			SPOT_MAP
+    	) VALUES (
+	    	SEQ_SPOT_NO.NEXTVAL, 
+	    	1,
+	    	'숙소', 
+	    	#{ spotLocation }, 
+	    	#{ spotName }, 
+	    	#{ spotAddress }, 
+	    	#{ spotSize }, 
+	    	#{ ameni }, 
+	    	#{ img }, 
+	    	#{ renameimg }, 
+	    	#{ theme }, 
+	    	#{ introduce }, 
+	    	#{ info }, 
+	    	#{ minfo }, 
+	    	#{ mameni }, 
+	    	#{ roomprice }, 
+	    	#{ roomimg },
+	    	DEFAULT, 
+	    	#{ spotmap }
+    	)
+    </insert>
 </mapper>
