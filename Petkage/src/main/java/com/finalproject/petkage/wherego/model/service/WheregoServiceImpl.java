@@ -85,6 +85,7 @@ public class WheregoServiceImpl implements WheregoService {
 		return mapper.search_board_lod(rowBounds, search);
 	}
 
+	// 숙소 게시글 작성
     @Override
     @Transactional
     public int insertWherego_lodging(Wherego wherego) {
@@ -105,6 +106,7 @@ public class WheregoServiceImpl implements WheregoService {
         return result;
     }
 
+    // 숙소 제외 다른 카테고리 게시글 작성
     @Override
     @Transactional
     public int insertWherego_others(Wherego wherego) {
@@ -125,6 +127,13 @@ public class WheregoServiceImpl implements WheregoService {
     public Wherego findBoardByNo_cafe(int no) {
     
         return mapper.findBoardByNo_cafe(no);
+    }
+
+    // 어디가지 게시글 별점 순 10개 리스트 
+    @Override
+    public List<Wherego> getListWheregoRecommend() {
+        
+        return mapper.getListWheregoRecommend();
     }
 
 

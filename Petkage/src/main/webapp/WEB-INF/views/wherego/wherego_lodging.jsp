@@ -247,7 +247,7 @@
     
 		<!-- 썸네일 -->
 	    <script>
-	    var thumbnailNo = $(".card_img").attr("no");
+	    var thumbnailNo = $(".card_img").attr("no"); // 제일 첫 class에만 적용된다;; 고치자
 	    var thumbnailId = $("#card_" + thumbnailNo).attr("value");
 	    var thumbnail = $("#card_"+ thumbnailNo).attr("value").split(',', 1);
 	    

@@ -43,5 +43,7 @@ public interface WheregoMapper {
 
 	Wherego findBoardByNo_cafe(int no);
 
+    List<Wherego> getListWheregoRecommend();
+
 
 }
