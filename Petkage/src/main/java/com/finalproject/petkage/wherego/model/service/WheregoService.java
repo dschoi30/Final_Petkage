@@ -29,7 +29,16 @@ public interface WheregoService {
 
 	List<Wherego> search_board_lod(PageInfo pageInfo, String search);
 
-    int insertWherego(Wherego wherego);
+    int insertWherego_lodging(Wherego wherego);
+
+    int insertWherego_others(Wherego wherego);
+
+    Wherego findBoardByNo_lodging(int no);
+
+	Wherego findBoardByNo_cafe(int no);
+
+    List<Wherego> getListWheregoRecommend();
+
 
 	
 	

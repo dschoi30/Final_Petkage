@@ -54,7 +54,7 @@
         </div>
 
         <div class="wg_filter">
-        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/lodging_write'">글 작성</button>
+        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/wherego/lodging_write'">글 작성</button>
             <button id="wgf_btn1" class="wgfbtn active">추천순</button>
             <button id="wgf_btn2" class="wgfbtn">평점순</button>
             <button id="wgf_btn3" class="wgfbtn">낮은가격</button>
@@ -171,16 +171,16 @@
             <div class="wg_content_card">
             	<c:forEach var="lodgingselect" items="${lodgingselect}">
 		                <div class="wgc4_card">
-		                	<a href="${ path }/lodgingdetail">
-			                    <div class="card_img">
-			                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
+		                	<a href="${ path }/wherego/lodgingdetail">
+			                    <div class="card_img" id="card_${lodgingselect.spotNo}" value="${lodgingselect.renameImg}" no="${lodgingselect.spotNo}">
+			                        <img id="thumbnail_${lodgingselect.spotNo}" src="">
 			                    </div>
 			                    <div class="card_text">
 			                        <div class="ct_1">${lodgingselect.spotName}</div>
 			                        <div class="ct_2">4.8점</div>
 			                        <div class="ct_3">
 			                            <p>강남구 | 역삼역 도보 1분</p>
-			                            <p>${lodgingselect.roomprice}원</p>
+			                            <p>${lodgingselect.price}원</p>
 			                        </div>
 			                    </div>
 		                    </a>
@@ -244,6 +244,21 @@
         </div>
 
     </section>
+    
+		<!-- 썸네일 -->
+	    <script>
+	    var thumbnailNo = $(".card_img").attr("no"); // 제일 첫 class에만 적용된다;; 고치자
+	    var thumbnailId = $("#card_" + thumbnailNo).attr("value");
+	    var thumbnail = $("#card_"+ thumbnailNo).attr("value").split(',', 1);
+	    
+	    console.log($("#card_"+ thumbnailNo).attr("value"));
+	    console.log($("#card_"+ thumbnailNo).attr("value").split(",",1));
+	    
+	    console.log(thumbnail);
+	    
+	    document.getElementById("thumbnail_" + thumbnailNo).src = "${ path }/resources/upload/wherego/" + thumbnail
+	    
+	    </script>
 
     <script>
     $(function() {

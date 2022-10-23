@@ -136,6 +136,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public Member loginByNaver(String naver_email) {
+		Member member = null;
+		
+		member = mapper.selectMemberByNaver(naver_email);
+		
+		if(member != null) {
+			return member;
+		} else {
+			return null;
+		}
+	}
+	
+	@Override
 	@Transactional
 	public int delete(int no) {
 		int result = 0;
@@ -150,4 +163,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.selectMemberById(id);
 	}
+
+
 }

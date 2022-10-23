@@ -63,7 +63,7 @@
         <div class="wg_cate">
             <div class="wgc_1">
                 <div class="wgc_box">
-	                <a href="${ path }/lodging">
+	                <a href="${ path }/wherego/lodging">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/숙소.png" alt="숙소">
 	                    </div>
@@ -73,7 +73,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/cafe">
+	                <a href="${ path }/wherego/cafe">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/카페.png" alt="">
 	                    </div>
@@ -83,7 +83,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/food">
+	                <a href="${ path }/wherego/food">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/식당.png" alt="">
 	                    </div>
@@ -93,7 +93,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/hair">
+	                <a href="${ path }/wherego/hair">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/미용.png" alt="">
 	                    </div>
@@ -106,7 +106,7 @@
 
             <div class="wgc_2">
                 <div class="wgc_box">
-	                <a href="${ path }/trip">
+	                <a href="${ path }/wherego/trip">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/여행지.png" alt="">
 	                    </div>
@@ -116,7 +116,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/hospital">
+	                <a href="${ path }/wherego/hospital">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/병원.png" alt="">
 	                    </div>
@@ -126,7 +126,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/preschool">
+	                <a href="${ path }/wherego/preschool">
 	                    <div class="wgcb_img">
 	                        <img src="${ path }/resources/images/wherego/유치원.png" alt="">
 	                    </div>
@@ -136,7 +136,7 @@
 	                </a>
                 </div>
                 <div class="wgc_box">
-	                <a href="${ path }/bath">
+	                <a href="${ path }/wherego/bath">
 	                    <div class="wgcb_img" style="border-right-style: none;">
 	                        <img src="${ path }/resources/images/wherego/목욕.png" alt="">
 	                    </div>
@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <div class="wgc3_btn">
-                    <button onclick="location.href='${ path }/petsitter'"><p>바로가기</p></button>
+                    <button onclick="location.href='${ path }/wherego/petsitter'"><p>바로가기</p></button>
                 </div>
             </div>
 
@@ -982,7 +982,7 @@
                     </div>
                 </div>
                 <div class="wgc7r_btn">
-                    <button onclick="location.href='${ path }/review_list'"><p>더보기</p></button>
+                    <button onclick="location.href='${ path }/review/review_list'"><p>더보기</p></button>
                 </div>
             </div>
            

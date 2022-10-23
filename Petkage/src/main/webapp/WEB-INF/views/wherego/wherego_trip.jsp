@@ -71,9 +71,9 @@
             <div class="wg6b_ca">
                 <c:forEach var="tripselect" items="${tripselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/tripdetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${tripselect.img}">
+	                <a href="${ path }/wherego/tripdetail">
+	                    <div class="card_img" value = "${tripselect.renameImg}">
+	                        <img id="thumbnail" src="">
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${tripselect.spotName}</div>
@@ -235,10 +235,21 @@
             -->
         </div>
 
-
-
     </section>
     
+		<!-- 썸네일 -->
+	    <script>
+	    
+	    console.log($(".card_img").attr("value"));
+	    console.log($(".card_img").attr("value").split(",",1));
+	    
+	    var thumbnail = $(".card_img").attr("value").split(',', 1);
+	    console.log(thumbnail);
+	    
+	    document.getElementById("thumbnail").src = "${ path }/resources/upload/wherego/" + thumbnail
+	    
+	    </script>
+
         <script>
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

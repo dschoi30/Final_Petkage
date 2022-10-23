@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <form action="${path}/review_write" method="post" enctype="multipart/form-data" >
+            <form action="${path}/review/review_write" method="post" enctype="multipart/form-data" >
                 <div class="wgc7_option">
                     <div class="wgc7_select">
                         <div class="wgc7_cate">

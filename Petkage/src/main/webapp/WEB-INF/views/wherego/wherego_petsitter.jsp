@@ -71,9 +71,9 @@
             <div class="wg6b_ca">
                 <c:forEach var="petsitterselect" items="${petsitterselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/petsitterdetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${petsitterselect.img}">
+	                <a href="${ path }/wherego/petsitterdetail">
+	                    <div class="card_img" value = "${petsitterselect.renameImg}">
+	                        <img id="thumbnail" src="">
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${petsitterselect.spotName}</div>
@@ -235,8 +235,20 @@
             -->
         </div>
 
-
     </section>
+    
+		<!-- 썸네일 -->
+	    <script>
+	    
+	    console.log($(".card_img").attr("value"));
+	    console.log($(".card_img").attr("value").split(",",1));
+	    
+	    var thumbnail = $(".card_img").attr("value").split(',', 1);
+	    console.log(thumbnail);
+	    
+	    document.getElementById("thumbnail").src = "${ path }/resources/upload/wherego/" + thumbnail
+	    
+	    </script>
     
         <script>
 
