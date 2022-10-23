@@ -359,7 +359,7 @@ public class WheregoController {
         // 게시글 관련 DB 저장
         if(result > 0) {
             model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
-            model.addObject("location", "/lodging");
+            model.addObject("location", "/wherego/lodging");
         } else {
             model.addObject("msg", "게시글 등록을 실패하였습니다.");
             model.addObject("location", "./");

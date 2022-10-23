@@ -465,4 +465,26 @@
 		ORDER BY REV_PRO_NO DESC
 	</select>
 	
+	<!-- 상품 별점 순 4개,5개 리스트 -->
+   	<select id="getListProductBest" resultMap="productListResultMap">
+	   	<![CDATA[
+		   	SELECT * 
+			FROM (SELECT ROWNUM AS "R_NO", 
+		                 PRO_NO,
+		                 PRO_NAME,
+                         PRO_BRAND,
+		                 PRO_IMG,
+                         PRO_CATEGORY1,
+                         PRO_CATEGORY2,
+                         PRO_TAG,
+		                 PRO_RATING,
+		                 PRO_STATUS
+		   		  FROM (SELECT  *
+		                FROM PRODUCT
+		                WHERE PRO_RATING > 0 AND PRO_STATUS = 'Y'
+		                ORDER BY PRO_RATING DESC))
+		    WHERE 1 <= R_NO AND R_NO <= 4
+	    ]]>
+   	</select>
+	
 </mapper>

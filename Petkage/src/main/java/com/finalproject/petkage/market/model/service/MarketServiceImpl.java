@@ -155,4 +155,11 @@ public class MarketServiceImpl implements MarketService {
 		log.info("review : {}", review);
 		return mapper.getReviewList(rowbounds, review, proNo);
 	}
+
+	// 상품 별점 순 4개 리스트
+    @Override
+    public List<Product> getListProductBest() {
+        
+        return mapper.getListProductBest();
+    }
 }

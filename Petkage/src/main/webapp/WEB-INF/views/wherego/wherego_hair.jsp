@@ -69,11 +69,12 @@
         </div>
         <div class="wg6_bottom">
             <div class="wg6b_ca">
-                <c:forEach var="hairselect" items="${hairselect}">
+                <c:forEach var="hairselect" items="${ hairselect }">
+                <c:set var="rename_wherego" value="${ hairselect.renameImg }" />
                 <div class="wgc6_card">
-	                <a href="${ path }/wherego/hairdetail">
-	                    <div class="card_img" value = "${hairselect.renameImg}">
-	                        <img id="thumbnail" src="">
+	                <a href="${ path }/wherego/wherego_hair_detail?no=${ hairselect.spotNo }">
+	                    <div class="card_img" value="${ hairselect.renameImg }">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${hairselect.spotName}</div>
@@ -236,19 +237,6 @@
         </div>
         
     </section>
-    
-    	<!-- 썸네일 -->
-        <script>
-        
-        console.log($(".card_img").attr("value"));
-        console.log($(".card_img").attr("value").split(",",1));
-        
-        var thumbnail = $(".card_img").attr("value").split(',', 1);
-        console.log(thumbnail);
-        
-        document.getElementById("thumbnail").src = "${ path }/resources/upload/wherego/" + thumbnail
-        
-        </script>
     
         <script>
 

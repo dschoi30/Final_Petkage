@@ -38,4 +38,6 @@ public interface MarketService {
 	int getReviewCount(int proNo);
 	
 	List<Review> getReviewList(PageInfo pageInfo, Review review, int proNo);
+
+    List<Product> getListProductBest();
 }

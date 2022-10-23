@@ -68,4 +68,6 @@ public interface MarketMapper {
 	int getReviewCount(@Param("prono") int proNo);
 	
 	List<Review> getReviewList(RowBounds rowbounds, Review review, @Param("prono") int proNo);
+
+    List<Product> getListProductBest();
 }

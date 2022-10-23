@@ -34,13 +34,12 @@ public class MainController {
     @Autowired
     private MyPageService mypage_service;
     
-    @GetMapping("/")
+    @RequestMapping("/")
     public ModelAndView main_all(ModelAndView model,
-//            @ModelAttribute Wherego wherego, 
             @RequestParam(value = "score", defaultValue = "0") int score) {
         
         List<Wherego> wherego = null;
-//        List<Product> product = null;
+        List<Product> product = null;
 //        List<Mypage> calendar = null;
 
 //        PageInfo wheregoPage = new PageInfo(page, 10, wherego_service.getCountWheregoRecommend(), 10);
@@ -48,15 +47,15 @@ public class MainController {
 //        PageInfo calendarPage = new PageInfo(page, 10, mypage_service.getCountMyCalendar(), 10);
         
         wherego = wherego_service.getListWheregoRecommend();
-//        product = market_service.getListProductBest(score);
+        product = market_service.getListProductBest();
 //        calendar = mypage_service.getListMyCalendar(calendarPage);
         
         System.out.println(wherego);
-//        System.out.println(product);
+        System.out.println(product);
 //        System.out.println(calendar);
 
         model.addObject("wherego", wherego);
-//        model.addObject("product", product);
+        model.addObject("product", product);
 //        model.addObject("calendar", calendar);
 //        model.addObject("pageInfo", pageInfo);
         model.setViewName("common/main");

@@ -53,40 +53,6 @@
 			top: 0;
 			z-index: 100;
 		}
-
-		.best_product:nth-child(1) {
-			background-color: dodgerblue;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-
-		.best_product:nth-child(2) {
-			background-color: red;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-		.best_product:nth-child(3) {
-			background-color: purple;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-		.best_product:nth-child(4) {
-			background-color: darkorange;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-
-		.best_product:nth-child(1):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(2):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(3):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(4):after {
-			content: "${ product.proName }";
-		}
 	</style>
 	
 </head>
@@ -211,8 +177,6 @@
 			  <div class="iconmouse">
 				<span class="ball"></span>
 			  </div>
-			  
-			  
   
 		</section>
 		<section class="section sec2"> <!-- 추천 어디가지 -->
@@ -255,6 +219,7 @@
 							<a class="slide_text"><h2>${ wherego.spotName }</h2></a>
 							<a class="slide_text"><h3>${ wherego.introduce }</h3></a>
 						</div>
+						</a>
 					</div>
 				</c:forEach>
 				</div>
@@ -275,12 +240,19 @@
 				</div>
 			</div>
 			<div class="best_products">
-				<div class="best_product"></div>
-				<div class="best_product highlight"></div>
-				<div class="best_product"></div>
-				<div class="best_product"></div>
+				<c:forEach var="product" items="${ product }">
+	         	<c:set var="rename_product" value="${ product.renamedFileName }" />   
+         		<a href="${ path }/market/product-view?proNo=${ product.proNo }">
+	            <div class="best_product" 
+	               style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
+	            </div>
+	            </a>
+		         </c:forEach>
+				<div class="best_product highlight" style="display: none;">
+				</div> 
 			</div>
 		</section>
+		
 		<section class="section sec4"> <!-- 일정 캘린더 -->
 				<div class="calendar">
 					<div class="my-calendar clearfix">
@@ -491,25 +463,26 @@
 			elm.classList.toggle("highlight");
 		});
 	});
-
+	
 	window.addEventListener("keyup", function (e) {
-		var panel = document.querySelector(".highlight");
-		if (
-			(e.keyCode == 37 || e.keyCode == 38) &&
-			panel != document.querySelectorAll(".best_product")[0]
-		) {
-			panel.previousElementSibling.classList.toggle("highlight");
-			panel.classList.toggle("highlight");
-		}
-		if (
-			(e.keyCode == 39 || e.keyCode == 40) &&
-			panel != document.querySelectorAll(".best_product")[3]
-		) {
-			panel.nextElementSibling.classList.toggle("highlight");
-			panel.classList.toggle("highlight");
-		}
-	});
+	      var panel = document.querySelector(".turnon_highlight");
+	      if (
+	         (e.keyCode == 37 || e.keyCode == 38) &&
+	         panel != document.querySelectorAll(".best_product")[0]
+	      ) {
+	         panel.previousElementSibling.classList.toggle("highlight");
+	         panel.classList.toggle("highlight");
+	      }
+	      if (
+	         (e.keyCode == 39 || e.keyCode == 40) &&
+	         panel != document.querySelectorAll(".best_product")[3]
+	      ) {
+	         panel.nextElementSibling.classList.toggle("highlight");
+	         panel.classList.toggle("highlight");
+	      }
+	   });
 
+	
 	window.focus();
 
 	// 하얀 달력
