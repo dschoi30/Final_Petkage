@@ -103,8 +103,6 @@ public class MarketServiceImpl implements MarketService {
 			return 2;
 		}
 		return mapper.addCart(cart);
-
-	
 	}
 
 	@Override

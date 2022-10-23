@@ -424,6 +424,18 @@
 		)
 	</insert>
 	
+	<update id="deductMemberPoint">
+		UPDATE MEMBER SET MEM_POINT = #{ point } WHERE MEM_NO = #{ no }
+	</update>
+	
+	<update id="deductProductStock">
+		UPDATE PRODUCT SET PRO_QTY = #{ proQty } WHERE PRO_NO = #{ proNo }
+	</update>
+	
+	<delete id="deleteCartOrder">
+		DELETE FROM CART WHERE CART_MEM_NO = #{ no } AND PRO_NO = #{ proNo }
+	</delete>
+	
 	<select id="getProductRating" resultMap="reviewResultMap">
 		SELECT AVG(REV_SCORE)
 		FROM REVIEW
