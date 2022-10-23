@@ -92,7 +92,14 @@
 	<resultMap type="Review" id="reviewResultMap">
 		<id property="revno" column="REV_NO"/>
 		<result property="prono" column="REV_PRO_NO"/>
+		<result property="writerno" column="REV_WRITER_NO"/>
+		<result property="revcoment" column="REV_CONTENT"/>
+		<result property="revdate" column="REV_DATE"/>
 		<result property="revscore" column="REV_SCORE"/>
+		<result property="revscore" column="REV_SCORE"/>
+		<result property="revrenameimg" column="REV_RENAMEIMG"/>
+		<result property="revstatus" column="REV_STATUS"/>
+		<result property="memname" column="MEM_NAME"/>
 	</resultMap>
 
 	<sql id="productListSql">
@@ -417,7 +424,7 @@
 		)
 	</insert>
 	
-	<select id="getProductRating">
+	<select id="getProductRating" resultMap="reviewResultMap">
 		SELECT AVG(REV_SCORE)
 		FROM REVIEW
 		WHERE REV_PRO_NO = #{ proNo }
@@ -427,5 +434,23 @@
 		UPDATE PRODUCT SET PRO_RATING = #{ proRatingAvg }
 		WHERE PRO_NO = #{ proNo }
 	</update>	
+	
+	<select id="getReviewCount" resultType="_int">
+		SELECT COUNT(*) 
+		FROM REVIEW 
+		WHERE REV_PRO_NO = #{ prono } AND REV_STATUS='Y'
+	</select>
+	
+	<select id="getReviewList" resultMap="reviewResultMap">
+		SELECT M.MEM_NAME,
+		       R.REV_CONTENT,
+		       R.REV_RENAMEIMG,
+		       REV_DATE,
+		       R.REV_SCORE
+		FROM REVIEW R
+		JOIN MEMBER M ON M.MEM_NO = R.REV_WRITER_NO
+		WHERE REV_PRO_NO = #{ prono } AND REV_STATUS='Y'
+		ORDER BY REV_PRO_NO DESC
+	</select>
 	
 </mapper>

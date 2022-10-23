@@ -11,7 +11,11 @@ import com.finalproject.petkage.market.model.mapper.MarketMapper;
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.ProRating;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.review.model.vo.Review;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MarketServiceImpl implements MarketService {
 
@@ -94,7 +98,7 @@ public class MarketServiceImpl implements MarketService {
 	public int addCart(Cart cart) {
 		
 		Cart checkCart = mapper.checkCart(cart);
-		System.out.println(checkCart);
+		
 		if(checkCart != null) {
 			return 2;
 		}
@@ -136,5 +140,21 @@ public class MarketServiceImpl implements MarketService {
 		rating.setProRatingAvg(proRating);
 		
 		mapper.updateProductRating(rating);
+	}
+
+	@Override
+	public int getReviewCount(int proNo) {
+		log.info("proNo : {}", proNo);
+		return mapper.getReviewCount(proNo);
+	}
+
+	@Override
+	public List<Review> getReviewList(PageInfo pageInfo, Review review, int proNo) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		
+		RowBounds rowbounds = new RowBounds(offset, limit);
+		log.info("review : {}", review);
+		return mapper.getReviewList(rowbounds, review, proNo);
 	}
 }

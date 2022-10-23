@@ -13,6 +13,7 @@ import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.ProRating;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.review.model.vo.Review;
 
 @Mapper
 public interface MarketMapper {
@@ -28,7 +29,7 @@ public interface MarketMapper {
 
 	int registerProduct(Product product);
 
-	int updateProductStatus(@Param("proNo") int proNo, @Param("proStatus") String string);
+	int updateProductStatus(@Param("proNo") int proNo, @Param("proStatus") String proStatus);
 	
 	int findProductByNo(int proNo);
 
@@ -63,4 +64,8 @@ public interface MarketMapper {
 	Double getProductRating(int proNo);
 	
 	int updateProductRating(ProRating proRating);
+	
+	int getReviewCount(@Param("prono") int proNo);
+	
+	List<Review> getReviewList(RowBounds rowbounds, Review review, @Param("prono") int proNo);
 }

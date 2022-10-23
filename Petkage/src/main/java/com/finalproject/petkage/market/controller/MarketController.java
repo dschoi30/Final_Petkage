@@ -26,6 +26,7 @@ import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.review.model.vo.Review;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -76,7 +77,7 @@ public class MarketController {
 				
 				renamedFileName = MultipartFileUtil.save(upfile, location);
 				
-				System.out.println(location);
+				log.info("location : {}", location);
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -89,7 +90,6 @@ public class MarketController {
 		}
 		// 작성 내용을 DB에 저장
 		product.setProSelNo(loginMember.getNo());
-		System.out.println(product);
 		
 		result = service.save(product);
 		
@@ -112,36 +112,43 @@ public class MarketController {
 							@RequestParam(value = "page", defaultValue = "1") int page,
 							@ModelAttribute Product product) {
 
-//		log.info("{}", searchValue);
-
 		List<Product> list = null;
-//		List<Product> searchList = null;
 		
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 5, service.getProductCount(), 8);
 		list = service.getProductList(pageInfo, product);
-//		searchList = service.getProductSearchList(pageInfo, searchValue);
-//		System.out.println(searchList);
+
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
-//		model.addObject("searchValue", searchValue);
 		model.setViewName("market/product-list");
 		
 		return model;
 	}
 	
 	@GetMapping("/product-view")
-	public ModelAndView view(ModelAndView model, @RequestParam int proNo ) {
+	public ModelAndView view(ModelAndView model, 
+							@RequestParam int proNo,
+							@ModelAttribute Review review,
+							@RequestParam(value = "page", defaultValue = "1") int page) {
 
-		System.out.println(proNo);
-		
 		Product product = null;
 		
 		product = service.findProductByNo(proNo);
 		
-		model.addObject("product", product);
+		List<Review> list = null;
 		
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 5, service.getReviewCount(proNo), 5);
+		log.info("reviewcount : {}", service.getReviewCount(proNo));
+		
+		list = service.getReviewList(pageInfo, review, proNo);
+		log.info("reviewList : {}", list);
+		
+		model.addObject("product", product);
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);
 		model.setViewName("market/product-view");
 		
 		return model;
@@ -166,13 +173,10 @@ public class MarketController {
 				model.addObject("msg", "게시글 삭제에 실패했습니다.");
 				model.addObject("location", "/market/product-view?proNo=" + proNo);
 			}
-			
 		} else {
 			model.addObject("msg", "잘못된 접근입니다.");
 			model.addObject("location", "/market/product-list");
 		}
-		
-		
 
 		model.setViewName("common/msg");
 		
@@ -180,9 +184,9 @@ public class MarketController {
 	}
 	
 	@GetMapping("/product-update")
-	public ModelAndView update(ModelAndView model, @RequestParam int proNo, @SessionAttribute("loginMember") Member loginMember) {
-
-		log.info("{}", proNo);
+	public ModelAndView update(ModelAndView model, 
+							@RequestParam int proNo, 
+							@SessionAttribute("loginMember") Member loginMember) {
 
 		Product product = null;
 		
@@ -206,9 +210,6 @@ public class MarketController {
 							@SessionAttribute("loginMember") Member loginMember) {
 		
 		int result = 0;
-		
-//		System.out.println(upfile.isEmpty());
-//		System.out.println(upfile.getOriginalFilename());
 		
 		if(service.findProductByNo(product.getProNo()).getProSelNo() == (loginMember.getNo())) {			
 			if(upfile != null && !upfile.isEmpty()) {
@@ -241,9 +242,6 @@ public class MarketController {
 			model.addObject("msg", "잘못된 접근입니다.");
 			model.addObject("location", "/board/list");
 		}
-
-		System.out.println(product);
-		
 		model.setViewName("common/msg");
 		
 		return model;
@@ -253,10 +251,9 @@ public class MarketController {
 	@ResponseBody
 	public String addCart(@ModelAttribute Cart cart) {
 		int result = 0;
-		
-		System.out.println(cart);
+
 		result = service.addCart(cart);
-		System.out.println(result);
+
 		return result + "";
 	}
 		
@@ -278,8 +275,7 @@ public class MarketController {
 	public ModelAndView Cart (ModelAndView model, @ModelAttribute Cart cart, @PathVariable("no") int no) {
 
 		List<Cart> list = service.getCartList(no);
-		
-		System.out.println(list);
+
 		model.addObject("list", list);
 		model.setViewName("market/cart");
 		
@@ -288,9 +284,6 @@ public class MarketController {
 	
 	@GetMapping("/order/{no}")
 	public ModelAndView Payment (ModelAndView model, @ModelAttribute Payment payment, @PathVariable("no") int no) {
-
-		System.out.println("loginMember : " + no);
-		System.out.println("orderList : " + payment.getOrders());
 
 		model.addObject("orderList", kakaoPayService.getItemsInfo(payment.getOrders()));
 		model.addObject("memberInfo", kakaoPayService.getMemberInfo(no));
