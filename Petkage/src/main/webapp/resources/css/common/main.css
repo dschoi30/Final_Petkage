@@ -366,8 +366,10 @@ margin: 100px auto;
 
 #fullpage .slide_images{
     height: 60%;
+    width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 #fullpage .slide_image{
