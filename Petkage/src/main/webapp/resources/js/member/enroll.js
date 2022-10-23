@@ -209,9 +209,6 @@ $("#bNumber").keyup(function () {
   }
 });
 
-////////////////////////////////////
-//제출버튼 클릭시 모든 값 유무 확인
-// click -> submit으로 바꾸기 (지금 테스트용)
 $("#formJoin").submit(function () {
   // 약관 동의 체크
   if ($("[name=agreeTest]").val() != "1") {
@@ -268,12 +265,14 @@ $("#formJoin").submit(function () {
     $("#addressSub").focus();
     return false;
   }
+
   // 이메일 유효성 검사
   if ($("[name=emailDuplicateTest]").val() != "1") {
     $("#email_termsCheck").text("이메일 주소를 입력해 주세요.");
     $("#userEmail").focus();
     return false;
   }
+
   // 판매자 회원일 경우
   if ($("input:radio[id=memberSeller]").is(":checked")) {
     // 상호명 유효성 검사
@@ -301,49 +300,3 @@ $("#pCat").click(function () {
   console.log("고영희 클릭");
   $("[name=petWeight]").attr("disabled", true);
 });
-
-/////////////////////////////////////////////
-// js 파일로 옮겼을 때 중복검사 ajax 안됨 !
-// var path = '<c:out value="${path}"/>';
-
-// // 아이디 중복 검사
-// $("#userIdDuplicate").on("click", () => {
-//   $("[name=idDuplicateTest]").val("1");
-//   // console.log($("[name=idDuplicateTest]").val() === "1");
-//   console.log("js 파일");
-//   $("#id_termsCheck").text("사용 가능한 아이디 입니다.");
-//   let userId = $("#userId").val().trim();
-
-//   // var $userId = $("#userId");
-//   // DB를 통해 중복검사
-//   $.ajax({
-//     type: "POST",
-//     url: "/member/idCheck",
-//     dataType: "json",
-//     data: {
-//       userId,
-//     },
-//     // success: (obj) => {
-//     //   console.log(obj);
-
-//     //   if (obj.duplicate === true) {
-//     //     $("#userId").val("").focus();
-//     //     $("#id_termsCheck").text("이미 사용중인 아이디 입니다.");
-//     //     alert("이미 사용중인 아이디 입니다.");
-//     //   } else {
-//     //     $("[name=idTest]").val("1");
-//     //     // console.log($("[name=idTest]").val());
-//     //     $("#id_termsCheck").text("사용 가능한 아이디 입니다.");
-//     //     // alert("사용 가능한 아이디 입니다.");
-//     //   }
-//     // },
-//     // error: (error) => {
-//     //   console.log(error);
-//     // },
-//   });
-
-//   //아이디 중복검사 이후 id값 변경시 다시 중복검사 하게끔
-//   $("#userId").change(function () {
-//     $("[name=idDuplicateTest]").val("0");
-//   });
-// });

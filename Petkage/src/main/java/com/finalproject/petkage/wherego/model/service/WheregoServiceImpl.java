@@ -87,18 +87,45 @@ public class WheregoServiceImpl implements WheregoService {
 
     @Override
     @Transactional
-    public int insertWherego(Wherego wherego) {
+    public int insertWherego_lodging(Wherego wherego) {
         int result = 0;
         int roomNum = wherego.getRoomNum();
+        int roomTypeNo = wherego.getRoom().getRoomTypeNo();
         
-        // roomNum 갯수 따라서 객실 입력 반복
+        System.out.println("객실수" + roomNum);
+        System.out.println("객실타입번호" + roomTypeNo); 
         
-        result = mapper.insertWherego(wherego);
+        // 조건문 만들어서 INSERT
+//        if 
+        
+        result = mapper.insertWherego_lodging(wherego);
+        wherego.getRoom().setSpotNo(wherego.getSpotNo());
+        result = mapper.insertRoom(wherego.getRoom());
+        
+        return result;
+    }
+
+    @Override
+    @Transactional
+    public int insertWherego_others(Wherego wherego) {
+        int result = 0;
+        
+        result = mapper.insertWherego_others(wherego);
         
         return result;
     }
     
+    @Override
+    public Wherego findBoardByNo_lodging(int no) {
+    
+        return mapper.findBoardByNo_lodging(no);
+    }
+    
+    @Override
+    public Wherego findBoardByNo_cafe(int no) {
+    
+        return mapper.findBoardByNo_cafe(no);
+    }
 
 
-	
 }

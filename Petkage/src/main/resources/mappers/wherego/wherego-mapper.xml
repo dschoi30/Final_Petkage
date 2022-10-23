@@ -7,6 +7,27 @@
 		FROM WHEREWEGO
 	</sql>
 	
+	<sql id="includeRoomSql">
+		SELECT W.SPOT_NO,
+			W.USER_NO,
+			W.SPOT_CATEGORY,
+			W.SPOT_LOCATION,
+			W.SPOT_NAME,
+			W.SPOT_ADDRESS,
+			W.SPOT_SIZE,
+			W.SPOT_AMENI,
+			W.SPOT_IMG,
+			W.SPOT_RENAMEIMG,
+			W.SPOT_THEME,
+			W.SPOT_INTRODUCE,
+			W.SPOT_INFO,
+			W.SPOT_STATUS,
+			W.SPOT_MAP,
+			W.SPOT_ROOMNUM,
+			R.ROOM_PRICE 
+		FROM WHEREWEGO W
+		FULL OUTER JOIN ROOM R ON (R.SPOT_NO = W.SPOT_NO)
+	</sql>
 	<!-- wherego -->
 	<resultMap type="Wherego" id="wheregovo">
 		<id property="spotNo" column="SPOT_NO" />
@@ -22,8 +43,11 @@
 		<result property="theme" column="SPOT_THEME" />
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
 		<result property="spotStatus" column="SPOT_STATUS" />
 		<result property="spotMap" column="SPOT_MAP" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
+		<result property="price" column="ROOM_PRICE" />
 	</resultMap>
 	
 	<!-- room -->
@@ -39,17 +63,30 @@
 		<result property="roomStatus" column="ROOM_STATUS" />
 	</resultMap>
 	<resultMap type="Wherego" id="inRoomResultMap" extends="wheregovo">
-		<collection property="Room" javaType="arraylist" columnPrefix="R_" resultMap="RoomResultMap" />
+		<collection property="room" javaType="arraylist" columnPrefix="R_" resultMap="RoomResultMap" />
 	</resultMap>
 	
-	<resultMap type="Heart" id="Heart_vo">
-		<id property="spotNo" column="SPOT_NO" />
-		<id property="userNo" column="USER_NO" />
-	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
-		SELECT *
-		FROM WHEREWEGO
+		SELECT W.SPOT_NO,
+			W.USER_NO,
+			W.SPOT_CATEGORY,
+			W.SPOT_LOCATION,
+			W.SPOT_NAME,
+			W.SPOT_ADDRESS,
+			W.SPOT_SIZE,
+			W.SPOT_AMENI,
+			W.SPOT_IMG,
+			W.SPOT_RENAMEIMG,
+			W.SPOT_THEME,
+			W.SPOT_INTRODUCE,
+			W.SPOT_INFO,
+			W.SPOT_STATUS,
+			W.SPOT_MAP,
+			W.SPOT_ROOMNUM,
+			R.ROOM_PRICE 
+		FROM WHEREWEGO W
+		JOIN ROOM R ON (R.SPOT_NO = W.SPOT_NO)
 		WHERE SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
 	</select>
 	
@@ -120,7 +157,7 @@
     </select>
 	
 	<!-- 어디가지 숙소 insert -->
-	<insert id="insertWherego" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+	<insert id="insertWherego_lodging" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
     	INSERT INTO WHEREWEGO (
     		SPOT_NO,
 			USER_NO,
@@ -136,7 +173,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP
+			SPOT_MAP,
+			SPOT_ROOMNUM
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
 	    	1,
@@ -147,37 +185,102 @@
 	    	#{ spotSize }, 
 	    	#{ ameni }, 
 	    	#{ img }, 
-	    	#{ renameimg }, 
+	    	#{ renameImg }, 
 	    	#{ theme }, 
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotmap }
+	    	#{ spotMap },
+	    	#{ roomNum }
     	)
     </insert>
     
     <!-- 어디가지 객실 insert -->
 	<insert id="insertRoom" parameterType="Room" useGeneratedKeys="true" keyProperty="roomNo" keyColumn="ROOM_NO">
-	    INSERT INTO WHEREWEGO (
+	    INSERT INTO ROOM (
 	    		ROOM_NO,
 				SPOT_NO,
+				ROOM_TYPE_NO,
 				ROOM_NAME,
 				ROOM_PRICE,
 				ROOM_IMG,
 				ROOM_RENAMEIMG,
 				ROOM_MINFO,
 				ROOM_MAMENI,
-				ROOM_STATUS,
+				ROOM_STATUS
 	    	) VALUES (
 		    	SEQ_ROOM_NO.NEXTVAL, 
 		    	#{ spotNo },
+		    	#{ roomTypeNo },
 		    	#{ roomName }, 
 		    	#{ roomPrice }, 
 		    	#{ roomImg }, 
 		    	#{ renameRoomImg }, 
 		    	#{ mInfo }, 
 		    	#{ mAmeni }, 
-		    	#{ roomStatus }
+		    	DEFAULT
 	    	)
    	</insert>
+   	
+   	<!-- 어디가지 insert -->
+	<insert id="insertWherego_others" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
+    	INSERT INTO WHEREWEGO (
+    		SPOT_NO,
+			USER_NO,
+			SPOT_CATEGORY,
+			SPOT_LOCATION,
+			SPOT_NAME,
+			SPOT_ADDRESS,
+			SPOT_SIZE,
+			SPOT_AMENI,
+			SPOT_IMG,
+			SPOT_RENAMEIMG,
+			SPOT_INTRODUCE,
+			SPOT_INFO,
+			SPOT_STATUS,
+			SPOT_MAP,
+			SPOT_MENU	
+    	) VALUES (
+	    	SEQ_SPOT_NO.NEXTVAL, 
+	    	1,
+	    	#{ spotCategory }, 
+	    	#{ spotLocation }, 
+	    	#{ spotName }, 
+	    	#{ spotAddress }, 
+	    	#{ spotSize }, 
+	    	#{ ameni }, 
+	    	#{ img }, 
+	    	#{ renameImg }, 
+	    	#{ introduce }, 
+	    	#{ info }, 
+	    	DEFAULT, 
+	    	#{ spotMap },
+	    	#{ menu }
+    	)
+    </insert>
+   	
+   	
+   	
+   	<!-- 상세조회 -->
+   	
+   	<select id="findBoardByNo_lodging" resultMap="wheregovo">
+   		SELECT *
+   		FROM WHEREWEGO
+   		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
+   	</select>
+   	
+   	<select id="findBoardByNo_cafe" resultMap="wheregovo">
+   		SELECT *
+   		FROM WHEREWEGO
+   		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
+   	</select>
+   	
+   	
+   	
+   	
+   	
+   	<!-- 찜 기능  -->
+ 
+   	
+   	
 </mapper>

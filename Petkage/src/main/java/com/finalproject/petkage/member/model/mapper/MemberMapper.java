@@ -29,6 +29,8 @@ public interface MemberMapper {
 
 	Member selectMemberByKakao(String kakaoId);
 	
+	Member selectMemberByNaver(String naver_email);
+	
 	int updateMember(Member member);
 	
 	int deleteMember(int no);

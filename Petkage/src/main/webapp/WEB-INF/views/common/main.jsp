@@ -148,7 +148,7 @@
                 </a>
 
                  <ul class="nav nav-pills">
-                    <li class="nav-item header_item"><a href="${ path }/main" class="nav-link header_link">어디가지</a></li>
+                    <li class="nav-item header_item"><a href="${ path }/wherego/main" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
                     <li class="nav-item header_item"><a href="${ path }/chatting" class="nav-link header_link">채팅</a></li>

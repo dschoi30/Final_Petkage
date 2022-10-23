@@ -70,7 +70,7 @@
         <div class="wg6_bottom">
             <div class="wg6b_ca">
                 <c:forEach var="wherego" items="${wherego}">
-                <c:set var="rename" value="${ wherego.rimg }" />
+                <c:set var="rename" value="${ wherego.renameImg }" />
                 <div class="wgc6_card">
 	                <a href="${ path }/cafedetail">
 	                    <div class="card_img">
@@ -91,7 +91,8 @@
             
             <div class="wgc7l_2">
                 <div id="pageBar">
-                    <button onclick="location.href='${ path }/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
+                <!-- 이거 리뷰 페이지 리스트임 정신 차리고 wherego에 하나 더 만들어서 바꾸셈 그리고 /wherego도 꼭 붙혀!  -->
+                    <button onclick="location.href='${ path }/review/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
                     <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
                         <c:if test="${ status.current == pageInfo.currentPage }">
                             <button disabled class="checked">${ status.current }</button>

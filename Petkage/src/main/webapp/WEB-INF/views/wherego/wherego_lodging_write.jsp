@@ -27,7 +27,7 @@
 <body>
 
     <section class="wg_9">
-        <form action="${ path }/lodging_write" method="post" enctype="multipart/form-data">
+        <form action="${ path }/wherego/lodging_write" method="post" enctype="multipart/form-data">
             <div class="wg5_top">
                 <div class="wg5t_1">
                     <div class="wgc7w_upload">
@@ -133,24 +133,7 @@
                         </div>
                     </div>
 
-                    <!-- 모달 창 정보 -->
-                    <div class="wg5t2_info">
-                        <div class="wg5t2_introduce">
-                            <label for="information">기본정보</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="minfo" id="exampleFormControlTextarea1" rows="5"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="wg5t2_info">
-                        <div class="wg5t2_introduce">
-                            <label for="attre">편의시설</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="mameni" id="exampleFormControlTextarea1" rows="5"></textarea>
-                        </div>
-                    </div>
+                    
 
                 </div>    
             </div>
@@ -173,26 +156,46 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1" id="room_1">
+                            <div class="wg5bcr_1" id="room_1" style="height: 100%;">
+                                <input type="hidden" name="roomTypeNo" value="1">
                                 <div class="wgc7w_upload">
                                     <div>
                                         <label for="image_1">
                                             <div class="btn-upload">업로드</div>
                                         </label>
                                         <input type="file" name="upfile" id="image_1" multiple>
-                                        <div id="preview"></div>
+                                        <div id="preview_1"></div>
                                     </div>
                                 </div>
                                 <div class="wg5bcr_text">
                                     <div class="te1">
-                                        <input type="text" name="roomname" required placeholder="객실 이름">
+                                        <input type="text" name="roomName" required placeholder="객실 이름">
                                     </div>
                                     <div class="te2">
                                         <div class="te2_1">
                                             가격
                                         </div>
                                         <div class="te2_2">
-                                            <input type="text" name="roomprice" required>
+                                            <input type="text" name="roomPrice" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- 모달 창 정보 -->
+                                    <div class="wg5t2_info">
+                                        <div class="wg5t2_introduce">
+                                            <label for="information">기본정보</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="mInfo" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="wg5t2_info">
+                                        <div class="wg5t2_introduce">
+                                            <label for="attre">편의시설</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="mAmeni" id="exampleFormControlTextarea1" rows="5"></textarea>
                                         </div>
                                     </div>
                                     <div class="te4">
@@ -203,7 +206,8 @@
                                 </div>
                             </div>
                         </div>
-                            <button type="button" name="roomNum" value="1" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
+                            <input type="hidden" name="roomNum" value="1">
+                            <button type="button" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
                     </div>
                 </div>    
                 <div class="wg5b_content">
@@ -212,7 +216,7 @@
                             <summary class="wg5bci_1">기본 정보</summary>
                             <div class="wg5bci_content">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="info"rows="5"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="info" rows="5"></textarea>
                                 </div>
                             </div>
                         </details>
@@ -222,7 +226,7 @@
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
                                     <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="spotmap" required></span>
+                                    <span id="centerAddr"><input type="text" name="spotMap" required></span>
                                 </div>
                             </div>
                         </details>
@@ -243,27 +247,46 @@
             
             var i = 2; // 변수 설정은 함수의 바깥에 설정!
             $("#wgf_manager_add").click(function() {
+                $("[name=roomNum]").attr("value", i);
+                console.log($("[name=roomNum]").attr("value"));
 
-                var html = "<div class='wg5bcr_1' id='room_"+ i + "'>"
+                var html = "<div class='wg5bcr_1' id='room_"+ i + "' style='height: 100%;'>"
+                    html += "    <input type='hidden' name='roomTypeNo' value='"+ i +"'>"
                     html += "    <div class='wgc7w_upload'>"
                     html += "        <div>"
                     html += "            <label for='image_1'>"
                     html += "                <div class='btn-upload'>업로드</div>"
                     html += "            </label>"
                     html += "            <input type='file' name='upfile' id='image_"+ i + "' multiple>"
-                    html += "            <div id='preview'></div>"
+                    html += "            <div id='preview" + i + "'></div>"
                     html += "        </div>"
                     html += "    </div>"
                     html += "    <div class='wg5bcr_text'>"
                     html += "        <div class='te1'>"
-                    html += "            <input type='text' name='roomname' required placeholder='객실 이름'>"
+                    html += "            <input type='text' name='roomName' required placeholder='객실 이름'>"
                     html += "        </div>"
                     html += "        <div class='te2'>"
                     html += "            <div class='te2_1'>"
                     html += "                가격"
                     html += "            </div>"
                     html += "            <div class='te2_2'>"
-                    html += "                <input type='text' name='roomprice' required>"
+                    html += "                <input type='text' name='roomPrice' required>"
+                    html += "            </div>"
+                    html += "        </div>"
+                    html += "        <div class='wg5t2_info'>"
+                    html += "            <div class='wg5t2_introduce'>"
+                    html += "                <label for='information'>기본정보</label>"
+                    html += "            </div>"
+                    html += "            <div class='form-group'>"
+                    html += "                <textarea class='form-control' name='mInfo' id='exampleFormControlTextarea1' rows='5'></textarea>"
+                    html += "            </div>"
+                    html += "        </div>"
+                    html += "        <div class='wg5t2_info'>"
+                    html += "            <div class='wg5t2_introduce'>"
+                    html += "                <label for='attre'>편의시설</label>"
+                    html += "            </div>"
+                    html += "            <div class='form-group'>"
+                    html += "                <textarea class='form-control' name='mAmeni' id='exampleFormControlTextarea1' rows='5'></textarea>"
                     html += "            </div>"
                     html += "        </div>"
                     html += "        <div class='te4'>"

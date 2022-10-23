@@ -55,7 +55,7 @@
                 </form>
             </div>
         </div>
-        <div class="wg6_manager"><button><img src="https://cdn-icons-png.flaticon.com/512/1719/1719458.png"></img></button></div>
+        <div class="wg6_manager"><button><img src="https://cdn-icons-png.flaticon.com/512/1719/1719458.png" onclick="location.href='${ path }/wherego/others_write'"></img></button></div>
         <div class="wg6_map">
             <div id="map" style="width: 100%; height: 350px; margin-top: 20px; margin-bottom: 20px;"></div>
         </div>
@@ -72,7 +72,7 @@
             <div class="wg6b_ca">
                 <c:forEach var="cafeselect" items="${cafeselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/cafedetail">
+	                <a href="${ path }/wherego/wherego_cafe_detail?no=${cafeselect.spotNo}">
 	                    <div class="card_img">
 	                        <img src="${ path }/resources/images/wherego/${cafeselect.img}">
 	                    </div>

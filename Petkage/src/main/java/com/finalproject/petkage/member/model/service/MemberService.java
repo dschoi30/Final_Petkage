@@ -22,7 +22,10 @@ public interface MemberService {
 
 	Member loginByKakao(String kakaoId);
 	
+	Member loginByNaver(String naver_email);
+
 	int delete(int no);
 	
 	Member findMemberById(String userId);
+
 }

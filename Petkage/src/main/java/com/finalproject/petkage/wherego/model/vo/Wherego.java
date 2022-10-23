@@ -33,13 +33,16 @@ public class Wherego {
 	private String introduce; // 소개
 	
 	private String info; // 기본정보
+
+	private String menu; // 메뉴
 	
 	private String spotStatus; // 어디가지 상태
 
 	private String spotMap; // 지도 좌표
 	
+	private int roomNum; // 객실수
+
 	private Room room; // 객실
 	
-	private int roomNum; // 객실 추가수
-
+	private int price; // 가격
 }

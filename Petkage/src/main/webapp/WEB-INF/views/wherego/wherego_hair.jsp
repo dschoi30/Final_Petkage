@@ -71,7 +71,7 @@
             <div class="wg6b_ca">
                 <c:forEach var="hairselect" items="${hairselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/hairdetail">
+	                <a href="${ path }/wherego/hairdetail">
 	                    <div class="card_img">
 	                        <img src="${ path }/resources/images/wherego/${hairselect.img}">
 	                    </div>
