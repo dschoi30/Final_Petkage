@@ -71,10 +71,11 @@
         <div class="wg6_bottom">
             <div class="wg6b_ca">
                 <c:forEach var="cafeselect" items="${cafeselect}">
+                <c:set var="rename" value="${ cafeselect.renameImg }" />
                 <div class="wgc6_card">
 	                <a href="${ path }/wherego/wherego_cafe_detail?no=${cafeselect.spotNo}">
 	                    <div class="card_img" value = "${cafeselect.renameImg}">
-	                        <img id="thumbnail" src="">
+	                        <img id="thumbnail" src="${ path }resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }">
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${cafeselect.spotName}</div>

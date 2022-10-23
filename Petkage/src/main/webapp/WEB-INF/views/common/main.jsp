@@ -219,41 +219,41 @@
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
 				<c:forEach var="wherego" items="${ wherego }">
-				<c:set var="rename_wherego" value="${ wherego.renameImg }" />
-				<c:if test="${ wherego.spotCategory == '숙소' }"> 
-					<a href="${ path }/wherego/wherego_lodging_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '카페' }"> 
-					<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '맛집' }"> 
-					<a href="${ path }/wherego/wherego_food_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '미용' }"> 
-					<a href="${ path }/wherego/wherego_hair_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '여행지' }"> 
-					<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '동물병원' }"> 
-					<a href="${ path }/wherego/wherego_hospital_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '유치원' }"> 
-					<a href="${ path }/wherego/wherego_preschool_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '셀프목욕' }"> 
-					<a href="${ path }/wherego/wherego_bath_detail?no=${ wherego.spotNo }">
-				</c:if>	
-				<c:if test="${ wherego.spotCategory == '펫시터' }"> 
-					<a href="${ path }/wherego/wherego_petsitter_detail?no=${ wherego.spotNo }">
-				</c:if>	
 					<div class="swiper-slide">
+						<c:set var="rename_wherego" value="${ wherego.renameImg }" />
+						<c:if test="${ wherego.spotCategory == '숙소' }"> 
+							<a href="${ path }/wherego/wherego_lodging_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '카페' }"> 
+							<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '맛집' }"> 
+							<a href="${ path }/wherego/wherego_food_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '미용' }"> 
+							<a href="${ path }/wherego/wherego_hair_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '여행지' }"> 
+							<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '동물병원' }"> 
+							<a href="${ path }/wherego/wherego_hospital_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '유치원' }"> 
+							<a href="${ path }/wherego/wherego_preschool_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '셀프목욕' }"> 
+							<a href="${ path }/wherego/wherego_bath_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '펫시터' }"> 
+							<a href="${ path }/wherego/wherego_petsitter_detail?no=${ wherego.spotNo }">
+						</c:if>	
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,22) }" alt=""/>
+							<img class="slide_image" src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 						</div>
 						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>${ wherego.spotName }</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>${ wherego.introduce }</h3></a>
+							<a class="slide_text"><h2>${ wherego.spotName }</h2></a>
+							<a class="slide_text"><h3>${ wherego.introduce }</h3></a>
 						</div>
 					</div>
 				</c:forEach>
