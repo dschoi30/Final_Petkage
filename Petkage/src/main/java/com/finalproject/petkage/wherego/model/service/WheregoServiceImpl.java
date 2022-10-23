@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.wherego.model.mapper.WheregoMapper;
+import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 @Service
@@ -135,6 +136,25 @@ public class WheregoServiceImpl implements WheregoService {
         
         return mapper.getListWheregoRecommend();
     }
+
+	@Override
+	public int wherego_like(Heart heart) {
+
+		return mapper.wherego_like(heart);
+	}
+
+	@Override
+	public int insert_like(Heart heart) {
+
+		return mapper.insert_like(heart);
+	}
+
+	@Override
+	public int delete_like(Heart heart) {
+		
+		return mapper.delete_like(heart);
+		
+	}
 
 
 }

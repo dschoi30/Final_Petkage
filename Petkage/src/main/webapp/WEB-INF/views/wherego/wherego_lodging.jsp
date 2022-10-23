@@ -171,7 +171,7 @@
             <div class="wg_content_card">
             	<c:forEach var="lodgingselect" items="${lodgingselect}">
 		                <div class="wgc4_card">
-		                	<a href="${ path }/wherego/lodgingdetail">
+		                	<a href="${ path }/wherego/lodgingdetail?no=${lodgingselect.spotNo}">
 			                    <div class="card_img" id="card_${lodgingselect.spotNo}" value="${lodgingselect.renameImg}" no="${lodgingselect.spotNo}">
 			                        <img id="thumbnail_${lodgingselect.spotNo}" src="">
 			                    </div>

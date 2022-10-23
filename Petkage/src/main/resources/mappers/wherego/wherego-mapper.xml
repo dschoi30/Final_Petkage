@@ -256,11 +256,24 @@
    		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
    	</select>
    	
-   	
-   	
-   	
+
    	
    	<!-- 찜 기능  -->
+   	<select id="wherego_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart" resultType="_int">
+   		SELECT COUNT(*) 
+   		FROM HEART
+   		WHERE SPOT_NO = #{spotNo} AND MEM_NO = #{userNo}
+   	</select>
+   	
+   	<insert id="insert_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart">
+   		INSERT INTO HEART VALUES(#{spotNo}, #{userNo})
+   	</insert>
+   	
+   	<delete id="delete_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart">
+   		DELETE FROM HEART
+   		WHERE SPOT_NO = #{spotNo} AND MEM_NO = #{userNo}
+   	</delete>
+   	
  
    	<!-- 어디가지 별점 순 10개 게시글 -->
    	<select id="getListWheregoRecommend" resultMap="wheregovo">

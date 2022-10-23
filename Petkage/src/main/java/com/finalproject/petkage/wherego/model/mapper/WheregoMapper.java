@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -44,6 +45,12 @@ public interface WheregoMapper {
 	Wherego findBoardByNo_cafe(int no);
 
     List<Wherego> getListWheregoRecommend();
+
+	int wherego_like(Heart heart);
+
+	int insert_like(Heart heart);
+
+	int delete_like(Heart heart);
 
 
 }

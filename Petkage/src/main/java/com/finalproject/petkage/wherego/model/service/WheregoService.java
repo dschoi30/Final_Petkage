@@ -3,6 +3,7 @@ package com.finalproject.petkage.wherego.model.service;
 import java.util.List;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface WheregoService {
@@ -38,6 +39,12 @@ public interface WheregoService {
 	Wherego findBoardByNo_cafe(int no);
 
     List<Wherego> getListWheregoRecommend();
+
+	int wherego_like(Heart heart);
+
+	int insert_like(Heart heart);
+
+	int delete_like(Heart heart);
 
 
 	
