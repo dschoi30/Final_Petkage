@@ -19,10 +19,12 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
+import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -171,6 +173,23 @@ public class KakaoPayService {
 			payItems.setPayNo(payNo);
 			mapper.placeOrderItems(payItems);
 		}
-		System.out.println(payment);
+		
+		int memberPoint = member.getPoint();
+		memberPoint = memberPoint - payment.getUsingPoint() + payment.getTotalSavingPoint();
+		member.setPoint(memberPoint);
+		mapper.deductMemberPoint(member);
+		
+		for(PayItems payItems : payment.getOrders()) {
+			Product product = mapper.selectProductByNo(payItems.getProNo());
+			product.setProQty(product.getProQty() - payItems.getProCount());
+			mapper.deductProductStock(product);
+		}
+		
+		for(PayItems payItems : payment.getOrders()) {
+			Cart cart = new Cart();
+			cart.setNo(payment.getNo());
+			cart.setProNo(payItems.getProNo());
+			mapper.deleteCartOrder(cart);
+		}
 	}
 }

@@ -3,6 +3,9 @@ package com.finalproject.petkage.market.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,7 @@ import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.review.model.vo.Review;
 
@@ -36,13 +40,16 @@ import lombok.extern.slf4j.Slf4j;
 public class MarketController {
 	@Autowired 
 	private MarketService service;
-
+	
+	@Autowired
+	private MemberService memberService;
+	
 	@Autowired
 	private KakaoPayService kakaoPayService;
 	
 	@Autowired
 	private ResourceLoader resourceLoader;
-	
+
 	@GetMapping("/product-write")
 	public String write() {
 		
@@ -294,10 +301,17 @@ public class MarketController {
 	}
 	
 	@PostMapping("/order")
-	public String Payment(Payment payment, KakaoPayReady kakaoPayReady) {
+	public String Payment(Payment payment, KakaoPayReady kakaoPayReady, HttpServletRequest request, @SessionAttribute("loginMember") Member loginMember) {
 		log.info("결제 준비 PostMapping");
 
 		kakaoPayService.setOrder(payment);
+
+		Member member = new Member();
+		member.setNo(payment.getNo());
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("loginMember", loginMember);
 		
 		return "redirect:" + kakaoPayService.kakaoPayReady(payment);
 	}
