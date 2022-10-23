@@ -190,7 +190,7 @@
           
           <div class="md_button">
               <button type="submit">수정 완료</button>
-              <button type="submit" id="btnDelete">회원 탈퇴</button>
+              <button type="button" id="btnDelete">회원 탈퇴</button>
             </div>
         </form>
         </div>

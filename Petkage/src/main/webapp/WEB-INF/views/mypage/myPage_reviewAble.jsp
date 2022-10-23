@@ -35,32 +35,20 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="product">                    
                 <table class="table" id="tb1">
+                 <c:forEach var="payment" items="${ payment }">
                 <tbody>
                     <tr>
-                        <th scope="row">사진</th>
-                        <td>2000-01-01</td>
-                        <td>씨그램 레몬</td>
+                        <td class="w-25">
+					      <img class="img" src="${path}/resources/upload/market/${ payment.renamedFileName }" width="70" height="70">		     
+		      			</td>
+                        <td> ${ payment.proName } </td>
+                        <td> ${ payment.payCreatedAt } </td>
                         <td>
-                            <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
+                            <button type="button" id="pdinsBtn" class="btn btn-outline-secondary">리뷰 작성하기</button>
                         </td>                       
                     </tr>
-                    <tr>
-                        <th scope="row">사진</th>
-                        <td>2000-01-01</td>
-                        <td>씨그램 레몬</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
-                        </td>              
-                    </tr>
-                    <tr>
-                        <th scope="row">사진</th>
-                        <td>2000-01-01</td>
-                        <td>씨그램 레몬</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
-                        </td>               
-                    </tr>
                 </tbody>
+                </c:forEach>
             </table>
         </div>
 
@@ -72,7 +60,7 @@
                         <td>2000-01-01</td>
                         <td>여행지</td>
                         <td>
-                            <button type="button" class="btn btn-outline-secondary">리뷰 작성하기</button>
+                            <button type="button" id="" class="btn btn-outline-secondary">리뷰 작성하기</button>
                         </td>
                     </tr>
                     <tr>
@@ -114,6 +102,20 @@
         </nav>
     </div>
     </section>
+    <script type="text/javascript">
+
+	 $(document).ready(() => {
+		 $("#pdinsBtn").on("click", () => {
+			 if(${empty loginMember}) {
+				 alert("로그인이 필요합니다 :)");
+				 location.href="${path}/member/loginPage"
+			 } else {
+				 location.href="${path}/mypage/myPage_productReview"
+			 }
+		 });
+	 });
+    	
+    </script>
 
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

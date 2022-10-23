@@ -34,47 +34,112 @@
                 </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="product">                    
-                    <table class="table" id="tb1">
-
-                   <tbody>
-                       <tr>
-                            <th scope="row">사진</th>
-                            <td>2000-01-01</td>
-                            <td>씨그램 레몬</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">수정</button>
-                                    <button type="button" class="btn btn-outline-secondary">삭제</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">사진</th>
-                            <td>2000-01-01</td>
-                            <td>씨그램 레몬</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">수정</button>
-                                    <button type="button" class="btn btn-outline-secondary">삭제</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">사진</th>
-                            <td>2000-01-01</td>
-                            <td>씨그램 레몬</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">수정</button>
-                                    <button type="button" class="btn btn-outline-secondary">삭제</button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
+                            <div class="wgc_7">
+            <div class="wgc7_list">
+             	<c:forEach var="payment" items="${payment}">
+             	<c:set var="rename" value="${ payment.totalDelFee }" />
+	                <div class="wgc7l_1">
+	                    <div class="wgc7l_1_1">
+	                        <div class="wgc7l_name">
+	                            <p>${payment.totalPrice}</p>
+	                            <div class="wgc7l_nickname">
+	                                <p>${payment.payNo}</p>
+	                            </div>
+	                        </div>
+	                        <div class="wgc7l_img">
+	                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" alt="">
+	                        </div>
+	                    </div>
+	                    <div class="wgc7l_1_2">
+	                        <div class="wgc7l_star">
+	                            <c:choose>
+	                            	<c:when test ="${review.revscore == 1}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 2}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 3}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 4}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 5}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+									</c:when>
+	                            </c:choose>
+	                        </div>
+	                        <div class="wgc7l_review">
+	                            <div class="wgc7l_revcoment">${review.revcoment}</div>
+	                            <div class="wgc7l_write_time">
+	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                
+                </c:forEach>
+                </div>
+                </div>
+                <div id="pageBar">
+			 <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            <li class="page-item">
+			<!-- 맨 처음으로 -->
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=1'">&lt;&lt;</a>
+      		</li>
+			<!-- 이전 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.prevPage }'>&lt; 
+      		</a>
+      		</li>
+			<!--  10개 페이지 목록 -->
+			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<li class="page-item active">
+					<a href='${ status.current }'></a>
+					</li>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ status.current }'>${ status.current }</a></li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.nextPage }'>&gt;
+      		</a>
+      		</li>
+			<!-- 맨 끝으로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
+			</li>
+            </ul>
+            </nav>
+		</div>
             </div>
-            <div class="tab-pane fade" id="where">
+           <!--   <div class="tab-pane fade" id="where">
                 <table class="table" id="tb2">
                     <tbody>
                         <tr>
@@ -112,13 +177,117 @@
                         </tr>                        
                     </tbody>
                 </table>
-            </div>
-            </div>
-            </div>
-        </div>
-    </div>
-        
-        <nav aria-label="Page navigation example">
+            </div> -->
+
+
+
+		<div class="tab-pane fade" id="where">
+           <div class="wgc_7">
+            <div class="wgc7_list">
+             	<c:forEach var="review" items="${review}">
+             	<c:set var="rename" value="${ review.revrenameimg }" />
+	                <div class="wgc7l_1">
+	                    <div class="wgc7l_1_1">
+	                        <div class="wgc7l_name">
+	                            <p>${review.revtitle}</p>
+	                            <div class="wgc7l_nickname">
+	                                <p>${review.memname}</p>
+	                            </div>
+	                        </div>
+	                        <div class="wgc7l_img">
+	                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" alt="">
+	                        </div>
+	                    </div>
+	                    <div class="wgc7l_1_2">
+	                        <div class="wgc7l_star">
+	                            <c:choose>
+	                            	<c:when test ="${review.revscore == 1}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 2}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 3}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 4}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									</c:when>
+									<c:when test ="${review.revscore == 5}">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+										<img src="${ path }/resources/images/wherego/별.png" alt="">
+									</c:when>
+	                            </c:choose>
+	                        </div>
+	                        <div class="wgc7l_review">
+	                            <div class="wgc7l_revcoment">${review.revcoment}</div>
+	                            <div class="wgc7l_write_time">
+	                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                
+                </c:forEach>
+                </div>
+                </div>
+                <div id="pageBar">
+			 <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            <li class="page-item">
+			<!-- 맨 처음으로 -->
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=1'">&lt;&lt;</a>
+      		</li>
+			<!-- 이전 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.prevPage }'>&lt; 
+      		</a>
+      		</li>
+			<!--  10개 페이지 목록 -->
+			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<li class="page-item active">
+					<a href='${ status.current }'></a>
+					</li>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ status.current }'>${ status.current }</a></li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.nextPage }'>&gt;
+      		</a>
+      		</li>
+			<!-- 맨 끝으로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
+			</li>
+            </ul>
+            </nav>
+		</div>
+                </div>
+        <!--  <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
@@ -134,7 +303,47 @@
             </a>
             </li>
         </ul>
-    </nav>
+    </nav> -->
+          <div id="pageBar">
+			 <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            <li class="page-item">
+			<!-- 맨 처음으로 -->
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=1'">&lt;&lt;</a>
+      		</li>
+			<!-- 이전 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.prevPage }'>&lt; 
+      		</a>
+      		</li>
+			<!--  10개 페이지 목록 -->
+			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<li class="page-item active">
+					<a href='${ status.current }'></a>
+					</li>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ status.current }'>${ status.current }</a></li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.nextPage }'>&gt;
+      		</a>
+      		</li>
+			<!-- 맨 끝으로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_wroteReviews?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
+			</li>
+            </ul>
+            </nav>
+		</div>
+                </div>
+    </div>
+    </div>
+        </div>
     </section>
 
 </body>

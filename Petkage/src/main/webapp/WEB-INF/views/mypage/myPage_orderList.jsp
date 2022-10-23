@@ -33,60 +33,29 @@
             <th scope="col">상품정보</th>
             <th scope="col">수량</th>
             <th scope="col">상품구매금액</th>
+            <th scope="col">배송비</th>
             <th scope="col">주문처리상태</th>
-            <th scope="col">취소/교환/반품</th>
           </tr>
         </thead>
+        <c:forEach var="payment" items="${ payment }">
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>2000-01-01</td>
-            <td>탈취제</td>
-            <td>3</td>
-            <td>32000</td>
-            <td>배송중</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-secondary">취소</button>
-                <button type="button" class="btn btn-outline-secondary">교환</button>
-                <button type="button" class="btn btn-outline-secondary">반품</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>2000-01-01</td>
-            <td>방석</td>
-            <td>1</td>
-            <td>35000</td>
-            <td>배송왼료</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-secondary">취소</button>
-                <button type="button" class="btn btn-outline-secondary">교환</button>
-                <button type="button" class="btn btn-outline-secondary">반품</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>2000-01-01</td>
-            <td>귀세정제</td>
-            <td>2</td>
-            <td>20000</td>
-            <td>배송중</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-secondary">취소</button>
-                <button type="button" class="btn btn-outline-secondary">교환</button>
-                <button type="button" class="btn btn-outline-secondary">반품</button>
-              </div>
-            </td>
+            <td>${ payment.payNo }</td>
+            <td>${ payment.payCreatedAt }</td>
+            <td class="w-25">
+			      <img class="img" src="${path}/resources/upload/market/${ payment.renamedFileName }" width="70" height="70">
+			      ${ payment.proName }
+		      </td>
+            <td>${ payment.proCount }</td>
+            <td>${ payment.totalPriceAfterUsingPoint }</td>
+            <td>${ payment.totalDelFee }</td>
+            <td>${ payment.orderStatus }</td>
           </tr>
         </tbody>
+        </c:forEach>
       </table>
       <br><br>
-      <nav aria-label="Page navigation example">
+     <!--   <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
@@ -102,7 +71,44 @@
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
+      <div id="pageBar">
+			 <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            <li class="page-item">
+			<!-- 맨 처음으로 -->
+			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=1'">&lt;&lt;</a>
+      		</li>
+			<!-- 이전 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.prevPage }'>&lt; 
+      		</a>
+      		</li>
+			<!--  10개 페이지 목록 -->
+			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<li class="page-item active">
+					<a href='${ status.current }'></a>
+					</li>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ status.current }'>${ status.current }</a></li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 다음 페이지로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.nextPage }'>&gt;
+      		</a>
+      		</li>
+			<!-- 맨 끝으로 -->
+			<li class="page-item">
+			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
+			</li>
+            </ul>
+            </nav>
+		</div>
+      </div>
     </section>
 
 </body>

@@ -80,51 +80,47 @@
                     /**
                      * 드래그로 이벤트 추가하기
                      */
-                    select: function (arg) { // 캘린더에서 이벤트를 생성할 수 있다.
+                     select: function (arg) { // 캘린더에서 이벤트를 생성할 수 있다.
+                    	 
+                         var title = prompt('일정을 입력해주세요.');
+                         if (title) {
+                             calendar.addEvent({
+                                 title: title,
+                                 start: arg.start,
+                                 end: arg.end,
+                                 allDay: arg.allDay,
+                             })
+                         }
 
-                        var title = prompt('일정을 입력해주세요.');
-                        if (title) {
-                            calendar.addEvent({
-                                title: title,
-                                start: arg.start,
-                                end: arg.end,
-                                allDay: arg.allDay,
-                            })
-                        }
+                         var events = new Array(); // Json 데이터를 받기 위한 배열 선언
+                             var obj = new Object();     // Json 을 담기 위해 Object 선언
 
-                        var allEvent = calendar.getEvents(); // .getEvents() 함수로 모든 이벤트를 Array 형식으로 가져온다. (FullCalendar 기능 참조)
+                             obj.title = title; // 이벤트 명칭  ConsoleLog 로 확인 가능.
+                             obj.start = arg.start; // 시작
+                             obj.end = arg.end; // 끝
+                             events.push(obj);
 
-                        var events = new Array(); // Json 데이터를 받기 위한 배열 선언
-                        for (var i = 0; i < allEvent.length; i++) {
-                            var obj = new Object();     // Json 을 담기 위해 Object 선언
-                            // alert(allEvent[i]._def.title); // 이벤트 명칭 알람
-                            obj.title = allEvent[i]._def.title; // 이벤트 명칭  ConsoleLog 로 확인 가능.
-                            obj.start = allEvent[i]._instance.range.start; // 시작
-                            obj.end = allEvent[i]._instance.range.end; // 끝
+                         var jsondata = JSON.stringify(events);
+                         console.log(jsondata);
 
-                            events.push(obj);
-                        }
-                        var jsondata = JSON.stringify(events);
-                        console.log(jsondata);
-                        // saveData(jsondata);
+                         $(function saveData(jsondata) {
+                             $.ajax({
+                                 url: "/full-calendar/calendar-admin-update",
+                                 method: "POST",
+                                 dataType: "json",
+                                 data: JSON.stringify(events),
+                                 contentType: 'application/json',
+                             })
+                                 .done(function (result) {
+                                     // alert(result);
+                                 })
+                                 .fail(function (request, status, error) {
+                                      // alert("에러 발생" + error);
+                                 });
+                             calendar.unselect()
+                         });
+                     },
 
-                        $(function saveData(jsondata) {
-                            $.ajax({
-                                url: "/full-calendar/calendar-admin-update",
-                                method: "POST",
-                                dataType: "json",
-                                data: JSON.stringify(events),
-                                contentType: 'application/json',
-                            })
-                                .done(function (result) {
-                                    // alert(result);
-                                })
-                                .fail(function (request, status, error) {
-                                     // alert("에러 발생" + error);
-                                });
-                            calendar.unselect()
-                        });
-                    },
 
                     /**
                      * 이벤트 선택해서 삭제하기
