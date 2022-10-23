@@ -72,8 +72,8 @@
                 <c:forEach var="hospitalselect" items="${hospitalselect}">
                 <div class="wgc6_card">
 	                <a href="${ path }/wherego/hospitaldetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${hospitalselect.img}">
+	                    <div class="card_img" value = "${hospitalselect.renameImg}">
+	                        <img id="thumbnail" src="">
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${hospitalselect.spotName}</div>
@@ -235,8 +235,20 @@
             -->
         </div>
 
-
     </section>
+    
+    	<!-- 썸네일 -->
+        <script>
+        
+        console.log($(".card_img").attr("value"));
+        console.log($(".card_img").attr("value").split(",",1));
+        
+        var thumbnail = $(".card_img").attr("value").split(',', 1);
+        console.log(thumbnail);
+        
+        document.getElementById("thumbnail").src = "${ path }/resources/upload/wherego/" + thumbnail
+        
+        </script>
     
         <script>
 

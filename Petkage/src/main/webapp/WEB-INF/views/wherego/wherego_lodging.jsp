@@ -172,8 +172,8 @@
             	<c:forEach var="lodgingselect" items="${lodgingselect}">
 		                <div class="wgc4_card">
 		                	<a href="${ path }/wherego/lodgingdetail">
-			                    <div class="card_img">
-			                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
+			                    <div class="card_img" id="card_${lodgingselect.spotNo}" value="${lodgingselect.renameImg}" no="${lodgingselect.spotNo}">
+			                        <img id="thumbnail_${lodgingselect.spotNo}" src="">
 			                    </div>
 			                    <div class="card_text">
 			                        <div class="ct_1">${lodgingselect.spotName}</div>
@@ -244,6 +244,21 @@
         </div>
 
     </section>
+    
+		<!-- 썸네일 -->
+	    <script>
+	    var thumbnailNo = $(".card_img").attr("no"); // 제일 첫 class에만 적용된다;; 고치자
+	    var thumbnailId = $("#card_" + thumbnailNo).attr("value");
+	    var thumbnail = $("#card_"+ thumbnailNo).attr("value").split(',', 1);
+	    
+	    console.log($("#card_"+ thumbnailNo).attr("value"));
+	    console.log($("#card_"+ thumbnailNo).attr("value").split(",",1));
+	    
+	    console.log(thumbnail);
+	    
+	    document.getElementById("thumbnail_" + thumbnailNo).src = "${ path }/resources/upload/wherego/" + thumbnail
+	    
+	    </script>
 
     <script>
     $(function() {

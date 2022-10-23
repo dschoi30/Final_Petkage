@@ -37,6 +37,8 @@ public interface WheregoService {
 
 	Wherego findBoardByNo_cafe(int no);
 
+    List<Wherego> getListWheregoRecommend();
+
 
 	
 	
