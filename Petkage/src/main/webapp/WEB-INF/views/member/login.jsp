@@ -16,8 +16,9 @@
 <!-- <link rel="stylesheet" href="../CSS/owl.carousel.min.css"> -->
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="${ path }/css/member/bootstrap.min.css">
+
 <%-- 구글 API --%>
-<meta name = "google-signin-client_id"content = "559389777930-5hlelo74k0i5stdbgln7arir9niljnoj.apps.googleusercontent.com">
+<meta name ="google-signin-client_id" content ="559389777930-91p4mafho57paqbtc0uni4ueu8t1098n.apps.googleusercontent.com">
 
 <link
   rel="stylesheet"
@@ -73,11 +74,11 @@
 	                	카카오톡으로 로그인
 	                </button>
 	
-	                <button type="button" class="btn btn-block" id="naver_id_login" >
+	                <button type="button" class="btn btn-block" id="naver_id_login" onclick="location.href='${url}'">
 	                	네이버로 로그인
 	                </button>
 	
-					<button type="button" class="btn btn-block" id="googleLogin" onclick="location.href='javascript:googleLogin()'">
+					<button type="button" class="btn btn-block" id="googleLogin" onclick="loginWithGoogle()">
 	                	구글로 로그인
 	                </button>
 
@@ -110,6 +111,8 @@
 		<input type="hidden" name="kakaoName" id="kakaoName" />
 		<input type="hidden" name="enroll_Type" id="enrollType" value="KAKAO" />
 	</form>
+
+
 
 	</section>
 	
@@ -198,31 +201,58 @@
 					}
 				}, // success
 				error: function(xhr, status, error){
-					alert("로그인에 실패했습니다."+error);
+					alert("로그인에 실패했습니다." + error);
 				}
 			}) // ajax
 	}; // kakaoLoginPro
 </script>
-
 <%-- 구글 API --%>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
+<%-- <script src="https://apis.google.com/js/platform.js" async defer></script> --%>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 
 <script>
-function googleLogin(){
-	var auth2 = gapi.auth2.getAuthInstance()
-	
-	if(auth2.isSignedIn.get()){
-	 var profile = auth2.currentUser.get().getBasicProfile();
-	 googleLoginPro(profile)
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	
-	}
-	
+function loginWithGoogle(response) {
+    // console.log("Encoded JWT ID token: " + response.credential);
+	var googleToken = response.credential;
+	console.log(googleToken);
+
+	$.ajax({
+		type : 'POST',
+		url : '${path}/member/googleToken',
+		data : {
+			googleToken
+			},
+		dataType : 'text',
+		success : function(result){
+			console.log(result);
+		}
+	})
+
+	    var base64Url = googleToken.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+	console.log(jsonPayload);
+    // return JSON.parse(jsonPayload);
 }
-</script>
+
+window.onload = function () {
+	google.accounts.id.initialize({
+	client_id: "559389777930-91p4mafho57paqbtc0uni4ueu8t1098n.apps.googleusercontent.com",
+	callback: loginWithGoogle
+	});
+	google.accounts.id.renderButton(
+	document.getElementById("googleLogin"),
+	{ theme: "none"}  // customization attributes
+	);
+}
+
+
+
+// </script>  
+
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

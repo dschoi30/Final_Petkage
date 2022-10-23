@@ -89,6 +89,12 @@
 		WHERE MEM_ID= #{ kakaoId } AND MEM_STATUS ='Y' AND MEM_ENROLLTYPE = 'KAKAO'
 	</select>
  	
+ 	<!-- 로그인(네이버) -->
+	<select id="selectMemberByNaver" parameterType="string" resultMap="memberResultMap">
+		<include refid="selectMemberSql" />
+		WHERE MEM_EMAIL= #{ naver_email } AND MEM_STATUS ='Y' AND MEM_ENROLLTYPE = 'NAVER'
+	</select>
+	
  	<!-- 이메일로 아이디/비밀번호 찾기-->
 	<select id="selectMemberByEmail" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql" />

@@ -23,9 +23,9 @@
       <div class="container">
         <div class="py-5 text-center"  style="padding-bottom: 15px !important;">
           <h1>Join to <strong><span style="color: #753422;">Pet</span>kage</strong><br></h1>
-          <h4>with <span style="color: #ffd600; font-weight:bold">KAKAO</span></h4>
+          <h4>with <span style="color: #57b81b; font-weight:bold">Naver</span></h4>
         </div>
-<c:if test="${ not empty kakao_kakaoId }">
+<c:if test="${ not empty naver_naverId }">
         <!-- 회원가입 정보 입력 form -->
         <form action="${ path }/member/enroll" method="POST" id="formJoin" name="formJoin">
         
@@ -265,11 +265,11 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
           <div class="joinInfoBox">
             <table>
               <tbody>
-                <input type="hidden" name="enrollType" id="enrollType" value="KAKAO"/>
+                <input type="hidden" name="enrollType" id="enrollType" value="NAVER"/>
                 <tr>
                   <th>아이디</th>
                   <td>
-                    <input type="text" class="joinInfoInput" name="userId" id="kakaoId" value="${kakao_kakaoId}" readonly>
+                    <input type="text" class="joinInfoInput" name="userId" id="naverId" value="${naver_naverId}" readonly>
                     <input type="hidden" name="idTest" value="0" />
                   </td>
                   <td>
@@ -287,12 +287,12 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
                   <th>비밀번호</th>
                   <td>
                     <input type="hidden" name="pwdTest" value="0" />
-                    <input type="password" class="joinInfoInput" name="userPwd" id="userPwd" value="${kakao_kakaoId}" readonly>
+                    <input type="password" class="joinInfoInput" name="userPwd" id="userPwd" value="${naver_pwd}" readonly>
                   </td>
                   <th>비밀번호 확인</th>
                   <td>
                     <input type="hidden" name="pwdCheckTest" value="0" />
-                    <input type="password" class="joinInfoInput" name="userPwdCheck" id="userPwdCheck" value="${kakao_kakaoId}" readonly>
+                    <input type="password" class="joinInfoInput" name="userPwdCheck" id="userPwdCheck" value="${naver_pwd}" readonly>
                   </td>
                 </tr>
                 <tr>
@@ -307,12 +307,12 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
                   <th>이름</th>
                   <td>
                     <input type="hidden" name="nameTest" value="0" />
-                    <input type="text" class="joinInfoInput" name="userName" id="userName" value="${kakao_name}">
+                    <input type="text" class="joinInfoInput" name="userName" id="userName" value="${naver_name}">
                   </td>
                   <th>핸드폰 번호</th>
                   <td>
                     <input type="hidden" name="phoneTest" value="0" />
-                    <input type="text" class="joinInfoInput" name="userPhone" id="userPhone" >
+                    <input type="text" class="joinInfoInput" name="userPhone" id="userPhone">
                   </td>
                 </tr>
                 <tr>
@@ -356,7 +356,7 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
                 <tr>
                   <th style="margin-top: 10px" >이메일</th>
                     <td>
-                      <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" value="${kakao_email}" readonly>
+                      <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" value="${naver_email}" readonly>
                       <span class="userInfoAlert" id="error_Email"></span>
                     </td>
                     <td>
@@ -485,7 +485,8 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
           </div>
         </form>
 </c:if>
-<c:if test="${ empty kakao_kakaoId }">
+
+<c:if test="${ empty naver_naverId }">
     <div style="text-align: center; padding-bottom: 20em">
       <hr/>
       <div class="find_subTitle" style="font-size: 30px; font-weight: bold; color: #753422;" >잘못된 접근입니다. </div>
@@ -496,6 +497,8 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
     <button type="button" id="btnNext" class="btn_login" onclick="location.href='${ path }/member/loginPage'">로그인</button>    
     </div>
 </c:if>
+
+
       </div>
     </section>
 
