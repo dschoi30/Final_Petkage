@@ -3,13 +3,9 @@ package com.finalproject.petkage.market.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +23,8 @@ import com.finalproject.petkage.market.model.service.KakaoPayService;
 import com.finalproject.petkage.market.model.service.MarketService;
 import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
+import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
-import com.finalproject.petkage.member.model.service.MemberService;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -291,13 +287,12 @@ public class MarketController {
 	}
 	
 	@GetMapping("/order/{no}")
-	public ModelAndView Payment (ModelAndView model, @ModelAttribute KakaoPayReady kakaoPayReady, @PathVariable("no") int no) {
+	public ModelAndView Payment (ModelAndView model, @ModelAttribute Payment payment, @PathVariable("no") int no) {
 
-//		model.addObject("orderList", kakaoPayService.getGoodsInfo(kakaoPayReady.getOrders()));
 		System.out.println("loginMember : " + no);
-		System.out.println("orderList : " + kakaoPayReady.getOrders());
+		System.out.println("orderList : " + payment.getOrders());
 
-		model.addObject("orderList", kakaoPayService.getItemsInfo(kakaoPayReady.getOrders()));
+		model.addObject("orderList", kakaoPayService.getItemsInfo(payment.getOrders()));
 		model.addObject("memberInfo", kakaoPayService.getMemberInfo(no));
 		
 		model.setViewName("market/order");
@@ -306,17 +301,20 @@ public class MarketController {
 	}
 	
 	@PostMapping("/order")
-	public String Payment() {
+	public String Payment(Payment payment, KakaoPayReady kakaoPayReady) {
 		log.info("결제 준비 PostMapping");
+
+		kakaoPayService.setOrder(payment);
 		
-		return "redirect:" + kakaoPayService.kakaoPayReady();
+		return "redirect:" + kakaoPayService.kakaoPayReady(payment);
 	}
 
 	@GetMapping("/order-finished")
-	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, ModelAndView model) {
+	public ModelAndView PaymentFinished (@RequestParam("pg_token") String pg_token, Payment payment, ModelAndView model) {
 		log.info("결제 성공 GetMapping");
 		log.info("pg_token : {}", pg_token);
-        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token));
+		
+        model.addObject("info", kakaoPayService.kakaoPayInfo(pg_token, payment));
 		model.setViewName("market/order-finished");
 		
 		return model;

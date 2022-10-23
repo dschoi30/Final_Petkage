@@ -36,7 +36,11 @@
 			                	<input type="hidden" class="cart-pro-no" value="${ cart.proNo }">
 	                        	<input type="checkbox" class="check-pro" checked="checked">
 	                        </td>
-	                        <td rowspan="2" style="width: 10%"><img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80"></td>
+	                        <td rowspan="2" style="width: 10%">
+	                        	<a href="${ path }/market/product-view?proNo=${ cart.proNo }">
+	                        		<img class="img" src="${path}/resources/upload/market/${ cart.renamedFileName }" width="80" height="80">
+	                        	</a>		
+	                        </td>
 	                        <td colspan="3" style="width: 60%"><a href="${ path }/market/product-view?proNo=${ cart.proNo }">${ cart.proName }</a></td>
 	                        <td rowspan="2" style="width: 14%; text-align: center;"><br><strong><fmt:formatNumber value="${ cart.proSPrice * cart.proCount }" pattern="#,###"/>원</strong><br><del><fmt:formatNumber value="${ cart.proOPrice * cart.proCount }" pattern="#,###"/>원</del></td>
 	                        <td rowspan="2" style="width: 13%; text-align: center;"><br><fmt:formatNumber value="${ cart.proDelFee }" pattern="#,###"/>원</td>
@@ -47,7 +51,8 @@
 	                        <td>
 		                        <div class="col mt-0 p-0">
 		                        	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }" onkeyup="inputNumberFormat(this);">
+									<input type="text" class="qty-input" style="text-align:center;" size="3" value="${ cart.proCount }"
+									oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 		                        	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
 		                        	<a class="btn btn-light change-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">변경</a>
 		                        	<a class="btn btn-light del-qty-btn" style="height: 30px;" data-cartno="${ cart.cartNo }">삭제</a>
@@ -188,10 +193,8 @@
 					
 					let proNo = $(element).find(".cart-pro-no").val();
 					let proCount = $(element).find(".cart-pro-count").val();
-					
 					let proNoInput = "<input name='orders[" + orderNum + "].proNo' type='hidden' value='" + proNo + "'>";
 					formContents += proNoInput;
-					
 					let proCountInput = "<input name='orders[" + orderNum + "].proCount' type='hidden' value='" + proCount + "'>";
 					formContents += proCountInput;
 					
@@ -205,20 +208,6 @@
 		
 		
 	});
-	
-	 function inputNumberFormat(obj) {
-	     obj.value = comma(uncomma(obj.value));
-	 }
-	 
-	 function comma(str) {
-	     str = String(str);
-	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	 }
-
-	 function uncomma(str) {
-	     str = String(str);
-	     return str.replace(/[^\d]+/g, '');
-	 }
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

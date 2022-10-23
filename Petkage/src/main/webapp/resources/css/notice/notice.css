@@ -103,26 +103,13 @@ font-family: "GmarketSansMedium";
     width: 900px;
 }
 
-.nt .nt_color{
-    color: #803D3D;
-}
-
 .nt .nt_inner{
     text-align: center;
     font-weight: bold;
     font-size: 1.25em;
-}
-.nt_inner2 #nt_pic{
-    position: relative;
-    border-bottom: #6b6b6b 10px;
-}
+    background-image: url('${ path }/resources/images/notice/Rectangle 2051.png');
+    height : 150px;
 
-.nt .nt_text{
-    position: absolute;
-    text-align: center;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .nt .nt_search{

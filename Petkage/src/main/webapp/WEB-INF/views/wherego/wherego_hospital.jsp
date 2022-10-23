@@ -69,21 +69,40 @@
         </div>
         <div class="wg6_bottom">
             <div class="wg6b_ca">
+                <c:forEach var="hospitalselect" items="${hospitalselect}">
                 <div class="wgc6_card">
-	                <a href="${ path }/cafedetail">
+	                <a href="${ path }/wherego/hospitaldetail">
 	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/카페1.png">
+	                        <img src="${ path }/resources/images/wherego/${hospitalselect.img}">
 	                    </div>
 	                    <div class="card_text">
-	                        <div class="ct_1">KH Cafe</div>
+	                        <div class="ct_1">${hospitalselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
 	                            <p>수리남 / 도보 148일 18시간</p>
-	                            <p>소형견 / 대형견</p>
+	                            <p>${hospitalselect.spotSize}</p>
 	                        </div>
 	                    </div>
 	                </a>
                 </div>
+                <!--  
+                <div class="wgc6_card">
+	                <a href="${ path }/cafedetail">
+	                    <div class="card_img">
+	                        <img src="${ path }/resources/images/wherego/${cafeselect.img}">
+	                    </div>
+	                    <div class="card_text">
+	                        <div class="ct_1">${cafeselect.spotName}</div>
+	                        <div class="ct_2">4.8점</div>
+	                        <div class="ct_3">
+	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${cafeselect.spotSize}</p>
+	                        </div>
+	                    </div>
+	                </a>
+                </div>
+                -->
+             <!-- 
                 <div class="wgc6_card">
                     <div class="card_img">
                         <img src="${ path }/resources/images/wherego/카페2.png">
@@ -97,7 +116,10 @@
                         </div>
                     </div>
                 </div>
+               -->
+            </c:forEach>   
             </div>
+            <!--  
             <div class="wg6b_ca">
                 <div class="wgc6_card">
                     <div class="card_img">
@@ -210,6 +232,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
 
 
@@ -246,10 +269,13 @@
             }
         ];
 
-        // 마커 이미지의 이미지 주소입니다
-        var imageSrc = "https://cdn-icons-png.flaticon.com/128/2171/2171990.png"; 
-            
         for (var i = 0; i < positions.length; i ++) {
+        	overlayMarker(positions[i]);
+        }
+        
+        function overlayMarker(place){
+            // 마커 이미지의 이미지 주소입니다
+            var imageSrc = "https://cdn-icons-png.flaticon.com/128/2171/2171990.png"; 
             
             // 마커 이미지의 이미지 크기 입니다
             var imageSize = new kakao.maps.Size(30, 30); 
@@ -261,9 +287,33 @@
             var marker = new kakao.maps.Marker({
                 map: map, // 마커를 표시할 지도
                 position: positions[i].latlng, // 마커를 표시할 위치
-                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image : markerImage // 마커 이미지 
             });
+            
+         	// 마커 위에 커스텀오버레이를 표시합니다
+        	var overlay = new kakao.maps.CustomOverlay({
+        		yAnchor:2.2,
+        	    position: marker.getPosition()       
+        	});
+        	
+        	var content = document.createElement('div');
+        		content.classList.add('mapOverlay');
+        		content.innerHTML =  positions[i].title	
+            
+            var closeBtn = document.createElement('button');
+            	closeBtn.classList.add('btnOverlay');
+            	closeBtn.innerHTML = 'X';
+            	closeBtn.onclick = function () {
+            	    overlay.setMap(null);
+            	};
+            
+            	content.appendChild(closeBtn);
+            	overlay.setContent(content);
+			
+    		// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+    		kakao.maps.event.addListener(marker, 'click', function() {
+    			overlay.setMap(map);
+    		});
         }
         
      // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 

@@ -100,14 +100,15 @@
                         <h3>${ product.proName }</h3>
                     </div>
                     <div class="wrap-rating">
-                        <span class="rating">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
-                            <img src="${path}/resources/images/market/star_filled.png" width="20" height="20" alt="star">
+                        <span class="rating" >
+                            <c:forEach var="i" begin="1" end="${ product.proRating }">
+                            	<img src="${ path }/resources/images/market/star_filled.png" width="20" height="20" alt="star" style="transform: translateY(-2px);">                                      
+                            </c:forEach>											
+							<c:forEach var="j" begin="1" end="${ 5 - product.proRating + 0.9}">	
+                               	<img src="${ path }/resources/images/market/star_unfilled.png" width="20" height="20" alt="star" style="transform: translateY(-2px);">                                      
+							</c:forEach>
                         </span>
-                        <span class="review-count">99개 상품평</span>
+                        <span class="review-count">${ product.proRevCount }개 상품평</span>
                         <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
@@ -116,7 +117,7 @@
                     </div>
                     <div class="prod-sale-price">
                         <span class="sale-price"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###원"/></span>
-                        <span clas="sale-price-info">(할인가)</span>
+                        <span class="sale-price-info">(할인가)</span>
                     </div>
                     <div class="reward-point">
                         <span><fmt:formatNumber value="${ product.proSPrice * 0.05 }" pattern="#,###원"/></span> 적립 (5% 적립)
@@ -133,7 +134,8 @@
                     <div class="prod-total-price">
                        <span class="col mt-2 p-0">
                         	<button class="minus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">-</button>
-								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1" onkeyup="inputNumberFormat(this);">
+								<input type="text" class="qty-input" style="text-align:center;" size="3" value="1"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                         	<button class="plus-btn" style="border: none; background-color: #f1f3f5; width: 28px;">+</button>
                        	</span>
                         <span class="total-price-info">총 상품 금액</span>
@@ -143,7 +145,6 @@
                     <br>
                     <div class="prod-summary-footer">
                         <button class="btn btn-light" id="btnAddCart" style="width: 235px;">장바구니</button>
-
                         <button class="btn btn-light" id="btnBuy" style="width: 235px;">바로 구매</button>
 						<c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
 	                        <br><br>
@@ -618,18 +619,20 @@
    		})
 	});
 	
-	function inputNumberFormat(obj) {
-	    obj.value = comma(uncomma(obj.value));
-	}
-	 
-	function comma(str) {
-	    str = String(str);
-	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1');
-	}
+    // 상품 상세 페이지 상단바
 
-	function uncomma(str) {
-	    str = String(str);
-	    return str.replace(/[^\d]+/g, '');
-	}
+    var topBar = $("#topFix").offset();
+    $(window).scroll(function(){
+        var docScrollY = $(document).scrollTop()
+        var barThis = $("#topFix")
+        var fixNext = $("#belowFix")
+        if( docScrollY > topBar.top ) {
+            barThis.addClass("top_bar_fix");
+            fixNext.addClass("pd_top_80");
+        }else{
+            barThis.removeClass("top_bar_fix");
+            fixNext.removeClass("pd_top_80");
+        }
+    });
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

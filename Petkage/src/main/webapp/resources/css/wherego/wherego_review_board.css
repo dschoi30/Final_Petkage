@@ -75,7 +75,8 @@ html {
     width: 829px;
     height: 50px;
     border: 3px solid #753422;
-    border-radius: 30px;
+    border-radius: 20px;
+    font-size: 1.4rem;
 }
 
 .wg_2 .ht_search2 button {
@@ -83,7 +84,7 @@ html {
     height: 50px;
     border: 3px solid #753422;
     border-left: none;
-    border-radius: 30px;
+    border-radius: 20px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     background-color: rgb(255, 255, 255);
@@ -233,6 +234,10 @@ html {
     text-align: center;
 }
 
+.wg_2 .wg_cate .wgc_box a {
+	text-decoration: none;
+	color: black;
+}
 
 .wg_2 .wg_cate .wgc_box p {
     margin: 0;
@@ -280,12 +285,17 @@ html {
     height: 230px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     align-items: center;
-    margin-bottom: 5px;
 }
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1:hover {
     background-color: #bdbdbd2d;
 }
+
+.wg_2 .wgc_7 .wgc7_list .wgc7l_1,
+.wg_2 .wgc_7 .wgc7_list .wgc7l_2 {
+	padding: 10px;
+}
+
 
 .wg_2 .wgc_7 .wgc7_list .wgc7l_1 .wgc7l_img {
     width: 250px;

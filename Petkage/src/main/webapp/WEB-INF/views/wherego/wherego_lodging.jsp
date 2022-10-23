@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging.css?ver=4">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging.css?ver=5">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -54,6 +54,7 @@
         </div>
 
         <div class="wg_filter">
+        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/wherego/lodging_write'">글 작성</button>
             <button id="wgf_btn1" class="wgfbtn active">추천순</button>
             <button id="wgf_btn2" class="wgfbtn">평점순</button>
             <button id="wgf_btn3" class="wgfbtn">낮은가격</button>
@@ -170,7 +171,7 @@
             <div class="wg_content_card">
             	<c:forEach var="lodgingselect" items="${lodgingselect}">
 		                <div class="wgc4_card">
-		                	<a href="${ path }/lodgingdetail">
+		                	<a href="${ path }/wherego/lodgingdetail">
 			                    <div class="card_img">
 			                        <img src="${ path }/resources/images/wherego/${lodgingselect.img}">
 			                    </div>

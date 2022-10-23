@@ -154,10 +154,64 @@ html {
 
 @media (max-width: 1023px) {
 	.wg_6 .wg6_map {
-        width: 100% !important;
+        width: 75%;
+        margin: 0 auto;
+        margin-right: 210px;
+        margin-bottom: 30px;
     }
 }
 
+
+.wg_6 .mapOverlay {
+	background: white; 
+	height: 30px; 
+	border-radius: 6px; 
+	font-size: 15px;
+	padding: 5px;
+}
+
+.wg_6 .btnOverlay{
+	position: relative;
+    bottom: 1.5px;
+	background: white; 
+	border: 1px solid white; 
+	margin: 0px 3px 9px 5px;
+    font-size: 7px;
+}
+
+/* 관리자 버튼 */
+
+.wg_6 .wg6_manager {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 32px;
+}
+
+@media (max-width: 1023px) {
+	.wg_6 .wg6_manager {
+        width: 75%;
+        margin: 0 auto;
+        margin-right: 210px;
+        margin-bottom: 30px;
+    }
+}
+
+.wg_6 .wg6_manager button {
+	background-color: white;
+	border: none;
+}
+
+.wg_6 .wg6_manager button img {
+	width: 30px;
+	height: 30px;
+}
+
+.wg_6 .wg6_manager button img:hover {
+	width: 32px;
+	height: 32px;
+}
 
 /* 미들라인 */
 .wg_6 .wg6_mid {

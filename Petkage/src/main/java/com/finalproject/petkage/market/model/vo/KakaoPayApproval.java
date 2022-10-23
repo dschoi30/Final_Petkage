@@ -12,7 +12,7 @@ public class KakaoPayApproval {
 	// 요청 고유 번호
     private String aid;
     
-    // 결제 고유 번호 - DB 
+    // 결제 고유 번호
     private String tid;
     
     // 가맹점 코드
@@ -24,13 +24,13 @@ public class KakaoPayApproval {
     // 가맹점 주문번호-최대 100자
     private String partner_order_id;
     
-    // 가맹점 회원 id-최대 100자 - DB
+    // 가맹점 회원 id-최대 100자
     private String partner_user_id;
     
-    // 결제 수단-CARD 또는 MONEY 중 하나 - DB
+    // 결제 수단-CARD 또는 MONEY 중 하나
     private String payment_method_type;
     
-    // 결제 금액 정보 - DB
+    // 결제 금액 정보
     private Amount amount;
     
     // 결제 상세 정보-결제수단이 카드일 경우만 포함
@@ -54,23 +54,9 @@ public class KakaoPayApproval {
     // 부가세 금액
     private Integer vat_amount;
     
-    // 결제 준비 요청 시각 - DB
+    // 결제 준비 요청 시각
     private Date created_at;
     
-    // 결제 승인 시각 - DB
+    // 결제 승인 시각
     private Date approved_at;
-    
-    /* 별도 추가 */
-
-    // 결제 상품 목록
-    private List<PayItems> payitems;
-    
-    // 적립 포인트
-    private int savedPoint;
-    
-    // 사용 포인트
-    private int usedPoint;
-
-    // 배송비
-    private int proDelFee;
 }

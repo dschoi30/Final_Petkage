@@ -42,7 +42,9 @@ public class Product {
 	
 	private String proStatus;
 	
-	private int proRepCount;
+	private int proRevCount;
+	
+	private double proRating;
 	
 	private String searchValue;
 }

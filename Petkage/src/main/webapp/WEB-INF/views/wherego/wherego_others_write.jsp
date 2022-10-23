@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_manager_2.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_others_write.css?ver=3">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -27,7 +27,7 @@
 <body>
 
     <section class="wg_10">
-        <form action="">
+        <form action="${ path }/wherego/others_write" method="post" enctype="multipart/form-data">
             <div class="wg5_top">
                 <div class="wg5t_1">
                     <div class="wgc7w_upload">
@@ -35,58 +35,72 @@
                             <label for="image">
                                 <div class="btn-upload">업로드</div>
                             </label>
-                            <input type="file" name="image" id="image" multiple>
+                            <input type="file" name="multiFile" id="image" multiple>
                             <div id="preview"></div>
                         </div>
                     </div>
                 </div>
                 <div class="wg5t_2">
                     <div class="wg5t2_name">
-                        <input type="text" name="name" placeholder="매장 명" required>
+                        <input type="text" name="spotName" placeholder="매장 명" required>
                     </div>
                     <div class="wg5t2_address">
-                        <input type="text" name="address" placeholder="매장 주소" required>
+                        <input type="text" name="spotAddress" placeholder="매장 주소" required>
+                    </div>
+                    <div class="wg5t2_category">
+                        <div class="wg5t2_cate">카테고리</div>
+                        <select name="spotCategory" id="spotCategory" required>
+                            <option disabled selected>카테고리 선택</option>
+                            <option value="카페">카페</option>
+                            <option value="맛집">맛집</option>
+                            <option value="미용">미용</option>
+                            <option value="여행지">여행지</option>
+                            <option value="동물병원">동물병원</option>
+                            <option value="유치원">유치원</option>
+                            <option value="셀프목욕">셀프목욕</option>
+                            <option value="펫시터">펫시터</option>
+                        </select>
                     </div>
 					<div class="wg5t2_location">
                         <div class="wg5t2_loca">지역</div>
-                        <select name="" id="" required>
+                        <select name="spotLocation" id="spotLocation" required>
                             <option disabled selected>지역선택</option>
-                            <option>서울</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>경상</option>
-                            <option>전라</option>
-                            <option>충청</option>
+                            <option value="서울">서울</option>
+                            <option value="부산">부산</option>
+                            <option value="제주">제주</option>
+                            <option value="경기">경기</option>
+                            <option value="인천">인천</option>
+                            <option value="강원">강원</option>
+                            <option value="경상">경상</option>
+                            <option value="전라">전라</option>
+                            <option value="충청">충청</option>
                         </select>
                     </div>
                     <div class="wg5t2_option">
                         <div class="wg5t2_size">크기</div>
                         <div class="wg5t2_breed">
-                            <input type="checkbox" name="small" id="small">
+                            <input type="checkbox" name="spotSize" id="small" value="소형견">
                             <label for="small">소형견</label>
-                            <input type="checkbox" name="medium" id="medium">
+                            <input type="checkbox" name="spotSize" id="medium" value="중형견">
                             <label for="medium">중형견</label>
-                            <input type="checkbox" name="large" id="large">
+                            <input type="checkbox" name="spotSize" id="large" value="대형견">
                             <label for="large">대형견</label>
                         </div>
                     </div>
                     <div class="wg5t2_amenities">
                         <div class="wg5t2_amentext">편의시설</div>
                         <div class="wgs_checkbox1">
-                            <input type="checkbox" id="internet">
+                            <input type="checkbox" id="internet" name="ameni" value="무선 인터넷">
                             <label for="internet">무선 인터넷</label>
-                            <input type="checkbox" id="parking">
+                            <input type="checkbox" id="parking" name="ameni" value="무료주차">
                             <label for="parking">무료주차</label>
-                            <input type="checkbox" id="withpet">
+                            <input type="checkbox" id="withpet" name="ameni" value="애견동반">
                             <label for="withpet">애견동반</label>
                         </div>
                         <div class="wgs_checkbox2">
-                            <input type="checkbox" id="groups">
+                            <input type="checkbox" id="groups" name="ameni" value="단체석">
                             <label for="groups">단체석</label>
-                            <input type="checkbox" id="garden">
+                            <input type="checkbox" id="garden" name="ameni" value="마당">
                             <label for="garden">마당</label>
                         </div>
                     </div>
@@ -118,7 +132,7 @@
                             <summary class="wg5bci_1">기본 정보</summary>
                             <div class="wg5bci_content">
                                 <div class="form-group">
-                                    <textarea class="form-control" name="information" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                    <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="5"></textarea>
                                 </div>
                             </div>
                         </details>
@@ -128,7 +142,7 @@
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
                                     <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="Coord" required></span>
+                                    <span id="centerAddr"><input type="text" name="spotMap" required></span>
                                 </div>
                             </div>
                         </details>

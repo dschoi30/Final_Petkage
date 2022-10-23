@@ -33,22 +33,6 @@ $(document).ready(() => {
 		
 	}
 
-    // 상품 상세 페이지 상단바
-
-    var topBar = $("#topFix").offset();
-    $(window).scroll(function(){
-        var docScrollY = $(document).scrollTop()
-        var barThis = $("#topFix")
-        var fixNext = $("#belowFix")
-        if( docScrollY > topBar.top ) {
-            barThis.addClass("top_bar_fix");
-            fixNext.addClass("pd_top_80");
-        }else{
-            barThis.removeClass("top_bar_fix");
-            fixNext.removeClass("pd_top_80");
-        }
-    });
-
     const modal = document.querySelector(".modal");
     const img = document.querySelector(".img");
     const modal_img = document.querySelector(".modal_content");

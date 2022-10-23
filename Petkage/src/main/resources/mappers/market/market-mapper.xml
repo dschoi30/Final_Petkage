@@ -20,7 +20,8 @@
 		<result property="proContent" column="PRO_CONTENT"/>
 		<result property="proRDate" column="PRO_RDATE"/>
 		<result property="proStatus" column="PRO_STATUS"/>
-		<result property="proRepCount" column="PRO_REP_COUNT"/>
+		<result property="proRevCount" column="PRO_REVIEW_COUNT"/>
+		<result property="proRating" column="PRO_RATING"/>
 	</resultMap>
 	
 	<resultMap type="Cart" id="cartListResultMap">
@@ -37,14 +38,36 @@
 		<result property="proLTime" column="PRO_LTIME"/>
 	</resultMap>
 
-	<resultMap type="PayItems" id="orderListResultMap">
+	<resultMap type="Payment" id="orderResultMap">
 		<id property="payNo" column="PAY_NO"/>
+		<result property="no" column="PAY_MEM_NO"/>
+		<result property="address" column="PAY_ADDRESS"/>
+		<result property="subaddress" column="PAY_SUBADDRESS"/>
+		<result property="payMehotd" column="PAY_METHOD"/>
+		<result property="totalDelFee" column="PAY_DEL_FEE"/>
+		<result property="totalPrice" column="PAY_PRICE"/>
+		<result property="usingPoint" column="PAY_USING_POINT"/>
+		<result property="totalSavingPoint" column="PAY_SAVING_POINT"/>
+		<result property="totalPriceAfterUsingPoint" column="PAY_FINAL_PRICE"/>
+		<result property="orderComment" column="PAY_COMMENT"/>
+		<result property="orderStatus" column="PAY_STATUS"/>
+		<result property="payCreatedAt" column="PAY_CREATED_AT"/>
+	</resultMap>
+
+	<resultMap type="PayItems" id="orderListResultMap">
+		<id property="payItemNo" column="PAY_ITEM_NO"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="proNo" column="PRO_NO"/>
+		<result property="proCount" column="PRO_COUNT"/>
 		<result property="proName" column="PRO_NAME"/>
 		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
 		<result property="proSPrice" column="PRO_SPRICE"/>
 		<result property="renamedFileName" column="PRO_IMG"/>
 		<result property="proDelFee" column="PRO_DEL_FEE"/>
 		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="eachProTotalPrice" column="PRO_FINAL_PRICE"/>
+		<result property="savingPoint" column="PRO_SAVING_POINT"/>
 	</resultMap>
 
 	<resultMap type="Member" id="memberResultMap">
@@ -66,6 +89,12 @@
 		<result property="findNum" column="MEM_FINDNUM"/>
 	</resultMap>
 
+	<resultMap type="Review" id="reviewResultMap">
+		<id property="revno" column="REV_NO"/>
+		<result property="prono" column="REV_PRO_NO"/>
+		<result property="revscore" column="REV_SCORE"/>
+	</resultMap>
+
 	<sql id="productListSql">
 		SELECT P.PRO_NO,
 			   P.PRO_SEL_NO,
@@ -83,7 +112,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' 
@@ -127,7 +157,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' 
@@ -152,7 +183,8 @@
 			   P.PRO_CONTENT,
 			   P.PRO_RDATE,
 			   P.PRO_STATUS,
-			   P.PRO_REP_COUNT
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
 		FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
 		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
@@ -176,7 +208,8 @@
 		    PRO_CONTENT,
 		    PRO_RDATE,
 		    PRO_STATUS,
-		    PRO_REP_COUNT
+		    PRO_REVIEW_COUNT,
+		    PRO_RATING
 		) VALUES (
 		    SEQ_PRO_NO.NEXTVAL,
 		    #{proSelNo},
@@ -194,7 +227,8 @@
 			#{proContent},
 			DEFAULT,
 			DEFAULT,
-			DEFAULT
+			DEFAULT,
+			#{proRating}
 		)
 	</insert>
 	
@@ -297,8 +331,9 @@
 		SELECT PRO_NO,
 			   PRO_NAME,
 			   PRO_BRAND,
-			   PRO_SPRICE,
 			   PRO_IMG,
+			   PRO_OPRICE,
+			   PRO_SPRICE,
 			   PRO_DEL_FEE,
 			   PRO_LTIME
 		FROM PRODUCT
@@ -317,4 +352,80 @@
 		FROM MEMBER
 		WHERE MEM_NO = #{ memNo }
 	</select>
+	
+	<insert id="placeOrder" parameterType="KakaoPayReady" useGeneratedKeys="true" keyProperty="payNo" keyColumn="PAY_NO">
+		INSERT INTO PAYMENT (
+			PAY_NO,
+			PAY_MEM_NO,
+			PAY_ADDRESS,
+			PAY_SUBADDRESS,
+			PAY_METHOD,
+			PAY_DEL_FEE,
+			PAY_TOTAL_PRICE,
+			PAY_USING_POINT,
+			PAY_SAVING_POINT,
+			PAY_FINAL_PRICE,
+			PAY_COMMENT,
+			PAY_STATUS,
+			PAY_CREATED_AT
+		) VALUES (
+			#{ payNo },
+			#{ no },
+			#{ address },
+			#{ subaddress },
+			#{ payMethod },
+			#{ totalDelFee },
+			#{ totalPrice },
+			#{ usingPoint },
+			#{ totalSavingPoint },
+			#{ totalPriceAfterUsingPoint },
+			#{ orderComment },
+			'결제완료',
+			#{ payCreatedAt }
+		)
+	</insert>
+	
+	<insert id="placeOrderItems" parameterType="PayItems" useGeneratedKeys="true" keyProperty="payItemNo" keyColumn="PAY_ITEM_NO">
+		INSERT INTO PAYMENT_ITEMS (
+			PAY_ITEM_NO,
+			PAY_NO,
+			PRO_NO,
+			PRO_COUNT,
+			PRO_NAME,
+			PRO_BRAND,
+			PRO_OPRICE,
+			PRO_SPRICE,
+			PRO_IMG,
+			PRO_DEL_FEE,
+			PRO_LTIME,
+			PRO_FINAL_PRICE,
+			PRO_SAVING_POINT
+		) VALUES (
+			SEQ_PAY_ITEM_NO.NEXTVAL,
+			#{ payNo },
+			#{ proNo },
+			#{ proCount },
+			#{ proName },
+			#{ proBrand },
+			#{ proOPrice },
+			#{ proSPrice },
+			#{ renamedFileName },
+			#{ proDelFee },
+			#{ proLTime },
+			#{ eachProTotalPrice },
+			#{ savingPoint }
+		)
+	</insert>
+	
+	<select id="getProductRating">
+		SELECT AVG(REV_SCORE)
+		FROM REVIEW
+		WHERE REV_PRO_NO = #{ proNo }
+	</select>
+
+	<update id="updateProductRating">
+		UPDATE PRODUCT SET PRO_RATING = #{ proRatingAvg }
+		WHERE PRO_NO = #{ proNo }
+	</update>	
+	
 </mapper>

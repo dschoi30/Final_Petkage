@@ -78,9 +78,9 @@
 						<div class="content_write walkOut">
 							<span class="content_write_input write_divline ">
 								<div class="weather_content">
-									<%-- <div class="weatherTitle">지금 현재 위치의 날씨는</div> --%>
+									<!--  <div class="weatherTitle">지금 현재 위치의 날씨는</div> -->
 									<div class="wContents" id="weatherIcon">
-										<img id="petIcon" src="${ path }/resources/images/common/w_801.2.png">
+										<img id="petIcon" src="">
 									</div>
 									<div class="wContents" id="weatherMain">
 										<img id="wIcon" src="">
@@ -210,8 +210,8 @@
 
 			function showLocation(event) {
 
-				var latitude = event.coords.latitude 
-				var longitude = event.coords.longitude
+				var latitude = event.coords.latitude;
+				var longitude = event.coords.longitude;
 				
 				let apiKey = "84f768a9f0ee1c1111d29e6c79cdd359"
 				let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude 
@@ -228,9 +228,11 @@
 
 					let icon = response.weather[0].icon
 					let iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
-					let img = document.querySelector("#wIcon")
+					let img = document.querySelector("#wIcon");
+					let petImg = document.querySelector("#petIcon");
 
 					img.src = iconUrl 
+					petImg.src = changePetIcon("\"" + response.weather[0].id + "\"");
 					document.querySelector("#temp").textContent = (response.main.temp - 273).toFixed(1) + " ℃" // 현재 온도
 					document.querySelector("#humidity").textContent = (response.main.humidity) + " %" // 현재 온도
 					document.querySelector("#description").textContent = (wDescEngToKor(response.weather[0].id)) // 현재 날씨
@@ -264,9 +266,12 @@
 
 					let icon = response.weather[0].icon
 					let iconUrl = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
-					let img = document.querySelector("#wIcon")
+					let img = document.querySelector("#wIcon");
+					let petImg = document.querySelector("#petIcon");
 
 					img.src = iconUrl 
+					petImg.src = changePetIcon("\"" + response.weather[0].id + "\"");
+					// document.querySelector("#petIcon") = changePetIcon(response.weather[0].id);
 					document.querySelector("#temp").textContent = (response.main.temp - 273).toFixed(1) + " ℃" // 현재 온도
 					document.querySelector("#humidity").textContent = (response.main.humidity) + " %" // 현재 온도
 					document.querySelector("#description").textContent = (wDescEngToKor(response.weather[0].id)) // 현재 날씨
@@ -425,6 +430,33 @@
 				break;
 			}
 		}
+	}
+	
+	function changePetIcon(weatherCode) {
+		var code = weatherCode.substr(1, 3);
+		var codeXX = weatherCode.substr(1, 1);
+		console.log("날씨 코드 : " + code);
+		console.log("날씨 한자리 코드 : " + codeXX);
+
+		if (codeXX == 2) {
+			petUrl = '${ path }/resources/images/common/w_2XX.png';
+		} else if (codeXX == 3 || codeXX == 5 || codeXX == 6) {
+			petUrl = '${ path }/resources/images/common/w_3XX.png';
+		} else if (codeXX == 7) {
+			petUrl = '${ path }/resources/images/common/w_7XX.png';
+		} else if (code == 800) {
+			petUrl = '${ path }/resources/images/common/w_800.png';
+		} else if (code == 801 || code == 802) {
+			petUrl = '${ path }/resources/images/common/w_801.2.png';
+		} else if (code == 803 || code == 804) {
+			petUrl = '${ path }/resources/images/common/w_803.4.png';
+		} else if (901 <= code && code <= 906) {
+			petUrl = '${ path }/resources/images/common/w_901.6.png';
+		} else if (951 <= code && code <= 962) {
+			petUrl = '${ path }/resources/images/common/w_951.62.png';
+		} 
+
+		return petUrl
 	}
 	
 </script>
