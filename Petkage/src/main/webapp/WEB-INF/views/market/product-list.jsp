@@ -26,7 +26,7 @@
                 </div>
 			</div>
             </form>
-            <c:if test="${ (loginMember.no == product.proSelNo) || (loginMember.memberRole == 'ROLE_ADMIN')}">
+            <c:if test="${ (loginMember.memberRole == 'ROLE_SELLER') || (loginMember.memberRole == 'ROLE_ADMIN')}">
 	        	<button class="btn add-pro-btn" onclick="location.href='${ path }/market/product-write'">상품 등록</button>
 	        </c:if>
             <form action="${ path }/market/product-list" method="GET">
@@ -149,7 +149,7 @@
 	                                	<div style="margin-bottom: 5px;">
 	                                    	<span style="color: #ed0000; font-size: 18px; font-weight: bold;"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></span><span>원</span><br>
 	                                    </div>
-	                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 10/6(목) 발송</p>
+	                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 내일 발송</p>
 	                                    <div style="margin-bottom: 5px;">
 		                                    <span class="rating">
 			                                    <c:forEach var="i" begin="1" end="${ product.proRating }">
@@ -295,7 +295,7 @@
                                 	<div style="margin-bottom: 5px;">
                                     	<span style="color: #ed0000; font-size: 18px; font-weight: bold;"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></span><span>원</span><br>
                                     </div>
-                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 10/6(목) 발송</p>
+                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 내일 발송</p>
                                     <div style="margin-bottom: 5px;">
 	                                    <span class="rating">
 		                                    <c:forEach var="i" begin="1" end="${ product.proRating }">
@@ -441,7 +441,7 @@
                                 	<div style="margin-bottom: 5px;">
                                     	<span style="color: #ed0000; font-size: 18px; font-weight: bold;"><fmt:formatNumber value="${ product.proSPrice }" pattern="#,###"/></span><span>원</span><br>
                                     </div>
-                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 10/6(목) 발송</p>
+                                    <p style="color: green; margin: 2px; font-size: 15px;">지금 주문 시 내일 발송</p>
                                     <div style="margin-bottom: 5px;">
 	                                    <span class="rating">
 		                                    <c:forEach var="i" begin="1" end="${ product.proRating }">

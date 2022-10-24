@@ -366,8 +366,10 @@ margin: 100px auto;
 
 #fullpage .slide_images{
     height: 60%;
+    width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 #fullpage .slide_image{
@@ -594,31 +596,31 @@ margin: 100px auto;
 .best_product:nth-child(5):after {
 	content: "NAME";
 	position: absolute;
-	bottom: 20px;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	font-size: 30px;
-	font-weight: 900;
-	color: white;
-	text-shadow: 3px 3px #555;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 3px 2px #555;
 }
 
-/* .best_product:nth-child(1):after {
-	content: "챔피온 티셔츠";
+ .best_product:nth-child(1):after {
+	content: attr(proname);
 }
 
 .best_product:nth-child(2):after {
-	content: "메종 선글라스";
+	content: attr(proname);
 }
 
 .best_product:nth-child(3):after {
-	content: "샤넬 봉투";
+	content: attr(proname);
 }
 
 .best_product:nth-child(4):after {
-	content: "MIKE";
-} */
+	content: attr(proname);
+}
 
 /* section4 CSS */
 

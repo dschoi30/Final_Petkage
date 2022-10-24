@@ -53,40 +53,6 @@
 			top: 0;
 			z-index: 100;
 		}
-
-		.best_product:nth-child(1) {
-			background-color: dodgerblue;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-
-		.best_product:nth-child(2) {
-			background-color: red;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-		.best_product:nth-child(3) {
-			background-color: purple;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-		.best_product:nth-child(4) {
-			background-color: darkorange;
-			background-image: url("${ path }/resources/upload/market/${ product.renamedFileName });
-		}
-
-		.best_product:nth-child(1):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(2):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(3):after {
-			content: "${ product.proName }";
-		}
-
-		.best_product:nth-child(4):after {
-			content: "${ product.proName }";
-		}
 	</style>
 	
 </head>
@@ -151,7 +117,6 @@
                     <li class="nav-item header_item"><a href="${ path }/wherego/main" class="nav-link header_link">어디가지</a></li>
                     <li class="nav-item header_item"><a href="${ path }/market/product-list" class="nav-link header_link">마켓</a></li>
                     <li class="nav-item header_item"><a href="${ path }/tools/toolsMain" class="nav-link header_link">펫키지 툴즈</a></li>
-                    <li class="nav-item header_item"><a href="${ path }/chatting" class="nav-link header_link">채팅</a></li>
                     <c:if test="${ empty loginMember }">
 	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/member/enroll'" value="회원가입">
 	                    <input type="submit" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/loginPage'" value="로그인">
@@ -168,7 +133,7 @@
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin'" value="관리자페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/admMain'" value="관리자페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
@@ -212,76 +177,51 @@
 			  <div class="iconmouse">
 				<span class="ball"></span>
 			  </div>
-			  
-			  
   
 		</section>
 		<section class="section sec2"> <!-- 추천 어디가지 -->
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
+				<c:forEach var="wherego" items="${ wherego }">
 					<div class="swiper-slide">
+						<c:set var="rename_wherego" value="${ wherego.renameImg }" />
+						<c:if test="${ wherego.spotCategory == '숙소' }"> 
+							<a href="${ path }/wherego/wherego_lodging_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '카페' }"> 
+							<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '맛집' }"> 
+							<a href="${ path }/wherego/wherego_food_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '미용' }"> 
+							<a href="${ path }/wherego/wherego_hair_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '여행지' }"> 
+							<a href="${ path }/wherego/wherego_cafe_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '동물병원' }"> 
+							<a href="${ path }/wherego/wherego_hospital_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '유치원' }"> 
+							<a href="${ path }/wherego/wherego_preschool_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '셀프목욕' }"> 
+							<a href="${ path }/wherego/wherego_bath_detail?no=${ wherego.spotNo }">
+						</c:if>	
+						<c:if test="${ wherego.spotCategory == '펫시터' }"> 
+							<a href="${ path }/wherego/wherego_petsitter_detail?no=${ wherego.spotNo }">
+						</c:if>	
 						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
+							<img class="slide_image" src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 						</div>
 						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~10,000원</h3></a>
+							<a class="slide_text"><h2>${ wherego.spotName }</h2></a>
+							<a class="slide_text"><h3>${ wherego.introduce }</h3></a>
 						</div>
+						</a>
 					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~20,000원</h3></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~30,000원</h3></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~40,000원</h3></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~50,000원</h3></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~60,000원</h3></a>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="slide_images">
-							<img class="slide_image" src="${ path }/resources/images/common/Rectangle.png" alt=""/>
-						</div>
-						<div class="slide_texts">
-							<a href="javascript:void(0)" class="slide_text"><h2>플로리다 애견 동반 숙소</h2></a>
-							<a href="javascript:void(0)" class="slide_text"><h3>1박 ~70,000원</h3></a>
-						</div>
-					</div>
+				</c:forEach>
 				</div>
 			</div>
 			<div class="texts_right">
@@ -300,12 +240,19 @@
 				</div>
 			</div>
 			<div class="best_products">
-				<div class="best_product"></div>
-				<div class="best_product highlight"></div>
-				<div class="best_product"></div>
-				<div class="best_product"></div>
+				<c:forEach var="product" items="${ product }">
+	         	<c:set var="rename_product" value="${ product.renamedFileName }" />   
+         		<a href="${ path }/market/product-view?proNo=${ product.proNo }">
+	            <div class="best_product" 
+	               style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
+	            </div>
+	            </a>
+		         </c:forEach>
+				<div class="best_product highlight" style="display: none;">
+				</div> 
 			</div>
 		</section>
+		
 		<section class="section sec4"> <!-- 일정 캘린더 -->
 				<div class="calendar">
 					<div class="my-calendar clearfix">
@@ -516,25 +463,26 @@
 			elm.classList.toggle("highlight");
 		});
 	});
-
+	
 	window.addEventListener("keyup", function (e) {
-		var panel = document.querySelector(".highlight");
-		if (
-			(e.keyCode == 37 || e.keyCode == 38) &&
-			panel != document.querySelectorAll(".best_product")[0]
-		) {
-			panel.previousElementSibling.classList.toggle("highlight");
-			panel.classList.toggle("highlight");
-		}
-		if (
-			(e.keyCode == 39 || e.keyCode == 40) &&
-			panel != document.querySelectorAll(".best_product")[3]
-		) {
-			panel.nextElementSibling.classList.toggle("highlight");
-			panel.classList.toggle("highlight");
-		}
-	});
+	      var panel = document.querySelector(".turnon_highlight");
+	      if (
+	         (e.keyCode == 37 || e.keyCode == 38) &&
+	         panel != document.querySelectorAll(".best_product")[0]
+	      ) {
+	         panel.previousElementSibling.classList.toggle("highlight");
+	         panel.classList.toggle("highlight");
+	      }
+	      if (
+	         (e.keyCode == 39 || e.keyCode == 40) &&
+	         panel != document.querySelectorAll(".best_product")[3]
+	      ) {
+	         panel.nextElementSibling.classList.toggle("highlight");
+	         panel.classList.toggle("highlight");
+	      }
+	   });
 
+	
 	window.focus();
 
 	// 하얀 달력

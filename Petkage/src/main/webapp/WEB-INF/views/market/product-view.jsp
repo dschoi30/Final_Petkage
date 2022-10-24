@@ -19,7 +19,7 @@
     <title>Document</title>
 </head>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<body>
+<body ondragstart="return false" onselectstart="return false">
     <div id="wrap-all-prod">
         <div class="row">
             <div class="contents" style="margin-bottom: 50px;">
@@ -176,151 +176,72 @@
                         <p id="prodReview"></p>
                         <br><br>
                         <div>
-                            <br>
+							<br>
                             <h4><strong>상품평</strong></h4>
                             <p><small>상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.<br>
                                 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이페이지 내 1:1 문의에 남겨주세요.
                             </small></p>
                             <hr>
                             <div class="review">
-                                <span>김*혜</span>
-                                <div>
-                                    <span class="rating">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                    </span>
-                                    <span>2022.09.24</span>
-                                </div>                                
-                                <div>
-                                    탐사 제품이 점점 퀄리티가 좋아지는거 같아서<br>
-                                    우리 강아지 사료도 한번 주문해봤어요!<br>
-                                    5살 말티즈 입맛 까다로운 아이인데 잘 먹네요!!
-                                </div>
-                                <img class="img" src="${path}/resources/images/review1.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review2.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review3.jpg" width="80" height="80">
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review1.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review2.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review3.jpg">
-                                </div>
-                            </div>
-                            <div class="review">
-                                <span>김*혜</span>
-                                <div>
-                                    <span class="rating">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                    </span>
-                                    <span class="review-date">2022.09.24</span>
-                                </div>
-                                <div>
-                                    탐사 제품이 점점 퀄리티가 좋아지는거 같아서<br>
-                                    우리 강아지 사료도 한번 주문해봤어요!<br>
-                                    5살 말티즈 입맛 까다로운 아이인데 잘 먹네요!!
-                                </div>
-                                <img class="img" src="${path}/resources/images/review1.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review2.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review3.jpg" width="80" height="80">
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review1.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review2.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review3.jpg">
-                                </div>
-                            </div>
-                            <div class="review">
-                                <span>김*혜</span>
-                                <div>
-                                    <span class="rating">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="${path}/resources/images/market/star_filled.png" width="18" height="18" alt="star">
-                                    </span>
-                                    <span class="review-date">2022.09.24</span>
-                                </div>
-                                <div>
-                                    탐사 제품이 점점 퀄리티가 좋아지는거 같아서<br>
-                                    우리 강아지 사료도 한번 주문해봤어요!<br>
-                                    5살 말티즈 입맛 까다로운 아이인데 잘 먹네요!!
-                                </div>
-                                <img class="img" src="${path}/resources/images/review1.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review2.jpg" width="80" height="80">
-                                <img class="img" src="${path}/resources/images/review3.jpg" width="80" height="80">
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review1.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review2.jpg">
-                                </div>
-                                <div class="modal">
-                                    <span class="close">&times;</span>
-                                    <img class="modal_content" src="${path}/resources/images/review3.jpg">
-                                </div>
-                            </div>
-                            <!-- <div class="review">
-                                <span>김*혜</span>
-                                <div>
-                                    <span class="rating">
-                                        <img src="/CHOI/IMG/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="/CHOI/IMG/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="/CHOI/IMG/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="/CHOI/IMG/star_filled.png" width="18" height="18" alt="star">
-                                        <img src="/CHOI/IMG/star_filled.png" width="18" height="18" alt="star">
-                                    </span>
-                                    <span>2022.09.24</span>
-                                </div>
-                                <div>
-                                    탐사 제품이 점점 퀄리티가 좋아지는거 같아서<br>
-                                    우리 강아지 사료도 한번 주문해봤어요!<br>
-                                    5살 말티즈 입맛 까다로운 아이인데 잘 먹네요!!
-                                </div>
-                                <div>
-                                    <a href="/CHOI/IMG/review1.jpg" data-toggle="lightbox" class="col-sm-4" data-title="모달 제목" data-footer="모달 푸터내용">
-                                        <img src="/CHOI/IMG/review1.jpg" class="img-fluid rounded">
-                                    </a>
-                                    <a href="/CHOI/IMG/review2.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                                        <img src="/CHOI/IMG/review2.jpg" class="img-fluid rounded">
-                                    </a>
-                                    <a href="/CHOI/IMG/review3.jpg" data-toggle="lightbox" data-gallery="example-gallery" class="col-sm-4">
-                                        <img src="/CHOI/IMG/review3.jpg" class="img-fluid rounded">
-                                    </a>
-                                </div>
-                            </div> -->
+                            	<c:if test="${ empty list }">
+                            		이 상품의 리뷰가 아직 존재하지 않습니다.
+                            	</c:if>
+                            	<c:if test="${ not empty list }">
+                            		<c:forEach var="review" items="${ list }">
+		                                <span>
+		                                	<c:set var="name" value="${review.memname}"/>
+											<c:set var="totalLength" value="${fn:length(name) }"/>
+											<c:set var="first" value="${fn:substring(name, 0, 1) }"/>
+											<c:set var="last" value="${fn:substring(name, 2, totalLength) }"/>
+		                                	<c:out value="${first} * ${last}"/>
+		                                </span>
+		                                <div>
+		                                    <span class="rating">
+			                                    <c:forEach var="i" begin="1" end="${ review.revscore }">
+			                                    	<img src="${ path }/resources/images/market/star_filled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">                                      
+			                                    </c:forEach>											
+												<c:forEach var="j" begin="1" end="${ 5 - review.revscore }">	
+				                                	<img src="${ path }/resources/images/market/star_unfilled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">                                      
+												</c:forEach>
+											</span>
+		                                    <span><fmt:formatDate value="${ review.revdate }" pattern="yyyy.MM.dd"/></span>
+		                                </div>                                
+		                                <div>${ review.revcoment }
+		                                </div>
+		                                <img class="img" src="${path}/resources/uploadFiles/${ review.revrenameimg }" width="80" height="80">
+		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
+		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
+		                                <div class="modal">
+		                                    <span class="close">&times;</span>
+		                                    <img class="modal_content" src="${path}/resources/uploadFiles/${ review.revrenameimg }">
+		                                </div>
+		                                <div class="modal">
+		                                    <span class="close">&times;</span>
+		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
+		                                </div>
+		                                <div class="modal">
+		                                    <span class="close">&times;</span>
+		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
+		                                </div><hr>
+	                                </c:forEach>
+								</c:if>
+							</div>
                             <br><br>
                             <div class="col">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                                </ul>
+				                 <ul class="pagination justify-content-center">
+					                 <li class="page-item"><a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }&page=1">&lt;&lt;</a></li>
+					                 <li class="page-item"><a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }&page=${ pageInfo.prevPage }&prono=${ review.prono }">&lt;</a></li>
+									 <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+									 	<c:if test="${ status.current == pageInfo.currentPage }">
+					                    	<li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
+										</c:if>
+										<c:if test="${ status.current != pageInfo.currentPage }">
+					                    	<li class="page-item"><a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }&page=${ status.current }&prono=${ review.prono }">${ status.current }</a></li>
+										</c:if>
+									 </c:forEach>
+					                 <li class="page-item"><a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }&page=${ pageInfo.nextPage }&prono=${ review.prono }">&gt;</a></li>
+					                 <li class="page-item"><a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }&page=${ pageInfo.maxPage }&prono=${ review.prono }">&gt;&gt;</a></li>
+				                 </ul>
                             </div>
                         </div>
                     </ul>

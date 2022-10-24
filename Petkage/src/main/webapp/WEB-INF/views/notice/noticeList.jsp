@@ -31,7 +31,7 @@
                     </c:if>
                 </span>
             </div>
-            <div class="nt_inner" style="color:white;">
+            <div class="nt_inner" style="color:white; background-image: url('${ path }/resources/images/notice/Rectangle 2051.png');">
             	<br><br>
             	전체
 	            <span style="color: #803D3D">${ noticeCount }</span>
@@ -91,20 +91,20 @@
 			<br><br>
 		<div style="text-align: center;">
 
-			<button class="btn btn-customlr btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.prevPage }'">&lt;</button>
+			<button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.prevPage }'">&lt;</button>
 			&nbsp;&nbsp;
 			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 				<c:if test="${ status.current == pageInfo.currentPage }">
-					<button class="btn btn-custom btn-xs" disabled>${ status.current }</button>
+					<button class="btn btn-custom btn-sm" disabled>${ status.current }</button>
 					&nbsp;&nbsp;
 				</c:if>
 				<c:if test="${ status.current != pageInfo.currentPage }">
-					<button class="btn btn-custom btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ status.current }'">${ status.current }</button>
+					<button class="btn btn-custom btn-sm" onclick="location.href='${ path }/notice/noticeList?page=${ status.current }'">${ status.current }</button>
 					&nbsp;&nbsp;
 				</c:if>
 			</c:forEach>
 
-			<button class="btn btn-customlr btn-xs" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.nextPage }'">&gt;</button>
+			<button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/notice/noticeList?page=${ pageInfo.nextPage }'">&gt;</button>
 
 		</div>
 	</div>
@@ -112,19 +112,6 @@
     </section>
 
     <br>
-      
- <!-- 
-    <style>
-    .nt .nt_inner{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.25em;
-    background-image: url('${ path }/resources/images/notice/Rectangle 2051.png');
-    height : 150px;
-	}
-  --> 
-
-    </style> 
       
     <script> 
 	    $(document).ready(() => {			

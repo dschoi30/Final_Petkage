@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.petkage.admin.model.mapper.AdminMapper">
+	<sql id="selectMemberSql">
+		SELECT MEM_NO,
+		       MEM_ID,
+		       MEM_PWD,
+		       MEM_NAME,
+		       MEM_PHONE,
+		       MEM_ZONECODE,
+		       MEM_ADDRESS,
+		       MEM_SUBADDRESS,
+		       MEM_EMAIL,
+		       MEM_POINT,
+		       MEM_REPORT,
+		       MEM_ROLE,
+		       MEM_STATUS,
+		       MEM_ENROLLDATE,
+		       MEM_FINDNUM,
+		       MEM_ENROLLTYPE
+		FROM MEMBER
+	</sql>
+	
+	<sql id="selectBoardSql">
+		SELECT SPOT_NO,
+			   USER_NO,
+			   SPOT_CATEGORY,
+			   SPOT_LOCATION,
+			   SPOT_NAME,
+			   SPOT_ADDRESS,
+			   SPOT_SIZE,
+			   SPOT_AMENI,
+			   SPOT_IMG,
+			   SPOT_THEME,
+			   SPOT_INTRODUCE,
+			   SPOT_INFO,
+			   SPOT_STATUS,
+			   SPOT_RENAMEIMG
+		FROM WHEREWEGO
+	</sql>
+	
+	<sql id="selectProductSql">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+               M.MEM_ID,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+	</sql>
+	
+	<sql id="selectReviewSql">
+		SELECT  R.REV_NO,
+		        R.REV_SPOT_NO,
+		        R.REV_PRO_NO,
+		        R.REV_WRITER_NO,
+		        M.MEM_NAME,
+		        R.REV_TYPE,
+		        R.REV_TITLE,
+		        R.REV_CONTENT,
+		        R.REV_DATE,
+		        R.REV_SCORE,
+		        R.REV_RECOMMEND,
+		        R.REV_STATUS,
+		        R.REV_REPORT,
+		        R.REV_CATEGORY
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+	</sql>
+	
+	<resultMap type="Member" id="memberResultMap">
+		<id property="no" column="MEM_NO" />
+		<result property="userId" column="MEM_ID"/>
+		<result property="userPwd" column="MEM_PWD"/>
+		<result property="userName" column="MEM_NAME"/>
+		<result property="userPhone" column="MEM_PHONE"/>
+		<result property="zonecode" column="MEM_ZONECODE"/>
+		<result property="userAddress" column="MEM_ADDRESS"/>
+		<result property="addressSub" column="MEM_SUBADDRESS"/>
+		<result property="userEmail" column="MEM_EMAIL"/>
+		<result property="point" column="MEM_POINT"/>
+		<result property="report" column="MEM_REPORT"/>
+		<result property="memberRole" column="MEM_ROLE"/>
+		<result property="status" column="MEM_STATUS"/>
+		<result property="enrolldate" column="MEM_ENROLLDATE"/>
+		<result property="petYN" column="MEM_PETYN"/>
+		<result property="findNum" column="MEM_FINDNUM"/>
+		<result property="enrollType" column="MEM_ENROLLTYPE"/>
+	</resultMap>
+	
+	<resultMap type="Wherego" id="wheregoResultMap">
+		<id property="spotNo" column="SPOT_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="spotStatus" column="SPOT_STATUS" />
+	</resultMap>
+	
+	<resultMap type="Product" id="productResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="selId" column="MEM_ID"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proTag" column="PRO_TAG"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proContent" column="PRO_CONTENT"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="Review" id="reviewResultMap">
+		<id property="revno" column="REV_NO" />
+		<result property="spotno" column="REV_SPOT_NO" />
+		<result property="prono" column="REV_PRO_NO" />
+		<result property="writerno" column="REV_WRITER_NO" />
+		<result property="memname" column="MEM_NAME" />
+		<result property="revtype" column="REV_TYPE" />
+		<result property="revtitle" column="REV_TITLE" />
+		<result property="revcoment" column="REV_CONTENT" />
+		<result property="revdate" column="REV_DATE" />
+		<result property="revscore" column="REV_SCORE" />
+		<result property="revrecomend" column="REV_RECOMMEND" />
+		<result property="revstatus" column="REV_STATUS" />
+		<result property="revreport" column="REV_REPORT" />
+		<result property="revcategory" column="REV_CATEGORY" />
+	</resultMap>
+	
+	<select id="selectMemCountBySearch" resultType="_int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEM_STATUS='Y'
+		<if test="search != null">
+			AND MEM_ID LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
+	</select>
+	
+	<select id="selectMemAllBySearch" resultMap="memberResultMap">		
+		<include refid="selectMemberSql"/>
+		WHERE MEM_STATUS = 'Y'
+		<if test="search != null">
+			AND MEM_ID LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
+		ORDER BY MEM_ENROLLDATE DESC
+	</select>
+	
+	<select id="selectMemXCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEM_STATUS = 'N'
+	</select>
+	
+	<select id="selectMemXAll" resultMap="memberResultMap">		
+		<include refid="selectMemberSql"/>
+		WHERE MEM_STATUS = 'N'
+		ORDER BY MEM_ENROLLDATE DESC
+	</select>
+	
+	<select id="selectBoardCount" resultType="_int">
+		SELECT COUNT(*) FROM WHEREWEGO
+	</select>
+	
+	<select id="selectBoardAll" resultMap="wheregoResultMap">		
+		<include refid="selectBoardSql"/>
+		ORDER BY SPOT_NO DESC
+	</select>
+	
+	<select id="selectProductCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT
+	</select>
+	
+	<select id="selectProductAll" resultMap="productResultMap">		
+		<include refid="selectProductSql"/>
+        ORDER BY P.PRO_NO DESC
+	</select>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW
+	</select>
+	
+	<select id="selectReviewAll" resultMap="reviewResultMap">		
+		<include refid="selectReviewSql"/>
+        ORDER BY REV_NO DESC
+	</select>
+	
+
+	
+	
+	
+
+</mapper>

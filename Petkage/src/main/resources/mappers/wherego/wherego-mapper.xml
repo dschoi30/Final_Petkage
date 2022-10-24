@@ -7,27 +7,7 @@
 		FROM WHEREWEGO
 	</sql>
 	
-	<sql id="includeRoomSql">
-		SELECT W.SPOT_NO,
-			W.USER_NO,
-			W.SPOT_CATEGORY,
-			W.SPOT_LOCATION,
-			W.SPOT_NAME,
-			W.SPOT_ADDRESS,
-			W.SPOT_SIZE,
-			W.SPOT_AMENI,
-			W.SPOT_IMG,
-			W.SPOT_RENAMEIMG,
-			W.SPOT_THEME,
-			W.SPOT_INTRODUCE,
-			W.SPOT_INFO,
-			W.SPOT_STATUS,
-			W.SPOT_MAP,
-			W.SPOT_ROOMNUM,
-			R.ROOM_PRICE 
-		FROM WHEREWEGO W
-		FULL OUTER JOIN ROOM R ON (R.SPOT_NO = W.SPOT_NO)
-	</sql>
+	
 	<!-- wherego -->
 	<resultMap type="Wherego" id="wheregovo">
 		<id property="spotNo" column="SPOT_NO" />
@@ -44,6 +24,7 @@
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
 		<result property="menu" column="SPOT_MENU" />
+		<result property="score" column="SPOT_SCORE" />
 		<result property="spotStatus" column="SPOT_STATUS" />
 		<result property="spotMap" column="SPOT_MAP" />
 		<result property="roomNum" column="SPOT_ROOMNUM" />
@@ -222,7 +203,7 @@
 	    	)
    	</insert>
    	
-   	<!-- 어디가지 insert -->
+   	<!-- 어디가지 카테고리별 작성 -->
 	<insert id="insertWherego_others" parameterType="Wherego" useGeneratedKeys="true" keyProperty="spotNo" keyColumn="SPOT_NO">
     	INSERT INTO WHEREWEGO (
     		SPOT_NO,
@@ -275,12 +256,45 @@
    		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
    	</select>
    	
-   	
-   	
-   	
+
    	
    	<!-- 찜 기능  -->
+   	<select id="wherego_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart" resultType="_int">
+   		SELECT COUNT(*) 
+   		FROM HEART
+   		WHERE SPOT_NO = #{spotNo} AND MEM_NO = #{userNo}
+   	</select>
+   	
+   	<insert id="insert_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart">
+   		INSERT INTO HEART VALUES(#{spotNo}, #{userNo})
+   	</insert>
+   	
+   	<delete id="delete_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart">
+   		DELETE FROM HEART
+   		WHERE SPOT_NO = #{spotNo} AND MEM_NO = #{userNo}
+   	</delete>
+   	
  
-   	
-   	
+   	<!-- 어디가지 별점 순 10개 게시글 -->
+   	<select id="getListWheregoRecommend" resultMap="wheregovo">
+	   	<![CDATA[
+		   	SELECT * 
+			FROM (SELECT ROWNUM AS "R_NO", 
+		                 SPOT_NO,
+		                 SPOT_CATEGORY,
+		                 SPOT_LOCATION,
+		                 SPOT_NAME,
+		                 SPOT_IMG,
+		                 SPOT_RENAMEIMG,
+		                 SPOT_INTRODUCE,
+		                 SPOT_SCORE,
+		                 SPOT_STATUS
+		   		  FROM (SELECT  *
+		                FROM WHEREWEGO
+		                WHERE SPOT_SCORE > 0 AND SPOT_STATUS = 'Y'
+		                ORDER BY SPOT_SCORE DESC))
+		    WHERE R_NO >= 1 AND R_NO <= 10
+	    ]]>
+   	</select>
+   	 
 </mapper>

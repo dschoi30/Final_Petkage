@@ -69,11 +69,12 @@
         </div>
          <div class="wg6_bottom">
             <div class="wg6b_ca">
-                <c:forEach var="tripselect" items="${tripselect}">
+                <c:forEach var="tripselect" items="${ tripselect }">
+                <c:set var="rename_wherego" value="${ tripselect.renameImg }" />
                 <div class="wgc6_card">
-	                <a href="${ path }/wherego/tripdetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${tripselect.img}">
+	                <a href="${ path }/wherego/wherego_trip_detail?no=${ bathselect.spotNo }">
+	                    <div class="card_img" value="${ tripselect.renameImg }">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${tripselect.spotName}</div>
@@ -235,10 +236,8 @@
             -->
         </div>
 
-
-
     </section>
-    
+
         <script>
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

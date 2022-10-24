@@ -69,11 +69,12 @@
         </div>
          <div class="wg6_bottom">
             <div class="wg6b_ca">
-                <c:forEach var="petsitterselect" items="${petsitterselect}">
+                <c:forEach var="petsitterselect" items="${ petsitterselect }">
+                <c:set var="rename_wherego" value="${ petsitterselect.renameImg }" />
                 <div class="wgc6_card">
-	                <a href="${ path }/wherego/petsitterdetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${petsitterselect.img}">
+	                <a href="${ path }/wherego/wherego_petsitter_detail?no=${ petsitterselect.spotNo }">
+	                    <div class="card_img" value="${ petsitterselect.renameImg }">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${petsitterselect.spotName}</div>
@@ -234,7 +235,6 @@
             </div>
             -->
         </div>
-
 
     </section>
     
