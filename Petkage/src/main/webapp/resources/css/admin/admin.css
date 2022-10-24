@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+font-family: "GmarketSansMedium";
+}
+
+.btn:focus, .btn:active {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.admin .h2{
+    text-align: center;
+}
+
+.admin #main{
+    color: #803D3D ;
+}
+
+.admin .active{
+    background-color: #D79771 !important;
+    border-color: #D79771 !important;
+}
+
+.admin .list-group-item{
+    text-align: center;
+    color: #803D3D;
+    height: 140px;
+    align-items: center;
+    vertical-align: bottom;
+}
+
+.admin input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    accent-color: #803D3D;
+}
+
+.admin .form-control{
+    border: 3px solid #753422;
+    border-bottom-right-radius: 10px;
+}
+
+.admin .form-select{
+    background-color: transparent;
+
+}
+
+.admin .input-group-text{
+    background-color: white;
+    border: 3px solid #753422;
+    border-top-left-radius: 10px ;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: -10px;
+}
+.admin .input-group-btn{
+    border: 0px;
+    background-color: white;
+    position: relative;
+    transform: translate(-40px, 5px);
+}
+
+.admin .adminbtn{
+    color: white;
+    background-color: #D79771;
+    border-radius: 13px;
+    height: 28px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.admin .mb-1{
+    position: relative;
+    top: 40%;
+
+}
+
+.admin .nt_btn{
+	border : none;	
+	background: transparent;
+    font-weight: 400;
+}
+
+.admin .btn-custom,.btn:active,.btn-customlr {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.admin .btn-custom {
+	background-color: white;
+	color: 753422;
+	border-color: 753422;
+	border-style : solid;
+	border-width: 3px;
+}
+
+.admin .btn-custon:disabled,.btn:disabled{
+	background-color: 3a170d;
+	color : white;
+	border-color: 3a170d;
+  	border-style : solid;
+  	border-width: 3px;
+}
+
+.admin .btn-customlr {
+	background-color: white;
+	border-color: white !important;
+	font-style: 10px solid;
+}
+
+.admin .input-group-text{
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+		
+.admin .search{
+	border-bottom-right-radius: 30px;
+	border-top-right-radius: 30px;
+    width: 840px;
+ 	height: 30px;
+    border: 3px solid #753422;
+}	

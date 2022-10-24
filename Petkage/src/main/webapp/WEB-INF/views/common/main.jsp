@@ -168,7 +168,7 @@
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin'" value="관리자페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/admMain'" value="관리자페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
