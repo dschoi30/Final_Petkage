@@ -19,10 +19,12 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.finalproject.petkage.market.model.mapper.MarketMapper;
+import com.finalproject.petkage.market.model.vo.Cart;
 import com.finalproject.petkage.market.model.vo.KakaoPayApproval;
 import com.finalproject.petkage.market.model.vo.KakaoPayReady;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
+import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +45,6 @@ public class KakaoPayService {
 
 		RestTemplate restTemplate = new RestTemplate();
 		
-		
 		//서버로 요청할 Header
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + "a2c23a946b5f644401b0fc455309f81c");
@@ -60,8 +61,8 @@ public class KakaoPayService {
 		params.add("total_amount", Integer.toString(payment.getTotalPriceAfterUsingPoint()));
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8083/petkage/market/order-finished");
-		params.add("cancel_url", "http://localhost:8083/petkage/market/order-canceled");
-		params.add("fail_url", "http://localhost:8083/petkage/market/order-failed");
+		params.add("cancel_url", "http://localhost:8083/petkage");
+		params.add("fail_url", "http://localhost:8083/petkage");
 		
 		HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
@@ -172,6 +173,23 @@ public class KakaoPayService {
 			payItems.setPayNo(payNo);
 			mapper.placeOrderItems(payItems);
 		}
-		System.out.println(payment);
+		
+		int memberPoint = member.getPoint();
+		memberPoint = memberPoint - payment.getUsingPoint() + payment.getTotalSavingPoint();
+		member.setPoint(memberPoint);
+		mapper.deductMemberPoint(member);
+		
+		for(PayItems payItems : payment.getOrders()) {
+			Product product = mapper.selectProductByNo(payItems.getProNo());
+			product.setProQty(product.getProQty() - payItems.getProCount());
+			mapper.deductProductStock(product);
+		}
+		
+		for(PayItems payItems : payment.getOrders()) {
+			Cart cart = new Cart();
+			cart.setNo(payment.getNo());
+			cart.setProNo(payItems.getProNo());
+			mapper.deleteCartOrder(cart);
+		}
 	}
 }

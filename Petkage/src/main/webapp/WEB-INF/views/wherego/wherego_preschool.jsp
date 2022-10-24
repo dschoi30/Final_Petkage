@@ -69,11 +69,12 @@
         </div>
          <div class="wg6_bottom">
             <div class="wg6b_ca">
-                <c:forEach var="preschoolselect" items="${preschoolselect}">
+                <c:forEach var="preschoolselect" items="${ preschoolselect }">
+                <c:set var="rename_wherego" value="${ preschoolselect.renameImg }" />
                 <div class="wgc6_card">
-	                <a href="${ path }/wherego/preschooldetail">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${preschoolselect.img}">
+	                <a href="${ path }/wherego/wherego_preschool_detail?no=${ bathselect.spotNo }">
+	                    <div class="card_img" value="${ preschoolselect.renameImg }">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${preschoolselect.spotName}</div>
@@ -235,11 +236,10 @@
             -->
         </div>
 
-
     </section>
     
         <script>
-
+        
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = {
             center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표

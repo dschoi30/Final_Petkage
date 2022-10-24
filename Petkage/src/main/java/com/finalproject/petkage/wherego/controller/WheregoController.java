@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -18,15 +19,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.review.model.service.ReviewService;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.service.WheregoService;
+import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -355,7 +359,7 @@ public class WheregoController {
         // 게시글 관련 DB 저장
         if(result > 0) {
             model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
-            model.addObject("location", "/lodging");
+            model.addObject("location", "/wherego/lodging");
         } else {
             model.addObject("msg", "게시글 등록을 실패하였습니다.");
             model.addObject("location", "./");
@@ -511,13 +515,29 @@ public class WheregoController {
 	
 	// 게시글 상세 조회
 	@GetMapping("/wherego_lodging_detail")
-	public ModelAndView wherego_lodging_detail(ModelAndView model,
+	public ModelAndView wherego_lodging_detail(HttpSession session, ModelAndView model,
 			@RequestParam int no) {
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		
 		
 		Wherego wherego = null;
 		
+		int wherego_like = 0;
+		
+		if(member != null) {
+			Heart heart = new Heart();
+			heart.setSpotNo(no);
+			heart.setUserNo(member.getNo());
+			
+			wherego_like = service.wherego_like(heart);
+			
+			model.addObject("member", member);
+		}
+		
 		wherego = service.findBoardByNo_lodging(no);
 		
+		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
 		model.setViewName("wherego/wherego_lodging_detail");
 		
@@ -525,13 +545,29 @@ public class WheregoController {
 	}
 	
 	@GetMapping("/wherego_cafe_detail")
-	public ModelAndView wherego_cafe_detail(ModelAndView model,
+	public ModelAndView wherego_cafe_detail(HttpSession session, ModelAndView model,
 			@RequestParam int no) {
+		
+		Member member = (Member)session.getAttribute("loginMember");
+		
 		
 		Wherego wherego = null;
 		
+		int wherego_like = 0;
+		
+		if(member != null) {
+			Heart heart = new Heart();
+			heart.setSpotNo(no);
+			heart.setUserNo(member.getNo());
+			
+			wherego_like = service.wherego_like(heart);
+			
+			model.addObject("member", member);
+		}
+		
 		wherego = service.findBoardByNo_cafe(no);
 		
+		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
 		model.setViewName("wherego/wherego_cafe_detail");
 		
@@ -542,11 +578,36 @@ public class WheregoController {
 	
 	// 찜 
 	
-	@GetMapping("/wherego_like")
-	public String Wherego_like() {
+	@ResponseBody
+	@PostMapping("/wherego_like")
+	public int Wherego_like(HttpSession session, Heart heart) throws Exception{
 		
-		return "mypage/mypage_heart";
-	}
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		int result = 0;
+		
+		if(member == null) {
+				return 0;	
+			
+			} else {
+			
+				System.out.println(heart);
+				
+				heart.setUserNo(member.getNo());
+				
+				int like = service.wherego_like(heart);
+				
+				if (like == 0) {
+					result = service.insert_like(heart);
+					
+					
+				} else {
+					result = service.delete_like(heart);
+				}
+				
+				return 1;
+			}
+		}
 	
 	
 }

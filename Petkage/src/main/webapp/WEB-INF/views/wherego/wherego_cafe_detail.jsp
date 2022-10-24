@@ -415,19 +415,68 @@
     <script>
         // 좋아요 버튼
         $(document).ready(function(){
+        	
+        	let wherego_like = "${wherego_like}"
+        	
+        	if(wherego_like > 0) {
+        		$("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+ 	            $("#heart").addClass("liked");
+        	}
+        	
         $("#heart").click(function(){
-            if($("#heart").hasClass("liked")){
-            $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
-            $("#heart").removeClass("liked");
-            
             let spotNo = "${wherego.spotNo}"
+	
+            let loginmember = "${loginMember}"
             
-            }else{
-            $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
-            $("#heart").addClass("liked");
+            if (loginmember != null && loginmember != "") {
+            
+	            if($("#heart").hasClass("liked")){
+	                
+	    		$.ajax({
+	    			url : "${path}/wherego/wherego_like",
+	    			type : "POST",
+	    			data : {'spotNo': spotNo},
+	    			success : function(data) {
+						alert("찜삭제 :(");
+					},
+					error : function () {
+						alert("안타깝지만 실패~");
+					}
+	    		});
+	        	
+	    		$("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');
+	            $("#heart").removeClass("liked");
+	            
+	            }else{
+	            
+	        		$.ajax({
+	        			url : "${path}/wherego/wherego_like",
+	        			type : "POST",
+	        			data : {'spotNo': spotNo},
+	        			success : function(data) {
+							alert("찜하기가 반영되었습니다 :)");
+						},
+						error : function () {
+							alert("안타깝지만 실패~");
+						}
+	        		});
+	        
+	            $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');
+	            $("#heart").addClass("liked");
+	        	
+	            }
+            } else {
+            	alert("로그인이 필요합니다 :)");
+            	location.href="${path}/member/loginPage"
             }
         });
         });
+        
+  
+    </script>
+    
+    <script>
+    
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
