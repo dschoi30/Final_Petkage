@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,15 +36,19 @@ public class AdminController {
 	
 	@GetMapping("/memList")
 	public ModelAndView admMemList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page) {	
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="search", required = false) String search) {	
 		
 		List<Member> list = null;
 		PageInfo pageInfo = null;
 		
-		int memCount = service.getMemCount();
-		pageInfo = new PageInfo(page, 10, service.getMemCount(), 10);
-
-		list = service.getMemList(pageInfo);
+		int memCount = service.getMemCount(memtype, search);
+		pageInfo = new PageInfo(page, 10, service.getMemCount(memtype, search), 10);
+		
+		System.out.println(memCount);
+		
+		list = service.getMemList(pageInfo, memtype, search);
 				
 		model.addObject("memCount", memCount); 
 		model.addObject("pageInfo", pageInfo);
@@ -54,36 +57,7 @@ public class AdminController {
 		
 		return model;
 	}
-	
-	@PostMapping("/memList")
-	public ModelAndView admMemsearchList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page,
-					@RequestParam(value ="memtype") String memtype,
-					@RequestParam(value ="search") String search) {	
 		
-		List<Member> list = null;
-//		PageInfo pageInfo = null;
-		
-//		int memCount = service.getMemCount(memtype, search);
-//		pageInfo = new PageInfo(page, 10, service.getMemCount(), 10);
-
-		System.out.println(memtype);
-		System.out.println(search);
-		
-//		list = service.getMemList(pageInfo);
-//		list = service.getMemList(memtype, search);
-		
-		System.out.println(list);
-		System.out.println(list.size());
-//				
-//		model.addObject("memCount", memCount); 
-//		model.addObject("pageInfo", pageInfo);
-//		model.addObject("list", list); 
-		model.setViewName("admin/memList");
-		
-		return model;
-	}
-	
 	@GetMapping("/memXList")
 	public ModelAndView admMemXList(ModelAndView model,
 					@RequestParam(value ="page", defaultValue = "1") int page) {

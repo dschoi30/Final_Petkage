@@ -153,14 +153,33 @@
 		<result property="revcategory" column="REV_CATEGORY" />
 	</resultMap>
 	
-	<select id="selectMemCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
-		WHERE MEM_STATUS = 'Y'
+	<select id="selectMemCountBySearch" resultType="_int">
+		SELECT COUNT(*) 
+		FROM MEMBER
+		WHERE MEM_STATUS='Y'
+		<if test="search != null">
+			AND MEM_ID LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
 	</select>
 	
-	<select id="selectMemAll" resultMap="memberResultMap">		
+	<select id="selectMemAllBySearch" resultMap="memberResultMap">		
 		<include refid="selectMemberSql"/>
 		WHERE MEM_STATUS = 'Y'
+		<if test="search != null">
+			AND MEM_ID LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
 	
@@ -202,13 +221,8 @@
         ORDER BY REV_NO DESC
 	</select>
 	
-	<select id="selectMemBySearch" resultMap="memberResultMap">		
-		<include refid="selectMemberSql"/>
-		WHERE MEM_STATUS = 'Y'
-		<if test="search != null">
-			AND MEM_ID LIKE 'admin'
-		</if>
-	</select>
+
+	
 	
 	
 

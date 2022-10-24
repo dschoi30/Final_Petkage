@@ -54,16 +54,16 @@
               
                 <!-- 검색바 -->
                 <div class="input-group mb-3">
-                  <div class="input-group mb-3">
-                    <div class="input-group-text p-0">
-                    	<form>
-                        <select name="memtype" class="form-select form-select-lg shadow-none border-0">
-                            <option value="all">판매</option>
-                            <option value="seller">판매</option>
-                            <option value="normal">회원타입</option>
+                  <div class="input-group mb-3 justify-content-center">
+                    <div class="input-group-text p-0" style="width: 10%;">
+                    	<form enctype="multipart/form-data">
+                        <select name="memtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
+                            <option value="all">리뷰타입</option>
+                            <option value="seller">제목</option>
+                            <option value="normal">작성자</option>
                         </select>
                     </div>
-                    <input type="text" class="search" placeholder="&nbsp&nbsp전체 사용자 검색" name="search">
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp전체 사용자 검색" name="search">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
@@ -120,7 +120,7 @@
                         <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ rv.revcoment }</td>
                         <td style="vertical-align: middle;"><fmt:formatDate type="date" dateStyle="short" value="${ rv.revdate }"/></td>
                         <td style="vertical-align: middle;">${ rv.memname }</td>
-                        <td>
+                        <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" memberId="${ rv.revno }">삭제</button>
                         </td>
                       </tr>

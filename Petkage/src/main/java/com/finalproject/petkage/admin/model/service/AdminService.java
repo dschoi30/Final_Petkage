@@ -10,9 +10,9 @@ import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface AdminService {
 
-	int getMemCount();
-
-	List<Member> getMemList(PageInfo pageInfo);
+	int getMemCount(String memtype, String search);
+	
+	List<Member> getMemList(PageInfo pageInfo, String memtype, String search);
 
 	int getMemXCount();
 
@@ -29,8 +29,5 @@ public interface AdminService {
 	int getRevCount();
 
 	List<Review> getReviewList(PageInfo pageInfo);
-
-	List<Member> getMemList(String memtype, String search);
-
-
+	
 }

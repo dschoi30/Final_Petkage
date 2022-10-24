@@ -54,16 +54,16 @@
               
                 <!-- 검색바 -->
                 <div class="input-group mb-3">
-                  <div class="input-group mb-3">
-                    <div class="input-group-text p-0" style="text-align: center;">
-                    	<form>
-                        <select name="memtype" class="form-select form-select-lg shadow-none border-0">
-                            <option value="all">회원타입</option>
-                            <option value="seller">판매</option>
-                            <option value="normal">일반</option>
+                  <div class="input-group mb-3 justify-content-center">
+                    <div class="input-group-text p-0" style="width: 10%;">
+                    	<form enctype="multipart/form-data">
+                        <select name="memtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 30px">
+                            <option value="all">제목</option>
+                            <option value="seller">지역</option>
+                            <option value="normal">주소</option>
                         </select>
                     </div>
-                    <input type="text" class="search" placeholder="&nbsp&nbsp전체 사용자 검색" name="search">
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp전체 사용자 검색" name="search">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
@@ -100,6 +100,7 @@
                         <th scope="col">제목</th>
                         <th scope="col">주소</th>
                         <th scope="col">테마</th>
+                        <th scope="col">수정</th>
                         <th scope="col">삭제</th>
                       </tr>
                     </thead>
@@ -120,8 +121,11 @@
                         <td style="vertical-align: middle;;">${ board.spotName }</td>
                         <td style="vertical-align: middle;;">${ board.spotAddress }</td>
                         <td style="vertical-align: middle;">${ board.theme }</td>
-                        <td>
-                          <button type="button" class="btn adminbtn btn-sm" memberId="${ board.spotNo }">삭제</button>
+                        <td onclick='event.cancelBubble=true;'>
+                          <button type="button" class="btn adminbtn btn-sm" updateId="${ board.spotNo }">수정</button>
+                        </td>
+                        <td onclick='event.cancelBubble=true;'>
+                          <button type="button" class="btn adminbtn btn-sm" deleteId="${ board.spotNo }">삭제</button>
                         </td>
                       </tr>
  				    </c:forEach>
@@ -135,7 +139,7 @@
 				  <!-- 페이징 -->
                   <div style="text-align: center;">
                     <br>
-                    <button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/admin/adminBoard?page=${ pageInfo.prevPage }'">&lt;</button>
+                    <button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/admin/boardList?page=${ pageInfo.prevPage }'">&lt;</button>
                     &nbsp;&nbsp;
                     <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
                       <c:if test="${ status.current == pageInfo.currentPage }">
@@ -143,11 +147,11 @@
                         &nbsp;&nbsp;
                       </c:if>
                       <c:if test="${ status.current != pageInfo.currentPage }">
-                        <button class="btn btn-custom btn-sm" onclick="location.href='${ path }/admin/adminBoard?page=${ status.current }'">${ status.current }</button>
+                        <button class="btn btn-custom btn-sm" onclick="location.href='${ path }/admin/boardList?page=${ status.current }'">${ status.current }</button>
                         &nbsp;&nbsp;
                       </c:if>
                     </c:forEach>
-                    <button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/admin/adminBoard?page=${ pageInfo.nextPage }'">&gt;</button>   
+                    <button class="btn btn-customlr btn-sm" onclick="location.href='${ path }/admin/boardList?page=${ pageInfo.nextPage }'">&gt;</button>   
                   </div>
 
                   <br>
@@ -185,7 +189,7 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }/product-list/"+num
+   		    location.href="${ pageContext.request.contextPath }//product-view?proNo="+num
 
    		});
     	
