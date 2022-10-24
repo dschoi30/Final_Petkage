@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe_detail.css?ver=2">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe_detail.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -36,36 +36,22 @@
             <div class="wg5t_1">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페1.png" />
+                    <c:forEach items="${imgList}" var="imgList">
+                        <div class="swiper-slide filst">
+                            <img src="${ path }/resources/upload/wherego/${imgList}"/>
                         </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페2.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페3.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페4.png" />
-                        </div>
+ 					</c:forEach>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
                 <div thumbsSlider="" class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페1.png" />
+    				<c:forEach items="${imgList}" var="imgList">
+                        <div class="swiper-slide second">
+                            <img src="${ path }/resources/upload/wherego/${imgList}"/>
                         </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페2.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페3.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/카페4.png" />
-                        </div>
+ 					</c:forEach>
                     </div>
                 </div>
             </div>
@@ -343,10 +329,10 @@
 
    <!--  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=334344dce2f2aee24efdae6872bcd47a"></script> -->
     <script>
-
+    
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.520277, 127.122590), // 지도의 중심좌표
+        center: new kakao.maps.LatLng("${wherego.spotMapX}","${wherego.spotMapY}"), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };  
     
@@ -399,7 +385,7 @@
 	          
 	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	        markerPosition = new kakao.maps.LatLng(37.520277, 127.122590); // 마커가 표시될 위치입니다
+	        markerPosition = new kakao.maps.LatLng("${wherego.spotMapX}","${wherego.spotMapY}"); // 마커가 표시될 위치입니다
 	
 	    // 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({
@@ -407,6 +393,8 @@
 	        image: markerImage // 마커이미지 설정 
 	    });
 	
+	       	console.log(markerPosition);
+	        
 	    // 마커가 지도 위에 표시되도록 설정합니다
 	    marker.setMap(map);  
 

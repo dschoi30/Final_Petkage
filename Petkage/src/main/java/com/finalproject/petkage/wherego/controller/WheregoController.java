@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -550,8 +552,21 @@ public class WheregoController {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
+		List<String> imgList = new ArrayList<String>();
 		
 		Wherego wherego = null;
+		
+		wherego = service.findBoardByNo_cafe(no);
+		
+
+		String[] splitImg = wherego.getRenameImg().split(", ");
+		
+		
+		for (int i = 0; i < splitImg.length; i++) {
+			imgList.add(splitImg[i]);
+		}
+
+		System.out.println(wherego);
 		
 		int wherego_like = 0;
 		
@@ -564,9 +579,8 @@ public class WheregoController {
 			
 			model.addObject("member", member);
 		}
-		
-		wherego = service.findBoardByNo_cafe(no);
-		
+	
+		model.addObject("imgList", imgList);
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
 		model.setViewName("wherego/wherego_cafe_detail");
@@ -608,6 +622,38 @@ public class WheregoController {
 				return 1;
 			}
 		}
+	
+	
+	// 카테고리별 리스트 출력
+	
+	@GetMapping("/lodging_category")
+	public ModelAndView lodging_category(ModelAndView model,
+										@RequestParam(value = "filter") String filter,
+										@RequestParam(value = "location_filter") String location,
+										@RequestParam(value = "size_filter") String size,
+										@RequestParam(value = "ameni") List<String>ameni,
+										@RequestParam(value = "theme") List<String>theme) {
+		
+		List<Wherego> wherego = null;		
+//		System.out.println("전" + wherego);
+		
+		//wherego = service.lodging_board(); 
+//		System.out.println("후" + wherego);
+		
+		System.out.println(filter);
+		System.out.println(location);
+		System.out.println(size);
+		System.out.println(ameni);
+		System.out.println(theme);
+		
+//		model.addObject("lodgingselect", wherego);
+//		System.out.println("숙소 게시글 조회 : " + model);
+		model.setViewName("wherego/wherego_lodging");
+		
+		return model;
+	}
+	
+	
 	
 	
 }

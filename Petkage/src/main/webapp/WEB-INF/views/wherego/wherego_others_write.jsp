@@ -141,8 +141,11 @@
                             <div class="wg5bci_content">
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
-                                    <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="spotMap" required></span>
+                                    <span class="title">좌표</span>&nbsp; <br><br>
+                                    <span id="centerAddr">
+                                    	위도:&nbsp;<input type="text" name="spotMapX" required> <br><br>
+ 			                        	경도:&nbsp;<input type="text" name="spotMapY" required>           
+                                    </span>
                                 </div>
                             </div>
                         </details>

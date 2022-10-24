@@ -26,7 +26,8 @@
 		<result property="menu" column="SPOT_MENU" />
 		<result property="score" column="SPOT_SCORE" />
 		<result property="spotStatus" column="SPOT_STATUS" />
-		<result property="spotMap" column="SPOT_MAP" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
 		<result property="roomNum" column="SPOT_ROOMNUM" />
 		<result property="price" column="ROOM_PRICE" />
 	</resultMap>
@@ -63,7 +64,8 @@
 			W.SPOT_INTRODUCE,
 			W.SPOT_INFO,
 			W.SPOT_STATUS,
-			W.SPOT_MAP,
+			W.SPOT_MAPX,
+			W.SPOT_MAPY,
 			W.SPOT_ROOMNUM,
 			R.ROOM_PRICE 
 		FROM WHEREWEGO W
@@ -154,7 +156,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP,
+			SPOT_MAPX,
+			SPOT_MAPY,
 			SPOT_ROOMNUM
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
@@ -171,7 +174,8 @@
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotMap },
+	    	#{ spotMapX },
+	    	#{ spotMapY },
 	    	#{ roomNum }
     	)
     </insert>
@@ -219,7 +223,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP,
+			SPOT_MAPX,
+			SPOT_MAPY,
 			SPOT_MENU	
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
@@ -235,7 +240,8 @@
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotMap },
+	    	#{ spotMapX },
+	    	#{ spotMapY },
 	    	#{ menu }
     	)
     </insert>
