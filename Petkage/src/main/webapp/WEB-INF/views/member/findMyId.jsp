@@ -168,16 +168,15 @@
             if (result == "success") {
               console.log("인증번호 보내기 버튼 클릭 : " + result);
               $('#sendFinishAlert').text("수신된 이메일의 인증번호를 입력해 주세요.");
-              $('#email_termsCheck').text("");
               $("#numCheckFinish").attr("disabled", false);             
               }
             if(result == "userName fail") {
               console.log("인증번호 보내기 버튼 클릭 : " + result);
-              $('#email_termsCheck').text("이름을 정확히 입력해 주세요.");
+              $('#sendFinishAlert').text("이름을 정확히 입력해 주세요.");
             } 
             if (result == "member fail") {
               console.log("인증번호 보내기 버튼 클릭 : " + result);
-              $('#email_termsCheck').text("등록된 회원 정보가 없습니다. ");
+              $('#sendFinishAlert').text("등록된 회원 정보가 없습니다. ");
             } 
           } // success 종료
         }); // ajax 종료
