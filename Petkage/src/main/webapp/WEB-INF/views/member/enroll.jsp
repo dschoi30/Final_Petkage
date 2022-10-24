@@ -352,7 +352,9 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
                   </td>
                 </tr>
                 <tr>
-                  <th style="margin-top: 10px" >이메일</th>
+                  <th>이메일</th>
+                  <%-- <div style="pagging-bottom:15px"> --%>
+
                     <td>
                       <input type="text" class="joinInfoInput" name="userEmail" id="userEmail" >
                       <span class="userInfoAlert" id="error_Email"></span>
@@ -373,6 +375,7 @@ Petkage('펫키지')에서는 정보주체의 동의, 법률의 특별한 규정
                         </label>
                       </div>
                     </td>
+                    <%-- </div> --%>
                 </tr>
                 <tr>
                   <th></th>

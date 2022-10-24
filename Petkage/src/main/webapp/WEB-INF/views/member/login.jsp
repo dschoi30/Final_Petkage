@@ -78,9 +78,9 @@
 	                	네이버로 로그인
 	                </button>
 	
-					<button type="button" class="btn btn-block" id="googleLogin" onclick="loginWithGoogle()">
+					<%-- <button type="button" class="btn btn-block" id="googleLogin" onclick="loginWithGoogle()">
 	                	구글로 로그인
-	                </button>
+	                </button> --%>
 
 	                <span class="JoinMsg">
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
@@ -125,8 +125,8 @@
 <%-- 카카오 JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
 
 <%-- 카카오 API --%>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
-  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<%-- <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script> --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script>

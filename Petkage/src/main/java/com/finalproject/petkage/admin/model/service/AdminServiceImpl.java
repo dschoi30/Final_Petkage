@@ -23,18 +23,28 @@ public class AdminServiceImpl implements AdminService {
 	
 	// status = 'Y'
 	@Override
-	public int getMemCount() {
+	public int getMemCount(String memtype, String search) {
+
+		Map<String, String> map = new HashMap<>();
 		
-		return mapper.selectMemCount();
+		map.put("memtype", memtype);
+		map.put("search", search);
+		
+		return mapper.selectMemCountBySearch(map);
 	}
-	
+
 	@Override
-	public List<Member> getMemList(PageInfo pageInfo) {
+	public List<Member> getMemList(PageInfo pageInfo, String memtype, String search) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectMemAll(rowBounds);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("memtype", memtype);
+		map.put("search", search);
+		
+		return mapper.selectMemAllBySearch(rowBounds, map);
 	}
 
 	// status = 'N'
@@ -101,15 +111,7 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectReviewAll(rowBounds);
 	}
 
-	@Override
-	public List<Member> getMemList(String memtype, String search) {
-		Map<String, String> map = new HashMap<>();
-		
-		map.put("memtype", memtype);
-		map.put("search", search);
-		
-		return mapper.selectMemBySearch(memtype, search);
-	}
+
 
 
 	
