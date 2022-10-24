@@ -52,6 +52,8 @@
               <br>
               <div class="container" style="width: 80%;">
               
+              <br>
+              
                 <!-- 검색바 -->
                 <div class="input-group mb-3">
                   <div class="input-group mb-3 justify-content-center">
@@ -70,9 +72,7 @@
                     	</form>
               	 </div>
                 </div>
-                
-                <br>
-               
+		
 	        	<c:if test="${ empty list }">
 					<div style="text-align: center; font-size: 1.5em;">
 						<br><br>
