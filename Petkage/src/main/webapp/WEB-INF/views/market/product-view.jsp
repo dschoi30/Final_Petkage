@@ -19,7 +19,7 @@
     <title>Document</title>
 </head>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body ondragstart="return false" onselectstart="return false">
     <div id="wrap-all-prod">
         <div class="row">
             <div class="contents" style="margin-bottom: 50px;">
@@ -188,7 +188,13 @@
                             	</c:if>
                             	<c:if test="${ not empty list }">
                             		<c:forEach var="review" items="${ list }">
-		                                <span>${ review.memname }</span>
+		                                <span>
+		                                	<c:set var="name" value="${review.memname}"/>
+											<c:set var="totalLength" value="${fn:length(name) }"/>
+											<c:set var="first" value="${fn:substring(name, 0, 1) }"/>
+											<c:set var="last" value="${fn:substring(name, 2, totalLength) }"/>
+		                                	<c:out value="${first} * ${last}"/>
+		                                </span>
 		                                <div>
 		                                    <span class="rating">
 			                                    <c:forEach var="i" begin="1" end="${ review.revscore }">
@@ -198,7 +204,7 @@
 				                                	<img src="${ path }/resources/images/market/star_unfilled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">                                      
 												</c:forEach>
 											</span>
-		                                    <span>${ review.revdate }</span>
+		                                    <span><fmt:formatDate value="${ review.revdate }" pattern="yyyy.MM.dd"/></span>
 		                                </div>                                
 		                                <div>${ review.revcoment }
 		                                </div>
