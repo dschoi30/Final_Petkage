@@ -47,4 +47,7 @@ public class Product {
 	private double proRating;
 	
 	private String searchValue;
+	
+	private String selId;
+	
 }

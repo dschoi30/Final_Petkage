@@ -110,12 +110,10 @@
 		<result property="spotAddress" column="SPOT_ADDRESS" />
 		<result property="spotSize" column="SPOT_SIZE" />
 		<result property="ameni" column="SPOT_AMENI" />
-		<result property="img" column="SPOT_IMG" />
 		<result property="theme" column="SPOT_THEME" />
 		<result property="introduce" column="SPOT_INTRODUCE" />
 		<result property="info" column="SPOT_INFO" />
-		<result property="spotstatus" column="SPOT_STATUS" />
-		<result property="rimg" column="SPOT_RENAMEIMG" />
+		<result property="spotStatus" column="SPOT_STATUS" />
 	</resultMap>
 	
 	<resultMap type="Product" id="productResultMap">
