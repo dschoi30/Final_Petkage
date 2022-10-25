@@ -13,8 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
     <!-- modal-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ path }/resources/css/market/modal.css">
 
     <title>Document</title>
 </head>
@@ -208,21 +207,72 @@
 		                                </div>                                
 		                                <div>${ review.revcoment }
 		                                </div>
-		                                <img class="img" src="${path}/resources/uploadFiles/${ review.revrenameimg }" width="80" height="80">
-		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
-		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/${ review.revrenameimg }">
-		                                </div>
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
-		                                </div>
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
-		                                </div><hr>
+		                                <div class="row-modal">
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/${ review.revrenameimg }" onclick="openModal();currentSlide(1)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/review2.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/review3.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/nobox.png" onclick="openModal();currentSlide(4)" class="hover-shadow">
+									        </div>
+									    </div>
+									      <!-- The Modal/Lightbox -->
+									    <div id="myModal" class="modal">
+									        <span class="close cursor" onclick="closeModal()">&times;</span>
+									        <div class="modal-content" style="border: none;">
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">1 / 4</div>
+									            <img src="${ path }/resources/uploadFiles/${ review.revrenameimg }" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">2 / 4</div>
+									            <img src="${ path }/resources/uploadFiles/review2.jpg" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">3 / 4</div>
+									            <img src="${ path }/resources/uploadFiles/review3.jpg" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">4 / 4</div>
+									            <img src="${ path }/resources/uploadFiles/nobox.png" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <!-- Next/previous controls -->
+									          <a class="prev" onclick="plusSlides(-1)" style="color: white;">&#10094;</a>
+									          <a class="next" onclick="plusSlides(1)" style="color: white;">&#10095;</a>
+									      
+									          <!-- Caption text 
+									          <div class="caption-container">
+									            <p id="caption"></p>
+									          </div> -->
+									       
+									          <!-- Thumbnail image controls 
+									          <div class="column">
+									            <img class="demo" src="${ path }/resources/uploadFiles/${ review.revrenameimg }" onclick="currentSlide(1)">
+									          </div>
+									      
+									          <div class="column">
+									            <img class="demo" src="${ path }/resources/uploadFiles/review2.jpg" onclick="currentSlide(2)">
+									          </div>
+									      
+									          <div class="column">
+									            <img class="demo" src="${ path }/resources/uploadFiles/review3.jpg" onclick="currentSlide(3)">
+									          </div>
+									      
+									          <div class="column">
+									            <img class="demo" src="${ path }/resources/uploadFiles/nobox.png" onclick="currentSlide(4)">
+									          </div> -->
+									        </div>
+									    </div><hr>
 	                                </c:forEach>
 								</c:if>
 							</div>
@@ -555,5 +605,46 @@
             fixNext.removeClass("pd_top_80");
         }
     });
+    
+    // Open the Modal
+    function openModal() {
+      document.getElementById("myModal").style.display = "inline-block";
+    }
+    
+    // Close the Modal
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+    
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "inline-block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -348,7 +348,7 @@
 #wrap-all-prod #prodContent {
     text-align: center;
 }
-
+/*
 #wrap-all-prod img[class^=img] {
     cursor: pointer;
     transition: 0.3s;
@@ -396,7 +396,7 @@
     text-decoration: none;
     cursor: pointer;
 }
-
+*/
 #wrap-all-prod #prodReview, #prodQna {
     float: left;
     width: 100%;
