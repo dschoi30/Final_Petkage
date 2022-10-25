@@ -642,10 +642,10 @@ public class MemberController {
     // NAVER - 네이버 로그인 성공시 callback 호출 후 사용자 정보 요청
     @RequestMapping(value = "/callbackNaver", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView callbackNaver(ModelAndView model,
-    							@RequestParam Map<String,Object> paramMap,
-    							@RequestParam String code, 
-    							@RequestParam String state, 
-    							HttpSession session) throws IOException {
+	    							 @RequestParam Map<String,Object> paramMap,
+	    							 @RequestParam String code, 
+	    							 @RequestParam String state, 
+	    							 HttpSession session) throws IOException {
     	
         log.info("callbackNaver");
         
