@@ -46,8 +46,6 @@ public class AdminController {
 		int memCount = service.getMemCount(memtype, search);
 		pageInfo = new PageInfo(page, 10, service.getMemCount(memtype, search), 10);
 		
-		System.out.println(memCount);
-		
 		list = service.getMemList(pageInfo, memtype, search);
 				
 		model.addObject("memCount", memCount); 
@@ -60,16 +58,17 @@ public class AdminController {
 		
 	@GetMapping("/memXList")
 	public ModelAndView admMemXList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page) {
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Member> list = null;
 		PageInfo pageInfo = null;
 		
-		int memXCount = service.getMemXCount();
-		pageInfo = new PageInfo(page, 10, service.getMemXCount(), 10);
+		int memXCount = service.getMemXCount(memtype, search);
+		pageInfo = new PageInfo(page, 10, service.getMemXCount(memtype, search), 10);
 		
-		System.out.println(pageInfo);
-		list = service.getMemXList(pageInfo);
+		list = service.getMemXList(pageInfo, memtype, search);
 				
 		model.addObject("memXCount", memXCount); 
 		model.addObject("pageInfo", pageInfo);
@@ -81,16 +80,17 @@ public class AdminController {
 	
 	@GetMapping("/boardList")
 	public ModelAndView BoardList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page) {
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="boardtype", defaultValue = "name") String boardtype,
+			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Wherego> list = null;
 		PageInfo pageInfo = null;
 		
-		int boardCount = service.getBoardCount();
-		pageInfo = new PageInfo(page, 10, service.getBoardCount(), 10);
+		int boardCount = service.getBoardCount(boardtype, search);
+		pageInfo = new PageInfo(page, 10, service.getBoardCount(boardtype, search), 10);
 		
-		System.out.println(pageInfo);
-		list = service.getBoardList(pageInfo);
+		list = service.getBoardList(pageInfo, boardtype, search);
 				
 		model.addObject("boardCount", boardCount); 
 		model.addObject("pageInfo", pageInfo);
@@ -102,16 +102,17 @@ public class AdminController {
 	
 	@GetMapping("/proList")
 	public ModelAndView ProductList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page) {
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="type", required = false) String searchtype,
+			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Product> list = null;
 		PageInfo pageInfo = null;
 		
-		int productCount = service.getProCount();
-		pageInfo = new PageInfo(page, 10, service.getProCount(), 10);
+		int productCount = service.getProCount(searchtype, search);
+		pageInfo = new PageInfo(page, 10, service.getProCount(searchtype, search), 10);
 		
-		System.out.println(pageInfo);
-		list = service.getProductList(pageInfo);
+		list = service.getProductList(pageInfo, searchtype, search);
 				
 		model.addObject("productCount", productCount); 
 		model.addObject("pageInfo", pageInfo);
@@ -123,17 +124,19 @@ public class AdminController {
 	
 	@GetMapping("/revList")
 	public ModelAndView ReviewList(ModelAndView model,
-					@RequestParam(value ="page", defaultValue = "1") int page) {
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="type", required = false) String categorytype,
+			@RequestParam(value ="type2", required = false) String searchtype,
+			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Review> list = null;
 		PageInfo pageInfo = null;
 		
-		int reviewCount = service.getRevCount();
-		pageInfo = new PageInfo(page, 10, service.getRevCount(), 10);
+		int reviewCount = service.getRevCount(categorytype, searchtype, search);
+		pageInfo = new PageInfo(page, 10, service.getRevCount(categorytype, searchtype, search), 10);
 		
-		System.out.println(pageInfo);
-		list = service.getReviewList(pageInfo);
-				
+		list = service.getReviewList(pageInfo, categorytype, searchtype, search);
+		
 		model.addObject("reviewCount", reviewCount); 
 		model.addObject("pageInfo", pageInfo);
 		model.addObject("list", list); 

@@ -158,7 +158,7 @@
 		FROM MEMBER
 		WHERE MEM_STATUS='Y'
 		<if test="search != null">
-			AND MEM_ID LIKE '%' || #{search} || '%'
+			AND MEM_NAME LIKE '%' || #{search} || '%'
 		</if>
 		<if test="memtype == seller">
 			AND MEM_ROLE LIKE ROLE_SELLER
@@ -172,7 +172,7 @@
 		<include refid="selectMemberSql"/>
 		WHERE MEM_STATUS = 'Y'
 		<if test="search != null">
-			AND MEM_ID LIKE '%' || #{search} || '%'
+			AND MEM_NAME LIKE '%' || #{search} || '%'
 		</if>
 		<if test="memtype == seller">
 			AND MEM_ROLE LIKE ROLE_SELLER
@@ -186,38 +186,180 @@
 	<select id="selectMemXCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
 		WHERE MEM_STATUS = 'N'
+		<if test="search != null">
+			AND MEM_NAME LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
 	</select>
 	
 	<select id="selectMemXAll" resultMap="memberResultMap">		
 		<include refid="selectMemberSql"/>
 		WHERE MEM_STATUS = 'N'
+		<if test="search != null">
+			AND MEM_NAME LIKE '%' || #{search} || '%'
+		</if>
+		<if test="memtype == seller">
+			AND MEM_ROLE LIKE ROLE_SELLER
+		</if>
+		<if test="memtype == normal">
+			AND MEM_ROLE LIKE ROLE_USER
+		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
 	
 	<select id="selectBoardCount" resultType="_int">
 		SELECT COUNT(*) FROM WHEREWEGO
+		<if test="search != null">
+			<if test="boardtype == 'name'">
+				WHERE SPOT_NAME LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="boardtype == 'category'">
+				WHERE SPOT_CATEGORY LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="boardtype == 'location'">
+				WHERE SPOT_LOCATION LIKE '%' || #{search} || '%'		
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectBoardAll" resultMap="wheregoResultMap">		
 		<include refid="selectBoardSql"/>
+		<if test="search != null">
+			<if test="boardtype == 'name'">
+				WHERE SPOT_NAME LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="boardtype == 'category'">
+				WHERE SPOT_CATEGORY LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="boardtype == 'location'">
+				WHERE SPOT_LOCATION LIKE '%' || #{search} || '%'		
+			</if>
+		</if>
 		ORDER BY SPOT_NO DESC
 	</select>
 	
 	<select id="selectProductCount" resultType="_int">
-		SELECT COUNT(*) FROM PRODUCT
+		SELECT COUNT(*) FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		<if test="search != null">
+			<if test="searchtype == 'name'">
+				WHERE P.PRO_NAME LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="searchtype == 'seller'">
+				WHERE M.MEM_ID LIKE '%' || #{search} || '%'		
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectProductAll" resultMap="productResultMap">		
 		<include refid="selectProductSql"/>
+		<if test="search != null">
+			<if test="searchtype == 'name'">
+				WHERE PRO_NAME LIKE '%' || #{search} || '%'		
+			</if>
+			<if test="searchtype == 'seller'">
+				WHERE MEM_ID LIKE '%' || #{search} || '%'		
+			</if>
+		</if>
         ORDER BY P.PRO_NO DESC
 	</select>
 	
 	<select id="selectReviewCount" resultType="_int">
-		SELECT COUNT(*) FROM REVIEW
+		SELECT COUNT(*) FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		<if test="search != null">
+			<if test="categorytype == 'alltype'">
+				<if test="searchtype == 'all'">
+					WHERE R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					WHERE R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					WHERE M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+			
+			<if test="categorytype == 'where'">
+				WHERE R.REV_TYPE = '어디가지'
+				<if test="searchtype == 'all'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					AND M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+			
+			<if test="categorytype == 'market'">
+				WHERE R.REV_TYPE = '마켓'
+				<if test="searchtype == 'all'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					AND M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+		</if>
 	</select>
 	
 	<select id="selectReviewAll" resultMap="reviewResultMap">		
 		<include refid="selectReviewSql"/>
+		<if test="search != null">
+			<if test="categorytype == 'alltype'">
+				<if test="searchtype == 'all'">
+					WHERE R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					WHERE R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					WHERE M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+			
+			<if test="categorytype == 'where'">
+				WHERE R.REV_TYPE = '어디가지'
+				<if test="searchtype == 'all'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					AND M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+			
+			<if test="categorytype == 'market'">
+				WHERE R.REV_TYPE = '마켓'
+				<if test="searchtype == 'all'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'	
+					   OR M.MEM_NAME LIKE '%' || #{search} || '%'
+				</if>
+				<if test="searchtype == 'title'">
+					AND R.REV_TITLE LIKE '%' || #{search} || '%'		
+				</if>
+				<if test="searchtype == 'writer'">
+					AND M.MEM_NAME LIKE '%' || #{search} || '%'		
+				</if>
+			</if>
+		</if>
         ORDER BY REV_NO DESC
 	</select>
 	

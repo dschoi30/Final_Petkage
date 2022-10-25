@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?af">
+<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?afte">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <body>
@@ -53,23 +53,37 @@
               <div class="container" style="width: 80%;">
               
                 <!-- 검색바 -->
+               	<form enctype="multipart/form-data">
                 <div class="input-group mb-3">
                   <div class="input-group mb-3 justify-content-center">
-                    <div class="input-group-text p-0" style="width: 10%;">
-                    	<form enctype="multipart/form-data">
-                        <select name="memtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
-                            <option value="all">리뷰타입</option>
-                            <option value="seller">제목</option>
-                            <option value="normal">작성자</option>
+                    <div class="input-group-text p-0">
+                    	<c:if test="${ not empty type }">
+	         		        <select name="type" class="form-select form-select-lg shadow-none border-0" value="${ type }" style="margin-left: 5px">
+	                            <option value="alltype">리뷰타입</option>
+	                            <option value="where">어디가지</option>
+	                            <option value="market">마켓</option>
+	                        </select>
+                    	</c:if>
+                        <select name="type" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
+                            <option value="alltype">리뷰타입</option>
+                            <option value="where">어디가지</option>
+                            <option value="market">마켓</option>
                         </select>
                     </div>
-                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp전체 사용자 검색" name="search">
+                    <div class="input-group-text input-group-text2 p-0">
+                        <select name="type2" class=" form-select-lg shadow-none border-0" style="margin-left: 5px">
+                            <option value="all">전체</option>
+                            <option value="title">제목</option>
+                            <option value="writer">작성자</option>
+                        </select>
+                    </div>
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp리뷰 검색" name="search" style="width: 750px;">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
-                    	</form>
-              	 </div>
+              	  </div>
                 </div>
+                </form>
                 
                 <br>
                
@@ -97,9 +111,10 @@
                         <th scope="col"style="width: 90px;">리뷰번호</th>
                         <th scope="col">타입</th>
                         <th scope="col" style="width: 190px;">제목</th>
-                        <th scope="col" style="width: 220px;">내용</th>
-                        <th scope="col">작성일</th>
+                        <th scope="col" style="width: 270px;">내용</th>
+                        <th scope="col" style="width: 120px">작성일</th>
                         <th scope="col">작성자</th>
+                        <th scope="col">신고</th>
                         <th scope="col">삭제</th>
                       </tr>
                     </thead>
@@ -120,6 +135,7 @@
                         <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ rv.revcoment }</td>
                         <td style="vertical-align: middle;"><fmt:formatDate type="date" dateStyle="short" value="${ rv.revdate }"/></td>
                         <td style="vertical-align: middle;">${ rv.memname }</td>
+                        <td style="vertical-align: middle;">${ rv.revreport }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" memberId="${ rv.revno }">삭제</button>
                         </td>

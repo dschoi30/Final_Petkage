@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
@@ -52,5 +53,7 @@ public interface WheregoMapper {
 
 	int delete_like(Heart heart);
 
+	Double reviewAvg(String spotName);
 
+	void updateReviewAvg(com.finalproject.petkage.wherego.model.vo.avgReview reviewStar);
 }

@@ -42,4 +42,8 @@ public class Review {
 	private String memname;
 	
 	private String revcategory;
+	
+	private int revpayitemno;
+	
+	private String revpayno;
 }
