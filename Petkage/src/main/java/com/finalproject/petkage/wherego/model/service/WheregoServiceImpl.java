@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.mapper.WheregoMapper;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
+import com.finalproject.petkage.wherego.model.vo.avgReview;
 
 @Service
 public class WheregoServiceImpl implements WheregoService {
@@ -155,6 +157,26 @@ public class WheregoServiceImpl implements WheregoService {
 		return mapper.delete_like(heart);
 		
 	}
+
+	@Override
+	public void reviewAvg(String spotName) {
+        Double reviewAvg = mapper.reviewAvg(spotName);
+
+        if(reviewAvg == null) {
+        	reviewAvg = 0.0;
+        }
+
+        avgReview reviewStar = new avgReview();
+        reviewStar.setSpotName(spotName);
+        reviewStar.setReviewAvg(reviewAvg);
+
+        System.out.println(reviewAvg);
+        System.out.println(reviewStar);
+        
+        mapper.updateReviewAvg(reviewStar);
+		
+	}
+
 
 
 }

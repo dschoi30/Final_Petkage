@@ -554,6 +554,7 @@ public class WheregoController {
 		
 		List<String> imgList = new ArrayList<String>();
 		
+		
 		Wherego wherego = null;
 		
 		wherego = service.findBoardByNo_cafe(no);
