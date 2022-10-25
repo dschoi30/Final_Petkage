@@ -53,23 +53,23 @@
               <div class="container" style="width: 80%;">
               
                 <!-- 검색바 -->
+               	<form enctype="multipart/form-data">
                 <div class="input-group mb-3">
                   <div class="input-group mb-3 justify-content-center">
-                    <div class="input-group-text p-0" style="width: 10%;">
-                    	<form enctype="multipart/form-data">
+                    <div class="input-group-text p-0">
                         <select name="memtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
                             <option value="all">회원타입</option>
                             <option value="seller">판매</option>
                             <option value="normal">일반</option>
                         </select>
                     </div>
-                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp전체 사용자 검색" name="search">
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp닉네임 검색" name="search" style="width: 750px;">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
-                    	</form>
-              	 </div>
+              	  </div>
                 </div>
+                </form>
                 
                 <br>
                

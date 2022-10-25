@@ -18,21 +18,21 @@ public interface AdminMapper {
 	
 	List<Member> selectMemAllBySearch(RowBounds rowBounds, Map<String, String> map);
 	
-	int selectMemXCount();
+	int selectMemXCount(Map<String, String> map);
 
-	List<Member> selectMemXAll(RowBounds rowBounds);
+	List<Member> selectMemXAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectBoardCount();
+	int selectBoardCount(Map<String, String> map);
 
-	List<Wherego> selectBoardAll(RowBounds rowBounds);
+	List<Wherego> selectBoardAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectProductCount();
+	int selectProductCount(Map<String, String> map);
 
-	List<Product> selectProductAll(RowBounds rowBounds);
+	List<Product> selectProductAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectReviewCount();
+	int selectReviewCount(Map<String, String> map);
 
-	List<Review> selectReviewAll(RowBounds rowBounds);
+	List<Review> selectReviewAll(RowBounds rowBounds, Map<String, String> map);
 	
 	
 

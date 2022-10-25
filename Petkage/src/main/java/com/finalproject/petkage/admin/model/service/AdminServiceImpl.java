@@ -24,7 +24,6 @@ public class AdminServiceImpl implements AdminService {
 	// status = 'Y'
 	@Override
 	public int getMemCount(String memtype, String search) {
-
 		Map<String, String> map = new HashMap<>();
 		
 		map.put("memtype", memtype);
@@ -49,66 +48,104 @@ public class AdminServiceImpl implements AdminService {
 
 	// status = 'N'
 	@Override
-	public int getMemXCount() {
+	public int getMemXCount(String memtype, String search) {
+		Map<String, String> map = new HashMap<>();
 		
-		return mapper.selectMemXCount();
+		map.put("memtype", memtype);
+		map.put("search", search);
+		
+		return mapper.selectMemXCount(map);
 	}
 	
 	@Override
-	public List<Member> getMemXList(PageInfo pageInfo) {
+	public List<Member> getMemXList(PageInfo pageInfo, String memtype, String search) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectMemXAll(rowBounds);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("memtype", memtype);
+		map.put("search", search);
+		
+		return mapper.selectMemXAll(rowBounds, map);
 	}
 	
 	// 어디가지
 	@Override
-	public int getBoardCount() {
+	public int getBoardCount(String boardtype, String search) {
+		Map<String, String> map = new HashMap<>();
 		
-		return mapper.selectBoardCount();
+		map.put("boardtype", boardtype);
+		map.put("search", search);
+		
+		return mapper.selectBoardCount(map);
 	}
 
 	@Override
-	public List<Wherego> getBoardList(PageInfo pageInfo) {
+	public List<Wherego> getBoardList(PageInfo pageInfo, String boardtype, String search) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectBoardAll(rowBounds);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("boardtype", boardtype);
+		map.put("search", search);
+		
+		return mapper.selectBoardAll(rowBounds, map);
 	}
 
 	// 상품
 	@Override
-	public int getProCount() {
+	public int getProCount(String searchtype, String search) {
+		Map<String, String> map = new HashMap<>();
 		
-		return mapper.selectProductCount();
+		map.put("searchtype", searchtype);
+		map.put("search", search);
+		
+		return mapper.selectProductCount(map);
 	}
 
 	@Override
-	public List<Product> getProductList(PageInfo pageInfo) {
+	public List<Product> getProductList(PageInfo pageInfo, String searchtype, String search) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectProductAll(rowBounds);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("searchtype", searchtype);
+		map.put("search", search);
+		
+		return mapper.selectProductAll(rowBounds, map);
 	}
 	
 	// 리뷰
 	@Override
-	public int getRevCount() {
+	public int getRevCount(String categorytype, String searchtype, String search) {
+		Map<String, String> map = new HashMap<>();
 		
-		return mapper.selectReviewCount();
+		map.put("categorytype", categorytype);
+		map.put("searchtype", searchtype);
+		map.put("search", search);
+		
+		return mapper.selectReviewCount(map);
 	}
 
 	@Override
-	public List<Review> getReviewList(PageInfo pageInfo) {
+	public List<Review> getReviewList(PageInfo pageInfo, String categorytype, String searchtype, String search) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectReviewAll(rowBounds);
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("categorytype", categorytype);
+		map.put("searchtype", searchtype);
+		map.put("search", search);
+		
+		return mapper.selectReviewAll(rowBounds, map);
 	}
 
 

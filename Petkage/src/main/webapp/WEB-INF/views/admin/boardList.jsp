@@ -53,23 +53,23 @@
               <div class="container" style="width: 80%;">
               
                 <!-- 검색바 -->
+               	<form enctype="multipart/form-data">
                 <div class="input-group mb-3">
                   <div class="input-group mb-3 justify-content-center">
-                    <div class="input-group-text p-0" style="width: 10%;">
-                    	<form enctype="multipart/form-data">
-                        <select name="memtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 30px">
-                            <option value="all">제목</option>
-                            <option value="seller">지역</option>
-                            <option value="normal">주소</option>
+                    <div class="input-group-text p-0">
+                        <select name="boardtype" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
+                            <option value="category">카테고리</option>
+                            <option value="location">지역</option>
+                            <option value="name">이름</option>
                         </select>
                     </div>
-                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp전체 사용자 검색" name="search">
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp게시판 검색" name="search" style="width: 750px;">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
-                    	</form>
-              	 </div>
+              	  </div>
                 </div>
+                </form>
                 
                 <div style="text-align: right;"> 
 	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지 작성</button>
@@ -100,7 +100,7 @@
                         <th scope="col">번호</th>
                         <th scope="col">카테고리</th>
                         <th scope="col">지역</th>
-                        <th scope="col">제목</th>
+                        <th scope="col">이름</th>
                         <th scope="col">주소</th>
                         <th scope="col">테마</th>
                         <th scope="col">수정</th>
