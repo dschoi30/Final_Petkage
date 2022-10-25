@@ -14,20 +14,20 @@ public interface AdminService {
 	
 	List<Member> getMemList(PageInfo pageInfo, String memtype, String search);
 
-	int getMemXCount();
+	int getMemXCount(String memtype, String search);
 
-	List<Member> getMemXList(PageInfo pageInfo);
+	List<Member> getMemXList(PageInfo pageInfo, String memtype, String search);
 
-	int getBoardCount();
+	int getBoardCount(String boardtype, String search);
 
-	List<Wherego> getBoardList(PageInfo pageInfo);
+	List<Wherego> getBoardList(PageInfo pageInfo, String boardtype, String search);
 
-	int getProCount();
+	int getProCount(String searchtype, String search);
 
-	List<Product> getProductList(PageInfo pageInfo);
+	List<Product> getProductList(PageInfo pageInfo, String searchtype, String search);
 
-	int getRevCount();
+	int getRevCount(String categorytype, String searchtype, String search);
 
-	List<Review> getReviewList(PageInfo pageInfo);
+	List<Review> getReviewList(PageInfo pageInfo, String categorytype, String searchtype, String search);
 	
 }
