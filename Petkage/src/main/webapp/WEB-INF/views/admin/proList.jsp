@@ -53,23 +53,22 @@
               <div class="container" style="width: 80%;">
               
                 <!-- 검색바 -->
+               	<form enctype="multipart/form-data">
                 <div class="input-group mb-3">
-                  <div class="input-group mb-3">
+                  <div class="input-group mb-3 justify-content-center">
                     <div class="input-group-text p-0">
-                    	<form>
-                        <select name="memtype" class="form-select form-select-lg shadow-none border-0">
-                            <option value="all">판매</option>
-                            <option value="seller">판매</option>
-                            <option value="normal">회원타입</option>
+                        <select name="type" class="form-select form-select-lg shadow-none border-0" style="margin-left: 5px">
+                            <option value="name">상품명</option>
+                            <option value="seller">판매자</option>
                         </select>
                     </div>
-                    <input type="text" class="search" placeholder="&nbsp&nbsp전체 사용자 검색" name="search">
+                    <input type="text" class="search p-2 flex-fill bd-highlight" placeholder="&nbsp상품 검색" name="search" style="width: 750px;">
                       <button type="submit" class="input-group-btn" style="border: transparent; background-color: transparent; bottom: 15%;">
                           <img src="${ path }/resources/images/wherego/검색.png" width="20" height="20" alt="search">
                       </button>
-                    	</form>
-              	 </div>
+              	  </div>
                 </div>
+                </form>
                 
                 <br>
                
@@ -116,12 +115,12 @@
                         </td>
                         <td style="vertical-align: middle;">${ product.proNo }</td>
                         <td style="vertical-align: middle;">${ product.proCategory1 }/${ product.proCategory2 }</td>
-                        <td style="vertical-align: middle;;">${ product.proName }</td>
-                        <td style="vertical-align: middle;;">
+                        <td style="vertical-align: middle; cursor: pointer;">${ product.proName }</td>
+                        <td style="vertical-align: middle;">
                         <fmt:formatNumber value="${ product.proSPrice }"/></td>
-                        <td style="vertical-align: middle;;"><fmt:formatDate type="date" dateStyle="short" value="${ product.proRDate }"/></td>
+                        <td style="vertical-align: middle;"><fmt:formatDate type="date" dateStyle="short" value="${ product.proRDate }"/></td>
                         <td style="vertical-align: middle;">${ product.selId }</td>
-                        <td>
+                        <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" memberId="${ product.proNo }">삭제</button>
                         </td>
                       </tr>
@@ -186,7 +185,7 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }/lodgingdetail/"+num
+   		    location.href="${ pageContext.request.contextPath }/market/product-view?proNo="+num
 
    		});
     </script>

@@ -10,27 +10,24 @@ import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface AdminService {
 
-	int getMemCount();
+	int getMemCount(String memtype, String search);
+	
+	List<Member> getMemList(PageInfo pageInfo, String memtype, String search);
 
-	List<Member> getMemList(PageInfo pageInfo);
+	int getMemXCount(String memtype, String search);
 
-	int getMemXCount();
+	List<Member> getMemXList(PageInfo pageInfo, String memtype, String search);
 
-	List<Member> getMemXList(PageInfo pageInfo);
+	int getBoardCount(String boardtype, String search);
 
-	int getBoardCount();
+	List<Wherego> getBoardList(PageInfo pageInfo, String boardtype, String search);
 
-	List<Wherego> getBoardList(PageInfo pageInfo);
+	int getProCount(String searchtype, String search);
 
-	int getProCount();
+	List<Product> getProductList(PageInfo pageInfo, String searchtype, String search);
 
-	List<Product> getProductList(PageInfo pageInfo);
+	int getRevCount(String categorytype, String searchtype, String search);
 
-	int getRevCount();
-
-	List<Review> getReviewList(PageInfo pageInfo);
-
-	List<Member> getMemList(String memtype, String search);
-
-
+	List<Review> getReviewList(PageInfo pageInfo, String categorytype, String searchtype, String search);
+	
 }

@@ -3,6 +3,7 @@ package com.finalproject.petkage.wherego.model.service;
 import java.util.List;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -46,7 +47,7 @@ public interface WheregoService {
 
 	int delete_like(Heart heart);
 
-
+	void reviewAvg(String spotName);
 	
 	
 }

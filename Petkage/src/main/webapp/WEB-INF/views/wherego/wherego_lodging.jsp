@@ -23,47 +23,44 @@
 </head>
 
 <body>
-
     <section class="wg_4">
         <div class="wg_top" id="wg_top">
             <div class="wg_title">
                 <img src="${ path }/resources/images/wherego/숙소.png" alt="">
                 <p>숙소</p>
             </div>
+        <form action="" id="formobj">
             <div class="ht_search2">
-                <form class="ht_12">
                     <div class="ht_22">
-                        <select name="" id="" required>
-                            <option disabled selected>지역선택</option>
-                            <option>서울</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>경상</option>
-                            <option>전라</option>
-                            <option>충청</option>
+                        <select name="location_filter" id="" required>
+                            <option value="서울" selected="selected">서울</option>
+                            <option value="부산">부산</option>
+                            <option value="제주">제주</option>
+                            <option value="경기">경기</option>
+                            <option value="인천">인천</option>
+                            <option value="강원">강원</option>
+                            <option value="경상">경상</option>
+                            <option value="전라">전라</option>
+                            <option value="충청">충청</option>
                         </select>
                     </div>
                     <div class="ht_22_btn">
-                        <button type="submit">검색</button>
+                        <button type="submit" id="location_search">검색</button>
                     </div>
-                </form>
             </div>
         </div>
 
         <div class="wg_filter">
         	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/wherego/lodging_write'">글 작성</button>
-            <button id="wgf_btn1" class="wgfbtn active">추천순</button>
-            <button id="wgf_btn2" class="wgfbtn">평점순</button>
-            <button id="wgf_btn3" class="wgfbtn">낮은가격</button>
-            <button id="wgf_btn4" class="wgfbtn">높은가격</button>
+        	<input type="hidden" id="filter" name="filter">
+            <button id="wgf_btn1" type="submit" class="wgfbtn" value="추천순">추천순</button>
+            <button id="wgf_btn2" type="submit" class="wgfbtn" value="별점순">별점순</button>
+            <button id="wgf_btn3" type="submit" class="wgfbtn" value="낮은가격">낮은가격</button>
+            <button id="wgf_btn4" type="submit" class="wgfbtn" value="높은가격">높은가격</button> 
         </div>
 
         <div class="wg_content">
             <div class="wg_sidebar">
-                <form action="">
                     <div class="wgs_main">
                         <div class="wgs_date">
                             <div class="datext">날짜</div>
@@ -77,8 +74,11 @@
                         <div class="wgs_option">
                             <div class="optext">상세 조건</div>
                             <div class="opt_btn">
+                            	<input type="hidden" name="size_filter" id="size_filter">
+                            	<input type="hidden" name="ameni" id="ameni">
+                            	<input type="hidden" name="theme" id="theme">
                                 <button type="reset">초기화</button>
-                                <button type="submit">적용</button>
+                                <button type="submit" id="detail_search">적용</button>
                             </div>
                         </div>    
                         <div class="wgs_opt_1">
@@ -100,10 +100,10 @@
                         <div class="wgs_opt_1">
                             <div class="wgs_ptext">견종</div>
                             <div class="wgs_popt">
-                                <select>
-                                    <option value="">소형견</option>
-                                    <option value="">중형견</option>
-                                    <option value="">대형견</option>
+                                <select id="size_filter" name="size_filter">
+                                    <option value="소형견" selected="selected">소형견</option>
+                                    <option value="중형견">중형견</option>
+                                    <option value="대형견">대형견</option>
                                 </select>
                             </div>
                         </div>
@@ -111,27 +111,27 @@
                             <div class="wgs_ptext2">편의시설</div>
                             <div class="wgs_popt2">
                                 <div class="wgs_checkbox1">
-                                    <input type="checkbox" id="internet">
+                                    <input type="checkbox" id="internet" class="ameni" value="무선인터넷">
                                     <label for="internet">무선 인터넷</label>
-                                    <input type="checkbox" id="bbq">
+                                    <input type="checkbox" id="bbq" class="ameni" value="개별바베큐">
                                     <label for="bbq">개별바베큐</label>
                                 </div>
                                 <div class="wgs_checkbox2">
-                                    <input type="checkbox" id="breakfast">
+                                    <input type="checkbox" id="breakfast" class="ameni" value="아침식사">
                                     <label for="breakfast">아침식사</label>
-                                    <input type="checkbox" id="parking">
+                                    <input type="checkbox" id="parking" class="ameni" value="무료주차">
                                     <label for="parking">무료주차</label>
                                 </div>
                                 <div class="wgs_checkbox3">
-                                    <input type="checkbox" id="karaoke">
+                                    <input type="checkbox" id="karaoke" class="ameni" value="노래방">
                                     <label for="karaoke">노래방</label>
-                                    <input type="checkbox" id="spa">
+                                    <input type="checkbox" id="spa" class="ameni" value="스파/월풀">
                                     <label for="spa">스파/월풀</label>
                                 </div>
                                 <div class="wgs_checkbox4">
-                                    <input type="checkbox" id="cafe">
+                                    <input type="checkbox" id="cafe" class="ameni" value="카페">
                                     <label for="cafe">카페</label>
-                                    <input type="checkbox" id="swimming">
+                                    <input type="checkbox" id="swimming" class="ameni" value="수영장">
                                     <label for="swimming">수영장</label>
                                 </div>
                             </div>
@@ -140,27 +140,27 @@
                             <div class="wgs_ptext2">테마</div>
                             <div class="wgs_popt2">
                                 <div class="wgs_checkbox1">
-                                    <input type="checkbox" id="layer">
+                                    <input type="checkbox" id="layer" class="theme" value="복층">
                                     <label for="layer">복층</label>
-                                    <input type="checkbox" id="detached">
+                                    <input type="checkbox" id="detached" class="theme" value="독채"> 
                                     <label for="detached">독채</label>
                                 </div>
                                 <div class="wgs_checkbox2">
-                                    <input type="checkbox" id="hotwater">
+                                    <input type="checkbox" id="hotwater" class="theme" value="온수풀">
                                     <label for="hotwater">온수풀</label>
-                                    <input type="checkbox" id="hokangs">
+                                    <input type="checkbox" id="hokangs" class="theme" value="호캉스">
                                     <label for="hokangs">호캉스</label>
                                 </div>
                                 <div class="wgs_checkbox3">
-                                    <input type="checkbox" id="pool">
+                                    <input type="checkbox" id="pool" class="theme" value="풀빌라">
                                     <label for="pool">풀빌라</label>
-                                    <input type="checkbox" id="glamping">
+                                    <input type="checkbox" id="glamping" class="theme" value="글램핑">
                                     <label for="glamping">글램핑</label>
                                 </div>
                                 <div class="wgs_checkbox4">
-                                    <input type="checkbox" id="caravan">
+                                    <input type="checkbox" id="caravan" class="theme" value="카라반">
                                     <label for="caravan">카라반</label>
-                                    <input type="checkbox" id="hanok">
+                                    <input type="checkbox" id="hanok" class="theme" value="한옥">
                                     <label for="hanok">한옥</label>
                                 </div>
                             </div>
@@ -313,6 +313,82 @@
     // 결과 출력
     resultElement2.innerText = number2;
     }
+    </script>
+    
+    <!-- 카테고리  --> 
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+		
+    	var size = "";
+    	var location = "";
+    	var choice = "";
+    	var ameni = new Array();
+    	var theme = new Array();
+    	
+	    $(function() {
+	        var joinButton = $('.wgfbtn');
+	
+	        joinButton.click(function() {
+	            $('.wgfbtn').removeClass('active');
+	            $(this).addClass('active');
+	            $('#filter').attr('value', $(this).val());
+	        	
+	            choice = $(this).val();
+	            location = $('#location_filter').val();
+	            
+	            console.log(choice);
+	            
+	            const formElement = $('#formobj');
+	            formElemnet.attr("action", "${path}/wherego/lodging_category?filter="+ choice + "&location_filter=" + location)
+	            formElement.attr("method", "get");
+	            formElement.submit();
+	        })
+	    });
+	    
+	    $(function() {
+	        var locationButton = $('#location_search');
+	
+	        locationButton.click(function() {
+	        	
+	            location = $('#location_filter').val();
+	        	
+	            const formElement = $('#formobj');
+	            formElemnet.attr("action", "${path}/wherego/lodging_category?location_filter="+ location)
+	            formElement.attr("method", "get");
+	            formElement.submit();
+	        })
+	    });
+	    
+	    $(function() {
+	        var detailButton = $('#detail_search');
+	
+	        detailButton.click(function() {
+	        	
+	            size = $('#size_filter').val();
+	            
+	        	for (var i = 0; i < $('.ameni:checked').length; i++) {
+	        		ameni.push( '$($($('.ameni:checked')[i])).val()');
+				}
+	        	
+	        	for (var i = 0; i < $('.theme:checked').length; i++) {
+	        		theme.push( '$($($('.theme:checked')[i])).val()');
+				}
+	        	
+	        	$('#size_filter').attr('value', size);
+	        	$('#ameni').attr('value', ameni);
+	        	$('#theme').attr('value', theme);
+	        	
+	        	console.log(ameni + theme);
+	        	
+	            const formElement = $('#formobj');
+	            formElemnet.attr("action", "${path}/wherego/lodging_category?filter="+ choice + "&location_filter=" + location + "&size_filter=" + size + "%ameni" + ameni + "%theme" + theme)
+	            formElement.attr("method", "get");
+	            formElement.submit();
+	        })
+	    });
+	}); 
+    
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>

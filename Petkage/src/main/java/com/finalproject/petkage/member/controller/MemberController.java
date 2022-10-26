@@ -227,15 +227,87 @@ public class MemberController {
 				String setfrom = "petkage_final@naver.com"; // naver 
 				String tomail = userEmail; //받는사람
 				String title = "[Petkage] 아이디 찾기 인증 이메일 입니다"; 
-				String content = System.getProperty("line.separator") 
-								+ "안녕하세요 " + member.getUserName() + "회원님" 
-								+ System.getProperty("line.separator")
-								+ System.getProperty("line.separator")
-								+ "[Petkage] 아이디 찾기 인증번호는 [" + findNum + "] 입니다." 
-								+ System.getProperty("line.separator")
-								+ System.getProperty("line.separator")
-								+ "이 메일은 발신 전용 이메일 입니다. "
-								+ System.getProperty("line.separator"); 
+				String content = "<html lang=\"ko\">\r\n"
+						+ "  <head>\r\n"
+						+ "    <meta charset=\"UTF-8\" />\r\n"
+						+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n"
+						+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n"
+						+ "    <title>Document</title>\r\n"
+						+ "    <style>\r\n"
+						+ "      @font-face {\r\n"
+						+ "        font-family: \"GmarketSansMedium\";\r\n"
+						+ "        src: url(\"https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff\")\r\n"
+						+ "          format(\"woff\");\r\n"
+						+ "        font-weight: normal;\r\n"
+						+ "        font-style: normal;\r\n"
+						+ "      }\r\n"
+						+ "\r\n"
+						+ "      * {\r\n"
+						+ "        font-family: \"GmarketSansMedium\";\r\n"
+						+ "        color: black;\r\n"
+						+ "      }\r\n"
+						+ "    </style>\r\n"
+						+ "  </head>\r\n"
+						+ "  <body>\r\n"
+						+ "    <div style=\"text-align: center\">\r\n"
+						+ "      <div style=\"width: 80em; border: 6px solid #753422; border-radius: 20px; margin: auto\">\r\n"
+						+ "        <div>\r\n"
+						+ "          <img\r\n"
+						+ "            src=\"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5yVaE%2FbtrPvvoMtMy%2FTOwQlUU3EjeyDr5a3LZZNK%2Fimg.png\"\r\n"
+						+ "            style=\"width: 350px; height: 140px\"\r\n"
+						+ "          />\r\n"
+						+ "        </div>\r\n"
+						+ "\r\n"
+						+ "        <div style=\"font-size: 30px; font-weight: 700\">\r\n"
+						+ "          당신의 반려동물을 위한 최고의 플랫폼,\r\n"
+						+ "          <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>입니다. <br /><br /><br />\r\n"
+						+ "        </div>\r\n"
+						+ "\r\n"
+						+ "        <div style=\"font-size: 20px; font-weight: 700; color: black\">\r\n"
+						+ "          "+ member.getUserName() + " 회원님, 안녕하세요. <br /><br />\r\n"
+						+ "          이 메일은 인증번호 확인을 위한 이메일입니다. <br />\r\n"
+						+ "          혹시, <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>의\r\n"
+						+ "          <span style=\"text-decoration: underline\">아이디</span>를\r\n"
+						+ "          잊어버리셨나요? <br /><br />\r\n"
+						+ "          아래 번호를 인증번호 확인 칸에 입력 후, <br />\r\n"
+						+ "          <span style=\"text-decoration: underline\">확인 버튼</span>을 클릭해\r\n"
+						+ "          주세요. <br /><br /><br />\r\n"
+						+ "          인증번호는 <br /><br />\r\n"
+						+ "          <div\r\n"
+						+ "            style=\"\r\n"
+						+ "              width: 170px;\r\n"
+						+ "              border: 6px solid #753422;\r\n"
+						+ "              border-top: none;\r\n"
+						+ "              border-right: none;\r\n"
+						+ "              border-left: none;\r\n"
+						+ "              justify-content: center;\r\n"
+						+ "              align-content: center;\r\n"
+						+ "              margin: auto;\r\n"
+						+ "              padding: 15px 0;\r\n"
+						+ "              /* display: table-cell;\r\n"
+						+ "                vertical-align: middle; */\r\n"
+						+ "            \"\r\n"
+						+ "          >\r\n"
+						+ "            " + findNum + "\r\n"
+						+ "          </div>\r\n"
+						+ "          <br />\r\n"
+						+ "          입니다. <br /><br /><br /><br />\r\n"
+						+ "\r\n"
+						+ "          여러분의 반려동물 곁에는 언제나 <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>가 함께 합니다.<br /><br /><br /><br />\r\n"
+						+ "          <div style=\"font-size: 15px\">\r\n"
+						+ "            *본 메일은 발신전용 메일입니다.<br /><br />\r\n"
+						+ "          </div>\r\n"
+						+ "        </div>\r\n"
+						+ "      </div>\r\n"
+						+ "    </div>\r\n"
+						+ "  </body>\r\n"
+						+ "</html>";
+				
+
+				
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -243,7 +315,7 @@ public class MemberController {
 					messageHelper.setFrom(setfrom); 
 					messageHelper.setTo(tomail); 
 					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
+					messageHelper.setText(content, true); 
 	
 					mailSender.send(message);
 					} catch (Exception e) {
@@ -297,26 +369,86 @@ public class MemberController {
 				String setfrom = "petkage_final@naver.com"; // naver 
 				String tomail = userEmail; //받는사람
 				String title = "[Petkage] 비밀번호 변경 인증 이메일 입니다"; 
-				String content = System.getProperty("line.separator") 
-								+ "안녕하세요 " + member.getUserName() + "회원님" 
-								+ System.getProperty("line.separator")
-								+ System.getProperty("line.separator")
-								+ "[Petkage] 비밀번호 변경 인증번호는 [" + findNum + "] 입니다." 
-								+ System.getProperty("line.separator")
-								+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요."
-								+ System.getProperty("line.separator")
-								+ System.getProperty("line.separator")
-								+ "*본 메일은 발신 전용 이메일 입니다. "
-								+ System.getProperty("line.separator"); 
-//				String content = "<br><br>" 
-//								+ "안녕하세요 " + member.getUserName() + "회원님" 
-//								+ "<br><br>" 
-//								+ "[Petkage] 비밀번호 변경 인증번호는 [ " + findNum + " ] 입니다." 
-//								+ "<br><br>" 
-//								+ "해당 인증번호를 인증번호 확인란에 기입하여 주세요."
-//								+ "<br><br>" 
-//								+ "*본 메일은 발신 전용 이메일 입니다. "
-//								+ "<br><br>" ; 
+				String content = "<html lang=\"ko\">\r\n"
+						+ "  <head>\r\n"
+						+ "    <meta charset=\"UTF-8\" />\r\n"
+						+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n"
+						+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n"
+						+ "    <title>Document</title>\r\n"
+						+ "        <style>\r\n"
+						+ "      @font-face {\r\n"
+						+ "        font-family: \"GmarketSansMedium\";\r\n"
+						+ "        src: url(\"https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff\")\r\n"
+						+ "          format(\"woff\");\r\n"
+						+ "        font-weight: normal;\r\n"
+						+ "        font-style: normal;\r\n"
+						+ "      }\r\n"
+						+ "\r\n"
+						+ "      @import url(\"https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff\");\r\n"
+						+ "\r\n"
+						+ "      * {\r\n"
+						+ "        font-family: \"GmarketSansMedium\";\r\n"
+						+ "        color: black;\r\n"
+						+ "      }\r\n"
+						+ "    </style>\r\n"
+						+ "  </head>\r\n"
+						+ "  <body>\r\n"
+						+ "    <div style=\"text-align: center\">\r\n"
+						+ "      <div style=\"width: 80em; border: 6px solid #753422; border-radius: 20px; margin: auto\">\r\n"
+						+ "        <div>\r\n"
+						+ "          <img\r\n"
+						+ "            src=\"https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F5yVaE%2FbtrPvvoMtMy%2FTOwQlUU3EjeyDr5a3LZZNK%2Fimg.png\"\r\n"
+						+ "            style=\"width: 350px; height: 140px\"\r\n"
+						+ "          />\r\n"
+						+ "        </div>\r\n"
+						+ "\r\n"
+						+ "        <div style=\"font-size: 30px; font-weight: 700\">\r\n"
+						+ "          당신의 반려동물을 위한 최고의 플랫폼,\r\n"
+						+ "          <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>입니다. <br /><br /><br />\r\n"
+						+ "        </div>\r\n"
+						+ "\r\n"
+						+ "        <div style=\"font-size: 20px; font-weight: 700; color: black\">\r\n"
+						+ "          "+ member.getUserName() + " 회원님, 안녕하세요. <br /><br />\r\n"
+						+ "          이 메일은 인증번호 확인을 위한 이메일입니다. <br />\r\n"
+						+ "          혹시, <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>의\r\n"
+						+ "          <span style=\"text-decoration: underline\">비밀번호</span>를\r\n"
+						+ "          잊어버리셨나요? <br /><br />\r\n"
+						+ "          아래 번호를 인증번호 확인 칸에 입력 후, <br />\r\n"
+						+ "          <span style=\"text-decoration: underline\">확인 버튼</span>을 클릭해\r\n"
+						+ "          주세요. <br /><br /><br />\r\n"
+						+ "          인증번호는 <br /><br />\r\n"
+						+ "          <div\r\n"
+						+ "            style=\"\r\n"
+						+ "              width: 170px;\r\n"
+						+ "              border: 6px solid #753422;\r\n"
+						+ "              border-top: none;\r\n"
+						+ "              border-right: none;\r\n"
+						+ "              border-left: none;\r\n"
+						+ "              justify-content: center;\r\n"
+						+ "              align-content: center;\r\n"
+						+ "              margin: auto;\r\n"
+						+ "              padding: 15px 0;\r\n"
+						+ "              /* display: table-cell;\r\n"
+						+ "                vertical-align: middle; */\r\n"
+						+ "            \"\r\n"
+						+ "          >\r\n"
+						+ "            " + findNum + "\r\n"
+						+ "          </div>\r\n"
+						+ "          <br />\r\n"
+						+ "          입니다. <br /><br /><br /><br />\r\n"
+						+ "\r\n"
+						+ "          여러분의 반려동물 곁에는 언제나 <span style=\"color: #753422\">Pet</span\r\n"
+						+ "          ><span style=\"color: #d79771\">kage</span>가 함께 합니다.<br /><br /><br /><br />\r\n"
+						+ "          <div style=\"font-size: 15px\">\r\n"
+						+ "            *본 메일은 발신전용 메일입니다.<br /><br />\r\n"
+						+ "          </div>\r\n"
+						+ "        </div>\r\n"
+						+ "      </div>\r\n"
+						+ "    </div>\r\n"
+						+ "  </body>\r\n"
+						+ "</html>";
 	
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
@@ -325,7 +457,7 @@ public class MemberController {
 					messageHelper.setFrom(setfrom); 
 					messageHelper.setTo(tomail); 
 					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
+					messageHelper.setText(content, true); 
 	
 					mailSender.send(message);
 					} catch (Exception e) {
@@ -510,10 +642,10 @@ public class MemberController {
     // NAVER - 네이버 로그인 성공시 callback 호출 후 사용자 정보 요청
     @RequestMapping(value = "/callbackNaver", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView callbackNaver(ModelAndView model,
-    							@RequestParam Map<String,Object> paramMap,
-    							@RequestParam String code, 
-    							@RequestParam String state, 
-    							HttpSession session) throws IOException {
+	    							 @RequestParam Map<String,Object> paramMap,
+	    							 @RequestParam String code, 
+	    							 @RequestParam String state, 
+	    							 HttpSession session) throws IOException {
     	
         log.info("callbackNaver");
         

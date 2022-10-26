@@ -13,13 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
     <!-- modal-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ path }/resources/css/market/modal.css">
+    
+    <!-- slideShow  -->
+    <link rel="stylesheet" href="${ path }/resources/css/market/slideShow.css">
 
     <title>Document</title>
 </head>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body ondragstart="return false" onselectstart="return false">
     <div id="wrap-all-prod">
         <div class="row">
             <div class="contents" style="margin-bottom: 50px;">
@@ -27,6 +29,64 @@
                 <div class="row justify-content-center"><h2>상품 상세</h2></div>
                 <br>
                 <div id="prodImageItems">
+				    <!-- Full-width images with number text -->
+				    <div class="slides">
+				      <div class="numbertext">1 / 6</div>
+				        <img src="${path}/resources/upload/market/${ product.renamedFileName }" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <div class="slides">
+				      <div class="numbertext">2 / 6</div>
+				        <img src="${path}/resources/images/market/dogfood2.jpg" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <div class="slides">
+				      <div class="numbertext">3 / 6</div>
+				        <img src="${path}/resources/images/market/dogfood3.jpg" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <div class="slides">
+				      <div class="numbertext">4 / 6</div>
+				        <img src="${path}/resources/images/market/dogfood4.jpg" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <div class="slides">
+				      <div class="numbertext">5 / 6</div>
+				        <img src="${path}/resources/images/market/dogfood5.jpg" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <div class="slides">
+				      <div class="numbertext">6 / 6</div>
+				        <img src="${path}/resources/images/market/dogfood6.jpg" style="width:480px; height: 480px;">
+				    </div>
+				  
+				    <!-- Next and previous buttons -->
+				    <div style="position: relative;">
+					    <a class="slide-prev" onclick="plusCarouselSlides(-1)">&#10094;</a>
+					    <a class="slide-next" onclick="plusCarouselSlides(1)">&#10095;</a>
+				  	</div>
+				    <!-- Thumbnail images -->
+				    <div class="row-slide">
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/upload/market/${ product.renamedFileName }" style="width:80px;" onclick="currentSlide(1)">
+				      </div>
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood2.jpg" style="width:80px" onclick="currentSlide(2)">
+				      </div>
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood3.jpg" style="width:80px" onclick="currentSlide(3)">
+				      </div>
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood4.jpg" style="width:80px" onclick="currentSlide(4)">
+				      </div>
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood5.jpg" style="width:80px" onclick="currentSlide(5)">
+				      </div>
+				      <div class="column">
+				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood6.jpg" style="width:80px" onclick="currentSlide(6)">
+				      </div>
+				    </div>
+<!-- 
                     <div id="carouselIndicators" class="carousel slide" data-touch="false" data-interval="false">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
@@ -92,6 +152,7 @@
                             </li>
                         </ul>
                     </div>
+ -->
                 </div>
                 <div id="prodSummary">
                     <div class="prod-brand">${ product.proBrand }
@@ -109,7 +170,6 @@
 							</c:forEach>
                         </span>
                         <span class="review-count">${ product.proRevCount }개 상품평</span>
-                        <span class="badge badge-secondary badge-new">New</span>
                     </div>
                     <div class="prod-original-price">
                          -<fmt:formatNumber type="number" value="${ 100 - (product.proSPrice / product.proOPrice * 100) }" pattern="0"/>% 
@@ -188,7 +248,13 @@
                             	</c:if>
                             	<c:if test="${ not empty list }">
                             		<c:forEach var="review" items="${ list }">
-		                                <span>${ review.memname }</span>
+		                                <span>
+		                                	<c:set var="name" value="${review.memname}"/>
+											<c:set var="totalLength" value="${fn:length(name) }"/>
+											<c:set var="first" value="${fn:substring(name, 0, 1) }"/>
+											<c:set var="last" value="${fn:substring(name, 2, totalLength) }"/>
+		                                	<c:out value="${first} * ${last}"/>
+		                                </span>
 		                                <div>
 		                                    <span class="rating">
 			                                    <c:forEach var="i" begin="1" end="${ review.revscore }">
@@ -198,25 +264,63 @@
 				                                	<img src="${ path }/resources/images/market/star_unfilled.png" width="14" height="14" alt="star" style="transform: translateY(-2px);">                                      
 												</c:forEach>
 											</span>
-		                                    <span>${ review.revdate }</span>
+		                                    <span><fmt:formatDate value="${ review.revdate }" pattern="yyyy.MM.dd"/></span>
 		                                </div>                                
 		                                <div>${ review.revcoment }
 		                                </div>
-		                                <img class="img" src="${path}/resources/uploadFiles/${ review.revrenameimg }" width="80" height="80">
-		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
-		                                <img class="img" src="${path}/resources/uploadFiles/nobox.png" width="80" height="80">
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/${ review.revrenameimg }">
-		                                </div>
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
-		                                </div>
-		                                <div class="modal">
-		                                    <span class="close">&times;</span>
-		                                    <img class="modal_content" src="${path}/resources/uploadFiles/nobox.png">
-		                                </div><hr>
+		                                <div class="row-modal">
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/${ review.revrenameimg }" onclick="openModal();currentSlide(1)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/review2.jpg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/review3.jpg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/nobox.png" onclick="openModal();currentSlide(4)" class="hover-shadow">
+									        </div>
+									        <div class="column">
+									          <img src="${ path }/resources/uploadFiles/nobox.png" onclick="openModal();currentSlide(5)" class="hover-shadow">
+									        </div>
+									    </div>
+									      <!-- The Modal/Lightbox -->
+									    <div id="myModal" class="modal">
+									        <span class="close cursor" onclick="closeModal()">&times;</span>
+									        <div class="modal-content" style="border: none;">
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">1 / 5</div>
+									            <img src="${ path }/resources/uploadFiles/${ review.revrenameimg }" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">2 / 5</div>
+									            <img src="${ path }/resources/uploadFiles/review2.jpg" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">3 / 5</div>
+									            <img src="${ path }/resources/uploadFiles/review3.jpg" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">4 / 5</div>
+									            <img src="${ path }/resources/uploadFiles/nobox.png" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <div class="mySlides">
+									            <div class="numbertext">5 / 5</div>
+									            <img src="${ path }/resources/uploadFiles/nobox.png" style="margin: auto; display: block;">
+									          </div>
+									      
+									          <!-- Next/previous controls -->
+									          <a class="prev" onclick="plusSlides(-1)" style="color: white;">&#10094;</a>
+									          <a class="next" onclick="plusSlides(1)" style="color: white;">&#10095;</a>
+
+									        </div>
+									    </div><hr>
 	                                </c:forEach>
 								</c:if>
 							</div>
@@ -532,6 +636,7 @@
    			$(".order-form").find("input[name='orders[0].proCount']").val(proCount);
    			$(".order-form").submit();
    		})
+   		
 	});
 	
     // 상품 상세 페이지 상단바
@@ -549,5 +654,72 @@
             fixNext.removeClass("pd_top_80");
         }
     });
+    
+    // Open the Modal
+    function openModal() {
+      document.getElementById("myModal").style.display = "inline-block";
+    }
+    
+    // Close the Modal
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+    
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      console.log(slides.length);
+      var captionText = document.getElementById("caption");
+      if (n > 5) {slideIndex = 1}
+      if (n < 1) {slideIndex = 5}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "inline-block";
+    }
+    
+    // 캐러셀 슬라이드
+    
+        let carouselSlideIndex = 1;
+showCarouselSlides(carouselSlideIndex);
+
+// Next/previous controls
+function plusCarouselSlides(n) {
+  showCarouselSlides(carouselSlideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showCarouselSlides(carouselSlideIndex = n);
+}
+
+function showCarouselSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slides");
+  let dots = document.getElementsByClassName("thumbnail");
+  if (n > slides.length) {carouselSlideIndex = 1}
+  if (n < 1) {carouselSlideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[carouselSlideIndex-1].style.display = "block";
+  dots[carouselSlideIndex-1].className += " active";
+}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

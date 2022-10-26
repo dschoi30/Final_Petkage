@@ -78,9 +78,9 @@
 	                	네이버로 로그인
 	                </button>
 	
-					<button type="button" class="btn btn-block" id="googleLogin" onclick="loginWithGoogle()">
+					<%-- <button type="button" class="btn btn-block" id="googleLogin" onclick="loginWithGoogle()">
 	                	구글로 로그인
-	                </button>
+	                </button> --%>
 
 	                <span class="JoinMsg">
 	                  아직 <strong><span style="color: #753422;">Pet</span>kage</strong>의 회원이 아니신가요?<br>
@@ -125,8 +125,8 @@
 <%-- 카카오 JavaScript 키 - 5b193b0622a9f557a7fdcc91e98cd2d0 --%>
 
 <%-- 카카오 API --%>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
-  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<%-- <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
+  integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script> --%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script>
@@ -206,53 +206,6 @@
 			}) // ajax
 	}; // kakaoLoginPro
 </script>
-<%-- 구글 API --%>
-<%-- <script src="https://apis.google.com/js/platform.js" async defer></script> --%>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
-
-<script>
-function loginWithGoogle(response) {
-    // console.log("Encoded JWT ID token: " + response.credential);
-	var googleToken = response.credential;
-	console.log(googleToken);
-
-	$.ajax({
-		type : 'POST',
-		url : '${path}/member/googleToken',
-		data : {
-			googleToken
-			},
-		dataType : 'text',
-		success : function(result){
-			console.log(result);
-		}
-	})
-
-	    var base64Url = googleToken.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-	console.log(jsonPayload);
-    // return JSON.parse(jsonPayload);
-}
-
-window.onload = function () {
-	google.accounts.id.initialize({
-	client_id: "559389777930-91p4mafho57paqbtc0uni4ueu8t1098n.apps.googleusercontent.com",
-	callback: loginWithGoogle
-	});
-	google.accounts.id.renderButton(
-	document.getElementById("googleLogin"),
-	{ theme: "none"}  // customization attributes
-	);
-}
-
-
-
-// </script>  
-
 </body>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </html>

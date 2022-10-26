@@ -26,7 +26,8 @@
 		<result property="menu" column="SPOT_MENU" />
 		<result property="score" column="SPOT_SCORE" />
 		<result property="spotStatus" column="SPOT_STATUS" />
-		<result property="spotMap" column="SPOT_MAP" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
 		<result property="roomNum" column="SPOT_ROOMNUM" />
 		<result property="price" column="ROOM_PRICE" />
 	</resultMap>
@@ -47,6 +48,27 @@
 		<collection property="room" javaType="arraylist" columnPrefix="R_" resultMap="RoomResultMap" />
 	</resultMap>
 	
+	<!-- review -->
+	<resultMap type="Review" id="ReviewList">
+	
+		<id property="revno" column="REV_NO" />
+		<result property="spotno" column="REV_SPOT_NO" />
+		<result property="prono" column="REV_PRO_NO" />
+		<result property="writerno" column="REV_WRITER_NO" />
+		<result property="revtype" column="REV_TYPE" />
+		<result property="revtitle" column="REV_TITLE" />
+		<result property="revcoment" column="REV_CONTENT" />
+		<result property="revimg" column="REV_IMG" />
+		<result property="revdate" column="REV_DATE" />
+		<result property="revscore" column="REV_SCORE" />
+		<result property="revrecomend" column="REV_RECOMMEND" />
+		<result property="revstatus" column="REV_STATUS" />
+		<result property="revreport" column="REV_REPORT" />
+		<result property="revrenameimg" column="REV_RENAMEIMG" />
+		<result property="memname" column="MEM_NAME" />
+		<result property="revcategory" column="REV_CATEGORY" />
+	
+	</resultMap>
 	
 	<select id="lodging_board" resultMap="wheregovo">
 		SELECT W.SPOT_NO,
@@ -63,7 +85,8 @@
 			W.SPOT_INTRODUCE,
 			W.SPOT_INFO,
 			W.SPOT_STATUS,
-			W.SPOT_MAP,
+			W.SPOT_MAPX,
+			W.SPOT_MAPY,
 			W.SPOT_ROOMNUM,
 			R.ROOM_PRICE 
 		FROM WHEREWEGO W
@@ -154,7 +177,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP,
+			SPOT_MAPX,
+			SPOT_MAPY,
 			SPOT_ROOMNUM
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
@@ -171,7 +195,8 @@
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotMap },
+	    	#{ spotMapX },
+	    	#{ spotMapY },
 	    	#{ roomNum }
     	)
     </insert>
@@ -219,7 +244,8 @@
 			SPOT_INTRODUCE,
 			SPOT_INFO,
 			SPOT_STATUS,
-			SPOT_MAP,
+			SPOT_MAPX,
+			SPOT_MAPY,
 			SPOT_MENU	
     	) VALUES (
 	    	SEQ_SPOT_NO.NEXTVAL, 
@@ -235,7 +261,8 @@
 	    	#{ introduce }, 
 	    	#{ info }, 
 	    	DEFAULT, 
-	    	#{ spotMap },
+	    	#{ spotMapX },
+	    	#{ spotMapY },
 	    	#{ menu }
     	)
     </insert>
@@ -274,6 +301,19 @@
    		WHERE SPOT_NO = #{spotNo} AND MEM_NO = #{userNo}
    	</delete>
    	
+ 	<!-- 별점 평균 -->
+	<select id="reviewAvg" resultMap="ReviewList">
+		SELECT ROUND(AVG(REV_SCORE),1)
+		FROM REVIEW R
+		JOIN WHEREWEGO W ON (W.SPOT_NO = R.REV_SPOT_NO)
+		WHERE REV_TITLE = #{spotName}
+	</select>
+ 
+ 	<update id="updateReviewAvg">
+        UPDATE WHEREWEGO SET SPOT_SCORE = #{ score }
+        WHERE SPOT_NO = #{ spotNo }
+    </update>
+ 
  
    	<!-- 어디가지 별점 순 10개 게시글 -->
    	<select id="getListWheregoRecommend" resultMap="wheregovo">

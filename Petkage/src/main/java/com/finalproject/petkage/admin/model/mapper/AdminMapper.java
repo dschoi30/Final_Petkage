@@ -14,28 +14,27 @@ import com.finalproject.petkage.wherego.model.vo.Wherego;
 @Mapper
 public interface AdminMapper {
 
-	int selectMemCount();
+	int selectMemCountBySearch(Map<String, String> map);
+	
+	List<Member> selectMemAllBySearch(RowBounds rowBounds, Map<String, String> map);
+	
+	int selectMemXCount(Map<String, String> map);
 
-	List<Member> selectMemAll(RowBounds rowBounds);
+	List<Member> selectMemXAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectMemXCount();
+	int selectBoardCount(Map<String, String> map);
 
-	List<Member> selectMemXAll(RowBounds rowBounds);
+	List<Wherego> selectBoardAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectBoardCount();
+	int selectProductCount(Map<String, String> map);
 
-	List<Wherego> selectBoardAll(RowBounds rowBounds);
+	List<Product> selectProductAll(RowBounds rowBounds, Map<String, String> map);
 
-	int selectProductCount();
+	int selectReviewCount(Map<String, String> map);
 
-	List<Product> selectProductAll(RowBounds rowBounds);
+	List<Review> selectReviewAll(RowBounds rowBounds, Map<String, String> map);
+	
+	
 
-	int selectReviewCount();
-
-	List<Review> selectReviewAll(RowBounds rowBounds);
-
-//	List<Member> selectMemBySearch(Map<String, String> map);
-
-	List<Member> selectMemBySearch(String memtype, String search);
 
 }
