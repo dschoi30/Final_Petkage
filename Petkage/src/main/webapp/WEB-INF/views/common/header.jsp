@@ -28,7 +28,7 @@
 	<meta name="theme-color" content="#ffffff">
     
 </head>
-<body>
+<body ondragstart="return false" onselectstart="return false">
 	<section class="hd">
         <div class="header_container">
             <header class="d-flex flex-wrap mb-4">

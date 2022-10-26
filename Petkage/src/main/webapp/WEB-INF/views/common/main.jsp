@@ -65,7 +65,7 @@
 	<meta name="theme-color" content="#ffffff">
 	
 </head>
-<body>
+<body ondragstart="return false" onselectstart="return false">
 	<!-- Channel Plugin Scripts -->
 	<script>
 	  (function() {
