@@ -95,9 +95,21 @@ public class WheregoServiceImpl implements WheregoService {
         int result = 0;
         int roomNum = wherego.getRoomNum();
         int roomTypeNo = wherego.getRoom().getRoomTypeNo();
+        String roomName = wherego.getRoom().getRoomName();
+        String roomPrice = wherego.getRoom().getRoomPrice();
+        String roomImg = wherego.getRoom().getRoomImg();
+        String renameRoomImg = wherego.getRoom().getRenameRoomImg();
+        String MInfo = wherego.getRoom().getMInfo();
+        String MAmeni = wherego.getRoom().getMAmeni();
         
         System.out.println("객실수" + roomNum);
         System.out.println("객실타입번호" + roomTypeNo); 
+        System.out.println("객실명" + roomName); 
+        System.out.println("객실가격" + roomPrice); 
+        System.out.println("객실이미지" + roomImg); 
+        System.out.println("객실이미지개명" + renameRoomImg); 
+        System.out.println("객실이미지개명" + MInfo); 
+        System.out.println("객실이미지개명" + MAmeni); 
         
         // 조건문 만들어서 INSERT
 //        if 
