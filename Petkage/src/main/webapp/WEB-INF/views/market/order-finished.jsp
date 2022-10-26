@@ -19,17 +19,30 @@
     </div>
     <div class="row">
         <div class="contents">
-            <div class="pay-fin-msg">
-                <strong>주문이 완료</strong>되었습니다. 감사합니다!<br>
-            </div>
-            <div>
-                결제일시:    ${info.approved_at}<br>
-				주문번호:    ${info.partner_order_id}<br>
-				상품명:      ${info.item_name}<br>
-				상품수량:    ${info.quantity}<br>
-				결제금액:    ${info.amount.total}<br>
-				결제방법:    ${info.payment_method_type}<br>
-			</div>
+                <div class="pay-fin-msg" style="height: 100px;">
+                    <strong>주문이 완료</strong>되었습니다. 감사합니다!<br>
+                </div>
+                <div style="height: 160px; background-color: rgb(250, 250, 250);">
+                    <div style="height:20px;"></div>
+                    <table style="font-size: 20px; margin: auto;">
+                        <tr>
+                            <td style="width: 20%;">상품명: </td>
+                            <td style="text-align: right">${ info.item_name }</td>
+                        </tr>
+                        <tr>
+                            <td>상품수량: </td>
+                            <td>${ info.quantity }개</td>
+                        </tr>
+                        <tr>
+                            <td>결제금액: </td>
+                            <td><fmt:formatNumber value="${ info.amount.total }" pattern="#,###"/>원</td>	
+                        </tr>
+                        <tr>
+                            <td>적립금: </td>
+                            <td>+<fmt:formatNumber value="${ info.amount.total * 0.05 }" pattern="#,###"/>원</td>
+                        </tr>
+                    </table>
+                </div>
         </div>
         <div class="align-btn-prod-pay-fin">
             <button class="pay-fin-btn">주문 상세보기</button>
