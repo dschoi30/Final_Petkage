@@ -164,7 +164,7 @@ public class MyPageController {
 		@GetMapping("/myPage_wroteReviews")
 	    public ModelAndView WroteReview_list(@SessionAttribute("loginMember") Member loginMember, ModelAndView model, 
 	            @RequestParam(value = "page", defaultValue = "1") int page) {
-	        List<Payment> payment = null;
+//	        List<Payment> payment = null;
 	        List<Review> review = null;
 	        PageInfo pageInfo = null;
 
@@ -172,18 +172,18 @@ public class MyPageController {
 
 	        pageInfo = new PageInfo(page, 10, service.getPdReviewAllCount(), 10);
 	        pageInfo = new PageInfo(page, 10, service.getWhReviewAllCount(), 10);
-	        payment = service.getPdReviewList(pageInfo, loginMember.getNo());
+//	        payment = service.getPdReviewList(pageInfo, loginMember.getNo());
 	        review = service.getWhReviewList(pageInfo, loginMember.getNo());
 	        
-	        System.out.println(payment);
+//	        System.out.println(payment);
 	        System.out.println(review);
 	        
 	        model.addObject("review", review);
-	        model.addObject("payment", payment);
+//	        model.addObject("payment", payment);
 	        model.addObject("pageInfo", pageInfo);
 	        model.setViewName("mypage/myPage_wroteReviews");
 
-	        System.out.println(payment);
+//	        System.out.println(payment);
 	        System.out.println(review);
 	        
 	        return model;
