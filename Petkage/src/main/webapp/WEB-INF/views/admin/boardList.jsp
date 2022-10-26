@@ -120,9 +120,9 @@
                         </td>
                         <td style="vertical-align: middle;">${ board.spotNo }</td>
                         <td style="vertical-align: middle;">${ board.spotCategory }</td>
-                        <td style="vertical-align: middle;;">${ board.spotLocation }</td>
-                        <td style="vertical-align: middle;;">${ board.spotName }</td>
-                        <td style="vertical-align: middle;;">${ board.spotAddress }</td>
+                        <td style="vertical-align: middle;">${ board.spotLocation }</td>
+                        <td style="vertical-align: middle; cursor: pointer;">${ board.spotName }</td>
+                        <td style="vertical-align: middle;">${ board.spotAddress }</td>
                         <td style="vertical-align: middle;">${ board.theme }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" updateId="${ board.spotNo }">수정</button>
@@ -192,7 +192,7 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }//product-view?proNo="+num
+   		    location.href="${ pageContext.request.contextPath }/product-view?proNo="+num
 
    		});
     	

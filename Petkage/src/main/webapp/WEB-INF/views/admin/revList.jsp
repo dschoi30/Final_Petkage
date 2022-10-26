@@ -114,7 +114,6 @@
                         <th scope="col" style="width: 270px;">내용</th>
                         <th scope="col" style="width: 120px">작성일</th>
                         <th scope="col">작성자</th>
-                        <th scope="col">신고</th>
                         <th scope="col">삭제</th>
                       </tr>
                     </thead>
@@ -131,11 +130,10 @@
                         </td>
                         <td style="vertical-align: middle;">${ rv.revno }</td>
                         <td style="vertical-align: middle;">${ rv.revtype }</td>
-                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ rv.revtitle }</td>
-                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ rv.revcoment }</td>
+                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis; cursor: pointer;">${ rv.revtitle }</td>
+                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis; cursor: pointer;">${ rv.revcoment }</td>
                         <td style="vertical-align: middle;"><fmt:formatDate type="date" dateStyle="short" value="${ rv.revdate }"/></td>
                         <td style="vertical-align: middle;">${ rv.memname }</td>
-                        <td style="vertical-align: middle;">${ rv.revreport }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" memberId="${ rv.revno }">삭제</button>
                         </td>
@@ -201,8 +199,9 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }/lodgingdetail/"+num
+   		    location.href="${ pageContext.request.contextPath }/review/review_list"
 
    		});
+    	
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

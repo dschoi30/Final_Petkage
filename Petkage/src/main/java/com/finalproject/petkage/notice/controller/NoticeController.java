@@ -132,7 +132,7 @@ public class NoticeController {
 		
 		notice = service.findNoticeByNo(no);
 		
-		if(notice.getNo() == (loginMember.getNo())) {
+		if(notice.getWriterNo() == (loginMember.getNo())) {
 			result = service.delete(no);
 			
 			if(result > 0) {

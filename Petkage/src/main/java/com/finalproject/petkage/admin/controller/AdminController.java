@@ -16,9 +16,6 @@ import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -37,7 +34,7 @@ public class AdminController {
 	@GetMapping("/memList")
 	public ModelAndView admMemList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
-			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="memtype", required = false) String memtype,
 			@RequestParam(value ="search", required = false) String search) {	
 		
 		List<Member> list = null;
@@ -59,7 +56,7 @@ public class AdminController {
 	@GetMapping("/memXList")
 	public ModelAndView admMemXList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
-			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="memtype", required = false) String memtype,
 			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Member> list = null;

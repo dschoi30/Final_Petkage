@@ -110,7 +110,7 @@
                       <tr>
                         <td>
                           <div class="form-check" style="top: 10px; vertical-align: middle;">
-                            <input class="form-check-input normal" type="checkbox" id="check_${ status.index }">
+                            <input class="form-check-input normal" name="${ member.no }" type="checkbox" id="check_${ status.index }">
                             <label class="form-check-label" for="check_${ status.index }"><span></span></label>
                           </div>
                         </td>
@@ -131,7 +131,7 @@
                         </td>
                         <td style="vertical-align: middle;">${ member.userEmail }</td>
                         <td>
-                          <button type="button" class="btn adminbtn btn-sm" memberId="${ member.no }">탈퇴</button>
+                          <button type="button" class="btn adminbtn btn-sm deletebtn" memberId="${ member.no }">탈퇴</button>
                         </td>
                       </tr>
  				    </c:forEach>
@@ -190,5 +190,25 @@
 
     	    $("#check_all").prop("checked", is_checked);
     	});
+    	
+    	// 탈퇴
+
+	    $(document).ready(() => {			
+			console.log('작동');
+			
+	        $(function() {
+	            $(".deletebtn").click(function(){
+	            	if(confirm("회원을 탈퇴시키겠습니까?")){
+	            		location.replace("${ path }/notice/noticeDelete?no=" + $(this).attr("noticeId"));	            		
+	            	}
+	            })
+	        });
+			
+	        $('.deletebtn').click(function() {
+	            alert($("input[type=checkbox][name=gender]:checked").val());
+	        })
+	        
+	        
+		});  	
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

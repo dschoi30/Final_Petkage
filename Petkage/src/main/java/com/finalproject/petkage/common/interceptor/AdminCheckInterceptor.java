@@ -24,8 +24,8 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
 			
 			return false;
 		}
-		
-		if(loginMember.getNo() != 1) {
+
+		if(!("ROLE_ADMIN".equals(loginMember.getMemberRole()))) {
 			request.setAttribute("msg", "관리자가 아닙니다.");
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
@@ -34,7 +34,7 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
 		}
 		
 		return super.preHandle(request, response, handler);
-	}
+	}	
 
 
 }
