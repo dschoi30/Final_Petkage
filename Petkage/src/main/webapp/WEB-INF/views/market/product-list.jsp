@@ -26,6 +26,7 @@
                 </div>
 			</div>
             </form>
+            <c:if test="${ empty product.proCategory1 }">
             <c:if test="${ (loginMember.memberRole == 'ROLE_SELLER') || (loginMember.memberRole == 'ROLE_ADMIN')}">
 	        	<button class="btn add-pro-btn" onclick="location.href='${ path }/market/product-write'">상품 등록</button>
 	        </c:if>
@@ -35,11 +36,11 @@
                 <input type="button" name="proCategory1" id="dogOn" class="categoryBtn clicked" value="dog">
             	<input type="button" name="proCategory1" id="catOn" class="categoryBtn" value="cat">
             -->
-            	<button name="proCategory1" id="dogOn" class="categoryBtn default" value="dog">강아지</button>
+            	<button name="proCategory1" id="dogOn" class="categoryBtn" value="dog">강아지</button>
                 <button name="proCategory1" id="catOn" class="categoryBtn" value="cat">고양이</button>
             </div>
             </form>
-            <c:if test="${ empty product.proCategory1 }">
+
             <div class="row justify-content-center">
             	<div class="col-xs-1">
                 	<ul class="wrap-subcategory">
@@ -127,12 +128,12 @@
                 </div>
 			</div>
 			<hr>
-            <div class="row filter-list">
+<!--            <div class="row filter-list">
             	<a href="javascript:recentlist();">최신순</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                 <a href="javascript:pricelist();">낮은가격</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                 <a href="javascript:pricelistdesc();">높은가격</a>
             </div>
-<!--	            </form> -->
+	            </form> -->
             <div class="row">
 	            <c:if test="${ empty list }">
 	            	조회된 게시글이 없습니다.
@@ -186,6 +187,19 @@
              </div>
          </c:if>
              <c:if test="${ product.proCategory1 == 'dog' }">
+	            <c:if test="${ (loginMember.memberRole == 'ROLE_SELLER') || (loginMember.memberRole == 'ROLE_ADMIN')}">
+		        	<button class="btn add-pro-btn" onclick="location.href='${ path }/market/product-write'">상품 등록</button>
+		        </c:if>
+	            <form action="${ path }/market/product-list" method="GET">
+	            <div class="row justify-content-center">
+	            <!-- 
+	                <input type="button" name="proCategory1" id="dogOn" class="categoryBtn clicked" value="dog">
+	            	<input type="button" name="proCategory1" id="catOn" class="categoryBtn" value="cat">
+	            -->
+	            	<button name="proCategory1" id="dogOn" class="categoryBtn clicked" value="dog">강아지</button>
+	                <button name="proCategory1" id="catOn" class="categoryBtn" value="cat">고양이</button>
+	            </div>
+	            </form>
              <div class="row justify-content-center">
                   <div class="col-xs-1">
                       <ul class="wrap-subcategory">
@@ -273,12 +287,12 @@
                   </div>
               </div>
              <hr>
-             <div class="row filter-list">
+<!--             <div class="row filter-list">
                  <a href="javascript:recentlist();">최신순</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                  <a href="javascript:pricelist();">낮은가격</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                  <a href="javascript:pricelistdesc();">높은가격</a>
              </div>
-<!--	            </form> -->
+	            </form> -->
              <div class="row">
               <c:if test="${ empty list }">
               	조회된 게시글이 없습니다.
@@ -331,7 +345,20 @@
                  </ul>
              </div>
          </c:if>
-         	                <c:if test="${ product.proCategory1 == 'cat' }">
+         <c:if test="${ product.proCategory1 == 'cat' }">
+       	    <c:if test="${ (loginMember.memberRole == 'ROLE_SELLER') || (loginMember.memberRole == 'ROLE_ADMIN')}">
+	        	<button class="btn add-pro-btn" onclick="location.href='${ path }/market/product-write'">상품 등록</button>
+	        </c:if>
+            <form action="${ path }/market/product-list" method="GET">
+            <div class="row justify-content-center">
+            <!-- 
+                <input type="button" name="proCategory1" id="dogOn" class="categoryBtn clicked" value="dog">
+            	<input type="button" name="proCategory1" id="catOn" class="categoryBtn" value="cat">
+            -->
+            	<button name="proCategory1" id="dogOn" class="categoryBtn" value="dog">강아지</button>
+                <button name="proCategory1" id="catOn" class="categoryBtn clicked" value="cat">고양이</button>
+            </div>
+            </form>
              <div class="row justify-content-center">
                   <div class="col-xs-1">
                       <ul class="wrap-subcategory">
@@ -419,12 +446,12 @@
                   </div>
               </div>
              <hr>
-             <div class="row filter-list">
+<!--             <div class="row filter-list">
                  <a href="javascript:recentlist();">최신순</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                  <a href="javascript:pricelist();">낮은가격</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                  <a href="javascript:pricelistdesc();">높은가격</a>
              </div>
-<!--	            </form> -->
+	            </form> -->
              <div class="row">
               <c:if test="${ empty list }">
               	조회된 게시글이 없습니다.
