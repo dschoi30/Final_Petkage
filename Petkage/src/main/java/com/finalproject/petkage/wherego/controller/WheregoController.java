@@ -263,7 +263,8 @@ public class WheregoController {
     public ModelAndView lodging_write(
                         ModelAndView model,
                         @RequestParam(value="multiFile") List<MultipartFile> multiFileList,
-						@RequestParam(value="upfile") MultipartFile upfile,
+                        @RequestParam(value="upfile") List<MultipartFile> upfileList,
+//						@RequestParam(value="upfile") MultipartFile upfile,
 						HttpServletRequest request,
                         @ModelAttribute Wherego wherego,
                         @ModelAttribute Room room) {
@@ -333,26 +334,26 @@ public class WheregoController {
 			}
 
 			// 객실 사진 
-			if(upfile != null && !upfile.isEmpty()) {
-				// 파일을 저장하는 로직 작성
-				String location = null;
-				String renamedFileName = null;
-				
-				try {
-					location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
-					
-					renamedFileName = MultipartFileUtil.save(upfile, location);
-					
-					System.out.println(location);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				if(renamedFileName != null) {
-				    room.setRoomImg(upfile.getOriginalFilename());
-				    room.setRenameRoomImg(renamedFileName);
-				}
-			}	
+//			if(upfile != null && !upfile.isEmpty()) {
+//				// 파일을 저장하는 로직 작성
+//				String location = null;
+//				String renamedFileName = null;
+//				
+//				try {
+//					location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
+//					
+//					renamedFileName = MultipartFileUtil.save(upfile, location);
+//					
+//					System.out.println(location);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				
+//				if(renamedFileName != null) {
+//				    room.setRoomImg(upfile.getOriginalFilename());
+//				    room.setRenameRoomImg(renamedFileName);
+//				}
+//			}	
 			
 		wherego.setRoom(room);
         

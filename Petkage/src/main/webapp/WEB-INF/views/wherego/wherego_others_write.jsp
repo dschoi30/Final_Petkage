@@ -141,10 +141,10 @@
                             <div class="wg5bci_content">
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
-                                    <span class="title">좌표</span>&nbsp; <br><br>
+                                    <h5 class="title" >좌표</h5>&nbsp; <br>
                                     <span id="centerAddr">
-                                    	위도:&nbsp;<input type="text" name="spotMapX" required> <br><br>
- 			                        	경도:&nbsp;<input type="text" name="spotMapY" required>           
+                                    	위도&nbsp;:&nbsp;<input type="text" name="spotMapX" required style="width: 100px;"> <br><br>
+ 			                        	경도&nbsp;:&nbsp;<input type="text" name="spotMapY" required style="width: 100px;">         
                                     </span>
                                 </div>
                             </div>
