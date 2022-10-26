@@ -184,10 +184,10 @@
                     </div>
                     <div class="delivery-etd">
                         지금 주문 시 내일 발송됩니다.
-                        <c:if test="${ product.proLTime.equals('1') }">
-                        내일
-                        </c:if>
                     </div>
+                    <div class="qty" style="margin-top: 10px;">
+                    	남은 수량 : <fmt:formatNumber value="${ product.proQty }" pattern="#,###개"/>
+                    </div><br>
                     <br>
                     <div>
                     </div>
@@ -228,8 +228,8 @@
                 </div>
                 <div id="belowFix">
                     <div class="row justify-content-center">
+						<br><br>
                         <p id="prodContent"></p>
-                        <br><br>
                         <div>${ product.proContent }</div>
                     </div>
                     <ul class="prod-review-wrap">
@@ -655,12 +655,44 @@
         }
     });
     
-    // Open the Modal
+	 // 캐러셀 슬라이드
+    
+    let carouselSlideIndex = 1;
+    showCarouselSlides(carouselSlideIndex);
+
+    // Next/previous controls
+    function plusCarouselSlides(n) {
+      showCarouselSlides(carouselSlideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showCarouselSlides(carouselSlideIndex = n);
+    }
+
+    function showCarouselSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      console.log(slides);
+      let dots = document.getElementsByClassName("thumbnail");
+      if (n > slides.length) {carouselSlideIndex = 1}
+      if (n < 1) {carouselSlideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[carouselSlideIndex-1].style.display = "block";
+      dots[carouselSlideIndex-1].className += " active";
+    }
+    
+    // 모달 슬라이더
+    
     function openModal() {
       document.getElementById("myModal").style.display = "inline-block";
     }
     
-    // Close the Modal
     function closeModal() {
       document.getElementById("myModal").style.display = "none";
     }
@@ -688,38 +720,7 @@
       for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
       }
-      slides[slideIndex-1].style.display = "inline-block";
+      slides[slideIndex-1].style.display = "block";
     }
-    
-    // 캐러셀 슬라이드
-    
-        let carouselSlideIndex = 1;
-showCarouselSlides(carouselSlideIndex);
-
-// Next/previous controls
-function plusCarouselSlides(n) {
-  showCarouselSlides(carouselSlideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showCarouselSlides(carouselSlideIndex = n);
-}
-
-function showCarouselSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slides");
-  let dots = document.getElementsByClassName("thumbnail");
-  if (n > slides.length) {carouselSlideIndex = 1}
-  if (n < 1) {carouselSlideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[carouselSlideIndex-1].style.display = "block";
-  dots[carouselSlideIndex-1].className += " active";
-}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
