@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="${path}/resources/css/market/summernote/summernote-lite.css">
 </head>
-<body ondragstart="return false" onselectstart="return false">
+<body>
     <div id="wrap-all-prod">
         <div class="row">
             <div class="contents">
