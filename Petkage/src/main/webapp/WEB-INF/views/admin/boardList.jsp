@@ -72,8 +72,8 @@
                 </form>
                 
                 <div style="text-align: right;"> 
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지 작성</button>
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지(숙소) 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지(숙소) 작성</button>
                 </div>
                
 	        	<c:if test="${ empty list }">

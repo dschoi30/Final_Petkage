@@ -225,8 +225,11 @@
                             <div class="wg5bci_content">
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
-                                    <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="spotMap" required></span>
+                                    <h5 class="title" >좌표</h5>&nbsp; <br>
+                                    <span id="centerAddr">
+                                    	위도&nbsp;:&nbsp;<input type="text" name="spotMapX" required style="width: 100px;"> <br><br>
+ 			                        	경도&nbsp;:&nbsp;<input type="text" name="spotMapY" required style="width: 100px;">           
+                                    </span>
                                 </div>
                             </div>
                         </details>
@@ -249,6 +252,7 @@
             $("#wgf_manager_add").click(function() {
                 $("[name=roomNum]").attr("value", i);
                 console.log($("[name=roomNum]").attr("value"));
+                
 
                 var html = "<div class='wg5bcr_1' id='room_"+ i + "' style='height: 100%;'>"
                     html += "    <input type='hidden' name='roomTypeNo' value='"+ i +"'>"
@@ -258,7 +262,7 @@
                     html += "                <div class='btn-upload'>업로드</div>"
                     html += "            </label>"
                     html += "            <input type='file' name='upfile' id='image_"+ i + "' multiple>"
-                    html += "            <div id='preview" + i + "'></div>"
+                    html += "            <div id='preview_" + i + "'></div>"
                     html += "        </div>"
                     html += "    </div>"
                     html += "    <div class='wg5bcr_text'>"
@@ -298,6 +302,7 @@
                     html += "</div>"
                 
                 $(".wg5bc_room").append(html);
+                console.log($("[name=roomTypeNo]").attr("value"));
                 
                 i++; // 함수 내 하단에 증가문 설정
                 
