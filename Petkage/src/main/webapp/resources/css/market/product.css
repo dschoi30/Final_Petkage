@@ -105,18 +105,6 @@
     transform: translate(850px, -48px);
 }
 
-#wrap-all-prod .categoryBtnDefault {
-    background-color: #D79771;
-    color: white;
-    font-weight: bold;
-    width: 200px;
-    height: 40px;
-    margin-top: 20px;
-    margin-left: 10px;
-    border-radius: 10px;
-    border-style: none;
-}
-
 #wrap-all-prod .category-btn-on {
     background-color: #D79771;
     color: white;
@@ -348,7 +336,7 @@
 #wrap-all-prod #prodContent {
     text-align: center;
 }
-
+/*
 #wrap-all-prod img[class^=img] {
     cursor: pointer;
     transition: 0.3s;
@@ -396,7 +384,7 @@
     text-decoration: none;
     cursor: pointer;
 }
-
+*/
 #wrap-all-prod #prodReview, #prodQna {
     float: left;
     width: 100%;
