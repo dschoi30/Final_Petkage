@@ -12,7 +12,9 @@ import com.finalproject.petkage.mypage.model.mapper.MyPageMapper;
 import com.finalproject.petkage.mypage.model.vo.Order;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
+import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
 
 @Service
@@ -71,12 +73,31 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	@Override
 	@Transactional
-	public int review_fupload(Review review) {
+	public int pdreview_fupload(Review review) {
 
 		int result = 0;
-		result = mypagemapper.review_fupload(review);
+		result = mypagemapper.pdreview_fupload(review);
 		
 		return result;
 	}
+	
+	@Override
+	public PayItems getPayNoName(int payItemNo) {
+		
+		return mypagemapper.getPayNoName(payItemNo);
+	}
+	
+	@Override
+	public Product findRwProductByNo(int proNo) {
+		
+		return mypagemapper.selectRwProductByNo(proNo);
+	}
+	
+	@Override
+	public PayItems findPayItemsByNo(int payItemNo) {
+		
+		return mypagemapper.selectPayItemsByNo(payItemNo);
+	}
+
 
 }

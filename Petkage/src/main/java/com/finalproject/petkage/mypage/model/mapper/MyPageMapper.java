@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
+import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
 import com.finalproject.petkage.member.model.vo.Pet;
 import com.finalproject.petkage.member.model.vo.Seller;
@@ -26,9 +28,15 @@ public interface MyPageMapper {
 	List<Review> getWhReviewList(RowBounds rowBounds, int no);
 	
 	int getPdReviewAllCount();
+	
+	Product selectRwProductByNo(@Param("proNo") int proNo);
 
+	PayItems selectPayItemsByNo(@Param("payItemNo") int payItemNo);
+	
 	List<Payment> getPdReviewList(RowBounds rowBounds, int no);
 
-	int review_fupload(Review review);
+	int pdreview_fupload(Review review);
+	
+	PayItems getPayNoName(int payItemNo);
 
 }

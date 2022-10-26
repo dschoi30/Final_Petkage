@@ -35,6 +35,14 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="product">                    
                 <table class="table" id="tb1">
+                <thead>
+		          <tr>
+		            <th scope="col">상품이미지</th>
+		            <th scope="col">상품명</th>
+		            <th scope="col">주문일자</th>
+		            <th scope="col">리뷰 작성</th>
+		          </tr>
+		        </thead>
                  <c:forEach var="payment" items="${ payment }">
                 <tbody>
                     <tr>
@@ -44,7 +52,9 @@
                         <td> ${ payment.proName } </td>
                         <td> ${ payment.payCreatedAt } </td>
                         <td>
-                            <button type="button" id="pdinsBtn" class="btn btn-outline-secondary">리뷰 작성하기</button>
+                            
+                            <button type="button" id="insBtn" class="btn btn-outline-secondary">리뷰 작성하기</button>
+                            
                         </td>                       
                     </tr>
                 </tbody>
@@ -60,7 +70,7 @@
                         <td>2000-01-01</td>
                         <td>여행지</td>
                         <td>
-                            <button type="button" id="" class="btn btn-outline-secondary">리뷰 작성하기</button>
+                            <button type="button" id="insBtn" class="btn btn-outline-secondary">리뷰 작성하기</button>
                         </td>
                     </tr>
                     <tr>
@@ -102,18 +112,41 @@
         </nav>
     </div>
     </section>
+<form action="${ path }/mypage/myPage_productReview/" method="GET" >
+	
+	<input type="hidden" name="no" value=${ loginMember.no }>	
+	<input type="hidden" name="payItemNo" value=${ paymentInfo.payItemNo }>
+	
+</form>
     <script type="text/javascript">
 
-	 $(document).ready(() => {
-		 $("#pdinsBtn").on("click", () => {
+    /* 리뷰쓰기
+	$(".reply_button_wrap").on("click", function(e){
+		
+		e.preventDefault();
+		
+		const memNo = '${member.no}';
+		const payNo = '${paymentInfo.payItemNo}';
+		
+		let popUrl = "/myPage_productReview/" + no + "?payItemNo=" + payItemNo;
+		console.log(popUrl);
+		let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+		
+		window.open(popUrl,"리뷰 쓰기",popOption);  
+
+	}); */
+	
+	$(document).ready(() => {
+		 $("#insBtn").on("click", () => {
 			 if(${empty loginMember}) {
 				 alert("로그인이 필요합니다 :)");
 				 location.href="${path}/member/loginPage"
 			 } else {
-				 location.href="${path}/mypage/myPage_productReview"
+				 location.href="${path}/mypage/myPage_productReview?payItemNo"
 			 }
 		 });
 	 });
+    
     	
     </script>
 

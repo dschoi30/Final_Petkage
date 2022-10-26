@@ -19,6 +19,27 @@
 
 </select> -->
 
+	<resultMap type="Product" id="productListResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proTag" column="PRO_TAG"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proContent" column="PRO_CONTENT"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+		<result property="proRevCount" column="PRO_REVIEW_COUNT"/>
+		<result property="proRating" column="PRO_RATING"/>
+	</resultMap>
+
 	<resultMap type="Payment" id="orderResultMap">
 		<id property="payNo" column="PAY_NO"/>
 		<result property="no" column="PAY_MEM_NO"/>
@@ -193,5 +214,43 @@
     <insert id="review_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
     	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, 213, #{writerno}, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, default, 'Y', default, #{revrenameimg}, #{revcategory})
     </insert>
+    
+    <select id="getPayNoName" resultMap="orderListResultMap">	
+		SELECT I.PAY_ITEM_NO, 
+			   I.PRO_NAME 
+		FROM PAYMENT_ITEMS I
+		JOIN PRODUCT P ON (P.PRO_NO = I.PRO_NO)
+		WHERE PAY_ITEM_NO = #{payItemNo}		
+	</select>
+	
+	<insert id="pdreview_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
+    	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, #{prono}, #{writerno}, '상품', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, default, 'Y', default, #{revrenameimg}, #{revcategory}, #{payItemNo}, #{payNo})
+    </insert>
+    
+    <select id="selectProductByNo" parameterType="_int"  resultMap="productListResultMap">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS,
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
+	</select>
+	
+
 
 </mapper>

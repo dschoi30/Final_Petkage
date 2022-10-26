@@ -47,8 +47,8 @@
 			      ${ payment.proName }
 		      </td>
             <td>${ payment.proCount }</td>
-            <td>${ payment.totalPriceAfterUsingPoint }</td>
-            <td>${ payment.totalDelFee }</td>
+            <td><fmt:formatNumber value="${ payment.totalPriceAfterUsingPoint }" pattern="#,###"/>원</td>
+            <td><fmt:formatNumber value="${ payment.totalDelFee }" pattern="#,###"/>원</td>
             <td>${ payment.orderStatus }</td>
           </tr>
         </tbody>

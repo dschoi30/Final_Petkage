@@ -29,8 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalproject.petkage.common.util.PageInfo;
+import com.finalproject.petkage.market.model.mapper.MarketMapper;
+import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
+import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.mypage.model.mapper.MyPageMapper;
 import com.finalproject.petkage.mypage.model.service.MyPageService;
 import com.finalproject.petkage.mypage.model.vo.Order;
 import com.finalproject.petkage.review.model.vo.Review;
@@ -121,20 +125,31 @@ public class MyPageController {
 		}
 		
 		@GetMapping("/myPage_reviewAble")
-	    public ModelAndView ReviewAble_list(ModelAndView model, @SessionAttribute("loginMember") Member loginMember,
+	    public ModelAndView ReviewAble_list(ModelAndView model, @SessionAttribute("loginMember") Member loginMember, @RequestParam int payItemNo,
 	            @RequestParam(value = "page", defaultValue = "1") int page) {
+//			Payment paymentreview = MarketMapper.get(no);
 	        List<Payment> payment = null;
 //	        List<Review> review = null;
 	        PageInfo pageInfo = null;
+	        Review pdreview = new Review();
+	        PayItems payItems = null;
+	        Product product = null;
+
 
 	        pageInfo = new PageInfo(page, 10, service.getOrderAllCount(), 10);
 	        payment = service.getOrderList(pageInfo, loginMember.getNo());
+//	        product = service.findRwProductByNo(proNo);
+	        payItems = service.getPayNoName(payItemNo);
 //	        review = service.getWhReviewList(pageInfo);
 	        
 	        System.out.println(payment);
+	        System.out.println(payItems);
 //	        System.out.println(review);
 	        
 //	        model.addObject("review", review);
+	        model.addObject("product", product);
+	        model.addObject("pdreview", pdreview);
+	        model.addObject("payItems", payItems);
 	        model.addObject("payment", payment);
 	        model.addObject("pageInfo", pageInfo);
 	        model.setViewName("mypage/myPage_reviewAble");
@@ -174,6 +189,17 @@ public class MyPageController {
 	        return model;
 
 	    }
+		
+//		/* 리뷰 쓰기 */
+//		@GetMapping("/myPage_productReview/{no}")
+//		public String replyEnrollWindowGET(@PathVariable("no")int no, int payItemNo, Model model) {
+//			Payment paymentInfo = service.getPayNoName(payItemNo);
+//			model.addAttribute("paymentInfo", paymentInfo);
+//			model.addAttribute("no", no);
+//			System.out.println(payItemNo);
+//			
+//			return "mypage/myPage_productReview";
+//		}
 		
 		@GetMapping("/myPage_productReview")
 	    public String Review_write() {
@@ -256,7 +282,7 @@ public class MyPageController {
 						e.printStackTrace();
 					}
 			review.setWriterno(loginMember.getNo());
-			result = service.review_fupload(review);
+			result = service.pdreview_fupload(review);
 			
 			
 			// 게시글 관련 DB 저장
