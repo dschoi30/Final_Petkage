@@ -131,9 +131,56 @@
 		<result property="findNum" column="MEM_FINDNUM"/>
 		<result property="enrollType" column="MEM_ENROLLTYPE"/>
 	</resultMap>
+	
+	<!-- wherego -->
+	<resultMap type="Wherego" id="wheregovo">
+		<id property="spotNo" column="SPOT_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="img" column="SPOT_IMG" />
+		<result property="renameImg" column="SPOT_RENAMEIMG" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
+		<result property="score" column="SPOT_SCORE" />
+		<result property="spotStatus" column="SPOT_STATUS" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
+		<result property="price" column="ROOM_PRICE" />
+	</resultMap>
+	
+	<resultMap type="Heart" id="heartResultMap">
+		<result property="userNo" column="MEM_NO"/>
+		<result property="spotNo" column="SPOT_NO"/>
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="img" column="SPOT_IMG" />
+		<result property="renameImg" column="SPOT_RENAMEIMG" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
+		<result property="score" column="SPOT_SCORE" />
+		<result property="spotStatus" column="SPOT_STATUS" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
+		<result property="price" column="ROOM_PRICE" />
+	</resultMap>
 
 	<select id="getOrderAllCount" resultType="_int">
-		SELECT COUNT(*) FROM PAYMENT
+		SELECT COUNT(*) FROM PAYMENT WHERE PAY_MEM_NO = #{ no }
 	</select>
 	
 	<select id="getOrderList" resultMap="orderResultMap">
@@ -169,7 +216,7 @@
     <select id="getWhReviewAllCount" resultType="_int">
         SELECT COUNT(*) 
         FROM REVIEW
-        WHERE REV_STATUS = 'Y'
+        WHERE REV_STATUS = 'Y' AND REV_WRITER_NO = #{ writerno }
         ORDER BY REV_NO DESC
     </select>
     
@@ -182,9 +229,9 @@
 		ORDER BY REV_NO DESC
     </select>
     
-    <select id="getPdReviewAllCount" resultType="_int">
+    <select id="getHeartAllCount" resultType="_int">
         SELECT COUNT(*) 
-        FROM PAYMENT
+        FROM HEART WHERE MEM_NO = #{ userNo }
     </select>
     
     <select id="getPdReviewList" resultMap="orderResultMap">
@@ -251,6 +298,27 @@
 		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
 	</select>
 	
-
+   	
+   	<select id="getHeartList" resultMap="heartResultMap">
+        SELECT H.SPOT_NO, 
+			   H.MEM_NO,
+			   W.SPOT_CATEGORY, 
+			   W.SPOT_LOCATION, 
+			   W.SPOT_NAME, 
+			   W.SPOT_ADDRESS, 
+			   W.SPOT_SIZE, 
+			   W.SPOT_IMG,
+			   W.SPOT_RENAMEIMG,
+			   W.SPOT_THEME,
+			   W.SPOT_INTRODUCE,
+			   W.SPOT_INFO,
+			   W.SPOT_SCORE,
+			   W.SPOT_STATUS
+		FROM HEART H
+		JOIN MEMBER M ON (M.MEM_NO = H.MEM_NO)
+		JOIN WHEREWEGO W ON (W.SPOT_NO = H.SPOT_NO)
+		WHERE H.MEM_NO = #{ userNo }
+		ORDER BY SPOT_NO DESC
+    </select>
 
 </mapper>

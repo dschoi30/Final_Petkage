@@ -4,18 +4,16 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.finalproject.petkage.mypage.model.mapper.MyPageMapper;
-import com.finalproject.petkage.mypage.model.vo.Order;
-import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
-import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.mypage.model.mapper.MyPageMapper;
+import com.finalproject.petkage.review.model.vo.Review;
+import com.finalproject.petkage.wherego.model.vo.Heart;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -98,6 +96,22 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return mypagemapper.selectPayItemsByNo(payItemNo);
 	}
+	
+	@Override
+	public int getHeartAllCount() {
+		
+		return mypagemapper.getWhReviewAllCount();
+	}
+	
+	@Override
+	public List<Heart> getHeartList(PageInfo pageInfo, int no) {
+	
+	int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+    int limit = pageInfo.getListLimit();
+    RowBounds rowBounds = new RowBounds(offset, limit);
+    
+    return mypagemapper.getHeartList(rowBounds, no);
+}
 
 
 }

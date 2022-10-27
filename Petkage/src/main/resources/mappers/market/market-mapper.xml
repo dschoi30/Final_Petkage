@@ -486,5 +486,12 @@
 		    WHERE 1 <= R_NO AND R_NO <= 4
 	    ]]>
    	</select>
+   	
+   	<select id="getProNoName" resultMap="productListResultMap">	
+		SELECT PRO_NO, 
+			   PRO_NAME 
+		FROM PRODUCT 
+		WHERE PRO_NO = #{proNo}		
+	</select>
 	
 </mapper>

@@ -15,52 +15,55 @@
 	
 	<!-- css 스타일 -->
 	<link rel="stylesheet" href="${ path }/css/mypage/myPage_heart.css?ver=1">
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 </head>
 <body>
 
-<section class="wg_15">
+<section class="heart_15">
 	<jsp:include page="/WEB-INF/views/mypage/myPage_nav.jsp" />
-	
-		<div class="wg6_bottom">
+
+		<div class="wg6_bottom" style="float: left;">
             <div class="wg6b_ca">
-                
+
+				<c:forEach var="heart" items="${ heart }">
+                <c:set var="rename_wherego" value="${ cafeselect.renameImg }" />
                 <div class="wgc6_card">
 	                <a href="${ path }/cafedetail">
 	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${wherego.img}">
+	                        <img src="${ path }/resources/images/wherego/${heart.renameImg}">
 	                    </div>
 	                    <div class="card_text">
-	                        <div class="ct_1">${wherego.spotName}</div>
+	                        <div class="ct_1">${heart.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
 	                            <p>수리남 / 도보 148일 18시간</p>
-	                            <p>${wherego.spotSize}</p>
+	                            <p>${heart.spotSize}</p>
 	                        </div>
 	                    </div>
 	                </a>
                 </div>
-
-            </div>
+       			 </c:forEach>
+        		</div>
             
             <div class="wgc7l_2">
                 <div id="pageBar">
-                    <button onclick="location.href='${ path }/review_list?page=${ pageInfo.prevPage }'">&lsaquo;</button>
+                    <button onclick="location.href='${ path }/mypage/myPage_heart?page=${ pageInfo.prevPage }'">&lsaquo;</button>
                     <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
                         <c:if test="${ status.current == pageInfo.currentPage }">
                             <button disabled class="checked">${ status.current }</button>
                         </c:if>
                         <c:if test="${ status.current != pageInfo.currentPage }">
-                            <button onclick="location.href='${ path }/review_list?page=${ status.current }'">${ status.current }</button>
+                            <button onclick="location.href='${ path }/mypage/myPage_heart?page=${ status.current }'">${ status.current }</button>
                         </c:if>
                     </c:forEach>
 
-                    <button onclick="location.href='${ path }/review_list?page=${ pageInfo.nextPage }'">&rsaquo;</button>
-                </div>
-                <div class="top_link">
-                    <a href="#wg_top">▲ TOP</a>
+                    <button onclick="location.href='${ path }/mypage/myPage_heart?page=${ pageInfo.nextPage }'">&rsaquo;</button>
                 </div>
             </div>
-        </div>
+		</div>
 	</section>
 
 </body>

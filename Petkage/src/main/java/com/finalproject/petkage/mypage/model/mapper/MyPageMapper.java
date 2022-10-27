@@ -10,11 +10,8 @@ import org.apache.ibatis.session.RowBounds;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
-import com.finalproject.petkage.member.model.vo.Member;
-import com.finalproject.petkage.member.model.vo.Pet;
-import com.finalproject.petkage.member.model.vo.Seller;
-import com.finalproject.petkage.mypage.model.vo.Order;
 import com.finalproject.petkage.review.model.vo.Review;
+import com.finalproject.petkage.wherego.model.vo.Heart;
 
 @Mapper
 public interface MyPageMapper {
@@ -27,7 +24,11 @@ public interface MyPageMapper {
 
 	List<Review> getWhReviewList(RowBounds rowBounds, int no);
 	
+	List<Heart> getHeartList(RowBounds rowBounds, int no);
+	
 	int getPdReviewAllCount();
+	
+	int getHeartAllCount();
 	
 	Product selectRwProductByNo(@Param("proNo") int proNo);
 

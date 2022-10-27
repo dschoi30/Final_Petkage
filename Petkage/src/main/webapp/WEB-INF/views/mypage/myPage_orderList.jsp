@@ -22,9 +22,7 @@
 	<section class="mp-pur">
       <div class="container">
       <p class="mypagept" style="width: 1110px; height: 50px; font-size: 32px; font-weight: 700; font-family: 'GmarketSansMedium'; line-height: 100%; text-align: center; color: #803D3D;">주문내역조회</p>
-      
-      <p class="v91_238" style=" font-size: 16px; font-family: 'GmarketSansMedium';">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색 시 지난 주문내역을 조회하실 수 있습니다. </p>
-      
+           
       <table class="table">
         <thead>
           <tr>
@@ -55,59 +53,21 @@
         </c:forEach>
       </table>
       <br><br>
-     <!--   <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav> -->
+      <div class="wgc7l_2">
       <div id="pageBar">
-			 <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-            <li class="page-item">
-			<!-- 맨 처음으로 -->
-			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=1'">&lt;&lt;</a>
-      		</li>
-			<!-- 이전 페이지로 -->
-			<li class="page-item">
-			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.prevPage }'>&lt; 
-      		</a>
-      		</li>
-			<!--  10개 페이지 목록 -->
-			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
-				<c:if test="${ status.current == pageInfo.currentPage }">
-					<li class="page-item active">
-					<a href='${ status.current }'></a>
-					</li>
-				</c:if>
-				<c:if test="${ status.current != pageInfo.currentPage }">
-					<li class="page-item"><a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ status.current }'>${ status.current }</a></li>
-				</c:if>
-			</c:forEach>
-			
-			<!-- 다음 페이지로 -->
-			<li class="page-item">
-			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.nextPage }'>&gt;
-      		</a>
-      		</li>
-			<!-- 맨 끝으로 -->
-			<li class="page-item">
-			<a class="page-link" href='${ path }/mypage/myPage_orderList?page=${ pageInfo.maxPage }'">&gt;&gt;</a>
-			</li>
-            </ul>
-            </nav>
-		</div>
+                    <button onclick="location.href='${ path }/mypage/myPage_orderList?page=${ pageInfo.prevPage }'">&lsaquo;</button>
+                    <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+                        <c:if test="${ status.current == pageInfo.currentPage }">
+                            <button disabled class="checked">${ status.current }</button>
+                        </c:if>
+                        <c:if test="${ status.current != pageInfo.currentPage }">
+                            <button onclick="location.href='${ path }/mypage/myPage_orderList?page=${ status.current }'">${ status.current }</button>
+                        </c:if>
+                    </c:forEach>
+
+                    <button onclick="location.href='${ path }/mypage/myPage_orderList?page=${ pageInfo.nextPage }'">&rsaquo;</button>
+                </div>
+      </div>
       </div>
     </section>
 

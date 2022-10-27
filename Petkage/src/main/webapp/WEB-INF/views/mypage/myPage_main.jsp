@@ -23,7 +23,7 @@
       <div class="container">
       
     <p class="mypagept" style="width: 1110px; height: 50px; font-size: 32px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">Petkage를 이용해 주셔서 감사합니다.</p>
-    <p class="mypagept2" style="width: 1110px; height: 109px; font-size: 32px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">${ loginMember.userName }님의 현재 포인트는 1000p입니다.</p>
+    <p class="mypagept2" style="width: 1110px; height: 109px; font-size: 32px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">${ loginMember.userName }님의 현재 포인트는 ${ loginMember.point }pt입니다.</p>
     <hr> 
     <br>
     <p class="mypagept2" style="width: 1110px; height: 109px; font-size: 24px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">나의 주문 처리 현황</p>

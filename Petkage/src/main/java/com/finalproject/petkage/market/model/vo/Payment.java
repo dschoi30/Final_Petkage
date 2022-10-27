@@ -44,4 +44,26 @@ public class Payment {
     	
     	totalPriceAfterUsingPoint = totalPrice + totalDelFee - usingPoint;
     }
+    
+ // view에서 받아올 값
+    private int payItemNo;
+    
+ 	private int proNo;
+ 	
+ 	private int proCount;
+    
+ // DB에서 받아올 값
+ 	private String proName;
+ 	
+ 	private String proBrand;
+ 	
+ 	private int proOPrice;
+ 	
+ 	private int proSPrice;
+ 	
+ 	private String renamedFileName;
+ 	
+ 	private int proDelFee;
+ 	
+ 	private int proLTime;
 }

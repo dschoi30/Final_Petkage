@@ -183,8 +183,4 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewmapper.search_mboard(rowBounds, search);
 	}
 
-
-
-
-
 }
