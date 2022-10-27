@@ -12,8 +12,6 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
-		System.out.println("Admin preHandle 작동");
 		
 		Member loginMember = (Member) request.getSession().getAttribute("loginMember");
 		

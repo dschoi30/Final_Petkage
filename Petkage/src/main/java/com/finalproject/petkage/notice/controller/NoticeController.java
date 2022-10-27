@@ -89,7 +89,7 @@ public class NoticeController {
 		
 		notice = service.findNoticeByNo(no);
 
-		if(notice.getWriterNo() == 1) {
+		if("ROLE_ADMIN".equals(loginMember.getMemberRole())) {
 			model.addObject("notice", notice);
 			model.setViewName("notice/noticeUpdate");
 		} else {
@@ -132,7 +132,7 @@ public class NoticeController {
 		
 		notice = service.findNoticeByNo(no);
 		
-		if(notice.getWriterNo() == (loginMember.getNo())) {
+		if("ROLE_ADMIN".equals(loginMember.getMemberRole())) {
 			result = service.delete(no);
 			
 			if(result > 0) {

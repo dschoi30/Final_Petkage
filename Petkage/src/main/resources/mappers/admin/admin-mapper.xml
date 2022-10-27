@@ -212,6 +212,23 @@
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
 	
+	<!-- status update -->
+	<select id="selectMemberByNo" parameterType="_int" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE MEM_NO = #{no}
+	</select>
+	
+	<update id="updateMemStatus" parameterType="Member">
+		UPDATE MEMBER SET
+			<if test='status == "Y"'>
+				MEM_STATUS = 'N' 
+			</if>
+			<if test='status == "N"'>
+				MEM_STATUS = 'Y' 
+			</if>
+		WHERE MEM_NO = #{no}
+	</update>
+	
 	<select id="selectBoardCount" resultType="_int">
 		SELECT COUNT(*) FROM WHEREWEGO
 		<if test="search != null">
