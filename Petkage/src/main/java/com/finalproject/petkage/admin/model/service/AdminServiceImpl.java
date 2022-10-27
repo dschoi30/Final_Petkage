@@ -71,6 +71,21 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectMemXAll(rowBounds, map);
 	}
 	
+	@Override
+	public Member findMemberByNo(int no) {
+		
+		return mapper.selectMemberByNo(no);
+	}
+	
+	@Override
+	public int memUpdateStatus(Member member) {
+		int result = 0;
+		
+		result = mapper.updateMemStatus(member);
+		
+		return result;
+	}
+	
 	// 어디가지
 	@Override
 	public int getBoardCount(String boardtype, String search) {
@@ -147,6 +162,9 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.selectReviewAll(rowBounds, map);
 	}
+
+
+
 
 
 
