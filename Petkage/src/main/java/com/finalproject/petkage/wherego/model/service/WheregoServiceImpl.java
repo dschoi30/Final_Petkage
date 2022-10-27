@@ -1,12 +1,16 @@
 package com.finalproject.petkage.wherego.model.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.finalproject.petkage.common.util.MultipartFileUtil;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.mapper.WheregoMapper;
@@ -94,7 +98,7 @@ public class WheregoServiceImpl implements WheregoService {
     public int insertWherego_lodging(Wherego wherego) {
         int result = 0;
         int roomNum = wherego.getRoomNum();
-        int roomTypeNo = wherego.getRoom().getRoomTypeNo();
+        String roomTypeNo = wherego.getRoom().getRoomTypeNo();
         String roomName = wherego.getRoom().getRoomName();
         String roomPrice = wherego.getRoom().getRoomPrice();
         String roomImg = wherego.getRoom().getRoomImg();
@@ -102,21 +106,42 @@ public class WheregoServiceImpl implements WheregoService {
         String MInfo = wherego.getRoom().getMInfo();
         String MAmeni = wherego.getRoom().getMAmeni();
         
-        System.out.println("객실수" + roomNum);
-        System.out.println("객실타입번호" + roomTypeNo); 
-        System.out.println("객실명" + roomName); 
-        System.out.println("객실가격" + roomPrice); 
-        System.out.println("객실이미지" + roomImg); 
-        System.out.println("객실이미지개명" + renameRoomImg); 
-        System.out.println("객실이미지개명" + MInfo); 
-        System.out.println("객실이미지개명" + MAmeni); 
+        System.out.println("객실수 : " + roomNum);
+        System.out.println("객실타입번호 : " + roomTypeNo); 
+        System.out.println("객실명 : " + roomName); 
+        System.out.println("객실가격 : " + roomPrice); 
+        System.out.println("객실이미지 : " + roomImg); 
+        System.out.println("객실이미지개명 : " + renameRoomImg); 
+        System.out.println("모달 정보 : " + MInfo); 
+        System.out.println("모달 편의 : " + MAmeni);
         
-        // 조건문 만들어서 INSERT
-//        if 
-        
+        String[] roomTypeNoArr = roomTypeNo.split(",");
+        String[] roomNameArr = roomName.split(",");
+        String[] roomPriceArr = roomPrice.split(",");
+        String[] roomImgArr = roomImg.split(", ");
+        String[] renameRoomImgArr = renameRoomImg.split(", ");
+        String[] mInfoArr = MInfo.split(",");
+        String[] mAmeniArr = MAmeni.split(",");
+       
+        // 숙소 등록
         result = mapper.insertWherego_lodging(wherego);
+       
         wherego.getRoom().setSpotNo(wherego.getSpotNo());
-        result = mapper.insertRoom(wherego.getRoom());
+
+        // 객실 등록 
+        for (int i = 0; i < roomNum; i++) {
+            wherego.getRoom().setRoomTypeNo(roomTypeNoArr[i]);
+            wherego.getRoom().setRoomName(roomNameArr[i]);
+            wherego.getRoom().setRoomPrice(roomPriceArr[i]);
+            wherego.getRoom().setRoomImg(roomImgArr[i]);
+            wherego.getRoom().setRenameRoomImg(renameRoomImgArr[i]);
+            wherego.getRoom().setMInfo(mInfoArr[i]);
+            wherego.getRoom().setMAmeni(mAmeniArr[i]);
+            
+            System.out.println("객실" + i + "번 출력 " + wherego.getRoom());
+            
+            result = mapper.insertRoom(wherego.getRoom());
+        }
         
         return result;
     }
@@ -188,6 +213,9 @@ public class WheregoServiceImpl implements WheregoService {
         mapper.updateReviewAvg(reviewStar);
 		
 	}
+
+	
+    
 
 
 

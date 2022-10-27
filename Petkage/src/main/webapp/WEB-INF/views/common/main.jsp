@@ -267,27 +267,30 @@
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
 						<div class="cal-day"></div>
-						<div class="cal-date"></div>
+						<div class="cal-date">
+							<div class="cal_content">
+							</div>
+						</div>
 						</div>
 						<div class="calendar-box">
 						<div class="ctr-box clearfix">
 							<button type="button" title="prev" class="btn-cal prev">
 							</button>
-							<span class="cal-month"></span>
 							<span class="cal-year"></span>
+							<span class="cal-month"></span>
 							<button type="button" title="next" class="btn-cal next">
 							</button>
 						</div>
 						<table class="cal-table">
 							<thead>
 							<tr>
-								<th>S</th>
-								<th>M</th>
-								<th>T</th>
-								<th>W</th>
-								<th>T</th>
-								<th>F</th>
-								<th>S</th>
+								<th><span style="color:#ff4556;">일</span></th>
+								<th>월</th>
+								<th>화</th>
+								<th>수</th>
+								<th>목</th>
+								<th>금</th>
+								<th><span style="color:#4d4df9;">토</span></th>
 							</tr>
 							</thead>
 							<tbody class="cal-body"></tbody>
@@ -363,22 +366,22 @@
 	
 	// 풀페이지 
 	$(function(){
-	    $('#fullpage').fullpage({
+		$('#fullpage').fullpage({
 			//options here
 			autoScrolling:true,
 			scrollHorizontally: false,
-	    
-	    navigation: true,
-	    navigationPosition:'right',
-	    sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
-	    afterLoad: function(anchorLink, index){
-	        console.log("지금 섹션은" + index);
-	    }
+		
+		navigation: true,
+		navigationPosition:'right',
+		sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
+		afterLoad: function(anchorLink, index){
+			console.log("지금 섹션은" + index);
+		}
 		});
 
-	    $('.headerLogo').on("click", function() {
-	        $.fn.fullpage.moveTo(1);
-	    });
+		$('.headerLogo').on("click", function() {
+			$.fn.fullpage.moveTo(1);
+		});
 	});
 
 	// 카드 넘기기
@@ -387,81 +390,81 @@
 	pm = $('.cards_inner__card').length;
 
 	$('.cards_inner__card').mousedown(function(){
-	  var ct = $(this).css('transform');
-	  var cts = ct.split(',')
-	  ctse = (cts[cts.length - 2] + 'px')
+		var ct = $(this).css('transform');
+		var cts = ct.split(',')
+		ctse = (cts[cts.length - 2] + 'px')
 	})
 
 	function on(){
-	  $('.cards_inner__card').draggable({
-	    start: function( event, ui ) {
-	      startPosition = ui.position.left;
-	    },
-	    drag:function(e, ui){
-	      if(ui.position.left > startPosition){
-	        ui.position.left = startPosition;
-	      }
-	      if(ui.position.left < -250){
-	        ui.position.left = -250;
-	      }
-	      x = ui.position.left;
-	      $(this).css('transform',' rotate(' + x/36 + 'deg)')
-	    },
-	    revert:function(valid) {
-	      if(x > 60 || x < - 60) {
-	        el = $(this)
-	        setTimeout(function(){
-	          el_class = el.attr('class').split(' ');
-	          el_class_end = el_class[1]
-	          el.addClass('invalid')
-	          if(p < 3){
-	            $('.points').find('.active').removeClass('active').next().addClass('active') 
-	            p++
-	          } else {
-	            $('.points').find('.active').removeClass('active')
-	            $('.points').find('.first').addClass('active') 
-	            p=0
-	          }
-	        },10)
-	        setTimeout(function(){
-	          $('.cards_inner__card').each(function(){
-	            $(this).addClass('animate');
-	            var ct = $(this).css('transform');
-	            var cts = ct.split(',')
-	            ctse = (parseInt(cts[cts.length - 2]) + 60 + 'px')
-	            $(this).css('transform','translateZ(' + ctse + ')');
-	          });
-	          $('.cards_inner .wrap').prepend('<div class="cards_inner__card ' + el_class_end + ' card_in"><div class="logo"></div></div>')
-	          el.remove();
-	          $('.cards_inner__card').removeClass('animate');
-	          on();
-	        },160);
-	        setTimeout(function(){
-	          $('.card_in').removeClass('card_in')
-	        },500);
-	      } else {
-	        $(this).css('transform','rotate(0deg)')
-	        return !valid;
-	      }
-	    },
-	    axis:'x',
-	    containment:'.cards_inner'
-	  });
+		$('.cards_inner__card').draggable({
+			start: function( event, ui ) {
+			startPosition = ui.position.left;
+			},
+			drag:function(e, ui){
+			if(ui.position.left > startPosition){
+				ui.position.left = startPosition;
+			}
+			if(ui.position.left < -250){
+				ui.position.left = -250;
+			}
+			x = ui.position.left;
+			$(this).css('transform',' rotate(' + x/36 + 'deg)')
+			},
+			revert:function(valid) {
+			if(x > 60 || x < - 60) {
+				el = $(this)
+				setTimeout(function(){
+				el_class = el.attr('class').split(' ');
+				el_class_end = el_class[1]
+				el.addClass('invalid')
+				if(p < 3){
+					$('.points').find('.active').removeClass('active').next().addClass('active') 
+					p++
+				} else {
+					$('.points').find('.active').removeClass('active')
+					$('.points').find('.first').addClass('active') 
+					p=0
+				}
+				},10)
+				setTimeout(function(){
+				$('.cards_inner__card').each(function(){
+					$(this).addClass('animate');
+					var ct = $(this).css('transform');
+					var cts = ct.split(',')
+					ctse = (parseInt(cts[cts.length - 2]) + 60 + 'px')
+					$(this).css('transform','translateZ(' + ctse + ')');
+				});
+				$('.cards_inner .wrap').prepend('<div class="cards_inner__card ' + el_class_end + ' card_in"><div class="logo"></div></div>')
+				el.remove();
+				$('.cards_inner__card').removeClass('animate');
+				on();
+				},160);
+				setTimeout(function(){
+				$('.card_in').removeClass('card_in')
+				},500);
+			} else {
+				$(this).css('transform','rotate(0deg)')
+				return !valid;
+			}
+			},
+			axis:'x',
+			containment:'.cards_inner'
+		});
 
-	  $('.cards_inner__card:nth-of-type(1)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(2)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(3)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(4)').draggable( 'enable' )
+		$('.cards_inner__card:nth-of-type(1)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(2)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(3)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(4)').draggable( 'enable' )
 	}
 
 	on();
 
 	var swiper = new Swiper(".mySwiper", {
-	  effect: "cards",
-	  grabCursor: true,
-	  direction: "vertical",
-	  autoplay: true,
-	  loop: true,
+		effect: "cards",
+		grabCursor: true,
+		direction: "vertical",
+		autoplay: true,
+		loop: true,
 	});
 
 	var divs = document.querySelectorAll(".best_product");
@@ -474,58 +477,58 @@
 	});
 	
 	window.addEventListener("keyup", function (e) {
-	      var panel = document.querySelector(".turnon_highlight");
-	      if (
-	         (e.keyCode == 37 || e.keyCode == 38) &&
-	         panel != document.querySelectorAll(".best_product")[0]
-	      ) {
-	         panel.previousElementSibling.classList.toggle("highlight");
-	         panel.classList.toggle("highlight");
-	      }
-	      if (
-	         (e.keyCode == 39 || e.keyCode == 40) &&
-	         panel != document.querySelectorAll(".best_product")[3]
-	      ) {
-	         panel.nextElementSibling.classList.toggle("highlight");
-	         panel.classList.toggle("highlight");
-	      }
-	   });
+		var panel = document.querySelector(".turnon_highlight");
+		if (
+			(e.keyCode == 37 || e.keyCode == 38) &&
+			panel != document.querySelectorAll(".best_product")[0]
+		) {
+			panel.previousElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
+		}
+		if (
+			(e.keyCode == 39 || e.keyCode == 40) &&
+			panel != document.querySelectorAll(".best_product")[3]
+		) {
+			panel.nextElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
+		}
+	});
 
 	
 	window.focus();
 
 	// 하얀 달력
 	const init = {
-	  monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-	  dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-	  today: new Date(),
-	  monForChange: new Date().getMonth(),
-	  activeDate: new Date(),
-	  getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-	  getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-	  nextMonth: function () {
-	    let d = new Date();
-	    d.setDate(1);
-	    d.setMonth(++this.monForChange);
-	    this.activeDate = d;
-	    return d;
-	  },
-	  prevMonth: function () {
-	    let d = new Date();
-	    d.setDate(1);
-	    d.setMonth(--this.monForChange);
-	    this.activeDate = d;
-	    return d;
-	  },
-	  addZero: (num) => (num < 10) ? '0' + num : num,
-	  activeDTag: null,
-	  getIndex: function (node) {
-	    let index = 0;
-	    while (node = node.previousElementSibling) {
-	      index++;
-	    }
-	    return index;
-	  }
+		monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayList: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		today: new Date(),
+		monForChange: new Date().getMonth(),
+		activeDate: new Date(),
+		getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+		getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+		nextMonth: function () {
+			let d = new Date();
+			d.setDate(1);
+			d.setMonth(++this.monForChange);
+			this.activeDate = d;
+			return d;
+		},
+		prevMonth: function () {
+			let d = new Date();
+			d.setDate(1);
+			d.setMonth(--this.monForChange);
+			this.activeDate = d;
+			return d;
+		},
+		addZero: (num) => (num < 10) ? '0' + num : num,
+		activeDTag: null,
+		getIndex: function (node) {
+			let index = 0;
+			while (node = node.previousElementSibling) {
+			index++;
+			}
+			return index;
+		}
 	};
 
 	const $calBody = document.querySelector('.cal-body');
@@ -537,74 +540,74 @@
 	 * @param {number} dayIn
 	*/
 	function loadDate (date, dayIn) {
-	  document.querySelector('.cal-date').textContent = date;
-	  document.querySelector('.cal-day').textContent = init.dayList[dayIn];
+		document.querySelector('.cal-date').textContent = date;
+		document.querySelector('.cal-day').textContent = init.dayList[dayIn];
 	}
 
 	/**
 	 * @param {date} fullDate
 	 */
 	function loadYYMM (fullDate) {
-	  let yy = fullDate.getFullYear();
-	  let mm = fullDate.getMonth();
-	  let firstDay = init.getFirstDay(yy, mm);
-	  let lastDay = init.getLastDay(yy, mm);
+		let yy = fullDate.getFullYear();
+		let mm = fullDate.getMonth();
+		let firstDay = init.getFirstDay(yy, mm);
+		let lastDay = init.getLastDay(yy, mm);
 	  let markToday;  // for marking today date
-	  
-	  if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-	    markToday = init.today.getDate();
-	  }
+		
+		if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
+			markToday = init.today.getDate();
+		}
 
-	  document.querySelector('.cal-month').textContent = init.monList[mm];
-	  document.querySelector('.cal-year').textContent = yy;
+		document.querySelector('.cal-month').textContent = init.monList[mm];
+		document.querySelector('.cal-year').textContent = yy + "년";
 
-	  let trtd = '';
-	  let startCount;
-	  let countDay = 0;
-	  for (let i = 0; i < 6; i++) {
-	    trtd += '<tr>';
-	    for (let j = 0; j < 7; j++) {
-	      if (i === 0 && !startCount && j === firstDay.getDay()) {
-	        startCount = 1;
-	      }
-	      if (!startCount) {
-	        trtd += '<td>'
-	      } else {
-	        let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-	        trtd += '<td class="day';
-	        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-	        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-	      }
-	      trtd += (startCount) ? ++countDay : '';
-	      if (countDay === lastDay.getDate()) { 
-	        startCount = 0; 
-	      }
-	      trtd += '</td>';
-	    }
-	    trtd += '</tr>';
-	  }
-	  $calBody.innerHTML = trtd;
+		let trtd = '';
+		let startCount;
+		let countDay = 0;
+		for (let i = 0; i < 6; i++) {
+			trtd += '<tr>';
+			for (let j = 0; j < 7; j++) {
+			if (i === 0 && !startCount && j === firstDay.getDay()) {
+				startCount = 1;
+			}
+			if (!startCount) {
+				trtd += '<td>'
+			} else {
+				let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+				trtd += '<td class="day';
+				trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
+				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+			}
+			trtd += (startCount) ? ++countDay : '';
+			if (countDay === lastDay.getDate()) { 
+				startCount = 0; 
+			}
+			trtd += '</td>';
+			}
+			trtd += '</tr>';
+		}
+		$calBody.innerHTML = trtd;
 	}
 
 	/**
 	 * @param {string} val
 	 */
 	function createNewList (val) {
-	  let id = new Date().getTime() + '';
-	  let yy = init.activeDate.getFullYear();
-	  let mm = init.activeDate.getMonth() + 1;
-	  let dd = init.activeDate.getDate();
-	  const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
+		let id = new Date().getTime() + '';
+		let yy = init.activeDate.getFullYear();
+		let mm = init.activeDate.getMonth() + 1;
+		let dd = init.activeDate.getDate();
+		const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
 
-	  let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
+		let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
 
-	  let eventData = {};
-	  eventData['date'] = date;
-	  eventData['memo'] = val;
-	  eventData['complete'] = false;
-	  eventData['id'] = id;
-	  init.event.push(eventData);
-	  $todoList.appendChild(createLi(id, val, date));
+		let eventData = {};
+		eventData['date'] = date;
+		eventData['memo'] = val;
+		eventData['complete'] = false;
+		eventData['id'] = id;
+		init.event.push(eventData);
+		$todoList.appendChild(createLi(id, val, date));
 	}
 
 	loadYYMM(init.today);
@@ -614,22 +617,20 @@
 	$btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
 	$calBody.addEventListener('click', (e) => {
-	  if (e.target.classList.contains('day')) {
-	    if (init.activeDTag) {
-	      init.activeDTag.classList.remove('day-active');
-	    }
-	    let day = Number(e.target.textContent);
-	    loadDate(day, e.target.cellIndex);
-	    e.target.classList.add('day-active');
-	    init.activeDTag = e.target;
-	    init.activeDate.setDate(day);
-	    reloadTodo();
-	  }
+		if (e.target.classList.contains('day')) {
+			if (init.activeDTag) {
+			init.activeDTag.classList.remove('day-active');
+			}
+			let day = Number(e.target.textContent);
+			loadDate(day, e.target.cellIndex);
+			e.target.classList.add('day-active');
+			init.activeDTag = e.target;
+			init.activeDate.setDate(day);
+			reloadTodo();
+		}
 	});
 
-	$(function(){
-	   $('#datepicker').datepicker();
-	})
+	// 
 	
 	</script>     
 </body>
