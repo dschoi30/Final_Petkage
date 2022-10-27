@@ -250,13 +250,13 @@
 			</div>
 			<div class="best_products">
 				<c:forEach var="product" items="${ product }">
-	         	<c:set var="rename_product" value="${ product.renamedFileName }" />   
-         		<a href="${ path }/market/product-view?proNo=${ product.proNo }">
-	            <div class="best_product" 
-	               style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
-	            </div>
-	            </a>
-		         </c:forEach>
+				<c:set var="rename_product" value="${ product.renamedFileName }" />   
+				<a href="${ path }/market/product-view?proNo=${ product.proNo }">
+				<div class="best_product" 
+				style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
+				</div>
+				</a>
+				</c:forEach>
 				<div class="best_product highlight" style="display: none;">
 				</div> 
 			</div>
@@ -264,19 +264,17 @@
 		
 		<section class="section sec4"> <!-- 일정 캘린더 -->
 			<c:forEach var="calendar" items="${ calendar }">
-               <div class="cal_content" id="cal_no" value="${ calendar.calNo }" style="display:none"></div>
-               <div class="cal_content" id="cal_title" value="${ calendar.calTitle }" style="display:none"></div>
-               <div class="cal_content" id="cal_content" value="${ calendar.calContent }" style="display:none"></div>
-               <div class="cal_content" id="cal_date" value="${ calendar.calDate }" style="display:none"></div>
+				<div class="cal_content" id="cal_no" value="${ calendar.calNo }" style="display:none"></div>
+				<div class="cal_content" id="cal_title" value="${ calendar.calTitle }" style="display:none"></div>
+				<div class="cal_content" id="cal_content" value="${ calendar.calContent }" style="display:none"></div>
+				<div class="cal_content" id="cal_date" value="${ calendar.calDate }" style="display:none"></div>
             </c:forEach>
 				<div class="calendar">
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
-						<div class="cal-day"></div>
-						<div class="cal-date">
-							<div class="cal_content">
-							</div>
-						</div>
+							<div class="cal-day"></div>
+							<div class="cal-date"></div>
+							<div class="cal-div"></div>
 						</div>
 						<div class="calendar-box">
 						<div class="ctr-box clearfix">
@@ -556,10 +554,9 @@
 	function loadYYMM (fullDate) {
 		let yy = fullDate.getFullYear();
 		let mm = fullDate.getMonth();
-		let dd = init.activeDate.getDate();
 		let firstDay = init.getFirstDay(yy, mm);
 		let lastDay = init.getLastDay(yy, mm);
-	  let markToday;  // for marking today date
+	    let markToday;  // for marking today date
 		
 		if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
 			markToday = init.today.getDate();
@@ -583,7 +580,7 @@
 				let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
 				trtd += '<td class="day' ;
 				trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-				trtd += 'id= "'+  +'"'
+				trtd += 'id="day'+ (countDay+1) +'" '
 				trtd += 'data-date="${countDay + 1}" data-fdate="${fullDate}">';
 			}
 			trtd += (startCount) ? ++countDay : '';
@@ -640,13 +637,8 @@
 	});
 
 	// 캘린더 날짜에 맞춰서 축제 표시
-		var cal_content = $("#cal_content").val();
-		var cal_date = $("#cal_date").val();
 
-		console.log(cal_content);
-		console.log(cal_date);
 
-	$(document).ready(function() {
 		let yy = init.activeDate.getFullYear();
 		let mm = init.activeDate.getMonth() + 1;
 		let dd = init.activeDate.getDate();
@@ -683,18 +675,36 @@
 								console.log(List);
 								console.log(JSON.stringify(festivalList[List]));
 
-								var textDay = document.querySelector('.day');	
 								var festivalday  = festivalList[List].replace(/\"/g,"").substr(-2);
-									console.log(textDay.textContent);
+								var textDay = document.querySelector('#day' + festivalday);	
+									console.log("텍스트 날짜 : " + textDay);
 									console.log("축제 날짜 : "+ festivalday);
 
 								if (textDay.textContent === festivalday) {
 
 									textDay.classList.add('day-festival');
+									console.log("리스트 : " + festivalList["calTitle"]);
+
+									var html = "<div class='cal-content' id='festival"+ festivalday +"'>"
+										html += festivalList['calDate'].substr(5,5) 
+										html += " : "
+										html += festivalList['calTitle']
+										html += "</div>"
+
+									$(".cal-div").prepend(html);
+									// $(".cal-content").hide;
+									// $("#festival"+ festivalday).show;
+
+									// var text = document.querySelector('.cal-content');	
+									// var text = document.querySelector('.festival' + festivalday);	
+									// var text = document.getElementById('#festival');
+
+									// var text = document.getElementById('#festival'+festivalday);
+									// document.querySelector(".cal-content").append(festivalList["calTitle"]);
+									// text.innerHTML = festivalList["calTitle"];
 
 								}
 							}
-							
 						}
 					}	
 				}
@@ -704,7 +714,6 @@
 			}
 		});
 
-	});		
 
 	
 	</script>     
