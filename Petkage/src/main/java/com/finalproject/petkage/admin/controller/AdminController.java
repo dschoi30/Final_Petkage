@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.petkage.admin.model.service.AdminService;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.member.model.vo.Member;
+import com.finalproject.petkage.notice.model.vo.Notice;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
@@ -26,6 +28,7 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	// 회원
 	@GetMapping("/admMain")
 	public ModelAndView admMain(ModelAndView model) {
 		
@@ -37,7 +40,7 @@ public class AdminController {
 	@GetMapping("/memList")
 	public ModelAndView admMemList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
-			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="memtype", required = false) String memtype,
 			@RequestParam(value ="search", required = false) String search) {	
 		
 		List<Member> list = null;
@@ -55,11 +58,41 @@ public class AdminController {
 		
 		return model;
 	}
+	
+	@GetMapping("/changeMem")
+	public ModelAndView delete(ModelAndView model, 
+					@SessionAttribute("loginMember") Member loginMember,
+					@RequestParam int no) {
+		int result = 0;
+
+		Member member = service.findMemberByNo(no);	
+
+		if("ROLE_ADMIN".equals(loginMember.getMemberRole())) {
+			result = service.memUpdateStatus(member);
+			
+			log.debug("result 호출");
+			
+			if(result > 0) {
+				model.addObject("msg", "회원상태를 변경시켰습니다.");
+				model.addObject("location", "/admin/memList");
+			} else {
+				model.addObject("msg", "상태 변경에 실패했습니다.");
+				model.addObject("location", "/admin/memList");
+			}
+		} else {
+			model.addObject("msg", "관리자가 아닙니다.");
+			model.addObject("location", "/");
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
 		
 	@GetMapping("/memXList")
 	public ModelAndView admMemXList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
-			@RequestParam(value ="memtype", defaultValue = "all") String memtype,
+			@RequestParam(value ="memtype", required = false) String memtype,
 			@RequestParam(value ="search", required = false) String search) {
 		
 		List<Member> list = null;
@@ -78,6 +111,7 @@ public class AdminController {
 		return model;
 	}
 	
+	// 어디가지
 	@GetMapping("/boardList")
 	public ModelAndView BoardList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
@@ -100,6 +134,7 @@ public class AdminController {
 		return model;
 	}
 	
+	// 상품
 	@GetMapping("/proList")
 	public ModelAndView ProductList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,
@@ -122,6 +157,7 @@ public class AdminController {
 		return model;
 	}
 	
+	// 리뷰
 	@GetMapping("/revList")
 	public ModelAndView ReviewList(ModelAndView model,
 			@RequestParam(value ="page", defaultValue = "1") int page,

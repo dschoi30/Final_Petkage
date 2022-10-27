@@ -55,8 +55,17 @@
 		}
 	</style>
 	
+	<!-- 파비콘 -->
+	<link rel="apple-touch-icon" sizes="120x120" href="${ path }/resources/images/common/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="${ path }/resources/images/common/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="${ path }/resources/images/common/favicon-16x16.png">
+	<link rel="manifest" href="${ path }/resources/images/common/site.webmanifest">
+	<link rel="mask-icon" href="${ path }/resources/images/common/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	
 </head>
-<body>
+<body ondragstart="return false" onselectstart="return false">
 	<!-- Channel Plugin Scripts -->
 	<script>
 	  (function() {
@@ -133,7 +142,7 @@
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/admMain'" value="관리자페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/memList'" value="관리자페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			

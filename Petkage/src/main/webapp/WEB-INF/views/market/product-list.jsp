@@ -12,8 +12,8 @@
     	<div class="contents">
         	<br><br>
         	<form action="${ path }/market/product-list" method="GET">
-            <div class="row justify-content-center">
-            	<div class="wrap-category">
+<!--             <div class="row justify-content-center">  -->
+            	<div class="wrap-category" style="margin-left: 150px;">
                 	<div class="category-info-top"><a href="${ path }/market/product-list"><h3>마켓</h3></a></div>
                     <div class="wrap-search-bar">
                     	<input type="text" name="searchValue" id="searchInput" class="form-control" size="60">
@@ -24,7 +24,7 @@
                         </span>
                     </div>
                 </div>
-			</div>
+<!-- 			</div> -->
             </form>
             <c:if test="${ empty product.proCategory1 }">
             <c:if test="${ (loginMember.memberRole == 'ROLE_SELLER') || (loginMember.memberRole == 'ROLE_ADMIN')}">
@@ -204,7 +204,7 @@
                   <div class="col-xs-1">
                       <ul class="wrap-subcategory">
                           <li class="subcategory">
-                              <button class="btn-subcategory" name="proCategory2" value="best">
+                              <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategort1=dog&proCategory2=best'">
                                   <span class="span-subcategory-img">
                                       <img src="${ path }/resources/images/market/category/best-icon.png" width="60" height="60" alt="">
                                   </span><br>

@@ -159,12 +159,12 @@
 		WHERE MEM_STATUS='Y'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 	</select>
 	
@@ -173,12 +173,12 @@
 		WHERE MEM_STATUS = 'Y'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
@@ -188,12 +188,12 @@
 		WHERE MEM_STATUS = 'N'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 	</select>
 	
@@ -202,15 +202,32 @@
 		WHERE MEM_STATUS = 'N'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
+	
+	<!-- status update -->
+	<select id="selectMemberByNo" parameterType="_int" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE MEM_NO = #{no}
+	</select>
+	
+	<update id="updateMemStatus" parameterType="Member">
+		UPDATE MEMBER SET
+			<if test='status == "Y"'>
+				MEM_STATUS = 'N' 
+			</if>
+			<if test='status == "N"'>
+				MEM_STATUS = 'Y' 
+			</if>
+		WHERE MEM_NO = #{no}
+	</update>
 	
 	<select id="selectBoardCount" resultType="_int">
 		SELECT COUNT(*) FROM WHEREWEGO
