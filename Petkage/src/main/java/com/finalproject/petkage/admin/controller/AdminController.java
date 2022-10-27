@@ -58,9 +58,31 @@ public class AdminController {
 		
 		return model;
 	}
+		
+	@GetMapping("/memXList")
+	public ModelAndView admMemXList(ModelAndView model,
+			@RequestParam(value ="page", defaultValue = "1") int page,
+			@RequestParam(value ="memtype", required = false) String memtype,
+			@RequestParam(value ="search", required = false) String search) {
+		
+		List<Member> list = null;
+		PageInfo pageInfo = null;
+		
+		int memXCount = service.getMemXCount(memtype, search);
+		pageInfo = new PageInfo(page, 10, service.getMemXCount(memtype, search), 10);
+		
+		list = service.getMemXList(pageInfo, memtype, search);
+				
+		model.addObject("memXCount", memXCount); 
+		model.addObject("pageInfo", pageInfo);
+		model.addObject("list", list); 
+		model.setViewName("admin/memXList");
+		
+		return model;
+	}
 	
 	@GetMapping("/changeMem")
-	public ModelAndView delete(ModelAndView model, 
+	public ModelAndView changeMem(ModelAndView model, 
 					@SessionAttribute("loginMember") Member loginMember,
 					@RequestParam int no) {
 		int result = 0;
@@ -88,28 +110,6 @@ public class AdminController {
 		
 		return model;
 	}
-		
-	@GetMapping("/memXList")
-	public ModelAndView admMemXList(ModelAndView model,
-			@RequestParam(value ="page", defaultValue = "1") int page,
-			@RequestParam(value ="memtype", required = false) String memtype,
-			@RequestParam(value ="search", required = false) String search) {
-		
-		List<Member> list = null;
-		PageInfo pageInfo = null;
-		
-		int memXCount = service.getMemXCount(memtype, search);
-		pageInfo = new PageInfo(page, 10, service.getMemXCount(memtype, search), 10);
-		
-		list = service.getMemXList(pageInfo, memtype, search);
-				
-		model.addObject("memXCount", memXCount); 
-		model.addObject("pageInfo", pageInfo);
-		model.addObject("list", list); 
-		model.setViewName("admin/memXList");
-		
-		return model;
-	}
 	
 	// 어디가지
 	@GetMapping("/boardList")
@@ -130,6 +130,34 @@ public class AdminController {
 		model.addObject("pageInfo", pageInfo);
 		model.addObject("list", list); 
 		model.setViewName("admin/boardList");
+		
+		return model;
+	}
+	
+	@GetMapping("/changeBoard")
+	public ModelAndView changeBoard(ModelAndView model, 
+					@SessionAttribute("loginMember") Member loginMember,
+					@RequestParam int no) {
+		int result = 0;
+
+		Wherego wherego = service.findBoardByNo(no);
+		
+		if("ROLE_ADMIN".equals(loginMember.getMemberRole())) {
+			result = service.boardUpdateStatus(wherego);
+			
+			if(result > 0) {
+				model.addObject("msg", "게시판 상태를 변경시켰습니다.");
+				model.addObject("location", "/admin/boardList");
+			} else {
+				model.addObject("msg", "상태 변경에 실패했습니다.");
+				model.addObject("location", "/admin/boardList");
+			}
+		} else {
+			model.addObject("msg", "관리자가 아닙니다.");
+			model.addObject("location", "/");
+		}
+		
+		model.setViewName("common/msg");
 		
 		return model;
 	}
