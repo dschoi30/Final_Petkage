@@ -58,26 +58,6 @@
                             <td><b>대표 이미지</b></td>
                             <td><input type="file" name="upfile" id="cit_file_1" multiple="multiple" required/></td>
                         </tr>
-                        <tr>
-                            <td><b>추가 이미지 1/5</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
-                        </tr>
-                        <tr>
-                            <td><b>추가 이미지 2/5</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
-                        </tr>
-                        <tr>
-                            <td><b>추가 이미지 3/5</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
-                        </tr>
-                        <tr>
-                            <td><b>추가 이미지 4/5</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
-                        </tr>
-                        <tr>
-                            <td><b>추가 이미지 5/5</b></td>
-                            <td><input type="file" name="cit_file_1" id="cit_file_1" /></td>
-                        </tr>
                     </table>
                     <table class="prod-input-detail">
                         <tr>
@@ -101,8 +81,6 @@
                     <br>
                     <div class="align-btn-prod-write">
                         <button type="reset" class="btn btn-light text-nowrap">입력취소</button>
-                        <button class="btn btn-light text-nowrap">미리보기</button>
-                        <button class="btn btn-light text-nowrap">중간저장</button>
                         <button type="submit" class="btn btn-light text-nowrap">저장하기</button>
                     </div>
                 </form>
