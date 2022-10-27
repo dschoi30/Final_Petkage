@@ -556,6 +556,7 @@
 	function loadYYMM (fullDate) {
 		let yy = fullDate.getFullYear();
 		let mm = fullDate.getMonth();
+		let dd = init.activeDate.getDate();
 		let firstDay = init.getFirstDay(yy, mm);
 		let lastDay = init.getLastDay(yy, mm);
 	  let markToday;  // for marking today date
@@ -580,9 +581,10 @@
 				trtd += '<td>'
 			} else {
 				let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-				trtd += '<td class="day';
+				trtd += '<td class="day' ;
 				trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+				trtd += 'id= "'+  +'"'
+				trtd += 'data-date="${countDay + 1}" data-fdate="${fullDate}">';
 			}
 			trtd += (startCount) ? ++countDay : '';
 			if (countDay === lastDay.getDate()) { 
@@ -685,7 +687,7 @@
 								var festivalday  = festivalList[List].replace(/\"/g,"").substr(-2);
 									console.log(textDay.textContent);
 									console.log("축제 날짜 : "+ festivalday);
-									
+
 								if (textDay.textContent === festivalday) {
 
 									textDay.classList.add('day-festival');
