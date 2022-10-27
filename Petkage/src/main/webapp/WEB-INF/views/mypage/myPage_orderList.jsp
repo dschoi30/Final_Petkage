@@ -26,28 +26,27 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">주문번호</th>
-            <th scope="col">주문일자</th>
-            <th scope="col">상품정보</th>
-            <th scope="col">수량</th>
-            <th scope="col">상품구매금액</th>
-            <th scope="col">배송비</th>
-            <th scope="col">주문처리상태</th>
+            <th scope="col" class="align-middle">주문번호</th>
+            <th scope="col" class="align-middle">주문일자</th>
+            <th scope="col" class="align-middle"></th>
+            <th scope="col" class="align-middle">상품정보</th>
+            <th scope="col" class="align-middle">수량</th>
+            <th scope="col" class="align-middle">상품구매금액</th>
+            <th scope="col" class="align-middle">배송비</th>
           </tr>
         </thead>
         <c:forEach var="payment" items="${ payment }">
         <tbody>
           <tr>
-            <td>${ payment.payNo }</td>
-            <td>${ payment.payCreatedAt }</td>
-            <td class="w-25">
-			      <img class="img" src="${path}/resources/upload/market/${ payment.renamedFileName }" width="70" height="70">
-			      ${ payment.proName }
+            <td class="align-middle">${ payment.payNo }</td>
+            <td class="align-middle">${ payment.payCreatedAt }</td>
+            <td class="align-middle">
+			      <img class="img" src="${path}/resources/upload/market/${ payment.renamedFileName }" width="70" height="70">			      
 		      </td>
-            <td>${ payment.proCount }</td>
-            <td><fmt:formatNumber value="${ payment.totalPriceAfterUsingPoint }" pattern="#,###"/>원</td>
-            <td><fmt:formatNumber value="${ payment.totalDelFee }" pattern="#,###"/>원</td>
-            <td>${ payment.orderStatus }</td>
+		      <td class="align-middle">${ payment.proName }</td>
+            <td class="align-middle">${ payment.proCount }</td>
+            <td class="align-middle"><fmt:formatNumber value="${ payment.totalPriceAfterUsingPoint }" pattern="#,###"/>원</td>
+            <td class="align-middle"><fmt:formatNumber value="${ payment.totalDelFee }" pattern="#,###"/>원</td>
           </tr>
         </tbody>
         </c:forEach>
