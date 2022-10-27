@@ -651,6 +651,7 @@ margin: 100px auto;
     margin-top: 36px;
     float: left;
     width: 42%;
+    height: 300px;
     padding: 46px 0 26px;
     background: #ddd;
 }
@@ -666,7 +667,7 @@ margin: 100px auto;
 }
 
 .clicked-date .cal-date {
-    font-size: 130px;
+    font-size: 50px;
 }
 
 .ctr-box {
@@ -737,9 +738,15 @@ margin: 100px auto;
 }
 
 .cal-table td.day-active {
-    background: #ff8585;
+    background: #ff8585 !important;
     border-radius: 50%;
     color: #fff;
+}
+
+.cal-table td.day-festival {
+    background: #85c6ff;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
 }
 
 .cal-table td.has-event:after {

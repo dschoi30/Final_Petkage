@@ -178,6 +178,15 @@
 		<result property="roomNum" column="SPOT_ROOMNUM" />
 		<result property="price" column="ROOM_PRICE" />
 	</resultMap>
+	
+	<resultMap type="Calendar" id="calendarResultMap">
+		<id property="calNo" column="CAL_NO"/>
+		<result property="calMemNo" column="CAL_MEM_NO"/>
+		<result property="calTitle" column="CAL_TITLE" />
+		<result property="calContent" column="CAL_CONTENT" />
+		<result property="calDate" column="CAL_DATE" />
+		<result property="calStatus" column="CAL_STATUS" />
+	</resultMap>
 
 	<select id="getOrderAllCount" resultType="_int">
 		SELECT COUNT(*) FROM PAYMENT WHERE PAY_MEM_NO = #{ no }
@@ -320,5 +329,11 @@
 		WHERE H.MEM_NO = #{ userNo }
 		ORDER BY SPOT_NO DESC
     </select>
+    
+    <select id="getListFestivalCalendar" resultMap="calendarResultMap">
+		SELECT * 
+		FROM CALENDAR
+		WHERE CAL_MEM_NO = 1 AND CAL_STATUS = 'Y'
+	</select>
 
 </mapper>

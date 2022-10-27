@@ -12,6 +12,7 @@ import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
 import com.finalproject.petkage.mypage.model.mapper.MyPageMapper;
+import com.finalproject.petkage.mypage.model.vo.Calendar;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 
@@ -112,6 +113,13 @@ public class MyPageServiceImpl implements MyPageService {
     
     return mypagemapper.getHeartList(rowBounds, no);
 }
+
+	// 캘린더 축제 리스트
+    @Override
+    public List<Calendar> getListFestivalCalendar() {
+        
+        return mypagemapper.getListFestivalCalendar();
+    }
 
 
 }
