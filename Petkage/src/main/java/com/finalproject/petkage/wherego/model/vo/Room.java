@@ -12,7 +12,7 @@ public class Room {
 
     private int spotNo; // 어디가지 번호
     
-    private int roomTypeNo; // 객실 타입 번호
+    private String roomTypeNo; // 객실 타입 번호
 	
 	private String roomName; // 객실 이름
 

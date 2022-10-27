@@ -1,6 +1,7 @@
 package com.finalproject.petkage.wherego.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -56,4 +57,5 @@ public interface WheregoMapper {
 	Double reviewAvg(String spotName);
 
 	void updateReviewAvg(com.finalproject.petkage.wherego.model.vo.avgReview reviewStar);
+
 }
