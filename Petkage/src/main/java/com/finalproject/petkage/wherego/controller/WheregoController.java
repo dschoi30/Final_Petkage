@@ -37,6 +37,7 @@ import com.finalproject.petkage.wherego.model.service.WheregoService;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
+import com.finalproject.petkage.wherego.model.vo.avgReview;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -600,12 +601,14 @@ public class WheregoController {
 	
 	@GetMapping("/wherego_cafe_detail")
 	public ModelAndView wherego_cafe_detail(HttpSession session, ModelAndView model,
-			@RequestParam int no) {
+			@RequestParam int no, @RequestParam(value="spotName", required=false) String spotName) {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		List<String> imgList = new ArrayList<String>();
 		
+		avgReview starAvg = service.staravg(spotName);
+
 		
 		Wherego wherego = null;
 		
@@ -633,6 +636,7 @@ public class WheregoController {
 			model.addObject("member", member);
 		}
 	
+		model.addObject("starAvg", starAvg);
 		model.addObject("imgList", imgList);
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
@@ -681,31 +685,52 @@ public class WheregoController {
 	
 	@GetMapping("/lodging_category")
 	public ModelAndView lodging_category(ModelAndView model,
-										@RequestParam(value = "filter") String filter,
-										@RequestParam(value = "location_filter") String location,
-										@RequestParam(value = "size_filter") String size,
-										@RequestParam(value = "ameni") List<String>ameni,
-										@RequestParam(value = "theme") List<String>theme) {
+										@RequestParam(value = "filter", defaultValue="추천순") String filter,
+										@RequestParam(value = "location_filter", required=false) String location) {
 		
 		List<Wherego> wherego = null;		
-//		System.out.println("전" + wherego);
+
 		
-		//wherego = service.lodging_board(); 
-//		System.out.println("후" + wherego);
+		wherego = service.lodging_board_cate(filter, location); 
+
 		
-		System.out.println(filter);
-		System.out.println(location);
-		System.out.println(size);
-		System.out.println(ameni);
-		System.out.println(theme);
-		
-//		model.addObject("lodgingselect", wherego);
-//		System.out.println("숙소 게시글 조회 : " + model);
+		System.out.println("filter" + filter);
+		System.out.println("location" + location);
+
+		model.addObject("location", location);
+		model.addObject("lodgingselect", wherego);
+		System.out.println("숙소 게시글 조회 : " + model);
 		model.setViewName("wherego/wherego_lodging");
 		
 		return model;
 	}
 	
+	
+	@GetMapping("/cafe_category")
+	public ModelAndView cafe_category(ModelAndView model,
+										@RequestParam(value = "location_filter", defaultValue = "서울") String location,
+										@RequestParam(value = "opt", defaultValue = "추천순") String opt) {
+		
+		List<Wherego> wherego = new ArrayList<>();		
+
+		
+		wherego = service.cafe_board_cate(location, opt); 
+		
+		
+		System.out.println("location" + location);
+
+		System.out.println("opt" + opt);
+		
+		System.out.println("wherego" + wherego);
+		
+		model.addObject("location", location);
+		model.addObject("opt", opt);
+		model.addObject("cafeselect", wherego);
+		System.out.println("숙소 게시글 조회 : " + model);
+		model.setViewName("wherego/wherego_cafe");
+		
+		return model;
+	}
 	
 	
 	

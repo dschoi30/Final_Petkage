@@ -37,6 +37,10 @@ public interface AdminMapper {
 	Member selectMemberByNo(int no);
 
 	int updateMemStatus(Member member);
+
+	Wherego selectBoardByNo(int no);
+
+	int updateBoardStatus(Wherego wherego);
 	
 	
 

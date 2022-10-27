@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=8">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=9">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -174,6 +174,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -181,10 +182,12 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a>   
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -192,10 +195,12 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -203,10 +208,12 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -214,10 +221,12 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -225,10 +234,12 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
+                                <a href="">
                                     <div class="card_img">
                                         <img src="${ path }/resources/images/wherego/호텔사진1.png">
                                     </div>
@@ -236,6 +247,7 @@
                                         <div class="ct_1">플로리다 애견 동반 숙소</div>
                                         <div class="ct_2">1박 ~80,000원</div>
                                     </div>
+                                </a> 
                                 </div>
                             </div>
                         </div>
@@ -252,48 +264,62 @@
             <div class="card bg-dark text-white">
                 <img src="${ path }/resources/images/wherego/배경1.png" class="card-img" alt="...">
                 <div class="card-img-overlay">
+                <a href="">
                     <h3 class="card-title">KH cafe</h3>
                     <p class="card-text">[속보] 문인수 선생님 극찬.. "이 집 잘해.."</p>
+                </a>
                 </div>
             </div>
             <div class="wgc5_rm">
                 <div class="wgcm_1">
                     <div class="wgcm_img">
+                    <a href="">
                         <img src="${ path }/resources/images/wherego/배경4.png" alt="">
+                    </a>
                     </div>
                     <div class="wgcm_text">
+                    <a href="">
                         <div class="wgcmt_1">
                             <p>해외 안가도 됨.(근엄)</p>
                         </div>
                         <div class="wgcmt_2">
                             <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
                         </div>
+                    </a>    
                     </div>
                 </div>
                 <div class="wgcm_2">
                     <div class="wgcm_text">
+                    <a href="">
                         <div class="wgcmt_1">
-                            <p>요즘 트랜드가 등산이라며?</p>
+                            <p>해외 안가도 됨.(근엄)</p>
                         </div>
                         <div class="wgcmt_2">
-                            <p>동네 야산 하이킹 코스 추천드려요!</p>
+                            <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
                         </div>
+                    </a> 
                     </div>
                     <div class="wgcm_img2">
+                    <a href="">
                         <img src="${ path }/resources/images/wherego/배경3.png" alt="">
+                    </a>
                     </div>
                 </div>
                 <div class="wgcm_3">
                     <div class="wgcm_img">
+                    <a href="">
                         <img src="${ path }/resources/images/wherego/배경2.png" alt="">
+                    </a>
                     </div>
                     <div class="wgcm_text">
+                    <a href="">
                         <div class="wgcmt_1">
-                            <p>동구밭 과수원길~</p>
+                            <p>해외 안가도 됨.(근엄)</p>
                         </div>
                         <div class="wgcmt_2">
-                            <p>댕댕이랑 놀러가기 좋은 반포 해바라기 축제</p>
+                            <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
                         </div>
+                    </a> 
                     </div>
                 </div>
             </div>

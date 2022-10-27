@@ -33,5 +33,9 @@ public interface AdminService {
 	Member findMemberByNo(int no);
 
 	int memUpdateStatus(Member member);
+
+	Wherego findBoardByNo(int no);
+
+	int boardUpdateStatus(Wherego wherego);
 	
 }

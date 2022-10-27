@@ -153,6 +153,7 @@
 		<result property="revcategory" column="REV_CATEGORY" />
 	</resultMap>
 	
+	<!-- member -->
 	<select id="selectMemCountBySearch" resultType="_int">
 		SELECT COUNT(*) 
 		FROM MEMBER
@@ -212,7 +213,6 @@
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
 	
-	<!-- status update -->
 	<select id="selectMemberByNo" parameterType="_int" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
 		WHERE MEM_NO = #{no}
@@ -229,6 +229,7 @@
 		WHERE MEM_NO = #{no}
 	</update>
 	
+	<!-- wherego -->
 	<select id="selectBoardCount" resultType="_int">
 		SELECT COUNT(*) FROM WHEREWEGO
 		<if test="search != null">
@@ -260,6 +261,23 @@
 		ORDER BY SPOT_NO DESC
 	</select>
 	
+	<select id="selectBoardByNo" parameterType="_int" resultMap="wheregoResultMap">
+		<include refid="selectBoardSql"/>
+		WHERE SPOT_NO = #{no}
+	</select>
+	
+	<update id="updateBoardStatus" parameterType="wherego">
+		UPDATE WHEREWEGO SET
+			<if test='spotStatus == "Y"'>
+				SPOT_STATUS = 'N' 
+			</if>
+			<if test='spotStatus == "N"'>
+				SPOT_STATUS = 'Y' 
+			</if>
+		WHERE SPOT_NO = #{spotNo}
+	</update>
+
+	<!-- product -->
 	<select id="selectProductCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
@@ -333,6 +351,7 @@
 		</if>
 	</select>
 	
+	<!-- review -->
 	<select id="selectReviewAll" resultMap="reviewResultMap">		
 		<include refid="selectReviewSql"/>
 		<if test="search != null">

@@ -69,8 +69,8 @@
                 </form>
                 
                 <div style="text-align: right;"> 
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지 작성</button>
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지(숙소) 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" style="margin-top: 0px;" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" style="margin-top: 0px; margin-right: 18px" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지(숙소) 작성</button>
                 </div>
                
 	        	<c:if test="${ empty list }">
@@ -101,7 +101,7 @@
                         <th scope="col">주소</th>
                         <th scope="col">테마</th>
                         <th scope="col">수정</th>
-                        <th scope="col">삭제</th>
+                        <th scope="col">상태</th>
                       </tr>
                     </thead>
                     
@@ -123,10 +123,18 @@
                         <td style="vertical-align: middle;">${ board.theme }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" updateId="${ board.spotNo }">수정</button>
-                        </td>
-                        <td onclick='event.cancelBubble=true;'>
-                          <button type="button" class="btn adminbtn btn-sm" deleteId="${ board.spotNo }">삭제</button>
-                        </td>
+                        </td>                     
+                        
+                        <c:if test="${ board.spotStatus == 'N'}">
+	                        <td onclick='event.cancelBubble=true;'>
+	                          <button type="button" class="btn adminbtn btn-sm changebtn" boardId="${ board.spotNo }">복구</button>
+	                        </td>
+                        </c:if>
+                        <c:if test="${ board.spotStatus == 'Y'}">
+	                        <td onclick='event.cancelBubble=true;'>
+	                          <button type="button" class="btn adminbtn btn-sm changebtn" boardId="${ board.spotNo }">삭제</button>
+	                        </td>
+                        </c:if>
                       </tr>
  				    </c:forEach>
                     </tbody>
@@ -192,6 +200,20 @@
    		    location.href="${ pageContext.request.contextPath }/product-view?proNo="+num
 
    		});
+    	
+    	// 업데이트
+	    $(document).ready(() => {			
+			console.log('작동');
+			
+	        $(function() {
+	            $(".changebtn").click(function(){
+	            	if(confirm("상태를 변경시키겠습니까?")){
+	            		location.replace("${ path }/admin/changeBoard?no=" + $(this).attr("boardId"));	            		
+	            	}
+	            })
+	        });
+	        
+		}); 
     	
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
