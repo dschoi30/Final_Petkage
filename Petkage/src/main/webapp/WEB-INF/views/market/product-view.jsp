@@ -268,7 +268,7 @@
 		                                </div>                                
 		                                <div>${ review.revcoment }
 		                                </div>
-		                                <div class="row-modal">
+<!--		                                <div class="row-modal">
 									        <div class="column">
 									          <img src="${ path }/resources/uploadFiles/${ review.revrenameimg }" onclick="openModal();currentSlide(1)" class="hover-shadow">
 									        </div>
@@ -285,7 +285,7 @@
 									          <img src="${ path }/resources/uploadFiles/nobox.png" onclick="openModal();currentSlide(5)" class="hover-shadow">
 									        </div>
 									    </div>
-									      <!-- The Modal/Lightbox -->
+									       The Modal/Lightbox 
 									    <div id="myModal" class="modal">
 									        <span class="close cursor" onclick="closeModal()">&times;</span>
 									        <div class="modal-content" style="border: none;">
@@ -313,14 +313,14 @@
 									          <div class="mySlides">
 									            <div class="numbertext">5 / 5</div>
 									            <img src="${ path }/resources/uploadFiles/nobox.png" style="margin: auto; display: block;">
-									          </div>
+									          </div>-->
 									      
-									          <!-- Next/previous controls -->
+									          <!-- Next/previous controls 
 									          <a class="prev" onclick="plusSlides(-1)" style="color: white;">&#10094;</a>
 									          <a class="next" onclick="plusSlides(1)" style="color: white;">&#10095;</a>
 
-									        </div>
-									    </div><hr>
+									        
+									    </div><hr></div>--><hr>
 	                                </c:forEach>
 								</c:if>
 							</div>
@@ -347,15 +347,14 @@
                         <p id="prodQna"></p>
                         <br><br>
                         <br>
-                        <h4><strong>상품 문의</strong></h4>
-                        <br>
+                        <h4><strong>자주 하는 질문</strong></h3>
+                        <p><small>고객님들께서 가장 자주 하시는 질문을 담았습니다.
+                        </small></p>
                         <table class="table" style="margin: 0;">
                             <thead>
                                 <tr>
-                                    <th class="py-0.5" style="width: 10%; text-align: center;">답변상태</th>
-                                    <th class="py-0.5" style="width: 60%; text-align: center;">제목</th>
-                                    <th class="py-0.5" style="width: 15%; text-align: center;">작성자</th>
-                                    <th class="py-0.5" style="width: 15%; text-align: center;">작성일</th>
+                                    <th class="py-0.5" style="width: 15%; text-align: center;">질문 유형</th>
+                                    <th class="py-0.5" style="width: 85%; text-align: center;">제목</th>
                                 </tr>
                             </thead>
                         </table>
@@ -366,10 +365,8 @@
                                 <table class="table" style="margin: 0; border: 0; padding: 0;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 10%; text-align: center;">답변완료</td>
-                                            <td class="width: 60%; qna-content">매번구매구매하구있어요~하루에200그램먹이면될까요?웰시코기인데요20키로나가요</td>
-                                            <td style="width: 15%; text-align: center;">ds06**</td>
-                                            <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                            <td style="width: 15%; text-align: center;">주문/결제</td>
+                                            <td class="width: 85%; qna-content">구매 영수증은 어떻게 발급받나요?</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -378,12 +375,11 @@
                             </div>
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <table class="table" style="margin: 0; border: 0; padding: 0;">
-                                <tbody>
+                                <tbody style="background-color: rgb(245, 245, 245);">
                                     <tr>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td class="width: 60%; qna-content">┖<span class="badge badge-secondary badge-new" style="transform: translateY(-2px);">답변</span>&nbsp; 좋아요 좋아</td>
-                                        <td style="width: 15%; text-align: center;">판매자</td>
-                                        <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                        <td style="width: 15%; text-align: center;"></td>
+                                        <td class="width: 85%; qna-content">┖<span class="badge badge-secondary badge-new" 
+                                            style="transform: translateY(-2px);">답변</span>&nbsp; 간편결제 서비스를 이용하시는 경우, 해당 결제사를 통해서 영수증 발급이 가능합니다.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -396,10 +392,8 @@
                                 <table class="table" style="margin: 0; border: 0; padding: 0;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 10%; text-align: center;">답변완료</td>
-                                            <td class="width: 60%; qna-content">매번구매구매하구있어요~하루에200그램먹이면될까요?웰시코기인데요20키로나가요</td>
-                                            <td style="width: 15%; text-align: center;">ds06**</td>
-                                            <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                            <td style="width: 15%; text-align: center;">주문/결제</td>
+                                            <td class="width: 85%; qna-content">주문 내역 조회는 어디에서 하나요?</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -408,12 +402,12 @@
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <table class="table" style="margin: 0; border: 0; padding: 0;">
-                                <tbody>
+                                <tbody style="background-color: rgb(245, 245, 245);">
                                     <tr>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td class="width: 60%; qna-content">┖<span class="badge badge-secondary badge-new" style="transform: translateY(-2px);">답변</span>&nbsp; 좋아요 좋아</td>
-                                        <td style="width: 15%; text-align: center;">판매자</td>
-                                        <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                        <td style="width: 15%; text-align: center;"></td>
+                                        <td class="width: 85%; qna-content">┖<span class="badge badge-secondary badge-new" 
+                                            style="transform: translateY(-2px);">답변</span>&nbsp; 하기 경로를 통해 구매하신 주문 건의 이력을 확인하실 수 있습니다.<br><br>
+                                            펫키지 홈 상단 [마이페이지] 클릭 > 주문 내역</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -426,10 +420,8 @@
                                 <table class="table" style="margin: 0; border: 0; padding: 0;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 10%; text-align: center;">답변완료</td>
-                                            <td class="width: 60%; qna-content">매번구매구매하구있어요~하루에200그램먹이면될까요?웰시코기인데요20키로나가요</td>
-                                            <td style="width: 15%; text-align: center;">ds06**</td>
-                                            <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                            <td style="width: 15%; text-align: center;">주문/결제</td>
+                                            <td class="width: 85%; qna-content">주문이 안 됩니다</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -438,12 +430,14 @@
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                             <table class="table" style="margin: 0; border: 0; padding: 0;">
-                                <tbody>
+                                <tbody style="background-color: rgb(245, 245, 245);">
                                     <tr>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td class="width: 60%; qna-content">┖<span class="badge badge-secondary badge-new" style="transform: translateY(-2px);">답변</span>&nbsp; 좋아요 좋아</td>
-                                        <td style="width: 15%; text-align: center;">판매자</td>
-                                        <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                        <td style="width: 15%; text-align: center;"></td>
+                                        <td class="width: 85%; qna-content">┖<span class="badge badge-secondary badge-new" 
+                                            style="transform: translateY(-2px);">답변</span>&nbsp; 시스템 이상으로 주문이 불가능한 경우<br><br>
+                                        모든 인터넷 창을 종료 > 펫키지 홈페이지 재접속 > 재로그인 진행<br><br>
+                                        [참고]<br>
+                                        공용 PC의 경우 높은 방화벽으로 설정되어 있어 결제가 어려울 수 있습니다.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -456,10 +450,8 @@
                                 <table class="table" style="margin: 0; border: 0; padding: 0;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 10%; text-align: center;">답변완료</td>
-                                            <td class="width: 60%; qna-content">매번구매구매하구있어요~하루에200그램먹이면될까요?웰시코기인데요20키로나가요</td>
-                                            <td style="width: 15%; text-align: center;">ds06**</td>
-                                            <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                            <td style="width: 15%; text-align: center;">취소/교환/환불</td>
+                                            <td class="width: 85%; qna-content">교환(반품)은 어떻게 진행되나요?</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -468,12 +460,12 @@
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                             <table class="table" style="margin: 0; border: 0; padding: 0;">
-                                <tbody>
+                                <tbody style="background-color: rgb(245, 245, 245);">
                                     <tr>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td class="width: 60%; qna-content">┖<span class="badge badge-secondary badge-new" style="transform: translateY(-2px);">답변</span>&nbsp; 좋아요 좋아</td>
-                                        <td style="width: 15%; text-align: center;">판매자</td>
-                                        <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                        <td style="width: 15%; text-align: center;"></td>
+                                        <td class="width: 85%; qna-content">┖<span class="badge badge-secondary badge-new" 
+                                            style="transform: translateY(-2px);">답변</span>&nbsp; 교환(반품) 진행 방법<br><br>
+                                            받으신 상품을 교환(반품) 하실 경우, 교환 사유+문제가 발생한 부분을 확인할 수 있는 사진과 함께 고객센터로 문의 바랍니다.</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -486,10 +478,8 @@
                                 <table class="table" style="margin: 0; border: 0; padding: 0;">
                                     <tbody>
                                         <tr>
-                                            <td style="width: 10%; text-align: center;">답변완료</td>
-                                            <td class="width: 60%; qna-content">매번구매구매하구있어요~하루에200그램먹이면될까요?웰시코기인데요20키로나가요</td>
-                                            <td style="width: 15%; text-align: center;">ds06**</td>
-                                            <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                            <td style="width: 15%; text-align: center;">취소/교환/환불</td>
+                                            <td class="width: 85%; qna-content">환불 안내는 받았는데, 아직 카드사에서는 취소가 안 되었어요</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -498,29 +488,20 @@
                             </div>
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                             <table class="table" style="margin: 0; border: 0; padding: 0;">
-                                <tbody>
+                                <tbody style="background-color: rgb(245, 245, 245);">
                                     <tr>
-                                        <td style="width: 10%; text-align: center;"></td>
-                                        <td class="width: 60%; qna-content">┖<span class="badge badge-secondary badge-new" style="transform: translateY(-2px);">답변</span>&nbsp; 좋아요 좋아</td>
-                                        <td style="width: 15%; text-align: center;">판매자</td>
-                                        <td style="width: 15%; text-align: center;">2022-09-18</td>
+                                        <td style="width: 15%; text-align: center;"></td>
+                                        <td class="width: 85%; qna-content">┖<span class="badge badge-secondary badge-new" 
+                                            style="transform: translateY(-2px);">답변</span>&nbsp; 카드 취소 시, 유의사항<br><br>
+                                            최종 카드 환불의 경우 카드사 사정으로 인해 환불접수일로부터 영업일 기준 3~5일 가량 소요 될 수 있습니다.<br><br>
+                                            [참고]<br>
+                                            자세한 사항은 카드사에 문의 부탁드리며, 7일 이후에도 환불이 되지 않은 경우 고객센터로 문의 부탁드립니다.</td>
                                     </tr>
                                 </tbody>
                             </table>
                             </div>
                         </div>
                         <br><br>
-                        <div class="col">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                            </ul>
-                        </div>
                     </ul>
                     <ul class="prod-delivery-wrap">
                         <p id="prodDelivery"></p>
@@ -531,38 +512,33 @@
                             <div class="mt-5">
                                 <table class="table">
                                         <tr>
-                                            <td class="py-0.5">배송정보</td>
-                                            <td></td>
+                                            <td class="py-0.5" style="width: 18%;">배송정보</td>
+                                            <td>* 판매자가 지정한 택배사를 통하여 배송이 진행됩니다. 도서 산간 지역 등은 하루가 더 소요될 수 있습니다.</td>
                                         </tr>
                                         <tr>
                                             <td class="py-0.5">교환/반품 비용</td>
-                                            <td></td>
+                                            <td>* 단순 변심에 의한 교환/반품 시 왕복 배송비를 고객님께서 부담하셔야 합니다.<br>
+                                                * 교환/반품에 관한 일반적인 사항은 판매자가 제시사항보다 관계법령이 우선합니다.</td>
                                         </tr>
                                         <tr>
                                             <td class="py-0.5">교환/반품 신청 기준일</td>
-                                            <td></td>
+                                            <td>* 단순변심에 의한 상품의 교환/반품은 제품 수령 후 30일 이내, 상품의 내용이 표시·광고의 내용과 다른 경우에는 상품을 수령한 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터
+                                                30일 이내에 청약철회가 가능합니다.</td>
                                         </tr>
                                         <tr>
                                             <td class="py-0.5">교환/반품 제한 사항</td>
-                                            <td></td>
+                                            <td>* 상품 포장을 개봉하여 사용 또는 설치 완료되어 상품의 가치가 훼손된 경우 (내용 확인을 위한 포장 개봉의 경우는 예외)<br>
+                                                * 고객의 사용, 시간경과, 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우<br>
+                                                * 세트상품 일부 사용, 구성품을 분실하였거나 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</td>
                                         </tr>
                                     </tbody>                        
                                 </table>
-                                <br>
-                            </div>
                         </div>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<!--                         
-	<form action="${ path }/market/cart/add" method="POST" class="add-cart-form">
-		<input type="hidden" name="proNo" class="update_proNo">
-		<input type="hidden" name="proCount" class="update_proCount">
-		<input type="hidden" name="no" value="${loginMember.no}">
-	</form>	
- -->	
 	<form action="${ path }/market/order/${ loginMember.no }" method="GET" class="order-form">
 		<input type="hidden" name="orders[0].proNo" value="${ product.proNo }">
 		<input type="hidden" name="orders[0].proCount" value="">
@@ -655,7 +631,7 @@
         }
     });
     
-	 // 캐러셀 슬라이드
+	// 캐러셀 슬라이드
     
     let carouselSlideIndex = 1;
     showCarouselSlides(carouselSlideIndex);

@@ -204,7 +204,7 @@
                   <div class="col-xs-1">
                       <ul class="wrap-subcategory">
                           <li class="subcategory">
-                              <button class="btn-subcategory" name="proCategory2" value="best">
+                              <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategort1=dog&proCategory2=best'">
                                   <span class="span-subcategory-img">
                                       <img src="${ path }/resources/images/market/category/best-icon.png" width="60" height="60" alt="">
                                   </span><br>
