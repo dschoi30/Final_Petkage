@@ -1,16 +1,15 @@
 package com.finalproject.petkage.wherego.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
-import com.finalproject.petkage.wherego.model.vo.avgReview;
 
 @Mapper
 public interface WheregoMapper {
@@ -55,11 +54,8 @@ public interface WheregoMapper {
 
 	int delete_like(Heart heart);
 
-	avgReview staravg(String spotName);
+	Double reviewAvg(String spotName);
 
-	void staravg_update(String spotName);
+	void updateReviewAvg(com.finalproject.petkage.wherego.model.vo.avgReview reviewStar);
 
-	List<Wherego> lodging_board_cate(@Param("filter") String filter, @Param("location") String location);
-
-	List<Wherego> cafe_board_cate(@Param("location") String location, @Param("opt") String opt);
 }

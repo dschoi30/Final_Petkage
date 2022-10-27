@@ -153,18 +153,19 @@
 		<result property="revcategory" column="REV_CATEGORY" />
 	</resultMap>
 	
+	<!-- member -->
 	<select id="selectMemCountBySearch" resultType="_int">
 		SELECT COUNT(*) 
 		FROM MEMBER
 		WHERE MEM_STATUS='Y'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 	</select>
 	
@@ -173,12 +174,12 @@
 		WHERE MEM_STATUS = 'Y'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
@@ -188,12 +189,12 @@
 		WHERE MEM_STATUS = 'N'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 	</select>
 	
@@ -202,16 +203,33 @@
 		WHERE MEM_STATUS = 'N'
 		<if test="search != null">
 			AND MEM_NAME LIKE '%' || #{search} || '%'
-		</if>
-		<if test="memtype == seller">
-			AND MEM_ROLE LIKE ROLE_SELLER
-		</if>
-		<if test="memtype == normal">
-			AND MEM_ROLE LIKE ROLE_USER
+			<if test="memtype == 'seller'">
+				AND MEM_ROLE = 'ROLE_SELLER'
+			</if>
+			<if test="memtype == 'normal'">
+				AND MEM_ROLE = 'ROLE_USER'
+			</if>
 		</if>
 		ORDER BY MEM_ENROLLDATE DESC
 	</select>
 	
+	<select id="selectMemberByNo" parameterType="_int" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE MEM_NO = #{no}
+	</select>
+	
+	<update id="updateMemStatus" parameterType="Member">
+		UPDATE MEMBER SET
+			<if test='status == "Y"'>
+				MEM_STATUS = 'N' 
+			</if>
+			<if test='status == "N"'>
+				MEM_STATUS = 'Y' 
+			</if>
+		WHERE MEM_NO = #{no}
+	</update>
+	
+	<!-- wherego -->
 	<select id="selectBoardCount" resultType="_int">
 		SELECT COUNT(*) FROM WHEREWEGO
 		<if test="search != null">
@@ -243,6 +261,23 @@
 		ORDER BY SPOT_NO DESC
 	</select>
 	
+	<select id="selectBoardByNo" parameterType="_int" resultMap="wheregoResultMap">
+		<include refid="selectBoardSql"/>
+		WHERE SPOT_NO = #{no}
+	</select>
+	
+	<update id="updateBoardStatus" parameterType="wherego">
+		UPDATE WHEREWEGO SET
+			<if test='spotStatus == "Y"'>
+				SPOT_STATUS = 'N' 
+			</if>
+			<if test='spotStatus == "N"'>
+				SPOT_STATUS = 'Y' 
+			</if>
+		WHERE SPOT_NO = #{spotNo}
+	</update>
+
+	<!-- product -->
 	<select id="selectProductCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT P
 		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
@@ -316,6 +351,7 @@
 		</if>
 	</select>
 	
+	<!-- review -->
 	<select id="selectReviewAll" resultMap="reviewResultMap">		
 		<include refid="selectReviewSql"/>
 		<if test="search != null">

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -264,7 +266,8 @@ public class WheregoController {
     public ModelAndView lodging_write(
                         ModelAndView model,
                         @RequestParam(value="multiFile") List<MultipartFile> multiFileList,
-						@RequestParam(value="upfile") MultipartFile upfile,
+                        @RequestParam(value="upfile") List<MultipartFile> upfileList,
+//						@RequestParam(value="upfile") MultipartFile upfile,
 						HttpServletRequest request,
                         @ModelAttribute Wherego wherego,
                         @ModelAttribute Room room) {
@@ -275,6 +278,7 @@ public class WheregoController {
         
         // 받아온것 출력 확인
 			System.out.println("multiFileList : " + multiFileList);
+			System.out.println("upfileList : " + upfileList);
 
 			// path 가져오기
 			String path = request.getSession().getServletContext().getRealPath("resources");
@@ -286,12 +290,15 @@ public class WheregoController {
 			
 			String file1 = "";
 			String file2 = "";
+			String file3 = "";
+			String file4 = "";
 			
 			Map<String, String> map = new HashMap<>();
 			
+			// 숙소 이미지
 			for(int i = 0; i < multiFileList.size(); i++) {
 				String img = multiFileList.get(i).getOriginalFilename();
-				System.out.println("이미지" + img);
+				System.out.println("이미지 숙소 " + img);
 				
 				String renameImg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
 						img.substring(img.lastIndexOf("."));
@@ -308,52 +315,97 @@ public class WheregoController {
 				}
 			}
 			
+			// 객실 이미지
+			for(int i = 0; i < upfileList.size(); i++) {
+			    String roomImg = upfileList.get(i).getOriginalFilename();
+			    System.out.println("이미지 객실 " + roomImg);
+			    
+			    String renameRoomImg = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
+			            roomImg.substring(roomImg.lastIndexOf("."));
+			    int subFileName = Integer.parseInt(renameRoomImg.substring(9, 18)) + i;
+			    renameRoomImg = renameRoomImg.substring(0, 9) + subFileName + renameRoomImg.substring(18, renameRoomImg.length());
+			    
+			    System.out.println("이미지 객실 개명 " + renameRoomImg);
+			    
+			    if(i == 0) {
+			        map.put("roomImg", roomImg);
+			        map.put("renameRoomImg", renameRoomImg);
+			    }
+			    else {
+			        map.put("roomImg", map.get("roomImg") + ", " + roomImg);
+			        map.put("renameRoomImg", map.get("renameRoomImg") + ", " + renameRoomImg);
+			    }
+			}
+			
 			file1 = map.get("img");
 			file2 = map.get("renameImg");
+			file3 = map.get("roomImg");
+			file4 = map.get("renameRoomImg");
+			
+			System.out.println(file1);
+			System.out.println(file2);
+			System.out.println(file3);
+			System.out.println(file4);
 			
 			wherego.setImg(file1);
 			wherego.setRenameImg(file2);
+			room.setRoomImg(file3);
+			room.setRenameRoomImg(file4);
 			
-			String[] fileList = map.get("renameImg").split(", ");
+			String[] multiList = map.get("renameImg").split(", ");
+			String[] upList = map.get("renameRoomImg").split(", ");
 			
 			try {
 				for(int i = 0; i < multiFileList.size(); i++) {
-					File uploadFile = new File(root + "\\" + fileList[i]);
+					File uploadFile = new File(root + "\\" + multiList[i]);
 					multiFileList.get(i).transferTo(uploadFile);
 				}
+				
+				for(int i = 0; i < upfileList.size(); i++) {
+                    File uploadFile = new File(root + "\\" + upList[i]);
+                    upfileList.get(i).transferTo(uploadFile);
+                }
+				
+				
 				System.out.println("다중 파일 업로드 성공!");
-				System.out.println("파일" + multiFileList);
+				System.out.println("숙소 파일" + multiFileList);
+				System.out.println("객실 파일" + upfileList);
 				
 			} catch (IllegalStateException | IOException e) {
 				System.out.println("다중 파일 업로드 실패 ㅠㅠ");
 				// 만약 업로드 실패하면 파일 삭제
 				for(int i = 0; i < multiFileList.size(); i++) {
-					new File(root + "\\" + fileList[i]).delete();
+					new File(root + "\\" + multiList[i]).delete();
 				}
+				
+				for(int i = 0; i < upfileList.size(); i++) {
+				    new File(root + "\\" + upList[i]).delete();
+				}
+				
 				e.printStackTrace();
 			}
 
 			// 객실 사진 
-			if(upfile != null && !upfile.isEmpty()) {
-				// 파일을 저장하는 로직 작성
-				String location = null;
-				String renamedFileName = null;
-				
-				try {
-					location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
-					
-					renamedFileName = MultipartFileUtil.save(upfile, location);
-					
-					System.out.println(location);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				if(renamedFileName != null) {
-				    room.setRoomImg(upfile.getOriginalFilename());
-				    room.setRenameRoomImg(renamedFileName);
-				}
-			}	
+//			if(upfile != null && !upfile.isEmpty()) {
+//				// 파일을 저장하는 로직 작성
+//				String location = null;
+//				String renamedFileName = null;
+//				
+//				try {
+//					location = resourceLoader.getResource("resources/upload/wherego").getFile().getPath();
+//					
+//					renamedFileName = MultipartFileUtil.save(upfile, location);
+//					
+//					System.out.println(location);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//				
+//				if(renamedFileName != null) {
+//				    room.setRoomImg(upfile.getOriginalFilename());
+//				    room.setRenameRoomImg(renamedFileName);
+//				}
+//			}	
 			
 		wherego.setRoom(room);
         
@@ -370,8 +422,8 @@ public class WheregoController {
         model.setViewName("common/msg");
         System.out.println("숙소등록 결과" + result);
         return model;
-    }
-	
+	}	
+
 	@GetMapping("/others_write")
 	public String others_write() {
 	    log.info("어디가지 게시글 작성 페이지 요청");

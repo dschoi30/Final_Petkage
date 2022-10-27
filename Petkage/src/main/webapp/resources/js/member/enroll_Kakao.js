@@ -79,7 +79,7 @@ var blankCheck = /\s/g;
 var bNameCheck = /^[가-힣|a-z|A-Z]{1,10}$/;
 
 // 이름 유효성 검사
-$("#userName").keyup(function () {
+window.onload = function () {
   if (!nameCheck.test($("#userName").val())) {
     $("#name_termsCheck").text("한글 또는 영문만 입력해 주세요.");
   } else if (
@@ -92,7 +92,22 @@ $("#userName").keyup(function () {
     $("[name=nameTest]").val("1");
     return true;
   }
-});
+};
+
+// $("#userName").keyup(function () {
+//   if (!nameCheck.test($("#userName").val())) {
+//     $("#name_termsCheck").text("한글 또는 영문만 입력해 주세요.");
+//   } else if (
+//     $("#userName").val().length < 2 ||
+//     $("#userName").val().length > 6
+//   ) {
+//     $("#name_termsCheck").text("2자 이상 5자 이하로 입력해 주세요.");
+//   } else {
+//     $("#name_termsCheck").text("");
+//     $("[name=nameTest]").val("1");
+//     return true;
+//   }
+// });
 
 // 핸드폰 번호 유효성 검사
 $("#userPhone").keyup(function () {

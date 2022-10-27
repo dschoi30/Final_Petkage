@@ -316,7 +316,16 @@ html {
     width: 100%;
     margin: 0 auto;
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
 }
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_box {
+    width: 70%;
+    height: 100%;
+    margin-top: 50px;
+}
+
 
 .wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 {
     border: 1px solid #6B6B6B;
@@ -325,9 +334,10 @@ html {
     display: flex;
     padding: 20px;
     margin-bottom: 30px;
+    justify-content: center;
 }
 
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload {
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload {
     list-style: none;
     width: 30%;
     display: flex;
@@ -335,8 +345,14 @@ html {
     justify-content: center;
 }
 
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload .imageBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload .btn-upload {
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload .btn-upload {
     width: 150px;
     height: 50px;
     background: #fff;
@@ -351,16 +367,84 @@ html {
     justify-content: center;
 }
 
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload .btn-upload:hover {
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload .btn-upload:hover {
     background: #753422;
     color: #fff;
 }
 
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image,
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_1,
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_2,
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_3,
-.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wg5bcr_1 .wgc7w_upload #image_4 {
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload #image,
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload #image_1,
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload #image_2,
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload #image_3,
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload #image_4 {
+    display: none;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_upload .imageBox #preview_1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_add  {
+    position: absolute;
+    right: 8%;
+    top: 0%;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_add .btn-add {
+    width: 80px;
+    height: 30px;
+    background: #fff;
+    border: 2px solid #753422;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #753422;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_add .btn-add:hover {
+    background: #753422;
+    color: #fff;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_add #rood_add {
+    display: none;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_del  {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_del .btn-del {
+    width: 80px;
+    height: 30px;
+    background: #fff;
+    border: 2px solid #3b3a3a;
+    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #3b3a3a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_del .btn-del:hover {
+    background: #3b3a3a;
+    color: #fff;
+}
+
+.wg_9 .wg5_bottom .wg5b_content .wg5bc_room .wgc7w_del #rood_del {
     display: none;
 }
 

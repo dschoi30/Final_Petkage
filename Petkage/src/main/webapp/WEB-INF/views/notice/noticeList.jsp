@@ -117,7 +117,6 @@
 	    $(document).ready(() => {			
 			console.log('작동');
 			
-			// noticeId를 가져와야해..
 	        $(function() {
 	            $(".ntDelete").click(function(){
 	            	if(confirm("공지사항을 삭제 하시겠습니까?")){

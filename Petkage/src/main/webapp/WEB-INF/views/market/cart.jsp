@@ -63,7 +63,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            &nbsp;&nbsp;<input type="checkbox" class="check-all-pro" checked="checked">&nbsp;&nbsp;전체선택 ( <span class="totalKindCount"></span> / <span>${ cart.proCount }</span>)&nbsp;&nbsp;<button class="cart-del-btn check-all-pro">전체삭제</button>
+            &nbsp;&nbsp;<input type="checkbox" class="check-all-pro" checked="checked">&nbsp;&nbsp;주문 선택한 상품 : 총 <span class="totalKindCount"></span>건
         </div>
         <div class="contents">
             <div class="cart-total-price">

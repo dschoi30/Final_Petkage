@@ -67,7 +67,7 @@
 		                        </td>
 		                        <td rowspan="2" style="width: 10%"><a href="${ path }/market/product-view?proNo=${ order.proNo }"><img class="img" src="${path}/resources/upload/market/${ order.renamedFileName }" width="80" height="80"></a></td>
 		                        <td colspan="3" style="width: 56%"><a href="${ path }/market/product-view?proNo=${ order.proNo }">${ order.proName }</a></td>
-		                        <td rowspan="2" style="width: 16%; text-align: center;"><br><strong><fmt:formatNumber value="${ order.proSPrice * order.proCount }" pattern="#,###"/>원</strong></td> 
+		                        <td rowspan="2" style="width: 16%; text-align: center;"><br><strong><fmt:formatNumber value="${ order.proSPrice * order.proCount }" pattern="#,###"/>원</strong><br><del><fmt:formatNumber value="${ order.proOPrice * order.proCount }" pattern="#,###"/>원</del></td> 
 		                        <td rowspan="2" style="width: 18%; text-align: center;"><br><fmt:formatNumber value="${ order.proDelFee }" pattern="#,###"/>원</td>
 		                    </tr>
 		                    <tr>
@@ -104,7 +104,7 @@
                             <td>총 결제금액</td>
                             <td>
                             	<span class="total-price-after-using-point"></span>원
-                            	<span style="padding-left: 86px;">결제 시 적립(5%) 포인트</span>
+                            	<span style="padding-left: 108px;">결제 시 적립(5%) 포인트</span>
                             	<span class="total-saving-point" style="padding-left: 10px;"></span>원
                             </td>
                         </tr>
@@ -114,9 +114,6 @@
 <!--                                     <label><input type="radio" name="kakaopay" id="check_module">카카오페이</label>&nbsp; -->
   						<button style="border: 0; margin-right: 10px;">
 							<img src="${ path }/resources/images/market/pay_on_kakao.png" style="width: 80px; height: 30px;" alt="">
-						</button>
-  						<button id="card" value="card" style="border: 0;">
-							<img src="${ path }/resources/images/market/pay_on_card.png" style="width: 80px; height: 30px;" alt="">
 						</button>
                             </td>
                         </tr>

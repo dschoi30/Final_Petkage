@@ -40,9 +40,9 @@ public class Wherego {
 	
 	private String spotStatus; // 어디가지 상태
 
-	private String spotMapX; // 지도 좌표 위도
+	private int spotMapX; // 지도 좌표 위도
 	
-	private String spotMapY; // 지도 좌표 경도
+	private int spotMapY; // 지도 좌표 경도
 	
 	private int roomNum; // 객실수
 

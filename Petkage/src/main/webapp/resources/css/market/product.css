@@ -102,7 +102,7 @@
 	border: 0; 
 	border-radius: 10px;
 	position: absolute;
-    transform: translate(850px, -48px);
+    transform: translate(880px, -48px);
 }
 
 #wrap-all-prod .category-btn-on {
@@ -162,7 +162,7 @@
 
 #wrap-all-prod .align-btn-prod-write {
     position: absolute;
-    left: 33%;
+    left: 42%;
 }
 
 /* 상품 상세 */
@@ -255,7 +255,7 @@
     color: green;
 }
 
-#wrap-all-prod .prod-original-price, .reward-point, .delivery-etd {
+#wrap-all-prod .prod-original-price, .reward-point, .delivery-etd, .qty {
     margin-top: 10px;
 }
 

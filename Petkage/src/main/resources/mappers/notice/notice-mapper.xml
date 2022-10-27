@@ -6,7 +6,7 @@
 		SELECT  N.NOTI_NO, 
 				N.NOTI_WRITERNO, 
 				N.NOTI_TITLE, 
-				N.NOTI_CONTENT,
+				N.NOTI_CONTENT2,
 				N.NOTI_DATE,
 				N.NOTI_IMG,
 				N.NOTI_STATUS
@@ -17,7 +17,7 @@
 		<id property="no" column="NOTI_NO"/>
 		<result property="writerNo" column="NOTI_WRITERNO"/>
 		<result property="title" column="NOTI_TITLE"/>
-		<result property="content" column="NOTI_CONTENT"/>
+		<result property="content" column="NOTI_CONTENT2"/>
 		<result property="createDate" column="NOTI_DATE"/>
 		<result property="img" column="NOTI_IMG"/>
 		<result property="status" column="NOTI_STATUS"/>
@@ -44,16 +44,18 @@
 				NOTI_CONTENT,
 				NOTI_DATE,
 				NOTI_IMG,
-				NOTI_STATUS
+				NOTI_STATUS,
+				NOTI_CONTENT2
 		)
 		VALUES(
 			SEQ_NOTI_NO.NEXTVAL,
 			#{writerNo},
 			#{title},
-			#{content},
 			DEFAULT,
 			DEFAULT,
-			DEFAULT
+			DEFAULT,
+			DEFAULT,
+			#{content}
 		)
 	</insert>
 	
@@ -71,7 +73,7 @@
 				NOTI_TITLE = #{title},
 			</if>
 			<if test="content != null">
-				NOTI_CONTENT = #{content},
+				NOTI_CONTENT2 = #{content},
 			</if>	
 			NOTI_DATE = SYSDATE 
 		</trim>		
