@@ -11,7 +11,7 @@ public class avgReview {
 
 	private String spotName;
 	
-	private double reviewAvg;
+	private int reviewAvg;
 	
 	
 	

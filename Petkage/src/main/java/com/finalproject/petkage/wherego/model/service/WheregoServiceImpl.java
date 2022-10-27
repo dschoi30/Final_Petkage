@@ -159,23 +159,31 @@ public class WheregoServiceImpl implements WheregoService {
 	}
 
 	@Override
-	public void reviewAvg(String spotName) {
-        Double reviewAvg = mapper.reviewAvg(spotName);
+	public avgReview staravg(String spotName) {
 
-        if(reviewAvg == null) {
-        	reviewAvg = 0.0;
-        }
-
-        avgReview reviewStar = new avgReview();
-        reviewStar.setSpotName(spotName);
-        reviewStar.setReviewAvg(reviewAvg);
-
-        System.out.println(reviewAvg);
-        System.out.println(reviewStar);
-        
-        mapper.updateReviewAvg(reviewStar);
-		
+		return mapper.staravg(spotName);
 	}
+
+	@Override
+	public void staravg_update(String spotName) {
+		
+		mapper.staravg_update(spotName);
+	}
+
+	@Override
+	public List<Wherego> lodging_board_cate(String filter, String location) {
+
+		return mapper.lodging_board_cate(filter, location);
+	}
+
+	@Override
+	public List<Wherego> cafe_board_cate(String location, String opt) {
+		
+		return mapper.cafe_board_cate(location, opt);
+	}
+
+
+
 
 
 

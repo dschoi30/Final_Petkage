@@ -26,45 +26,41 @@
 </head>
 
 <body>
-
+<form action="" id="formobj">
     <section class="wg_6">
         <div class="wg_top" id="wg_top">
             <div class="wg_title">
                 <img src="${ path }/resources/images/wherego/카페.png" alt="">
                 <p>카페</p>
             </div>
-            <div class="ht_search2">
-                <form class="ht_12">
+             <div class="ht_search2">
                     <div class="ht_22">
-                        <select name="" id="" required>
-                            <option disabled selected>지역선택</option>
-                            <option>서울</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>경상</option>
-                            <option>전라</option>
-                            <option>충청</option>
-                        </select>
+	                        <select name="location_filter" id="location_select" required>
+	                            <option  class="opt_location"  value="서울" selected="selected">서울</option>
+	                            <option  class="opt_location"  value="부산">부산</option>
+	                            <option  class="opt_location"  value="제주">제주</option>
+	                            <option  class="opt_location"  value="경기">경기</option>
+	                            <option  class="opt_location"  value="인천">인천</option>
+	                            <option  class="opt_location"  value="강원">강원</option>
+	                            <option  class="opt_location"  value="경상">경상</option>
+	                            <option  class="opt_location"  value="전라">전라</option>
+	                            <option  class="opt_location"  value="충청">충청</option>
+	                        </select>
                     </div>
                     <div class="ht_22_btn">
-                        <button type="submit">검색</button>
+                        <button type="submit" id="location_search">검색</button>
                     </div>
-                </form>
-            </div>
+            	</div>
         </div>
-        <div class="wg6_manager"><button><img src="https://cdn-icons-png.flaticon.com/512/1719/1719458.png" onclick="location.href='${ path }/wherego/others_write'"></img></button></div>
         <div class="wg6_map">
             <div id="map" style="width: 100%; height: 350px; margin-top: 20px; margin-bottom: 20px;"></div>
         </div>
         <div class="wg6_mid">
             <div class="wg6_line"></div>
             <div class="wg6_sel">
-                <select name="" id="">
-                    <option value="">추천순</option>
-                    <option value="">별점순</option>
+                <select name="" id="opt_filter" >
+                   	<option value="추천순" class="of_opt" selected="selected">추천순</option>
+                   	<option value="별점순" class="of_opt">별점순</option>
                 </select>
             </div>
         </div>
@@ -239,7 +235,7 @@
 
 
     </section>
-    
+</form>    
         <script>
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -349,6 +345,58 @@
             map.setCenter(locPosition);      
         }    
                
+    </script>
+    
+      <!-- 카테고리  --> 
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+	   var location = '';
+	   var opt_link = '${opt_link}';
+
+	    $(function() {
+	        var locationButton = $('#location_search');
+	
+	        locationButton.click(function() {
+	        	
+	        	var location = $('#location_filter').val();
+	        	
+	            const formElement = $('#formobj');
+	            formElement.attr("action", "${path}/wherego/cafe_category?location_filter="+ location + "&opt=" + opt_link);
+	            formElement.attr("method", "get");
+	            formElement.submit();
+	        })
+	    });
+	    
+	    var opt_location = $('.opt_location').length
+	    
+	    for (var i = 0; i < opt_location; i++) {
+	    	if($($($('.opt_location')[i])).val() == '${location}') {
+	    		$('.opt_location').removeClass('selected')
+	    		$($($('.opt_location')[i])).attr("selected","selected")
+			location = $($($('.opt_location')[i])).val();
+		    	break;
+	    	}
+		
+		};
+		
+		
+		$("#opt_filter").change(function(){
+            	var opt_link = $(this).val(); 
+           	console.log(location)
+           	
+			// 변경된 값으로 비교 후 alert 표출
+            console.log($(this).val());
+            if($(this).val() == "추천순"){
+                window.location.href="${path}"+"/wherego/cafe_category?opt=" + opt_link + "&location_filter="+ location;
+            } else if($(this).val() == "별점순"){
+            	window.location.href="${path}"+"/wherego/cafe_category?opt=" + opt_link + "&location_filter="+ location;
+            } 
+        });
+			    
+	    
+	}); 
+    
     </script>
 
 
