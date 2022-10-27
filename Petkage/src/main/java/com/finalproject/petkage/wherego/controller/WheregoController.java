@@ -571,23 +571,43 @@ public class WheregoController {
 	// 게시글 상세 조회
 	@GetMapping("/wherego_lodging_detail")
 	public ModelAndView wherego_lodging_detail(HttpSession session, ModelAndView model,
-			@RequestParam int no, @RequestParam(value="spotName", required=false) String spotName) {
+			@RequestParam int no, @RequestParam(value="spotName", required=false) String spotName,
+			@RequestParam(value = "page", defaultValue = "1") int page) {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		List<String> imgList = new ArrayList<String>();
+		
+		//List<String> imgList2 = new ArrayList<String>();
+		
+		List<Review> review = null;
+		PageInfo pageInfo = null;
 
+		pageInfo = new PageInfo(page, 10, review_service.getReviewAllCount_review_lodging(), 10);
+        review = review_service.getReviewList_review_lodging(pageInfo);
 		
 		Wherego wherego = null;
 		
+		//List<Review> review_rimg = null;
+		
 		wherego = service.findBoardByNo_lodging(no);
 		
+		//review_rimg = review_service.findReviewByName_lodging(spotName);
+		
+		//System.out.println(review_rimg);
+		
 		String[] splitImg = wherego.getRenameImg().split(", ");
+		
+		//String[] splitImg2 = ((Review) review_rimg).getRevrenameimg().split(", ");
 		
 		for (int i = 0; i < splitImg.length; i++) {
 			imgList.add(splitImg[i]);
 		}
-		
+		/*
+		for (int i = 0; i < splitImg2.length; i++) {
+			imgList2.add(splitImg2[i]);
+		}
+		*/
 		int wherego_like = 0;
 		
 		if(member != null) {
@@ -600,7 +620,10 @@ public class WheregoController {
 			model.addObject("member", member);
 		}
 		
-		
+		model.addObject("review", review);
+        model.addObject("pageInfo", pageInfo);
+		model.addObject("imgList", imgList);
+		//model.addObject("imgList2", imgList2);
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
 		model.setViewName("wherego/wherego_lodging_detail");

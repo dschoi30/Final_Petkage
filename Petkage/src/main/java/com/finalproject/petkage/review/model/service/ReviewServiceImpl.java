@@ -38,6 +38,21 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewmapper.getReviewAllCount();
 	}
+	
+	@Override
+	public int getReviewAllCount_review_lodging() {
+
+		return reviewmapper.getReviewAllCount_review_lodging();
+	}
+
+	@Override
+	public List<Review> getReviewList_review_lodging(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+        int limit = pageInfo.getListLimit();
+        RowBounds rowBounds = new RowBounds(offset, limit);
+        
+        return reviewmapper.getReviewList_review_lodging(rowBounds);
+	}
 
 	@Override
 	public List<Review> getReviewList(PageInfo pageInfo) {
@@ -182,5 +197,12 @@ public class ReviewServiceImpl implements ReviewService {
         
 		return reviewmapper.search_mboard(rowBounds, search);
 	}
+
+	@Override
+	public List<Review> findReviewByName_lodging(String spotName) {
+		
+		return reviewmapper.findReviewByName_lodging(spotName);
+	}
+
 
 }

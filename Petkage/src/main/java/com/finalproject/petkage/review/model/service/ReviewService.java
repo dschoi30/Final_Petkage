@@ -48,5 +48,11 @@ public interface ReviewService {
 	int getReviewAllCount_review_all();
 
 	List<Review> getReviewList_review_all(PageInfo pageInfo);
+
+	int getReviewAllCount_review_lodging();
+
+	List<Review> getReviewList_review_lodging(PageInfo pageInfo);
+
+	List<Review> findReviewByName_lodging(String spotName);
 	
 }
