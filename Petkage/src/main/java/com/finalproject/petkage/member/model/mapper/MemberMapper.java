@@ -33,5 +33,5 @@ public interface MemberMapper {
 	
 	int updateMember(Member member);
 	
-	int deleteMember(int no);
+	int deleteMember(Member member);
 }

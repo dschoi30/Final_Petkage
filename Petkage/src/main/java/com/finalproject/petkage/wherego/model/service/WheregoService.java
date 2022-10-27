@@ -1,6 +1,9 @@
 package com.finalproject.petkage.wherego.model.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.review.model.vo.Review;
@@ -48,6 +51,5 @@ public interface WheregoService {
 	int delete_like(Heart heart);
 
 	void reviewAvg(String spotName);
-	
-	
+
 }

@@ -1,6 +1,324 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.finalproject.petkage.member.model.mapper.MyPageMapper">
+<mapper namespace="com.finalproject.petkage.mypage.model.mapper.MyPageMapper">
+	<!-- 주문조회 리스트 -->
+<!--<select id="getOrderList" resultMap="OrderList">
+	SELECT	 O_NO,
+			 O_PRO_NO,
+			 O_MEM_NO,
+			 O_PAY_NO,
+			 O_DATE,
+			 O_IMG,
+			 O_STATUS,
+			 O_PRO_PRICE,
+			 O_PRO_POINT,
+			 O_AMOUNT
+			 WHERE O_MEM_NO = #{ no }
+			 ORDER BY ORDERITEM_NO DESC
+
+</select> -->
+
+	<resultMap type="Product" id="productListResultMap">
+		<id property="proNo" column="PRO_NO"/>
+		<result property="proSelNo" column="PRO_SEL_NO"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proCategory1" column="PRO_CATEGORY1"/>
+		<result property="proCategory2" column="PRO_CATEGORY2"/>
+		<result property="proTag" column="PRO_TAG"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proQty" column="PRO_QTY"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="proContent" column="PRO_CONTENT"/>
+		<result property="proRDate" column="PRO_RDATE"/>
+		<result property="proStatus" column="PRO_STATUS"/>
+		<result property="proRevCount" column="PRO_REVIEW_COUNT"/>
+		<result property="proRating" column="PRO_RATING"/>
+	</resultMap>
+
+	<resultMap type="Payment" id="orderResultMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="no" column="PAY_MEM_NO"/>
+		<result property="proNo" column="PRO_NO"/>
+		<result property="payItemNo" column="PAY_ITEM_NO"/>
+		<result property="address" column="PAY_ADDRESS"/>
+		<result property="subaddress" column="PAY_SUBADDRESS"/>
+		<result property="payMehotd" column="PAY_METHOD"/>
+		<result property="totalDelFee" column="PAY_DEL_FEE"/>
+		<result property="totalPrice" column="PAY_PRICE"/>
+		<result property="usingPoint" column="PAY_USING_POINT"/>
+		<result property="totalSavingPoint" column="PAY_SAVING_POINT"/>
+		<result property="totalPriceAfterUsingPoint" column="PAY_FINAL_PRICE"/>
+		<result property="orderComment" column="PAY_COMMENT"/>
+		<result property="orderStatus" column="PAY_STATUS"/>
+		<result property="payCreatedAt" column="PAY_CREATED_AT"/>
+		<result property="proCount" column="PRO_COUNT"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+	</resultMap>
+
+	<resultMap type="PayItems" id="orderListResultMap">
+		<id property="payItemNo" column="PAY_ITEM_NO"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="proNo" column="PRO_NO"/>
+		<result property="proCount" column="PRO_COUNT"/>
+		<result property="proName" column="PRO_NAME"/>
+		<result property="proBrand" column="PRO_BRAND"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
+		<result property="proLTime" column="PRO_LTIME"/>
+		<result property="eachProTotalPrice" column="PRO_FINAL_PRICE"/>
+		<result property="savingPoint" column="PRO_SAVING_POINT"/>
+	</resultMap>
+
+	<resultMap type="Review" id="ReviewList">
 	
+		<id property="revno" column="REV_NO" />
+		<result property="spotno" column="REV_SPOT_NO" />
+		<result property="prono" column="REV_PRO_NO" />
+		<result property="writerno" column="REV_WRITER_NO" />
+		<result property="revtype" column="REV_TYPE" />
+		<result property="revtitle" column="REV_TITLE" />
+		<result property="revcoment" column="REV_CONTENT" />
+		<result property="revimg" column="REV_IMG" />
+		<result property="revdate" column="REV_DATE" />
+		<result property="revscore" column="REV_SCORE" />
+		<result property="revrecomend" column="REV_RECOMMEND" />
+		<result property="revstatus" column="REV_STATUS" />
+		<result property="revreport" column="REV_REPORT" />
+		<result property="revrenameimg" column="REV_RENAMEIMG" />
+		<result property="memname" column="MEM_NAME" />
+		<result property="revcategory" column="REV_CATEGORY" />
+	
+	</resultMap>
+	
+	<resultMap type="Order" id="OrderList">
+		<result column="O_NO" property="orderno" />
+		<result column="O_PRO_NO" property="prono" />
+		<result column="O_MEM_NO" property="no" />
+		<result column="O_PAY_NO" property="payno" />
+		<result column="O_DATE" property="orderdate" />
+		<result column="O_IMG" property="orderimg" />
+		<result column="O_STATUS" property="orderstatus" />
+		<result column="O_PRO_PRICE" property="orderprice" />
+		<result column="O_PRO_POINT" property="orderpoint" />
+		<result column="O_AMOUNT" property="orderamount" />
+	</resultMap>
+	
+	<resultMap type="Member" id="memberResultMap">
+		<id property="no" column="MEM_NO" />
+		<result property="userId" column="MEM_ID"/>
+		<result property="userPwd" column="MEM_PWD"/>
+		<result property="userName" column="MEM_NAME"/>
+		<result property="userPhone" column="MEM_PHONE"/>
+		<result property="zonecode" column="MEM_ZONECODE"/>
+		<result property="userAddress" column="MEM_ADDRESS"/>
+		<result property="addressSub" column="MEM_SUBADDRESS"/>
+		<result property="userEmail" column="MEM_EMAIL"/>
+		<result property="point" column="MEM_POINT"/>
+		<result property="report" column="MEM_REPORT"/>
+		<result property="memberRole" column="MEM_ROLE"/>
+		<result property="status" column="MEM_STATUS"/>
+		<result property="enrolldate" column="MEM_ENROLLDATE"/>
+		<result property="petYN" column="MEM_PETYN"/>
+		<result property="findNum" column="MEM_FINDNUM"/>
+		<result property="enrollType" column="MEM_ENROLLTYPE"/>
+	</resultMap>
+	
+	<!-- wherego -->
+	<resultMap type="Wherego" id="wheregovo">
+		<id property="spotNo" column="SPOT_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="img" column="SPOT_IMG" />
+		<result property="renameImg" column="SPOT_RENAMEIMG" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
+		<result property="score" column="SPOT_SCORE" />
+		<result property="spotStatus" column="SPOT_STATUS" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
+		<result property="price" column="ROOM_PRICE" />
+	</resultMap>
+	
+	<resultMap type="Heart" id="heartResultMap">
+		<result property="userNo" column="MEM_NO"/>
+		<result property="spotNo" column="SPOT_NO"/>
+		<result property="spotCategory" column="SPOT_CATEGORY" />
+		<result property="spotLocation" column="SPOT_LOCATION" />
+		<result property="spotName" column="SPOT_NAME" />
+		<result property="spotAddress" column="SPOT_ADDRESS" />
+		<result property="spotSize" column="SPOT_SIZE" />
+		<result property="ameni" column="SPOT_AMENI" />
+		<result property="img" column="SPOT_IMG" />
+		<result property="renameImg" column="SPOT_RENAMEIMG" />
+		<result property="theme" column="SPOT_THEME" />
+		<result property="introduce" column="SPOT_INTRODUCE" />
+		<result property="info" column="SPOT_INFO" />
+		<result property="menu" column="SPOT_MENU" />
+		<result property="score" column="SPOT_SCORE" />
+		<result property="spotStatus" column="SPOT_STATUS" />
+		<result property="spotMapX" column="SPOT_MAPX" />
+		<result property="spotMapY" column="SPOT_MAPY" />
+		<result property="roomNum" column="SPOT_ROOMNUM" />
+		<result property="price" column="ROOM_PRICE" />
+	</resultMap>
+
+	<select id="getOrderAllCount" resultType="_int">
+		SELECT COUNT(*) FROM PAYMENT WHERE PAY_MEM_NO = #{ no }
+	</select>
+	
+	<select id="getOrderList" resultMap="orderResultMap">
+        SELECT A.PAY_NO, 
+			   A.PAY_MEM_NO,
+			   A.PAY_DEL_FEE, 
+			   A.PAY_TOTAL_PRICE, 
+			   A.PAY_USING_POINT, 
+			   A.PAY_SAVING_POINT, 
+			   A.PAY_FINAL_PRICE, 
+			   A.PAY_STATUS,
+			   A.PAY_CREATED_AT,
+			   I.PAY_ITEM_NO,
+			   I.PRO_NO,
+			   I.PRO_NAME,
+			   I.PRO_BRAND,
+			   I.PRO_COUNT,
+			   I.PRO_OPRICE,
+			   I.PRO_SPRICE,
+			   I.PRO_IMG,
+			   I.PRO_DEL_FEE,
+			   I.PRO_LTIME,
+			   I.PRO_FINAL_PRICE,
+			   I.PRO_SAVING_POINT
+		FROM PAYMENT A
+		JOIN MEMBER M ON (M.MEM_NO = A.PAY_MEM_NO)
+		JOIN PAYMENT_ITEMS I ON (A.PAY_NO = I.PAY_NO)
+		JOIN PRODUCT P ON(I.PRO_NO = P.PRO_NO)
+		WHERE A.PAY_MEM_NO = #{ no }
+		ORDER BY PAY_NO DESC
+    </select>
+    
+    <select id="getWhReviewAllCount" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_STATUS = 'Y' AND REV_WRITER_NO = #{ writerno }
+        ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getWhReviewList" resultMap="ReviewList">
+        SELECT *
+		FROM REVIEW R
+		JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+		FULL OUTER JOIN WHEREWEGO W ON (R.REV_SPOT_NO = W.SPOT_NO)
+		WHERE REV_STATUS = 'Y'AND R.REV_WRITER_NO = #{ writerno }
+		ORDER BY REV_NO DESC
+    </select>
+    
+    <select id="getHeartAllCount" resultType="_int">
+        SELECT COUNT(*) 
+        FROM HEART WHERE MEM_NO = #{ userNo }
+    </select>
+    
+    <select id="getPdReviewList" resultMap="orderResultMap">
+        SELECT A.PAY_NO, 
+			   A.PAY_MEM_NO,
+			   A.PAY_DEL_FEE, 
+			   A.PAY_TOTAL_PRICE, 
+			   A.PAY_USING_POINT, 
+			   A.PAY_SAVING_POINT, 
+			   A.PAY_FINAL_PRICE, 
+			   A.PAY_STATUS,
+			   I.PAY_ITEM_NO,
+			   I.PRO_NO,
+			   I.PRO_BRAND,
+			   I.PRO_OPRICE,
+			   I.PRO_SPRICE,
+			   I.PRO_IMG,
+			   I.PRO_DEL_FEE,
+			   I.PRO_LTIME,
+			   I.PRO_FINAL_PRICE,
+			   I.PRO_SAVING_POINT		   
+		FROM PAYMENT A
+		JOIN PAYMENT_ITEMS I ON (A.PAY_NO = I.PAY_NO)
+	  	WHERE A.PAY_MEM_NO = #{ no }
+    </select>
+    
+    <insert id="review_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
+    	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, 213, #{writerno}, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, default, 'Y', default, #{revrenameimg}, #{revcategory})
+    </insert>
+    
+    <select id="getPayNoName" resultMap="orderListResultMap">	
+		SELECT I.PAY_ITEM_NO, 
+			   I.PRO_NAME 
+		FROM PAYMENT_ITEMS I
+		JOIN PRODUCT P ON (P.PRO_NO = I.PRO_NO)
+		WHERE PAY_ITEM_NO = #{payItemNo}		
+	</select>
+	
+	<insert id="pdreview_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
+    	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, 1, #{prono}, #{writerno}, '상품', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, default, 'Y', default, #{revrenameimg}, #{revcategory}, #{payItemNo}, #{payNo})
+    </insert>
+    
+    <select id="selectProductByNo" parameterType="_int"  resultMap="productListResultMap">
+		SELECT P.PRO_NO,
+			   P.PRO_SEL_NO,
+			   P.PRO_NAME,
+			   P.PRO_BRAND,
+			   P.PRO_CATEGORY1,
+			   P.PRO_CATEGORY2,
+			   P.PRO_TAG,
+			   P.PRO_IMG,
+			   P.PRO_QTY,
+			   P.PRO_OPRICE,
+			   P.PRO_SPRICE,
+			   P.PRO_DEL_FEE,
+			   P.PRO_LTIME,
+			   P.PRO_CONTENT,
+			   P.PRO_RDATE,
+			   P.PRO_STATUS,
+			   P.PRO_REVIEW_COUNT,
+			   P.PRO_RATING
+		FROM PRODUCT P
+		JOIN MEMBER M ON(P.PRO_SEL_NO = M.MEM_NO)
+		WHERE P.PRO_STATUS = 'Y' AND P.PRO_NO = #{proNo}
+	</select>
+	
+   	
+   	<select id="getHeartList" resultMap="heartResultMap">
+        SELECT H.SPOT_NO, 
+			   H.MEM_NO,
+			   W.SPOT_CATEGORY, 
+			   W.SPOT_LOCATION, 
+			   W.SPOT_NAME, 
+			   W.SPOT_ADDRESS, 
+			   W.SPOT_SIZE, 
+			   W.SPOT_IMG,
+			   W.SPOT_RENAMEIMG,
+			   W.SPOT_THEME,
+			   W.SPOT_INTRODUCE,
+			   W.SPOT_INFO,
+			   W.SPOT_SCORE,
+			   W.SPOT_STATUS
+		FROM HEART H
+		JOIN MEMBER M ON (M.MEM_NO = H.MEM_NO)
+		JOIN WHEREWEGO W ON (W.SPOT_NO = H.SPOT_NO)
+		WHERE H.MEM_NO = #{ userNo }
+		ORDER BY SPOT_NO DESC
+    </select>
+
 </mapper>

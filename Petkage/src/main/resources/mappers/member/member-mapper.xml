@@ -253,8 +253,11 @@
 		WHERE MEM_NO = #{ no }
 	</update>
 	
-	<delete id="deleteMember" parameterType="_int">
-		DELETE FROM MEMBER WHERE MEM_NO = #{ no }
+	<delete id="deleteMember" parameterType="Member">
+		UPDATE MEMBER 
+		SET 
+			MEM_STATUS = 'N' 
+			WHERE MEM_NO = #{ no }
 	</delete>
 	
 </mapper>

@@ -42,7 +42,7 @@
                 </div>
                 <div class="wg5t_2">
                     <div class="wg5t2_name">
-                        <input type="text" name="spotName" placeholder="매장 명" required>
+                        <input type="text" id="spotName" name="spotName" placeholder="매장 명" required>
                     </div>
                     <div class="wg5t2_address">
                         <input type="text" name="spotAddress" placeholder="호텔 주소" required>
@@ -156,58 +156,71 @@
                 <div class="wg5b_content">
                     <div id="wg5bc_1" class="content_container content_container_01 active">
                         <div class="wg5bc_room">
-                            <div class="wg5bcr_1" id="room_1" style="height: 100%;">
-                                <input type="hidden" name="roomTypeNo" value="1">
-                                <div class="wgc7w_upload">
-                                    <div>
-                                        <label for="image_1">
-                                            <div class="btn-upload">업로드</div>
-                                        </label>
-                                        <input type="file" name="upfile" id="image_1" multiple>
-                                        <div id="preview_1"></div>
-                                    </div>
+                            <div class="wgc7w_upload">
+                                <div class="imageBox">
+                                    <label for="image_1">
+                                        <div class="btn-upload">업로드</div>
+                                    </label>
+                                    <input type="file" class="files" name="upfile" id="image_1" multiple="multiple">
+                                    <div id="preview_1"></div>
                                 </div>
-                                <div class="wg5bcr_text">
-                                    <div class="te1">
-                                        <input type="text" name="roomName" required placeholder="객실 이름">
-                                    </div>
-                                    <div class="te2">
-                                        <div class="te2_1">
-                                            가격
+                            </div>
+                            <div class="wgc7w_add">
+                                <div>
+                                    <label for="rood_add">
+                                        <div class="btn-add">추가</div>
+                                    </label>
+                                    <button type="button" id="rood_add" class="wgfbtn"></button>
+                                </div>
+                            </div>
+                            <div class="wgc7w_del">
+                                <div>
+                                    <label for="rood_del">
+                                        <div class="btn-del">삭제</div>
+                                    </label>
+                                    <button type="button" id="rood_del" class="wgfbtn"></button>
+                                </div>
+                            </div>
+                            <div class="wg5bcr_box">
+                                <div class="wg5bcr_1" id="room_1" style="height: 100%;">
+                                    <input type="hidden" name="roomTypeNo" value="1">
+                                    <div class="wg5bcr_text">
+                                        <div class="te1">
+                                            <input type="text" id="roomName" name="roomName" required placeholder="객실 이름">
                                         </div>
-                                        <div class="te2_2">
-                                            <input type="text" name="roomPrice" required>
+                                        <div class="te2">
+                                            <div class="te2_1">
+                                                가격
+                                            </div>
+                                            <div class="te2_2">
+                                                <input type="text" name="roomPrice" required>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!-- 모달 창 정보 -->
-                                    <div class="wg5t2_info">
-                                        <div class="wg5t2_introduce">
-                                            <label for="information">기본정보</label>
+                                        <!-- 모달 창 정보 -->
+                                        <div class="wg5t2_info">
+                                            <div class="wg5t2_introduce">
+                                                <label for="information">기본정보</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="mInfo" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="mInfo" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                        </div>
-                                    </div>
 
-                                    <div class="wg5t2_info">
-                                        <div class="wg5t2_introduce">
-                                            <label for="attre">편의시설</label>
+                                        <div class="wg5t2_info">
+                                            <div class="wg5t2_introduce">
+                                                <label for="attre">편의시설</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="mAmeni" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="mAmeni" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="te4">
-                                        <button class="te4_btn active">
-                                            등록
-                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                             <input type="hidden" name="roomNum" value="1">
-                            <button type="button" id="wgf_manager_add" class="wgfbtn">객실 추가</button>
+                            
                     </div>
                 </div>    
                 <div class="wg5b_content">
@@ -225,8 +238,11 @@
                             <div class="wg5bci_content">
                                 <div id="map"></div> <!-- 지도 -->
                                 <div class="hAddr">
-                                    <span class="title">좌표 :</span>&nbsp;
-                                    <span id="centerAddr"><input type="text" name="spotMap" required></span>
+                                    <h5 class="title" >좌표</h5>&nbsp; <br>
+                                    <span id="centerAddr">
+                                        위도&nbsp;:&nbsp;<input type="text" name="spotMapX" required style="width: 100px;"> <br><br>
+                                        경도&nbsp;:&nbsp;<input type="text" name="spotMapY" required style="width: 100px;">           
+                                    </span>
                                 </div>
                             </div>
                         </details>
@@ -246,63 +262,78 @@
         $(document).ready(function() {
             
             var i = 2; // 변수 설정은 함수의 바깥에 설정!
-            $("#wgf_manager_add").click(function() {
+            $("#rood_add").click(function() {
                 $("[name=roomNum]").attr("value", i);
-                console.log($("[name=roomNum]").attr("value"));
+                console.log("증가 : " + $("[name=roomNum]").attr("value"));
+                
+                // if(i >= 6){
+                //     alert('객실은 최대 5개까지만 추가 가능합니다.');
+                //     return false;
+                // } else {
+                    var html = "<div class='wg5bcr_1' id='room_"+ i + "' style='height: 100%;'>"
+                        html += "    <input type='hidden' name='roomTypeNo' value='"+ i +"'>"
+                        html += "    <div class='wg5bcr_text'>"
+                        html += "        <div class='te1'>"
+                        html += "            <input type='text' name='roomName' required placeholder='객실 이름'>"
+                        html += "        </div>"
+                        html += "        <div class='te2'>"
+                        html += "            <div class='te2_1'>"
+                        html += "                가격"
+                        html += "            </div>"
+                        html += "            <div class='te2_2'>"
+                        html += "                <input type='text' name='roomPrice' required>"
+                        html += "            </div>"
+                        html += "        </div>"
+                        html += "        <div class='wg5t2_info'>"
+                        html += "            <div class='wg5t2_introduce'>"
+                        html += "                <label for='information'>기본정보</label>"
+                        html += "            </div>"
+                        html += "            <div class='form-group'>"
+                        html += "                <textarea class='form-control' name='mInfo' id='exampleFormControlTextarea1' rows='5'></textarea>"
+                        html += "            </div>"
+                        html += "        </div>"
+                        html += "        <div class='wg5t2_info'>"
+                        html += "            <div class='wg5t2_introduce'>"
+                        html += "                <label for='attre'>편의시설</label>"
+                        html += "            </div>"
+                        html += "            <div class='form-group'>"
+                        html += "                <textarea class='form-control' name='mAmeni' id='exampleFormControlTextarea1' rows='5'></textarea>"
+                        html += "            </div>"
+                        html += "        </div>"
+                        html += "    </div>"
+                        html += "</div>"
+                    
+                    $(".wg5bcr_box").append(html);
+                // }
 
-                var html = "<div class='wg5bcr_1' id='room_"+ i + "' style='height: 100%;'>"
-                    html += "    <input type='hidden' name='roomTypeNo' value='"+ i +"'>"
-                    html += "    <div class='wgc7w_upload'>"
-                    html += "        <div>"
-                    html += "            <label for='image_1'>"
-                    html += "                <div class='btn-upload'>업로드</div>"
-                    html += "            </label>"
-                    html += "            <input type='file' name='upfile' id='image_"+ i + "' multiple>"
-                    html += "            <div id='preview" + i + "'></div>"
-                    html += "        </div>"
-                    html += "    </div>"
-                    html += "    <div class='wg5bcr_text'>"
-                    html += "        <div class='te1'>"
-                    html += "            <input type='text' name='roomName' required placeholder='객실 이름'>"
-                    html += "        </div>"
-                    html += "        <div class='te2'>"
-                    html += "            <div class='te2_1'>"
-                    html += "                가격"
-                    html += "            </div>"
-                    html += "            <div class='te2_2'>"
-                    html += "                <input type='text' name='roomPrice' required>"
-                    html += "            </div>"
-                    html += "        </div>"
-                    html += "        <div class='wg5t2_info'>"
-                    html += "            <div class='wg5t2_introduce'>"
-                    html += "                <label for='information'>기본정보</label>"
-                    html += "            </div>"
-                    html += "            <div class='form-group'>"
-                    html += "                <textarea class='form-control' name='mInfo' id='exampleFormControlTextarea1' rows='5'></textarea>"
-                    html += "            </div>"
-                    html += "        </div>"
-                    html += "        <div class='wg5t2_info'>"
-                    html += "            <div class='wg5t2_introduce'>"
-                    html += "                <label for='attre'>편의시설</label>"
-                    html += "            </div>"
-                    html += "            <div class='form-group'>"
-                    html += "                <textarea class='form-control' name='mAmeni' id='exampleFormControlTextarea1' rows='5'></textarea>"
-                    html += "            </div>"
-                    html += "        </div>"
-                    html += "        <div class='te4'>"
-                    html += "            <button class='te4_btn active'>"
-                    html += "                등록"
-                    html += "            </button>"
-                    html += "        </div>"
-                    html += "    </div>"
-                    html += "</div>"
-                
-                $(".wg5bc_room").append(html);
-                
+               
+
                 i++; // 함수 내 하단에 증가문 설정
                 
             });
+
+                $("#rood_del").click(function() {
+                    var j = parseInt($("[name=roomNum]").attr("value"));
+                    console.log("j" + j); 
+                    
+                    if (j <= 1) {
+                        alert('객실은 최소 1개이상 추가 해야합니다.');
+                        return false;
+                    } else{
+                        div = document.getElementById("room_" + j);
+                        $("[name=roomNum]").attr("value", j-1);    
+                        console.log("감소 : " + $("[name=roomNum]").attr("value"));
+
+
+                        div.remove();
+                        j--;
+                    }
+
+                });
+            
+        
         });
+        
     </script>
 
     <script>
@@ -339,6 +370,7 @@
         });
     </script>
 
+    <!-- 숙소 사진 프리뷰 -->
     <script type="text/javascript">
         $(document).ready(function (e){
         $("#image").change(function(e){
@@ -409,6 +441,80 @@
         }
         });
     </script>
+
+    <!-- 객실 사진 프리뷰 -->
+    <script type="text/javascript">
+        $(document).ready(function (e){
+        $("#image_1").change(function(e){
+
+            //div 내용 비워주기
+            $('#preview_1').empty();
+
+            var files = e.target.files;
+            var arr =Array.prototype.slice.call(files);
+            
+            //업로드 가능 파일인지 체크
+            for(var i=0;i<files.length;i++){
+                if(!checkExtension(files[i].name,files[i].size)){
+                return false;
+                }
+            }
+            
+            preview(arr);
+            
+            
+        });//file change
+
+        function checkExtension(fileName,fileSize){
+            var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+            var maxSize = 20971520;  //20MB
+            
+            if(fileSize >= maxSize){
+                alert('파일 사이즈 초과');
+            $("#image").val("");  //파일 초기화
+                return false;
+            }
+            
+            if(regex.test(fileName)){
+                alert('업로드 불가능한 파일이 있습니다.');
+                $("#image_1").val("");  //파일 초기화
+                return false;
+            }
+            return true;
+        }
+
+        function preview(arr){
+            arr.forEach(function(f){
+
+              //파일명이 길면 파일명...으로 처리
+            var fileName = f.name;
+            if(fileName.length > 10){
+                fileName = fileName.substring(0,7)+"...";
+            }
+
+              //div에 이미지 추가
+            var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+
+              //이미지 파일 미리보기
+            if(f.type.match('image.*')){
+                var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                  //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                str += '<img src="'+e.target.result+'" title="'+f.name+'" width=70 height=70 />';
+                str += '</li></div>';
+                $(str).appendTo('#preview_1');
+                } 
+                reader.readAsDataURL(f);
+            }else{
+                str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=70 height=70 />';
+                $(str).appendTo('#preview_1');
+            }
+            });//arr.forEach
+        }
+        });
+    </script>
+
+
 
     <!--  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=334344dce2f2aee24efdae6872bcd47a"></script> -->
     <script>

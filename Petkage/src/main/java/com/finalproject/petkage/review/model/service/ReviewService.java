@@ -48,6 +48,5 @@ public interface ReviewService {
 	int getReviewAllCount_review_all();
 
 	List<Review> getReviewList_review_all(PageInfo pageInfo);
-
 	
 }

@@ -42,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(member.getNo() != 0) {
 			// update
-//			result = mapper.updateMember(member);
+			result = mapper.updateMember(member);
 		} else {
 			// insert
 
@@ -150,10 +150,10 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	@Transactional
-	public int delete(int no) {
+	public int delete(Member member) {
 		int result = 0;
 		
-		result = mapper.deleteMember(no);
+		result = mapper.deleteMember(member);
 		
 		return result;
 	}

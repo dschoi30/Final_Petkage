@@ -24,7 +24,7 @@ public interface MemberService {
 	
 	Member loginByNaver(String naver_email);
 
-	int delete(int no);
+	int delete(Member member);
 	
 	Member findMemberById(String userId);
 
