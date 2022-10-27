@@ -196,18 +196,6 @@ public class WheregoServiceImpl implements WheregoService {
 	}
 
 	@Override
-	public avgReview staravg(String spotName) {
-
-		return mapper.staravg(spotName);
-	}
-
-	@Override
-	public void staravg_update(String spotName) {
-		
-		mapper.staravg_update(spotName);
-	}
-
-	@Override
 	public List<Wherego> lodging_board_cate(String filter, String location) {
 
 		return mapper.lodging_board_cate(filter, location);
@@ -218,6 +206,7 @@ public class WheregoServiceImpl implements WheregoService {
 		
 		return mapper.cafe_board_cate(location, opt);
 	}
+
 
 	
     

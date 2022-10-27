@@ -50,6 +50,8 @@ public interface WheregoService {
 
 	int delete_like(Heart heart);
 
-	void reviewAvg(String spotName);
+	List<Wherego> lodging_board_cate(String filter, String location);
+
+	List<Wherego> cafe_board_cate(String location, String opt);
 
 }

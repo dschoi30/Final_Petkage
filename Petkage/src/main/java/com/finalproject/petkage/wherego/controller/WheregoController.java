@@ -607,8 +607,6 @@ public class WheregoController {
 		
 		List<String> imgList = new ArrayList<String>();
 		
-		avgReview starAvg = service.staravg(spotName);
-
 		
 		Wherego wherego = null;
 		
@@ -636,7 +634,6 @@ public class WheregoController {
 			model.addObject("member", member);
 		}
 	
-		model.addObject("starAvg", starAvg);
 		model.addObject("imgList", imgList);
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);

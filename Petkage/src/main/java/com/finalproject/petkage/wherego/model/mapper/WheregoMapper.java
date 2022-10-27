@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.petkage.review.model.vo.Review;
@@ -58,4 +59,8 @@ public interface WheregoMapper {
 
 	void updateReviewAvg(com.finalproject.petkage.wherego.model.vo.avgReview reviewStar);
 
+	List<Wherego> lodging_board_cate(@Param("filter") String filter, @Param("location") String location);
+
+	List<Wherego> cafe_board_cate(@Param("location") String location, @Param("opt") String opt);
+	
 }
