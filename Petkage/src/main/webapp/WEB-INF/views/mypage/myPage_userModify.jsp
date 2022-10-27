@@ -102,7 +102,7 @@
                   <td></td>
                   <th></th>
                   <td>
-                    <span class="checkAlert" id="address_termsCheck">나머지 주소를 입력해 주세요.</span>
+                    <span class="checkAlert" id="address_termsCheck"></span>
                     
                   </td>
                 </tr>
@@ -132,7 +132,7 @@
             </table>
           </div>
 
-          <!-- 반려동물 정보 입력  -->
+          <!-- 반려동물 정보 입력  
           <div id="petModifyBox">
    <p class="mypagept" style="width: 1110px; height: 50px; font-size: 32px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">반려 동물 정보 수정</p>
             <table class="modifyBox" id="petInfoAdd" >
@@ -186,7 +186,7 @@
               </tbody>
             </table>
           </div>
-
+			-->
           
           <div class="md_button">
               <button type="submit">수정 완료</button>

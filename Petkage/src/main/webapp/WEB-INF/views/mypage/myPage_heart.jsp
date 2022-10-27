@@ -24,14 +24,13 @@
 
 <section class="heart_15">
 	<jsp:include page="/WEB-INF/views/mypage/myPage_nav.jsp" />
-
+      <p class="mypagept" style="width: 1110px; height: 50px; font-size: 32px; font-weight: 700; line-height: 100%; text-align: center; color: #803D3D;">찜 목록</p>
 		<div class="wg6_bottom" style="float: left;">
             <div class="wg6b_ca">
 
 				<c:forEach var="heart" items="${ heart }">
                 <c:set var="rename_wherego" value="${ cafeselect.renameImg }" />
                 <div class="wgc6_card">
-	                <a href="${ path }/cafedetail">
 	                    <div class="card_img">
 	                        <img src="${ path }/resources/images/wherego/${heart.renameImg}">
 	                    </div>
@@ -43,7 +42,6 @@
 	                            <p>${heart.spotSize}</p>
 	                        </div>
 	                    </div>
-	                </a>
                 </div>
        			 </c:forEach>
         		</div>
