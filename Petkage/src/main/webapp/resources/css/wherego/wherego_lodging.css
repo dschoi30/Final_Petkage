@@ -115,7 +115,7 @@ html {
 
 @media (max-width: 1023px) {
     .wg_4 .ht_search2 select {
-        width: 380px;
+        width: 450px;
     }
 }
 
@@ -170,6 +170,7 @@ html {
 @media (max-width: 1023px) {
     .wg_4 .wg_filter {
         width: 90%;
+        margin: 0 auto;
 
     }
 }

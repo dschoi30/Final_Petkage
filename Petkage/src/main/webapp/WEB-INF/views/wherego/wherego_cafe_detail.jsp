@@ -172,7 +172,7 @@
                             <img src="${ path }/resources/images/wherego/별.png" alt="">
                             <img src="${ path }/resources/images/wherego/빈별.png" alt="">
                             <div class="wg5nc_sscore">
-                                ${wherego.starAvg}
+								4.8
                             </div>
                         </div>
                         <div class="wg5nc_review">

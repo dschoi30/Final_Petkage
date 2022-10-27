@@ -571,12 +571,22 @@ public class WheregoController {
 	// 게시글 상세 조회
 	@GetMapping("/wherego_lodging_detail")
 	public ModelAndView wherego_lodging_detail(HttpSession session, ModelAndView model,
-			@RequestParam int no) {
+			@RequestParam int no, @RequestParam(value="spotName", required=false) String spotName) {
 		
 		Member member = (Member)session.getAttribute("loginMember");
 		
+		List<String> imgList = new ArrayList<String>();
+
 		
 		Wherego wherego = null;
+		
+		wherego = service.findBoardByNo_lodging(no);
+		
+		String[] splitImg = wherego.getRenameImg().split(", ");
+		
+		for (int i = 0; i < splitImg.length; i++) {
+			imgList.add(splitImg[i]);
+		}
 		
 		int wherego_like = 0;
 		
@@ -590,7 +600,6 @@ public class WheregoController {
 			model.addObject("member", member);
 		}
 		
-		wherego = service.findBoardByNo_lodging(no);
 		
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
