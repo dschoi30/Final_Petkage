@@ -90,8 +90,10 @@
 			W.SPOT_ROOMNUM,
 			R.ROOM_PRICE 
 		FROM WHEREWEGO W
-		JOIN ROOM R ON (R.SPOT_NO = W.SPOT_NO)
-		WHERE SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
+		FULL OUTER JOIN (SELECT *
+				         FROM ROOM 
+				         WHERE ROOM_TYPE_NO = '1') R ON (R.SPOT_NO = W.SPOT_NO)
+        WHERE SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
 	</select>
 	
 	<select id="cafe_board" resultMap="wheregovo">
