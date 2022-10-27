@@ -6,6 +6,7 @@ import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.market.model.vo.PayItems;
 import com.finalproject.petkage.market.model.vo.Payment;
 import com.finalproject.petkage.market.model.vo.Product;
+import com.finalproject.petkage.mypage.model.vo.Calendar;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
 
@@ -34,6 +35,8 @@ public interface MyPageService {
 	int pdreview_fupload(Review review);
 	
 	PayItems getPayNoName(int payItemNo);
+
+    List<Calendar> getListFestivalCalendar();
 	
 
 }

@@ -742,6 +742,12 @@ margin: 100px auto;
     color: #fff;
 }
 
+.cal-table td.day-festival {
+    background: #85c6ff !important;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+}
+
 .cal-table td.has-event:after {
     content: '';
     display: block;

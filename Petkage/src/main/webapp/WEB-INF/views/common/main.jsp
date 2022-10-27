@@ -263,6 +263,12 @@
 		</section>
 		
 		<section class="section sec4"> <!-- 일정 캘린더 -->
+			<c:forEach var="calendar" items="${ calendar }">
+               <div class="cal_content" id="cal_no" value="${ calendar.calNo }" style="display:none"></div>
+               <div class="cal_content" id="cal_title" value="${ calendar.calTitle }" style="display:none"></div>
+               <div class="cal_content" id="cal_content" value="${ calendar.calContent }" style="display:none"></div>
+               <div class="cal_content" id="cal_date" value="${ calendar.calDate }" style="display:none"></div>
+            </c:forEach>
 				<div class="calendar">
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
@@ -622,6 +628,7 @@
 			init.activeDTag.classList.remove('day-active');
 			}
 			let day = Number(e.target.textContent);
+			console.log("클릭 : " + day);
 			loadDate(day, e.target.cellIndex);
 			e.target.classList.add('day-active');
 			init.activeDTag = e.target;
@@ -630,7 +637,73 @@
 		}
 	});
 
-	// 
+	// 캘린더 날짜에 맞춰서 축제 표시
+		var cal_content = $("#cal_content").val();
+		var cal_date = $("#cal_date").val();
+
+		console.log(cal_content);
+		console.log(cal_date);
+
+	$(document).ready(function() {
+		let yy = init.activeDate.getFullYear();
+		let mm = init.activeDate.getMonth() + 1;
+		let dd = init.activeDate.getDate();
+
+		let date = yy + '/' + init.addZero(mm) + '/' + init.addZero(dd);
+		
+		var festivaldate = {
+			date
+		}
+		console.log(festivaldate);
+	
+		$.ajax({
+			type: "POST",
+			url: "${ path }/festivalDay",
+			dataType : "json",
+			contentType : "application/json",
+			data: JSON.stringify(festivaldate),
+			success: (data) => {
+				console.log(JSON.stringify(data));
+				var festival = data;
+				
+				for (variable in festival) {
+					console.log("데이터 키: " + variable + ", 데이터 값: " + JSON.stringify(festival[variable]));
+					var festivalArr = festival[variable];
+					
+					for(const index in festivalArr) {
+						console.log(JSON.stringify(festivalArr[index]));
+						
+						var festivalList = festivalArr[index]; 
+						for(List in festivalList)  {  
+							console.log("리스트 키 : " + List + ", 리스트 값: " + JSON.stringify(festivalList[List]));
+							
+							if(List === "calDate") {
+								console.log(List);
+								console.log(JSON.stringify(festivalList[List]));
+
+								var textDay = document.querySelector('.day');	
+								var festivalday  = festivalList[List].replace(/\"/g,"").substr(-2);
+									console.log(textDay.textContent);
+									console.log("축제 날짜 : "+ festivalday);
+									
+								if (textDay.textContent === festivalday) {
+
+									textDay.classList.add('day-festival');
+
+								}
+							}
+							
+						}
+					}	
+				}
+			},
+			error: (error) => {
+				console.log(error);
+			}
+		});
+
+	});		
+
 	
 	</script>     
 </body>
