@@ -9,7 +9,7 @@
 
 <div id="wrap-all-prod">
 	<div class="row">
-    	<div class="contents" style="height: 600px;">
+    	<div class="contents">
         	<br><br>
         	<form action="${ path }/market/product-list" method="GET">
 <!--             <div class="row justify-content-center">  -->

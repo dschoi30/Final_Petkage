@@ -144,7 +144,7 @@
 
   </section>
 
-  <script src="${ path }/js/member/find_IdFinish.js"></script>
+  <script src="${ path }/js/member/find_IdFinish.js?ver=1"></script>
   <script type="text/javascript">
     var checkNum = "";
     var saveEmail = "";
