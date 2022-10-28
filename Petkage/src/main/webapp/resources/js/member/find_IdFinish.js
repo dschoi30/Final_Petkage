@@ -27,10 +27,10 @@ $("#userName").keyup(function () {
 //이메일 인증하기 구현
 $("#userEmail").keyup(function () {
   if (!emailCheck.test($("#userEmail").val())) {
-    $("#email_termsCheck").text("올바른 이메일을 입력해 주세요.");
+    $("#sendFinishAlert").text("올바른 이메일을 입력해 주세요.");
     $(".btnSendNum").attr("disabled", true);
   } else {
     $(".btnSendNum").attr("disabled", false);
-    $("#email_termsCheck").text("인증 번호를 보내주세요.");
+    $("#sendFinishAlert").text("인증 번호를 보내주세요.");
   }
 });
