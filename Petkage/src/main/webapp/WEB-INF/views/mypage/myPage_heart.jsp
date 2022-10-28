@@ -43,6 +43,7 @@
 	                            <p>${heart.spotSize}</p>
 	                        </div>
 	                    </div>
+	                    </a>
                 </div>
        			 </c:forEach>
         		</div>

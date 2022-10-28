@@ -60,6 +60,10 @@
 		<result property="proName" column="PRO_NAME"/>
 		<result property="proBrand" column="PRO_BRAND"/>
 		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proOPrice" column="PRO_OPRICE"/>
+		<result property="proSPrice" column="PRO_SPRICE"/>
+		<result property="renamedFileName" column="PRO_IMG"/>
+		<result property="proDelFee" column="PRO_DEL_FEE"/>
 	</resultMap>
 
 	<resultMap type="PayItems" id="orderListResultMap">
