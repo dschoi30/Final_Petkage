@@ -100,6 +100,7 @@
 		SELECT *
 		FROM WHEREWEGO
 		WHERE SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
+		ORDER BY SPOT_NO DESC
 	</select>
 	
 	<select id="food_board" resultMap="wheregovo">

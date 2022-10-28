@@ -136,27 +136,7 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">메뉴</summary>
                         <div class="wg5bci_content">
-                            <h5>커피</h5>
-                            <ul>
-                                <li>아메리카노 - 5,000원</li>
-                                <li>카페라떼 - 1,000원</li>
-                                <li>바닐라라떼 - 500원</li>
-                            </ul>
-                            <h5>음료</h5>
-                            <ul>
-                                <li>허브차 - 10,000원</li>
-                                <li>초코라떼 - 300원</li>
-                                <li>망고주스 - 7,500원</li>
-                                <li>딸기스무디 - 8,500원</li>
-                                <li>댕댕이스무디 - 7,000원</li>
-                                <li>고양이스무디 - 7,000원</li>
-                            </ul>
-                            <h5>댕댕이 식사</h5>
-                            <ul>
-                                <li>교토식 개마카세 - 1犬 105,000원</li>
-                                <li>최고급 사료(소고기) - 7,000원</li>
-                                <li>최고급 사료(연어) - 7,000원</li>
-                            </ul>
+                          	${wherego.menu}
                         </div>
                     </details>
                 </div>

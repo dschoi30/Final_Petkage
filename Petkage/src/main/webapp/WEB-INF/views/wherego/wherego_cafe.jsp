@@ -77,7 +77,7 @@
 	                        <div class="ct_1">${cafeselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
-	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${cafeselect.spotAddress}</p>
 	                            <p>${cafeselect.spotSize}</p>
 	                        </div>
 	                    </div>
@@ -250,20 +250,32 @@
      // 마커를 표시할 위치와 title 객체 배열입니다 
         var positions = [
             {
-                title: '카카오', 
-                latlng: new kakao.maps.LatLng(37.520277, 127.122590)
+                title: '피크플래버', 
+                latlng: new kakao.maps.LatLng(37.546404, 127.127911)
             },
             {
-                title: '생태연못', 
-                latlng: new kakao.maps.LatLng(37.528384, 127.123590)
+                title: '카페하임', 
+                latlng: new kakao.maps.LatLng(37.553287, 127.091682)
             },
             {
-                title: '텃밭', 
-                latlng: new kakao.maps.LatLng(37.520782, 127.124590)
+                title: '루트카페', 
+                latlng: new kakao.maps.LatLng(37.565712, 126.923527)
             },
             {
-                title: '근린공원',
-                latlng: new kakao.maps.LatLng(37.525895, 127.125590)
+                title: '런어웨이',
+                latlng: new kakao.maps.LatLng(37.587193, 126.936484)
+            },
+            {
+                title: '무네이 카페&바', 
+                latlng: new kakao.maps.LatLng(37.586404, 127.127911)
+            },
+            {
+                title: '알렉스룸', 
+                latlng: new kakao.maps.LatLng(37.543497, 127.151282)
+            },
+            {
+                title: '노버든 카페', 
+                latlng: new kakao.maps.LatLng(37.585615, 126.983277)
             }
         ];
             
