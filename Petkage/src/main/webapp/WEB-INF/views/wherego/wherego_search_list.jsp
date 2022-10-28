@@ -70,17 +70,17 @@
         <div class="wg6_bottom">
             <div class="wg6b_ca">
                 <c:forEach var="wherego" items="${wherego}">
-                <c:set var="rename" value="${ wherego.renameImg }" />
+                <c:set var="rename_wherego" value="${ wherego.renameImg }" />
                 <div class="wgc6_card">
 	                <a href="${ path }/cafedetail">
 	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${wherego.img}">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }">
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${wherego.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
-	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${wherego.spotAddress}</p>
 	                            <p>${wherego.spotSize}</p>
 	                        </div>
 	                    </div>

@@ -1004,7 +1004,7 @@
                 </div>
                 <div class="wgc7r_text">
                     <div class="wgc7rt_1">
-                        <p>리뷰는 다른 집사들에게 도움이 돼요! (되x 돼o)</p>
+                        <p>리뷰는 다른 집사들에게 도움이 돼요!</p>
                     </div>
                 </div>
                 <div class="wgc7r_btn">
