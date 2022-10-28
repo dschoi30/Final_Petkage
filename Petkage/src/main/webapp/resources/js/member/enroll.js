@@ -255,7 +255,7 @@ $("#formJoin").submit(function () {
   // 핸드폰 유효성 검사
   if ($("[name=phoneTest]").val() != "1") {
     $("#phone_termsCheck").text("문자를 제외한 번호만 입력해 주세요.");
-    $("#userName").focus();
+    $("#userPhone").focus();
     return false;
   }
 
