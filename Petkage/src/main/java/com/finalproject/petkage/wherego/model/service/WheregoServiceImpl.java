@@ -15,6 +15,7 @@ import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.mapper.WheregoMapper;
 import com.finalproject.petkage.wherego.model.vo.Heart;
+import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 import com.finalproject.petkage.wherego.model.vo.avgReview;
 
@@ -206,6 +207,12 @@ public class WheregoServiceImpl implements WheregoService {
 		
 		return mapper.cafe_board_cate(location, opt);
 	}
+
+    @Override
+    public Room findBoardByNo_room(int no) {
+        
+        return mapper.findBoardByNo_room(no);
+    }
 
 
 	

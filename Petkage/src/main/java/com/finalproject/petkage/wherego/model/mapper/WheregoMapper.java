@@ -60,5 +60,7 @@ public interface WheregoMapper {
 	List<Wherego> lodging_board_cate(@Param("filter") String filter, @Param("location") String location);
 
 	List<Wherego> cafe_board_cate(@Param("location") String location, @Param("opt") String opt);
+
+    Room findBoardByNo_room(int no);
 	
 }

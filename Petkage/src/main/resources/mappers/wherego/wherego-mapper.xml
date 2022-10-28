@@ -39,7 +39,7 @@
 		<result property="roomName" column="ROOM_NAME" />
 		<result property="roomPrice" column="ROOM_PRICE" />
 		<result property="roomImg" column="ROOM_IMG" />
-		<result property="renamdRoomImg" column="ROOM_RENAMEIMG" />
+		<result property="renameRoomImg" column="ROOM_RENAMEIMG" />
 		<result property="mInfo" column="ROOM_MINFO" />
 		<result property="mAmeni" column="ROOM_MAMENI" />
 		<result property="roomStatus" column="ROOM_STATUS" />
@@ -279,14 +279,19 @@
    		FROM WHEREWEGO
    		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '숙소' AND SPOT_STATUS = 'Y'
    	</select>
+
+   	<select id="findBoardByNo_room" resultMap="RoomResultMap">
+   		SELECT *
+   		FROM ROOM R
+        INNER JOIN WHEREWEGO W ON (R.SPOT_NO = W.SPOT_NO)
+		WHERE R.SPOT_NO = #{spotNo} AND W.SPOT_CATEGORY = '숙소' AND W.SPOT_STATUS = 'Y'
+   	</select>
    	
    	<select id="findBoardByNo_cafe" resultMap="wheregovo">
    		SELECT *
    		FROM WHEREWEGO
    		WHERE SPOT_NO = #{spotNo} AND SPOT_CATEGORY = '카페' AND SPOT_STATUS = 'Y'
    	</select>
-   	
-
    	
    	<!-- 찜 기능  -->
    	<select id="wherego_like" parameterType="com.finalproject.petkage.wherego.model.vo.Heart" resultType="_int">
