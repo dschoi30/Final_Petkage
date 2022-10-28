@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=9">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_main.css?ver=10">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -174,78 +174,78 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=185">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/포코.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">호텔 포코</div>
+                                        <div class="ct_2">1박 ~171,000원</div>
                                     </div>
                                 </a>   
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=186">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/프레이저 플레이스 센트럴.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">프레이저 플레이스 센트럴</div>
+                                        <div class="ct_2">1박 ~120,000원</div>
                                     </div>
                                 </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=198">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/비스타 워커힐.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">비스타 워커힐 서울</div>
+                                        <div class="ct_2">1박 ~247,500원</div>
                                     </div>
                                 </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=199">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/실베네집.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">실베네집</div>
+                                        <div class="ct_2">1박 ~140,000원</div>
                                     </div>
                                 </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=201">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/어반.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">어반하우스 펜션</div>
+                                        <div class="ct_2">1박 ~300,000원</div>
                                     </div>
                                 </a> 
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="wgc4_card">
-                                <a href="">
+                                <a href="http://localhost:8083/petkage/wherego/wherego_lodging_detail?no=202">
                                     <div class="card_img">
-                                        <img src="${ path }/resources/images/wherego/호텔사진1.png">
+                                        <img src="${ path }/resources/images/wherego/해운대.jpg">
                                     </div>
                                     <div class="card_text">
-                                        <div class="ct_1">플로리다 애견 동반 숙소</div>
-                                        <div class="ct_2">1박 ~80,000원</div>
+                                        <div class="ct_1">영무파라드 호텔</div>
+                                        <div class="ct_2">1박 ~109,000원</div>
                                     </div>
                                 </a> 
                                 </div>
@@ -262,10 +262,10 @@
                 <p>추천플레이스 ></p>
             </div>
             <div class="card bg-dark text-white">
-                <img src="${ path }/resources/images/wherego/배경1.png" class="card-img" alt="...">
+                <img src="${ path }/resources/images/wherego/카페2.png" class="card-img" alt="...">
                 <div class="card-img-overlay">
-                <a href="">
-                    <h3 class="card-title">KH cafe</h3>
+                <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=188">
+                    <h3 class="card-title">루트커피</h3>
                     <p class="card-text">[속보] 문인수 선생님 극찬.. "이 집 잘해.."</p>
                 </a>
                 </div>
@@ -273,51 +273,51 @@
             <div class="wgc5_rm">
                 <div class="wgcm_1">
                     <div class="wgcm_img">
-                    <a href="">
-                        <img src="${ path }/resources/images/wherego/배경4.png" alt="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=187">
+                        <img src="${ path }/resources/images/wherego/피크플래버1.png" alt="">
                     </a>
                     </div>
                     <div class="wgcm_text">
-                    <a href="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=187">
                         <div class="wgcmt_1">
-                            <p>해외 안가도 됨.(근엄)</p>
+                            <p>나는 슬플때 힙합을 춰..</p>
                         </div>
                         <div class="wgcmt_2">
-                            <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
+                            <p>힙할때 가기 좋은 비스킷 카페!</p>
                         </div>
                     </a>    
                     </div>
                 </div>
                 <div class="wgcm_2">
                     <div class="wgcm_text">
-                    <a href="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=190">
                         <div class="wgcmt_1">
-                            <p>해외 안가도 됨.(근엄)</p>
+                            <p>나는 기쁠때 한옥을 가..</p>
                         </div>
                         <div class="wgcmt_2">
-                            <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
+                            <p>우리의 멋과 혼이 담긴 한옥 카페! 카페사사</p>
                         </div>
                     </a> 
                     </div>
                     <div class="wgcm_img2">
-                    <a href="">
-                        <img src="${ path }/resources/images/wherego/배경3.png" alt="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=190">
+                        <img src="${ path }/resources/images/wherego/카페사사1.png" alt="">
                     </a>
                     </div>
                 </div>
                 <div class="wgcm_3">
                     <div class="wgcm_img">
-                    <a href="">
-                        <img src="${ path }/resources/images/wherego/배경2.png" alt="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=200">
+                        <img src="${ path }/resources/images/wherego/카페별뜨락1.png" alt="">
                     </a>
                     </div>
                     <div class="wgcm_text">
-                    <a href="">
+                    <a href="http://localhost:8083/petkage/wherego/wherego_cafe_detail?no=200">
                         <div class="wgcmt_1">
-                            <p>해외 안가도 됨.(근엄)</p>
+                            <p>자 호흡을 깊이 들이 마시고 (흐읍!)</p>
                         </div>
                         <div class="wgcmt_2">
-                            <p>이국적인 느낌 물씬 나는 카페 Best 3!</p>
+                            <p>내 뱉는 카페 별뜨락 (후우..!)</p>
                         </div>
                     </a> 
                     </div>
@@ -374,14 +374,14 @@
                                     <img src="${ path }/resources/images/wherego/금.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/비스타 워커힐.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 광진구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>비스타 워커힐 서울</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -389,7 +389,7 @@
                                         <img src="${ path }/resources/images/wherego/star.png" alt="">
                                     </div>
                                     <div class="wgc6ls_score">
-                                        <p>4.9점</p>
+                                        <p>4.8점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
                                         <p>(25)</p>
@@ -401,14 +401,14 @@
                                     <img src="${ path }/resources/images/wherego/은.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/프레이저 플레이스 센트럴.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 중구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>프레이저 플레이스 센트럴</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -416,10 +416,10 @@
                                         <img src="${ path }/resources/images/wherego/star.png" alt="">
                                     </div>
                                     <div class="wgc6ls_score">
-                                        <p>4.9점</p>
+                                        <p>4.8점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
-                                        <p>(25)</p>
+                                        <p>(22)</p>
                                     </div>
                                 </div>
                             </div>
@@ -428,14 +428,14 @@
                                     <img src="${ path }/resources/images/wherego/동.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/포코.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 성동구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>호텔 포코</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -443,10 +443,10 @@
                                         <img src="${ path }/resources/images/wherego/star.png" alt="">
                                     </div>
                                     <div class="wgc6ls_score">
-                                        <p>4.9점</p>
+                                        <p>4.8점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
-                                        <p>(25)</p>
+                                        <p>(18)</p>
                                     </div>
                                 </div>
                             </div>
@@ -465,14 +465,14 @@
                                     <img src="${ path }/resources/images/wherego/금.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/유니버스1.png" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 성동구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>유니버스 스튜디오</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -480,7 +480,7 @@
                                         <img src="${ path }/resources/images/wherego/star.png" alt="">
                                     </div>
                                     <div class="wgc6ls_score">
-                                        <p>4.9점</p>
+                                        <p>4.8점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
                                         <p>(25)</p>
@@ -492,14 +492,14 @@
                                     <img src="${ path }/resources/images/wherego/은.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/이어커피1.png" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 마포구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>이어커피로스터스</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -519,14 +519,14 @@
                                     <img src="${ path }/resources/images/wherego/동.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/런어웨이1.png" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 서대문구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>런어웨이</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -534,10 +534,10 @@
                                         <img src="${ path }/resources/images/wherego/star.png" alt="">
                                     </div>
                                     <div class="wgc6ls_score">
-                                        <p>4.9점</p>
+                                        <p>4.8점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
-                                        <p>(25)</p>
+                                        <p>(22)</p>
                                     </div>
                                 </div>
                             </div>
@@ -556,14 +556,14 @@
                                     <img src="${ path }/resources/images/wherego/금.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/카페팜.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 영등포구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>카페팜스프링스</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -583,14 +583,14 @@
                                     <img src="${ path }/resources/images/wherego/은.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/라코즈.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 송파구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>라코즈</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -610,14 +610,14 @@
                                     <img src="${ path }/resources/images/wherego/동.png" alt="">
                                 </div>
                                 <div class="wgc6l_img">
-                                    <img src="${ path }/resources/images/wherego/배경5.png" alt="">
+                                    <img src="${ path }/resources/images/wherego/루엘 드 샹들리에.jpg" alt="">
                                 </div>
                                 <div class="wgc6l_text">
                                     <div class="wgc6lt_1">
-                                        <p>경기 가평군</p>
+                                        <p>서울 중구</p>
                                     </div>
                                     <div class="wgc6lt_2">
-                                        <p>가평 멍벨리펜션(애견동반)</p>
+                                        <p>루엘 드 샹들리에</p>
                                     </div>
                                 </div>
                                 <div class="wgc6l_score">
@@ -628,7 +628,7 @@
                                         <p>4.9점</p>
                                     </div>
                                     <div class="wgc6ls_coment">
-                                        <p>(25)</p>
+                                        <p>(23)</p>
                                     </div>
                                 </div>
                             </div>
