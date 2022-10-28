@@ -18,7 +18,7 @@ $("#userName").keyup(function () {
     $("#name_termsCheck").text("");
     $("[name=userEmail]").attr("disabled", false);
     $("[name=nameTest]").val("1");
-    $("#email_termsCheck").text("");
+    $("#sendFinishAlert").text("");
     return true;
   }
 });
