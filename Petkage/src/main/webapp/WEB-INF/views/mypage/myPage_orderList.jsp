@@ -45,8 +45,8 @@
 		      </td>
 		      <td class="align-middle">${ payment.proName }</td>
             <td class="align-middle">${ payment.proCount }</td>
-            <td class="align-middle"><fmt:formatNumber value="${ payment.totalPriceAfterUsingPoint }" pattern="#,###"/>원</td>
-            <td class="align-middle"><fmt:formatNumber value="${ payment.totalDelFee }" pattern="#,###"/>원</td>
+            <td class="align-middle"><fmt:formatNumber value="${ payment.proSPrice }" pattern="#,###"/>원</td>
+            <td class="align-middle"><fmt:formatNumber value="${ payment.proDelFee }" pattern="#,###"/>원</td>
           </tr>
         </tbody>
         </c:forEach>
