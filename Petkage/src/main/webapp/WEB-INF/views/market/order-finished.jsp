@@ -27,25 +27,25 @@
                     <table style="font-size: 20px; margin: auto;">
                         <tr>
                             <td style="width: 20%;">상품명: </td>
-                            <td style="text-align: right">${ info.item_name }</td>
+                            <td>&nbsp;&nbsp;${ info.item_name }</td>
                         </tr>
                         <tr>
                             <td>상품수량: </td>
-                            <td>${ info.quantity }개</td>
+                            <td>&nbsp;&nbsp;${ info.quantity }개</td>
                         </tr>
                         <tr>
                             <td>결제금액: </td>
-                            <td><fmt:formatNumber value="${ info.amount.total }" pattern="#,###"/>원</td>	
+                            <td>&nbsp;&nbsp;<fmt:formatNumber value="${ info.amount.total }" pattern="#,###"/>원</td>	
                         </tr>
                         <tr>
                             <td>적립금: </td>
-                            <td>+<fmt:formatNumber value="${ info.amount.total * 0.05 }" pattern="#,###"/>원</td>
+                            <td>&nbsp;&nbsp;+<fmt:formatNumber value="${ info.amount.total * 0.05 }" pattern="#,###"/>원</td>
                         </tr>
                     </table>
                 </div>
         </div>
         <div class="align-btn-prod-pay-fin">
-            <button class="pay-fin-btn">주문 상세보기</button>
+            <button class="pay-fin-btn" onclick="location.href='${ path }/mypage/myPage_orderList'">주문 상세보기</button>
             <button class="pay-fin-btn" onclick="location.href='${ path }/market/product-list'">쇼핑 계속하기</button>
         </div>
     </div>

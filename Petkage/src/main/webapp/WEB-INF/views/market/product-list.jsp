@@ -9,7 +9,7 @@
 
 <div id="wrap-all-prod">
 	<div class="row">
-    	<div class="contents">
+    	<div class="contents" style="height: 600px;">
         	<br><br>
         	<form action="${ path }/market/product-list" method="GET">
 <!--             <div class="row justify-content-center">  -->
@@ -142,7 +142,7 @@
 	            	<div class="row row-cols-2 row-cols-md-4">
 	                  	<c:forEach var="product" items="${ list }">
 	                    	<div class="col col-mb-4" style="padding: 0;">
-	                        	<a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
+	                        	<a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 430px;">
 	                           <div class="card h-100" style="border: 0;">
 									<img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
 									<div class="card-body">
@@ -204,7 +204,7 @@
                   <div class="col-xs-1">
                       <ul class="wrap-subcategory">
                           <li class="subcategory">
-                              <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategort1=dog&proCategory2=best'">
+                              <button class="btn-subcategory" name="proCategory2" value="best" onclick="location.href='${ path }/market/product-list?proCategory1=dog&proCategory2=best'">
                                   <span class="span-subcategory-img">
                                       <img src="${ path }/resources/images/market/category/best-icon.png" width="60" height="60" alt="">
                                   </span><br>
@@ -301,7 +301,7 @@
                  	<div class="row row-cols-2 row-cols-md-4">
                   	<c:forEach var="product" items="${ list }">
                        <div class="col col-mb-4" style="padding: 0;">
-                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
+                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 430px;">
                            <div class="card h-100" style="border: 0;">
 								<img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
 								<div class="card-body">
@@ -460,7 +460,7 @@
                  	<div class="row row-cols-2 row-cols-md-4">
                   	<c:forEach var="product" items="${ list }">
                        <div class="col col-mb-4" style="padding: 0;">
-                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 410px;">
+                           <a class="page-link" href="${ path }/market/product-view?proNo=${ product.proNo }" style="border: 0; height: 430px;">
                            <div class="card h-100" style="border: 0;">
 								<img src="${ path }/resources/upload/market/${ product.renamedFileName }" class="card-img-top" alt="...">
 								<div class="card-body">
