@@ -85,7 +85,7 @@
 					
                 <!-- 테이블 -->
                 <div class="table-responsive">
-                  <table class="table table-sm align-middle">
+                  <table class="table table-sm align-middle" style="table-layout: fixed;">
                     <thead>
                       <tr style="text-align: center;">
                         <th scope="col">
@@ -94,12 +94,12 @@
                             <label class="form-check-label" for="check_all"><span></span></label>
                           </div>
                         </th>
-                        <th scope="col">번호</th>
-                        <th scope="col">카테고리</th>
+                        <th scope="col" style="width: 50px;">번호</th>
+                        <th scope="col" style="width: 90px;">카테고리</th>
                         <th scope="col">지역</th>
-                        <th scope="col">이름</th>
-                        <th scope="col">주소</th>
-                        <th scope="col">테마</th>
+                        <th scope="col" style="width: 200px;">이름</th>
+                        <th scope="col" style="width: 290px;">주소</th>
+                        <th scope="col" style="width: px;">테마</th>
                         <th scope="col">수정</th>
                         <th scope="col">상태</th>
                       </tr>
@@ -118,9 +118,9 @@
                         <td style="vertical-align: middle;">${ board.spotNo }</td>
                         <td style="vertical-align: middle;">${ board.spotCategory }</td>
                         <td style="vertical-align: middle;">${ board.spotLocation }</td>
-                        <td style="vertical-align: middle; cursor: pointer;">${ board.spotName }</td>
-                        <td style="vertical-align: middle;">${ board.spotAddress }</td>
-                        <td style="vertical-align: middle;">${ board.theme }</td>
+                        <td style="vertical-align: middle; middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis; cursor: pointer;">${ board.spotName }</td>
+                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ board.spotAddress }</td>
+                        <td style="vertical-align: middle; white-space:nowrap; overflow: hidden;  text-overflow: ellipsis;">${ board.theme }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" updateId="${ board.spotNo }">수정</button>
                         </td>                     

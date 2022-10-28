@@ -797,6 +797,7 @@ html {
 .wg_1 .wgc_6 .wgc6_list .wgc6l_img img {
   width: 150px;
   height: 80px;
+  border-radius: 20px;
 }
 
 @media (max-width:1023px) {
@@ -811,6 +812,7 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   margin-left: 150px;
+  width: 300px;
 }
 
 @media (max-width:1023px) {
@@ -861,6 +863,7 @@ html {
 
 .wg_1 .wgc_6 .wgc6_list .wgc6l_score .wgc6ls_score p {
   font-size: 2rem;
+  width: 60px;
 }
 
 .wg_1 .wgc_6 .wgc6_list .wgc6l_score .wgc6ls_coment p {

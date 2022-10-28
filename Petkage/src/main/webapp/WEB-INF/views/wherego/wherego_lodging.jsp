@@ -91,7 +91,7 @@
                             	<input type="hidden" name="size_filter" id="size_filter">
                             	<input type="hidden" name="ameni" id="ameni">
                             	<input type="hidden" name="theme" id="theme">
-                                <button type="reset" onclick="location.href='${path}/wherego/whergo_lodging'">초기화</button>
+                                <button type="reset" onclick="location.href='${path}/wherego/lodging'">초기화</button>
                                 <button type="submit" id="detail_search">적용</button>
                             </div>
                         </div>    
@@ -193,7 +193,7 @@
 	                        <div class="ct_1">${lodgingselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
-	                            <p>강남구 | 역삼역 도보 1분</p>
+	                            <p>${lodgingselect.spotAddress}</p>
 	                            <p>${lodgingselect.price}원</p>
 	                        </div>
 	                    </div>

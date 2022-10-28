@@ -29,19 +29,21 @@
             <div class="wg6b_ca">
 
 				<c:forEach var="heart" items="${ heart }">
-                <c:set var="rename_wherego" value="${ cafeselect.renameImg }" />
+                <c:set var="rename_wherego" value="${ heart.renameImg }" />
                 <div class="wgc6_card">
-	                    <div class="card_img">
-	                        <img src="${ path }/resources/images/wherego/${heart.renameImg}">
+	                <a href="${ path }/wherego/wherego_cafe_detail?no=${ heart.spotNo }">
+	                    <div class="card_img" value="${ heart.renameImg }">
+	                        <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_wherego,0,21) }" alt=""/>
 	                    </div>
 	                    <div class="card_text">
 	                        <div class="ct_1">${heart.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
-	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${heart.spotAddress}</p>
 	                            <p>${heart.spotSize}</p>
 	                        </div>
 	                    </div>
+	                    </a>
                 </div>
        			 </c:forEach>
         		</div>
