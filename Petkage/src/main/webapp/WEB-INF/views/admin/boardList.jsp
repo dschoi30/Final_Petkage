@@ -197,7 +197,7 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }/product-view?proNo="+num
+   		    location.href="${ pageContext.request.contextPath }/wherego/wherego_lodging_detail?no="+num
 
    		});
     	
