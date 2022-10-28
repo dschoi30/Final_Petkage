@@ -36,42 +36,28 @@
             <div class="wg5t_1">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경7.png" />
+                    <c:forEach items="${imgList}" var="imgList">
+                        <div class="swiper-slide filst">
+                            <img src="${ path }/resources/upload/wherego/${imgList}"/>
                         </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경1.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경2.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경3.png" />
-                        </div>
+ 					</c:forEach>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
                 <div thumbsSlider="" class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경7.png" />
+    				<c:forEach items="${imgList}" var="imgList">
+                        <div class="swiper-slide second">
+                            <img src="${ path }/resources/upload/wherego/${imgList}"/>
                         </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경1.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경2.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="${ path }/resources/images/wherego/배경3.png" />
-                        </div>
+ 					</c:forEach>
                     </div>
                 </div>
             </div>
             <div class="wg5t_2">
                 <div class="wg5t2_name">
-                    AC 호텔 바이 메리어트 서울 강남
+                    ${wherego.spotName}
                     <div>
                         <span id = heart><i class="fa fa-heart-o" aria-hidden="true" ></i> </span>
                     </div>
@@ -80,7 +66,7 @@
                     4.8  추천해요!
                 </div>
                 <div class="wg5t2_address">
-                    서울 특별시 강남구 테헤란로25길 10
+                    ${wherego.spotAddress}
                 </div>
                 <div class="wg5t2_option">
                     <div class="wg5t2_icon">
@@ -113,8 +99,7 @@
                     </div>
                 </div>
                 <div class="wg5t2_info">
-                    <p>반려동물과 함께하는 이국적인 분위기!</p>
-                    <p>대중교통 접근성이 좋으며 다양한 편의시설과 시티뷰를 즐겨보세요!</p>
+                    ${wherego.introduce}
                 </div>
             </div>    
         </div>
@@ -147,22 +132,24 @@
                             <span>09. 27</span>&nbsp; - &nbsp;<span>09. 28</span>
                         </div>
                     </div>
+					<div class="swiper-slide">
                     <div class="wg5bc_room">
+                    <c:forEach var="room" items="${ room }">
+					<c:set var="rename_room" value="${ room.renameRoomImg }" />  
                         <div class="wg5bcr_1">
                             <div class="wg5bcr_img">
-                                <img src="${ path }/resources/images/wherego/침대.png" alt="">
+                                <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_room,0,21) }" alt="">
                             </div>
                             <div class="wg5bcr_text">
                                 <div class="te1">
-                                    스탠다드
+                                    ${room.roomName}
                                 </div>
                                 <div class="te2">
                                     <div class="te2_1">
                                         가격
                                     </div>
                                     <div class="te2_2">
-                                        <span>256,000원</span> &nbsp; &nbsp;
-                                        <span>199,000원</span>
+                                    	${room.roomPrice}
                                     </div>
                                 </div>
                                 <div class="te3">
@@ -180,20 +167,12 @@
                                             <div class="modal-body">
                                                 <p>기본정보</p>
                                                 <ul>
-                                                    <li>
-                                                        2인 기준 최대 2인
-                                                    </li>
-                                                    <li>
-                                                        더블베드 1개
-                                                    </li>
-                                                    <li>
-                                                        반려동물 베드 1개
-                                                    </li>
+                                                   <li>${room.mInfo}</li>
                                                 </ul>
                                                 <hr>
                                                 <p>편의시설</p>
                                                 <ul>
-                                                    <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
+                                                    <li>${room.mAmeni}</li>
                                                 </ul>
                                             </div>
                                             <div class="modal-footer">
@@ -211,7 +190,7 @@
                             </div>
                         </div>
 
-                        <div class="wg5bcr_1">
+                        <%-- <div class="wg5bcr_1">
                             <div class="wg5bcr_img">
                                 <img src="${ path }/resources/images/wherego/침대.png" alt="">
                             </div>
@@ -335,7 +314,8 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> --%>
+                    </c:forEach>
                     </div>
                 </div>
             </div>    
@@ -346,24 +326,7 @@
                         <div class="wg5bci_content">
                             <h5>주변 정보</h5>
                             <ul>
-                                <li>역삼역 도보 1분</li>
-                                <li>선정릉 차량 8분</li>
-                                <li>잠원 한강 공원 차량 12분</li>
-                            </ul>
-                            <h5>기본 정보</h5>
-                            <ul>
-                                <li>체크인 : 15:00 | 체크아웃 : 12:00</li>
-                                <li>22시 이후 체크인 시 호텔 프론트 문의</li>
-                                <li>무료 Wi-Fi</li>
-                                <li>전 객실 금연 (흡연 적발 시 300,000원 위약금이 발생됩니다)</li>
-                                <li>Bath Amenity (치약, 칫솔 무료)</li>
-                                <li>주차 가능 (발렛파킹만 가능 / 박 당 10,000원)</li>
-                            </ul>
-                            <h5>인원 추가 정보</h5>
-                            <ul>
-                                <li>기준인원 외 추가 시, 1인 33,000원 (만 12세 이상~성인), 만 12세 미만 무료</li>
-                                <li>영유아 인원수 포함 / 최대인원 초과 불가</li>
-                                <li>반려동물 1마리 (추가금액 없음)</li>
+                                <li>${wherego.info}</li>
                             </ul>
                         </div>
                     </details>
@@ -492,7 +455,7 @@
             	
             	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = {
-                    center: new kakao.maps.LatLng(37.512916, 127.101316), // 지도의 중심좌표
+                    center: new kakao.maps.LatLng(${wherego.spotMapX}, ${wherego.spotMapY}), // 지도의 중심좌표
                     level: 5 // 지도의 확대 레벨
                 };  
                 
@@ -547,7 +510,7 @@
             	          
             	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
             	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-            	        markerPosition = new kakao.maps.LatLng(37.512916, 127.101316); // 마커가 표시될 위치입니다
+            	        markerPosition = new kakao.maps.LatLng(${wherego.spotMapX}, ${wherego.spotMapY}); // 마커가 표시될 위치입니다
             	
             	    // 마커를 생성합니다
             	    var marker = new kakao.maps.Marker({

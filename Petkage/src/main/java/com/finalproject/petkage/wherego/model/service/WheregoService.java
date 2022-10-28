@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
+import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface WheregoService {
@@ -53,5 +54,7 @@ public interface WheregoService {
 	List<Wherego> lodging_board_cate(String filter, String location);
 
 	List<Wherego> cafe_board_cate(String location, String opt);
+
+    Room findBoardByNo_room(int no);
 
 }

@@ -334,6 +334,7 @@
 		SELECT * 
 		FROM CALENDAR
 		WHERE CAL_MEM_NO = 1 AND CAL_STATUS = 'Y'
+		ORDER BY CAL_DATE DESC
 	</select>
 
 </mapper>

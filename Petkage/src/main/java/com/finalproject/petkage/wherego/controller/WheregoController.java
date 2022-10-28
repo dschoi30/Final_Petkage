@@ -576,17 +576,24 @@ public class WheregoController {
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		List<String> imgList = new ArrayList<String>();
-
+//		List<String> roomImgList = new ArrayList<String>();
 		
 		Wherego wherego = null;
+//		Room room = null;
 		
 		wherego = service.findBoardByNo_lodging(no);
+//		room = service.findBoardByNo_room(no);
 		
 		String[] splitImg = wherego.getRenameImg().split(", ");
+//		String[] splitRoomImg = room.getRenameRoomImg().split(", ");
 		
 		for (int i = 0; i < splitImg.length; i++) {
 			imgList.add(splitImg[i]);
 		}
+		
+//		for (int i = 0; i < splitRoomImg.length; i++) {
+//		    roomImgList.add(splitImg[i]);
+//		}
 		
 		int wherego_like = 0;
 		
@@ -600,9 +607,11 @@ public class WheregoController {
 			model.addObject("member", member);
 		}
 		
-		
+		model.addObject("imgList", imgList);
+//		model.addObject("roomImgList", roomImgList);
 		model.addObject("wherego_like", wherego_like);
 		model.addObject("wherego", wherego);
+//		model.addObject("room", room);
 		model.setViewName("wherego/wherego_lodging_detail");
 		
 		return model;
