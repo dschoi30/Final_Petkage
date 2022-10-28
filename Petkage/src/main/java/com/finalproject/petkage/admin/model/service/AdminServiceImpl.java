@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	public AdminMapper mapper;
 	
-	// status = 'Y'
+	// 회원
 	@Override
 	public int getMemCount(String memtype, String search) {
 		Map<String, String> map = new HashMap<>();
@@ -46,7 +46,6 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectMemAllBySearch(rowBounds, map);
 	}
 
-	// status = 'N'
 	@Override
 	public int getMemXCount(String memtype, String search) {
 		Map<String, String> map = new HashMap<>();
@@ -69,6 +68,21 @@ public class AdminServiceImpl implements AdminService {
 		map.put("search", search);
 		
 		return mapper.selectMemXAll(rowBounds, map);
+	}
+	
+	@Override
+	public Member findMemberByNo(int no) {
+		
+		return mapper.selectMemberByNo(no);
+	}
+	
+	@Override
+	public int memUpdateStatus(Member member) {
+		int result = 0;
+		
+		result = mapper.updateMemStatus(member);
+		
+		return result;
 	}
 	
 	// 어디가지
@@ -95,6 +109,22 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.selectBoardAll(rowBounds, map);
 	}
+	
+	@Override
+	public Wherego findBoardByNo(int no) {
+		
+		return mapper.selectBoardByNo(no);
+	}
+
+	@Override
+	public int boardUpdateStatus(Wherego wherego) {
+		int result = 0;
+		
+		result = mapper.updateBoardStatus(wherego);
+		
+		return result;
+	}
+
 
 	// 상품
 	@Override
@@ -147,6 +177,8 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.selectReviewAll(rowBounds, map);
 	}
+
+
 
 
 

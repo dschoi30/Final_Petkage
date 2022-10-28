@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=8">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=9">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -26,45 +26,41 @@
 </head>
 
 <body>
-
+<form action="" id="formobj">
     <section class="wg_6">
         <div class="wg_top" id="wg_top">
             <div class="wg_title">
                 <img src="${ path }/resources/images/wherego/카페.png" alt="">
                 <p>카페</p>
             </div>
-            <div class="ht_search2">
-                <form class="ht_12">
+             <div class="ht_search2">
                     <div class="ht_22">
-                        <select name="" id="" required>
-                            <option disabled selected>지역선택</option>
-                            <option>서울</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>경상</option>
-                            <option>전라</option>
-                            <option>충청</option>
-                        </select>
+	                        <select name="location_filter" id="location_select" required>
+	                            <option  class="opt_location"  value="서울" selected="selected">서울</option>
+	                            <option  class="opt_location"  value="부산">부산</option>
+	                            <option  class="opt_location"  value="제주">제주</option>
+	                            <option  class="opt_location"  value="경기">경기</option>
+	                            <option  class="opt_location"  value="인천">인천</option>
+	                            <option  class="opt_location"  value="강원">강원</option>
+	                            <option  class="opt_location"  value="경상">경상</option>
+	                            <option  class="opt_location"  value="전라">전라</option>
+	                            <option  class="opt_location"  value="충청">충청</option>
+	                        </select>
                     </div>
                     <div class="ht_22_btn">
-                        <button type="submit">검색</button>
+                        <button type="submit" id="location_search">검색</button>
                     </div>
-                </form>
-            </div>
+            	</div>
         </div>
-        <div class="wg6_manager"><button><img src="https://cdn-icons-png.flaticon.com/512/1719/1719458.png" onclick="location.href='${ path }/wherego/others_write'"></img></button></div>
         <div class="wg6_map">
             <div id="map" style="width: 100%; height: 350px; margin-top: 20px; margin-bottom: 20px;"></div>
         </div>
         <div class="wg6_mid">
             <div class="wg6_line"></div>
             <div class="wg6_sel">
-                <select name="" id="">
-                    <option value="">추천순</option>
-                    <option value="">별점순</option>
+                <select name="" id="opt_filter" >
+                   	<option value="추천순" class="of_opt" selected="selected">추천순</option>
+                   	<option value="별점순" class="of_opt">별점순</option>
                 </select>
             </div>
         </div>
@@ -81,7 +77,7 @@
 	                        <div class="ct_1">${cafeselect.spotName}</div>
 	                        <div class="ct_2">4.8점</div>
 	                        <div class="ct_3">
-	                            <p>수리남 / 도보 148일 18시간</p>
+	                            <p>${cafeselect.spotAddress}</p>
 	                            <p>${cafeselect.spotSize}</p>
 	                        </div>
 	                    </div>
@@ -239,7 +235,7 @@
 
 
     </section>
-    
+</form>    
         <script>
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -254,20 +250,32 @@
      // 마커를 표시할 위치와 title 객체 배열입니다 
         var positions = [
             {
-                title: '카카오', 
-                latlng: new kakao.maps.LatLng(37.520277, 127.122590)
+                title: '피크플래버', 
+                latlng: new kakao.maps.LatLng(37.546404, 127.127911)
             },
             {
-                title: '생태연못', 
-                latlng: new kakao.maps.LatLng(37.528384, 127.123590)
+                title: '카페하임', 
+                latlng: new kakao.maps.LatLng(37.553287, 127.091682)
             },
             {
-                title: '텃밭', 
-                latlng: new kakao.maps.LatLng(37.520782, 127.124590)
+                title: '루트카페', 
+                latlng: new kakao.maps.LatLng(37.565712, 126.923527)
             },
             {
-                title: '근린공원',
-                latlng: new kakao.maps.LatLng(37.525895, 127.125590)
+                title: '런어웨이',
+                latlng: new kakao.maps.LatLng(37.587193, 126.936484)
+            },
+            {
+                title: '무네이 카페&바', 
+                latlng: new kakao.maps.LatLng(37.586404, 127.127911)
+            },
+            {
+                title: '알렉스룸', 
+                latlng: new kakao.maps.LatLng(37.543497, 127.151282)
+            },
+            {
+                title: '노버든 카페', 
+                latlng: new kakao.maps.LatLng(37.585615, 126.983277)
             }
         ];
             
@@ -349,6 +357,58 @@
             map.setCenter(locPosition);      
         }    
                
+    </script>
+    
+      <!-- 카테고리  --> 
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+	   var location = '';
+	   var opt_link = '${opt_link}';
+
+	    $(function() {
+	        var locationButton = $('#location_search');
+	
+	        locationButton.click(function() {
+	        	
+	        	var location = $('#location_filter').val();
+	        	
+	            const formElement = $('#formobj');
+	            formElement.attr("action", "${path}/wherego/cafe_category?location_filter="+ location + "&opt=" + opt_link);
+	            formElement.attr("method", "get");
+	            formElement.submit();
+	        })
+	    });
+	    
+	    var opt_location = $('.opt_location').length
+	    
+	    for (var i = 0; i < opt_location; i++) {
+	    	if($($($('.opt_location')[i])).val() == '${location}') {
+	    		$('.opt_location').removeClass('selected')
+	    		$($($('.opt_location')[i])).attr("selected","selected")
+			location = $($($('.opt_location')[i])).val();
+		    	break;
+	    	}
+		
+		};
+		
+		
+		$("#opt_filter").change(function(){
+            	var opt_link = $(this).val(); 
+           	console.log(location)
+           	
+			// 변경된 값으로 비교 후 alert 표출
+            console.log($(this).val());
+            if($(this).val() == "추천순"){
+                window.location.href="${path}"+"/wherego/cafe_category?opt=" + opt_link + "&location_filter="+ location;
+            } else if($(this).val() == "별점순"){
+            	window.location.href="${path}"+"/wherego/cafe_category?opt=" + opt_link + "&location_filter="+ location;
+            } 
+        });
+			    
+	    
+	}); 
+    
     </script>
 
 

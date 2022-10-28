@@ -470,6 +470,11 @@ html {
   border-radius: 50px;
 }
 
+.wg_1 .wg_cate .wgc_4 .cardsb .wgc4_card a {
+  text-decoration: none;
+  color: black;
+}
+
 .wg_1 .wg_cate .wgc_4 .cardsb .swiper-slide {
   width: 340px;
   height: 300px;
@@ -584,6 +589,15 @@ html {
   height: 180px;
 }
 
+.wg_1 .wgc_5 .wgc5_rm a {
+	text-decoration: none;
+	color: black;
+}
+
+.wg_1 .wgc_5 .text-white a {
+	text-decoration: none;
+	color: white;
+}
 
 .wg_1 .wgc_5 .wgc5_rm .wgcm_1, .wgcm_3 {
   display: flex;

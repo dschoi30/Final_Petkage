@@ -825,11 +825,14 @@ public class MemberController {
 	@GetMapping("/delete")
 	public ModelAndView delete(
 			ModelAndView model,
-			@SessionAttribute("loginMember") Member loginMember) {
+			@SessionAttribute("loginMember") Member loginMember,
+			@ModelAttribute Member member) {
 		
 		int result = 0;
 		
-		result = service.delete(loginMember.getNo());
+		member.setNo(loginMember.getNo());
+	
+		result = service.delete(member);
 		
 		if(result > 0) {
 			model.addObject("msg", "정상적으로 탈퇴되었습니다.");

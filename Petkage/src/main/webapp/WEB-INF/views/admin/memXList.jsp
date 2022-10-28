@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?af">
+<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?aft">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <body>
@@ -20,9 +20,6 @@
           <div class="row">
 
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 sidebar d-md-block collapse" style="padding-left: 0%; border: 0px;" >
-              <a href="${ path }/admin/admMain" class="list-group-item list-group-item-action py-3 lh-tight h-10" aria-current="true">
-                <strong class="mb-1">대시보드</strong>
-              </a>
               <a href="${ path }/admin/memList" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
                 <strong class="mb-1">회원 관리</strong>
               </a>
@@ -100,7 +97,7 @@
                         <th scope="col">가입일</th>
                         <th scope="col">회원타입</th>
                         <th scope="col">이메일</th>
-                        <th scope="col">탈퇴</th>
+                        <th scope="col">복구</th>
                       </tr>
                     </thead>
                     
@@ -131,7 +128,7 @@
                         </td>
                         <td style="vertical-align: middle;">${ member.userEmail }</td>
                         <td>
-                          <button type="button" class="btn adminbtn btn-sm" memberId="${ member.no }">복구</button>
+                          <button type="button" class="btn adminbtn btn-sm changebtn" memberId="${ member.no }">복구</button>
                         </td>
                       </tr>
  				    </c:forEach>
@@ -190,5 +187,20 @@
 
     	    $("#check_all").prop("checked", is_checked);
     	});
+    	
+    	// 탈퇴
+	    $(document).ready(() => {			
+			console.log('작동');
+			
+	        $(function() {
+	            $(".changebtn").click(function(){
+	            	if(confirm("회원을 복구시키겠습니까?")){
+	            		location.replace("${ path }/admin/changeMem?no=" + $(this).attr("memberId"));	            		
+	            	}
+	            })
+	        });
+	        
+		}); 
+    	
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

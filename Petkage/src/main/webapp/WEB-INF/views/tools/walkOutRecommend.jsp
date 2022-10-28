@@ -141,6 +141,20 @@
         {
             title: '<a href="http://kko.to/LnObxvOxo7" target="_blank" class="maplink">가을단풍길(송정 제방길)', 
             latlng: new kakao.maps.LatLng(37.553292, 127.066897)
+        },
+        // 인천
+        {
+            title: '<a href="http://kko.to/6yXeHwJxhN" target="_blank" class="maplink">송도 달빛 축제공원', 
+            latlng: new kakao.maps.LatLng(37.406482, 126.635805)
+        },
+        // 부산
+        {
+            title: '<a href="http://kko.to/-JQPikhcK1" target="_blank" class="maplink">부산 시민공원', 
+            latlng: new kakao.maps.LatLng(35.168056, 129.057214)
+        },
+        {
+            title: '<a href="http://kko.to/WmkRpq1e4g" target="_blank" class="maplink">동래 읍성지', 
+            latlng: new kakao.maps.LatLng(35.209940, 129.090277)
         }
 
 	]

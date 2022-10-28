@@ -142,7 +142,7 @@
         			</c:if>
         			
 					<c:if test="${ not empty loginMember && loginMember.memberRole == 'ROLE_ADMIN' }">
-	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/admMain'" value="관리자페이지" >
+	                    <input type="button" class="headerBtn" onclick="location.href='${ path }/admin/memList'" value="관리자페이지" >
 	                    <input type="button" class="headerBtn" id="loginBtn" onclick="location.href='${ path }/member/logout'" value="로그아웃">
         			</c:if>
         			
@@ -250,44 +250,51 @@
 			</div>
 			<div class="best_products">
 				<c:forEach var="product" items="${ product }">
-	         	<c:set var="rename_product" value="${ product.renamedFileName }" />   
-         		<a href="${ path }/market/product-view?proNo=${ product.proNo }">
-	            <div class="best_product" 
-	               style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
-	            </div>
-	            </a>
-		         </c:forEach>
+				<c:set var="rename_product" value="${ product.renamedFileName }" />   
+				<a href="${ path }/market/product-view?proNo=${ product.proNo }">
+				<div class="best_product" 
+				style='background-image: url("${ path }/resources/upload/market/${ fn:substring(rename_product,0,22) }");' proName= "${ product.proName }">
+				</div>
+				</a>
+				</c:forEach>
 				<div class="best_product highlight" style="display: none;">
 				</div> 
 			</div>
 		</section>
 		
 		<section class="section sec4"> <!-- 일정 캘린더 -->
+			<c:forEach var="calendar" items="${ calendar }">
+				<div class="cal_content" id="cal_no" value="${ calendar.calNo }" style="display:none"></div>
+				<div class="cal_content" id="cal_title" value="${ calendar.calTitle }" style="display:none"></div>
+				<div class="cal_content" id="cal_content" value="${ calendar.calContent }" style="display:none"></div>
+				<div class="cal_content" id="cal_date" value="${ calendar.calDate }" style="display:none"></div>
+            </c:forEach>
 				<div class="calendar">
 					<div class="my-calendar clearfix">
 						<div class="clicked-date">
-						<div class="cal-day"></div>
-						<div class="cal-date"></div>
+							<div class="cal-day"></div>
+							<div class="cal-date"></div>
+							<div class="cal-div"></div>
 						</div>
 						<div class="calendar-box">
 						<div class="ctr-box clearfix">
 							<button type="button" title="prev" class="btn-cal prev">
 							</button>
-							<span class="cal-month"></span>
 							<span class="cal-year"></span>
+							<span class="cal-month"></span>
 							<button type="button" title="next" class="btn-cal next">
 							</button>
 						</div>
 						<table class="cal-table">
 							<thead>
 							<tr>
-								<th>S</th>
-								<th>M</th>
-								<th>T</th>
-								<th>W</th>
-								<th>T</th>
-								<th>F</th>
-								<th>S</th>
+								<th><span style="color:#ff4556;">일</span></th>
+								<th>월</th>
+								<th>화</th>
+								<th>수</th>
+								<th>목</th>
+								<th>금</th>
+								<th><span style="color:#4d4df9;">토</span></th>
 							</tr>
 							</thead>
 							<tbody class="cal-body"></tbody>
@@ -363,22 +370,22 @@
 	
 	// 풀페이지 
 	$(function(){
-	    $('#fullpage').fullpage({
+		$('#fullpage').fullpage({
 			//options here
 			autoScrolling:true,
 			scrollHorizontally: false,
-	    
-	    navigation: true,
-	    navigationPosition:'right',
-	    sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
-	    afterLoad: function(anchorLink, index){
-	        console.log("지금 섹션은" + index);
-	    }
+		
+		navigation: true,
+		navigationPosition:'right',
+		sectionsColor : ['#fff','#FFEDDB', '#fff', '#E3B7A0'],
+		afterLoad: function(anchorLink, index){
+			console.log("지금 섹션은" + index);
+		}
 		});
 
-	    $('.headerLogo').on("click", function() {
-	        $.fn.fullpage.moveTo(1);
-	    });
+		$('.headerLogo').on("click", function() {
+			$.fn.fullpage.moveTo(1);
+		});
 	});
 
 	// 카드 넘기기
@@ -387,81 +394,81 @@
 	pm = $('.cards_inner__card').length;
 
 	$('.cards_inner__card').mousedown(function(){
-	  var ct = $(this).css('transform');
-	  var cts = ct.split(',')
-	  ctse = (cts[cts.length - 2] + 'px')
+		var ct = $(this).css('transform');
+		var cts = ct.split(',')
+		ctse = (cts[cts.length - 2] + 'px')
 	})
 
 	function on(){
-	  $('.cards_inner__card').draggable({
-	    start: function( event, ui ) {
-	      startPosition = ui.position.left;
-	    },
-	    drag:function(e, ui){
-	      if(ui.position.left > startPosition){
-	        ui.position.left = startPosition;
-	      }
-	      if(ui.position.left < -250){
-	        ui.position.left = -250;
-	      }
-	      x = ui.position.left;
-	      $(this).css('transform',' rotate(' + x/36 + 'deg)')
-	    },
-	    revert:function(valid) {
-	      if(x > 60 || x < - 60) {
-	        el = $(this)
-	        setTimeout(function(){
-	          el_class = el.attr('class').split(' ');
-	          el_class_end = el_class[1]
-	          el.addClass('invalid')
-	          if(p < 3){
-	            $('.points').find('.active').removeClass('active').next().addClass('active') 
-	            p++
-	          } else {
-	            $('.points').find('.active').removeClass('active')
-	            $('.points').find('.first').addClass('active') 
-	            p=0
-	          }
-	        },10)
-	        setTimeout(function(){
-	          $('.cards_inner__card').each(function(){
-	            $(this).addClass('animate');
-	            var ct = $(this).css('transform');
-	            var cts = ct.split(',')
-	            ctse = (parseInt(cts[cts.length - 2]) + 60 + 'px')
-	            $(this).css('transform','translateZ(' + ctse + ')');
-	          });
-	          $('.cards_inner .wrap').prepend('<div class="cards_inner__card ' + el_class_end + ' card_in"><div class="logo"></div></div>')
-	          el.remove();
-	          $('.cards_inner__card').removeClass('animate');
-	          on();
-	        },160);
-	        setTimeout(function(){
-	          $('.card_in').removeClass('card_in')
-	        },500);
-	      } else {
-	        $(this).css('transform','rotate(0deg)')
-	        return !valid;
-	      }
-	    },
-	    axis:'x',
-	    containment:'.cards_inner'
-	  });
+		$('.cards_inner__card').draggable({
+			start: function( event, ui ) {
+			startPosition = ui.position.left;
+			},
+			drag:function(e, ui){
+			if(ui.position.left > startPosition){
+				ui.position.left = startPosition;
+			}
+			if(ui.position.left < -250){
+				ui.position.left = -250;
+			}
+			x = ui.position.left;
+			$(this).css('transform',' rotate(' + x/36 + 'deg)')
+			},
+			revert:function(valid) {
+			if(x > 60 || x < - 60) {
+				el = $(this)
+				setTimeout(function(){
+				el_class = el.attr('class').split(' ');
+				el_class_end = el_class[1]
+				el.addClass('invalid')
+				if(p < 3){
+					$('.points').find('.active').removeClass('active').next().addClass('active') 
+					p++
+				} else {
+					$('.points').find('.active').removeClass('active')
+					$('.points').find('.first').addClass('active') 
+					p=0
+				}
+				},10)
+				setTimeout(function(){
+				$('.cards_inner__card').each(function(){
+					$(this).addClass('animate');
+					var ct = $(this).css('transform');
+					var cts = ct.split(',')
+					ctse = (parseInt(cts[cts.length - 2]) + 60 + 'px')
+					$(this).css('transform','translateZ(' + ctse + ')');
+				});
+				$('.cards_inner .wrap').prepend('<div class="cards_inner__card ' + el_class_end + ' card_in"><div class="logo"></div></div>')
+				el.remove();
+				$('.cards_inner__card').removeClass('animate');
+				on();
+				},160);
+				setTimeout(function(){
+				$('.card_in').removeClass('card_in')
+				},500);
+			} else {
+				$(this).css('transform','rotate(0deg)')
+				return !valid;
+			}
+			},
+			axis:'x',
+			containment:'.cards_inner'
+		});
 
-	  $('.cards_inner__card:nth-of-type(1)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(2)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(3)').draggable( 'disable' )
-	  $('.cards_inner__card:nth-of-type(4)').draggable( 'enable' )
+		$('.cards_inner__card:nth-of-type(1)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(2)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(3)').draggable( 'disable' )
+		$('.cards_inner__card:nth-of-type(4)').draggable( 'enable' )
 	}
 
 	on();
 
 	var swiper = new Swiper(".mySwiper", {
-	  effect: "cards",
-	  grabCursor: true,
-	  direction: "vertical",
-	  autoplay: true,
-	  loop: true,
+		effect: "cards",
+		grabCursor: true,
+		direction: "vertical",
+		autoplay: true,
+		loop: true,
 	});
 
 	var divs = document.querySelectorAll(".best_product");
@@ -474,58 +481,58 @@
 	});
 	
 	window.addEventListener("keyup", function (e) {
-	      var panel = document.querySelector(".turnon_highlight");
-	      if (
-	         (e.keyCode == 37 || e.keyCode == 38) &&
-	         panel != document.querySelectorAll(".best_product")[0]
-	      ) {
-	         panel.previousElementSibling.classList.toggle("highlight");
-	         panel.classList.toggle("highlight");
-	      }
-	      if (
-	         (e.keyCode == 39 || e.keyCode == 40) &&
-	         panel != document.querySelectorAll(".best_product")[3]
-	      ) {
-	         panel.nextElementSibling.classList.toggle("highlight");
-	         panel.classList.toggle("highlight");
-	      }
-	   });
+		var panel = document.querySelector(".turnon_highlight");
+		if (
+			(e.keyCode == 37 || e.keyCode == 38) &&
+			panel != document.querySelectorAll(".best_product")[0]
+		) {
+			panel.previousElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
+		}
+		if (
+			(e.keyCode == 39 || e.keyCode == 40) &&
+			panel != document.querySelectorAll(".best_product")[3]
+		) {
+			panel.nextElementSibling.classList.toggle("highlight");
+			panel.classList.toggle("highlight");
+		}
+	});
 
 	
 	window.focus();
 
 	// 하얀 달력
 	const init = {
-	  monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-	  dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-	  today: new Date(),
-	  monForChange: new Date().getMonth(),
-	  activeDate: new Date(),
-	  getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-	  getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-	  nextMonth: function () {
-	    let d = new Date();
-	    d.setDate(1);
-	    d.setMonth(++this.monForChange);
-	    this.activeDate = d;
-	    return d;
-	  },
-	  prevMonth: function () {
-	    let d = new Date();
-	    d.setDate(1);
-	    d.setMonth(--this.monForChange);
-	    this.activeDate = d;
-	    return d;
-	  },
-	  addZero: (num) => (num < 10) ? '0' + num : num,
-	  activeDTag: null,
-	  getIndex: function (node) {
-	    let index = 0;
-	    while (node = node.previousElementSibling) {
-	      index++;
-	    }
-	    return index;
-	  }
+		monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayList: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		today: new Date(),
+		monForChange: new Date().getMonth(),
+		activeDate: new Date(),
+		getFirstDay: (yy, mm) => new Date(yy, mm, 1),
+		getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
+		nextMonth: function () {
+			let d = new Date();
+			d.setDate(1);
+			d.setMonth(++this.monForChange);
+			this.activeDate = d;
+			return d;
+		},
+		prevMonth: function () {
+			let d = new Date();
+			d.setDate(1);
+			d.setMonth(--this.monForChange);
+			this.activeDate = d;
+			return d;
+		},
+		addZero: (num) => (num < 10) ? '0' + num : num,
+		activeDTag: null,
+		getIndex: function (node) {
+			let index = 0;
+			while (node = node.previousElementSibling) {
+			index++;
+			}
+			return index;
+		}
 	};
 
 	const $calBody = document.querySelector('.cal-body');
@@ -537,74 +544,75 @@
 	 * @param {number} dayIn
 	*/
 	function loadDate (date, dayIn) {
-	  document.querySelector('.cal-date').textContent = date;
-	  document.querySelector('.cal-day').textContent = init.dayList[dayIn];
+		document.querySelector('.cal-date').textContent = date;
+		document.querySelector('.cal-day').textContent = init.dayList[dayIn];
 	}
 
 	/**
 	 * @param {date} fullDate
 	 */
 	function loadYYMM (fullDate) {
-	  let yy = fullDate.getFullYear();
-	  let mm = fullDate.getMonth();
-	  let firstDay = init.getFirstDay(yy, mm);
-	  let lastDay = init.getLastDay(yy, mm);
-	  let markToday;  // for marking today date
-	  
-	  if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-	    markToday = init.today.getDate();
-	  }
+		let yy = fullDate.getFullYear();
+		let mm = fullDate.getMonth();
+		let firstDay = init.getFirstDay(yy, mm);
+		let lastDay = init.getLastDay(yy, mm);
+	    let markToday;  // for marking today date
+		
+		if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
+			markToday = init.today.getDate();
+		}
 
-	  document.querySelector('.cal-month').textContent = init.monList[mm];
-	  document.querySelector('.cal-year').textContent = yy;
+		document.querySelector('.cal-month').textContent = init.monList[mm];
+		document.querySelector('.cal-year').textContent = yy + "년";
 
-	  let trtd = '';
-	  let startCount;
-	  let countDay = 0;
-	  for (let i = 0; i < 6; i++) {
-	    trtd += '<tr>';
-	    for (let j = 0; j < 7; j++) {
-	      if (i === 0 && !startCount && j === firstDay.getDay()) {
-	        startCount = 1;
-	      }
-	      if (!startCount) {
-	        trtd += '<td>'
-	      } else {
-	        let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-	        trtd += '<td class="day';
-	        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-	        trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-	      }
-	      trtd += (startCount) ? ++countDay : '';
-	      if (countDay === lastDay.getDate()) { 
-	        startCount = 0; 
-	      }
-	      trtd += '</td>';
-	    }
-	    trtd += '</tr>';
-	  }
-	  $calBody.innerHTML = trtd;
+		let trtd = '';
+		let startCount;
+		let countDay = 0;
+		for (let i = 0; i < 6; i++) {
+			trtd += '<tr>';
+			for (let j = 0; j < 7; j++) {
+			if (i === 0 && !startCount && j === firstDay.getDay()) {
+				startCount = 1;
+			}
+			if (!startCount) {
+				trtd += '<td>'
+			} else {
+				let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+				trtd += '<td class="day' ;
+				trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
+				trtd += 'id="day'+ (countDay+1) +'" '
+				trtd += 'data-date="${countDay + 1}" data-fdate="${fullDate}">';
+			}
+			trtd += (startCount) ? ++countDay : '';
+			if (countDay === lastDay.getDate()) { 
+				startCount = 0; 
+			}
+			trtd += '</td>';
+			}
+			trtd += '</tr>';
+		}
+		$calBody.innerHTML = trtd;
 	}
 
 	/**
 	 * @param {string} val
 	 */
 	function createNewList (val) {
-	  let id = new Date().getTime() + '';
-	  let yy = init.activeDate.getFullYear();
-	  let mm = init.activeDate.getMonth() + 1;
-	  let dd = init.activeDate.getDate();
-	  const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
+		let id = new Date().getTime() + '';
+		let yy = init.activeDate.getFullYear();
+		let mm = init.activeDate.getMonth() + 1;
+		let dd = init.activeDate.getDate();
+		const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
 
-	  let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
+		let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
 
-	  let eventData = {};
-	  eventData['date'] = date;
-	  eventData['memo'] = val;
-	  eventData['complete'] = false;
-	  eventData['id'] = id;
-	  init.event.push(eventData);
-	  $todoList.appendChild(createLi(id, val, date));
+		let eventData = {};
+		eventData['date'] = date;
+		eventData['memo'] = val;
+		eventData['complete'] = false;
+		eventData['id'] = id;
+		init.event.push(eventData);
+		$todoList.appendChild(createLi(id, val, date));
 	}
 
 	loadYYMM(init.today);
@@ -614,22 +622,99 @@
 	$btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
 	$calBody.addEventListener('click', (e) => {
-	  if (e.target.classList.contains('day')) {
-	    if (init.activeDTag) {
-	      init.activeDTag.classList.remove('day-active');
-	    }
-	    let day = Number(e.target.textContent);
-	    loadDate(day, e.target.cellIndex);
-	    e.target.classList.add('day-active');
-	    init.activeDTag = e.target;
-	    init.activeDate.setDate(day);
-	    reloadTodo();
-	  }
+		if (e.target.classList.contains('day')) {
+			if (init.activeDTag) {
+			init.activeDTag.classList.remove('day-active');
+			}
+			let day = Number(e.target.textContent);
+			console.log("클릭 : " + day);
+			loadDate(day, e.target.cellIndex);
+			e.target.classList.add('day-active');
+			init.activeDTag = e.target;
+			init.activeDate.setDate(day);
+			reloadTodo();
+		}
 	});
 
-	$(function(){
-	   $('#datepicker').datepicker();
-	})
+	// 캘린더 날짜에 맞춰서 축제 표시
+
+
+		let yy = init.activeDate.getFullYear();
+		let mm = init.activeDate.getMonth() + 1;
+		let dd = init.activeDate.getDate();
+
+		let date = yy + '/' + init.addZero(mm) + '/' + init.addZero(dd);
+		
+		var festivaldate = {
+			date
+		}
+		console.log(festivaldate);
+	
+		$.ajax({
+			type: "POST",
+			url: "${ path }/festivalDay",
+			dataType : "json",
+			contentType : "application/json",
+			data: JSON.stringify(festivaldate),
+			success: (data) => {
+				console.log(JSON.stringify(data));
+				var festival = data;
+				
+				for (variable in festival) {
+					console.log("데이터 키: " + variable + ", 데이터 값: " + JSON.stringify(festival[variable]));
+					var festivalArr = festival[variable];
+					
+					for(const index in festivalArr) {
+						console.log(JSON.stringify(festivalArr[index]));
+						
+						var festivalList = festivalArr[index]; 
+						for(List in festivalList)  {  
+							console.log("리스트 키 : " + List + ", 리스트 값: " + JSON.stringify(festivalList[List]));
+							
+							if(List === "calDate") {
+								console.log(List);
+								console.log(JSON.stringify(festivalList[List]));
+
+								var festivalday  = festivalList[List].replace(/\"/g,"").substr(-2);
+								var textDay = document.querySelector('#day' + festivalday);	
+									console.log("텍스트 날짜 : " + textDay);
+									console.log("축제 날짜 : "+ festivalday);
+
+								if (textDay.textContent === festivalday) {
+
+									textDay.classList.add('day-festival');
+									console.log("리스트 : " + festivalList["calTitle"]);
+
+									var html = "<div class='cal-content' id='festival"+ festivalday +"'>"
+										html += festivalList['calDate'].substr(5,5) 
+										html += " : "
+										html += festivalList['calTitle']
+										html += "</div>"
+
+									$(".cal-div").prepend(html);
+									// $(".cal-content").hide;
+									// $("#festival"+ festivalday).show;
+
+									// var text = document.querySelector('.cal-content');	
+									// var text = document.querySelector('.festival' + festivalday);	
+									// var text = document.getElementById('#festival');
+
+									// var text = document.getElementById('#festival'+festivalday);
+									// document.querySelector(".cal-content").append(festivalList["calTitle"]);
+									// text.innerHTML = festivalList["calTitle"];
+
+								}
+							}
+						}
+					}	
+				}
+			},
+			error: (error) => {
+				console.log(error);
+			}
+		});
+
+
 	
 	</script>     
 </body>

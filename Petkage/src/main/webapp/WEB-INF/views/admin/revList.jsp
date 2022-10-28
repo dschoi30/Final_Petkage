@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?afte">
+<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?after">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <body>
@@ -20,9 +20,6 @@
           <div class="row">
 
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 sidebar d-md-block collapse" style="padding-left: 0%; border: 0px;" >
-              <a href="${ path }/admin/admMain" class="list-group-item list-group-item-action py-3 lh-tight h-10" aria-current="true">
-                <strong class="mb-1">대시보드</strong>
-              </a>
               <a href="${ path }/admin/memList" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
                 <strong class="mb-1">회원 관리</strong>
               </a>

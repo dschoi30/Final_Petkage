@@ -52,4 +52,10 @@ public interface Reviewmapper {
 
 	List<Review> getReviewList_review_all(RowBounds rowBounds);
 
+	int getReviewAllCount_review_lodging();
+
+	List<Review> getReviewList_review_lodging(RowBounds rowBounds);
+
+	List<Review> findReviewByName_lodging(String spotName);
+
 }

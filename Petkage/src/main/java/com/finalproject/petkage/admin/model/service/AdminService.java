@@ -29,5 +29,13 @@ public interface AdminService {
 	int getRevCount(String categorytype, String searchtype, String search);
 
 	List<Review> getReviewList(PageInfo pageInfo, String categorytype, String searchtype, String search);
+
+	Member findMemberByNo(int no);
+
+	int memUpdateStatus(Member member);
+
+	Wherego findBoardByNo(int no);
+
+	int boardUpdateStatus(Wherego wherego);
 	
 }

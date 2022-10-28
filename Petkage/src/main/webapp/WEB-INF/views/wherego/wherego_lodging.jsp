@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging.css?ver=5">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging.css?ver=8">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -23,35 +23,49 @@
 </head>
 
 <body>
+<form action="" id="formobj">
     <section class="wg_4">
         <div class="wg_top" id="wg_top">
             <div class="wg_title">
                 <img src="${ path }/resources/images/wherego/숙소.png" alt="">
                 <p>숙소</p>
             </div>
-        <form action="" id="formobj">
             <div class="ht_search2">
                     <div class="ht_22">
-                        <select name="location_filter" id="" required>
-                            <option value="서울" selected="selected">서울</option>
-                            <option value="부산">부산</option>
-                            <option value="제주">제주</option>
-                            <option value="경기">경기</option>
-                            <option value="인천">인천</option>
-                            <option value="강원">강원</option>
-                            <option value="경상">경상</option>
-                            <option value="전라">전라</option>
-                            <option value="충청">충청</option>
-                        </select>
+	                    <c:if test="${location == null && empty location }">
+	                        <select name="location_filter" id="" required>
+	                            <option value="서울" selected="selected">서울</option>
+	                            <option value="부산">부산</option>
+	                            <option value="제주">제주</option>
+	                            <option value="경기">경기</option>
+	                            <option value="인천">인천</option>
+	                            <option value="강원">강원</option>
+	                            <option value="경상">경상</option>
+	                            <option value="전라">전라</option>
+	                            <option value="충청">충청</option>
+	                        </select>
+	                    </c:if>
+	                    <c:if test="${location != null && !empty location }">
+	                        <select name="location_filter" id="" required value="">
+	                            <option class="opt_location" value="서울" selected="selected">서울</option>
+	                            <option class="opt_location" value="부산">부산</option>
+	                            <option class="opt_location" value="제주">제주</option>
+	                            <option class="opt_location" value="경기">경기</option>
+	                            <option class="opt_location" value="인천">인천</option>
+	                            <option class="opt_location" value="강원">강원</option>
+	                            <option class="opt_location" value="경상">경상</option>
+	                            <option class="opt_location" value="전라">전라</option>
+	                            <option class="opt_location" value="충청">충청</option>
+	                        </select>
+	                    </c:if>
                     </div>
                     <div class="ht_22_btn">
                         <button type="submit" id="location_search">검색</button>
                     </div>
-            </div>
-        </div>
+            	</div>
+        	</div>
 
         <div class="wg_filter">
-        	<button id="wgf_manager_btn" class="wgfbtn" onclick="location.href='${ path }/wherego/lodging_write'">글 작성</button>
         	<input type="hidden" id="filter" name="filter">
             <button id="wgf_btn1" type="submit" class="wgfbtn" value="추천순">추천순</button>
             <button id="wgf_btn2" type="submit" class="wgfbtn" value="별점순">별점순</button>
@@ -77,7 +91,7 @@
                             	<input type="hidden" name="size_filter" id="size_filter">
                             	<input type="hidden" name="ameni" id="ameni">
                             	<input type="hidden" name="theme" id="theme">
-                                <button type="reset">초기화</button>
+                                <button type="reset" onclick="location.href='${path}/wherego/whergo_lodging'">초기화</button>
                                 <button type="submit" id="detail_search">적용</button>
                             </div>
                         </div>    
@@ -166,7 +180,6 @@
                             </div>
                         </div>
                     </div>
-                </form>    
             </div>
             <div class="wg_content_card">
             	<c:forEach var="lodgingselect" items="${ lodgingselect }">
@@ -244,8 +257,8 @@
             </div>
         </div>
 
-    </section>o
-
+    </section>
+  	</form>
     <script>
     $(function() {
         $("#datepicker1,#datepicker2").datepicker({
@@ -320,11 +333,9 @@
     
     $(document).ready(function() {
 		
-    	var size = "";
     	var location = "";
     	var choice = "";
-    	var ameni = new Array();
-    	var theme = new Array();
+		
     	
 	    $(function() {
 	        var joinButton = $('.wgfbtn');
@@ -340,7 +351,7 @@
 	            console.log(choice);
 	            
 	            const formElement = $('#formobj');
-	            formElemnet.attr("action", "${path}/wherego/lodging_category?filter="+ choice + "&location_filter=" + location)
+	            formElement.attr("action", "${path}/wherego/lodging_category?filter="+ choice + "&location_filter=" + location)
 	            formElement.attr("method", "get");
 	            formElement.submit();
 	        })
@@ -360,36 +371,22 @@
 	        })
 	    });
 	    
-	    $(function() {
-	        var detailButton = $('#detail_search');
-	
-	        detailButton.click(function() {
-	        	
-	            size = $('#size_filter').val();
-	            
-	        	for (var i = 0; i < $('.ameni:checked').length; i++) {
-	        		ameni.push( '$($($('.ameni:checked')[i])).val()');
-				}
-	        	
-	        	for (var i = 0; i < $('.theme:checked').length; i++) {
-	        		theme.push( '$($($('.theme:checked')[i])).val()');
-				}
-	        	
-	        	$('#size_filter').attr('value', size);
-	        	$('#ameni').attr('value', ameni);
-	        	$('#theme').attr('value', theme);
-	        	
-	        	console.log(ameni + theme);
-	        	
-	            const formElement = $('#formobj');
-	            formElemnet.attr("action", "${path}/wherego/lodging_category?filter="+ choice + "&location_filter=" + location + "&size_filter=" + size + "%ameni" + ameni + "%theme" + theme)
-	            formElement.attr("method", "get");
-	            formElement.submit();
-	        })
-	    });
+	    var opt_location = $('.opt_location').length
+	    
+	    for (var i = 0; i < opt_location; i++) {
+	    	if($($($('.opt_location')[i])).val() == '${location}') {
+	    		$('.opt_location').removeClass('selected')
+	    		$($($('.opt_location')[i])).attr("selected","selected")
+		    	break;
+	    	}
+		
+		};
+			    
+	    
 	}); 
     
     </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>

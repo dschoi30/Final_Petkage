@@ -1,10 +1,14 @@
 package com.finalproject.petkage.wherego.model.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproject.petkage.common.util.PageInfo;
 import com.finalproject.petkage.review.model.vo.Review;
 import com.finalproject.petkage.wherego.model.vo.Heart;
+import com.finalproject.petkage.wherego.model.vo.Room;
 import com.finalproject.petkage.wherego.model.vo.Wherego;
 
 public interface WheregoService {
@@ -47,7 +51,10 @@ public interface WheregoService {
 
 	int delete_like(Heart heart);
 
-	void reviewAvg(String spotName);
-	
-	
+	List<Wherego> lodging_board_cate(String filter, String location);
+
+	List<Wherego> cafe_board_cate(String location, String opt);
+
+    Room findBoardByNo_room(int no);
+
 }

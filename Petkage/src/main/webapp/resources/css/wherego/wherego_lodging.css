@@ -43,9 +43,11 @@ html {
 }
 
 @media (max-width: 1023px) {
-    .wg_4 .wg_top {
+   form .wg_4 .wg_top {
         width: 90%;
         margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
     }
 }
 
@@ -60,7 +62,6 @@ html {
 @media (max-width: 1023px) {
     .wg_4 .wg_top .wg_title {
         width: 200px;
-        margin: 0 auto;
     }
 }
 
@@ -78,8 +79,21 @@ html {
     margin: 0;
 }
 
+.wg_4 form {
+    width: 100%;
+    display: flex;
+}
+
 .wg_4 .ht_search2 {
-    width: 80%;
+	display: flex;
+	justify-content: end;
+	margin-left: 35px;
+}
+
+@media (max-width: 1023px) {
+	.wg_4 .ht_search2 {
+		margin-left: 0px;
+	}
 }
 
 .wg_4 .ht_search2 .ht_12 {
@@ -101,7 +115,7 @@ html {
 
 @media (max-width: 1023px) {
     .wg_4 .ht_search2 select {
-        width: 500px;
+        width: 450px;
     }
 }
 
@@ -156,6 +170,7 @@ html {
 @media (max-width: 1023px) {
     .wg_4 .wg_filter {
         width: 90%;
+        margin: 0 auto;
 
     }
 }
@@ -177,7 +192,7 @@ html {
     .wg_4 .wg_filter button {
         width: 150px;
         margin: 0 auto;
-        margin-left: 30px;
+        margin-left: 50px;
     }
 }
 

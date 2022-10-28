@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?af">
+<link rel="stylesheet" href="${ path }/resources/css/admin/admin.css?aft">
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <body>
@@ -20,9 +20,6 @@
           <div class="row">
 
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 sidebar d-md-block collapse" style="padding-left: 0%; border: 0px;" >
-              <a href="${ path }/admin/admMain" class="list-group-item list-group-item-action py-3 lh-tight h-10" aria-current="true">
-                <strong class="mb-1">대시보드</strong>
-              </a>
               <a href="${ path }/admin/memList" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
                 <strong class="mb-1">회원 관리</strong>
               </a>
@@ -72,8 +69,8 @@
                 </form>
                 
                 <div style="text-align: right;"> 
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지 작성</button>
-	                <button type="button" class="btn adminbtn btn-sm" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지(숙소) 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" style="margin-top: 0px;" onclick="location.href='${ pageContext.request.contextPath }/wherego/others_write'">어디가지 작성</button>
+	                <button type="button" class="btn adminbtn btn-sm" style="margin-top: 0px; margin-right: 18px" onclick="location.href='${ pageContext.request.contextPath }/wherego/lodging_write'">어디가지(숙소) 작성</button>
                 </div>
                
 	        	<c:if test="${ empty list }">
@@ -104,7 +101,7 @@
                         <th scope="col">주소</th>
                         <th scope="col">테마</th>
                         <th scope="col">수정</th>
-                        <th scope="col">삭제</th>
+                        <th scope="col">상태</th>
                       </tr>
                     </thead>
                     
@@ -126,10 +123,18 @@
                         <td style="vertical-align: middle;">${ board.theme }</td>
                         <td onclick='event.cancelBubble=true;'>
                           <button type="button" class="btn adminbtn btn-sm" updateId="${ board.spotNo }">수정</button>
-                        </td>
-                        <td onclick='event.cancelBubble=true;'>
-                          <button type="button" class="btn adminbtn btn-sm" deleteId="${ board.spotNo }">삭제</button>
-                        </td>
+                        </td>                     
+                        
+                        <c:if test="${ board.spotStatus == 'N'}">
+	                        <td onclick='event.cancelBubble=true;'>
+	                          <button type="button" class="btn adminbtn btn-sm changebtn" boardId="${ board.spotNo }">복구</button>
+	                        </td>
+                        </c:if>
+                        <c:if test="${ board.spotStatus == 'Y'}">
+	                        <td onclick='event.cancelBubble=true;'>
+	                          <button type="button" class="btn adminbtn btn-sm changebtn" boardId="${ board.spotNo }">삭제</button>
+	                        </td>
+                        </c:if>
                       </tr>
  				    </c:forEach>
                     </tbody>
@@ -192,9 +197,23 @@
     	$(".move").click(function() {
 
    		    var num = $(this).attr("number");
-   		    location.href="${ pageContext.request.contextPath }/product-view?proNo="+num
+   		    location.href="${ pageContext.request.contextPath }/wherego/wherego_lodging_detail?no="+num
 
    		});
+    	
+    	// 업데이트
+	    $(document).ready(() => {			
+			console.log('작동');
+			
+	        $(function() {
+	            $(".changebtn").click(function(){
+	            	if(confirm("상태를 변경시키겠습니까?")){
+	            		location.replace("${ path }/admin/changeBoard?no=" + $(this).attr("boardId"));	            		
+	            	}
+	            })
+	        });
+	        
+		}); 
     	
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

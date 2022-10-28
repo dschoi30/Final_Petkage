@@ -33,6 +33,14 @@ public interface AdminMapper {
 	int selectReviewCount(Map<String, String> map);
 
 	List<Review> selectReviewAll(RowBounds rowBounds, Map<String, String> map);
+
+	Member selectMemberByNo(int no);
+
+	int updateMemStatus(Member member);
+
+	Wherego selectBoardByNo(int no);
+
+	int updateBoardStatus(Wherego wherego);
 	
 	
 
