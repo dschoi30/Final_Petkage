@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=9">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_cafe.css?ver=10">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -274,8 +274,97 @@
                 latlng: new kakao.maps.LatLng(37.543497, 127.151282)
             },
             {
-                title: '노버든 카페', 
-                latlng: new kakao.maps.LatLng(37.585615, 126.983277)
+                title: '코스모스 상점', 
+                latlng: new kakao.maps.LatLng(37.725216, 127.031789)
+            },
+            {
+                title: '옐로우 라인', 
+                latlng: new kakao.maps.LatLng(37.472284, 127.096782)
+            },
+            {
+                title: '88커피', 
+                latlng: new kakao.maps.LatLng(37.166817, 126.953547)
+            },
+            {
+                title: '스톤앤워터',
+                latlng: new kakao.maps.LatLng(37.741697, 126.928646)
+            },
+            {
+                title: '러프러프', 
+                latlng: new kakao.maps.LatLng(37.385798, 127.177816)
+            },
+            {
+                title: '한옥카페 선운각', 
+                latlng: new kakao.maps.LatLng(37.231674, 126.874162)
+            },
+            {
+                title: '메리푸리데이', 
+                latlng: new kakao.maps.LatLng(37.620030, 126.919368)
+            },
+            {
+                title: '클로드커피', 
+                latlng: new kakao.maps.LatLng(37.546364, 126.943243)
+            },
+            {
+                title: '테이크어샤워',
+                latlng: new kakao.maps.LatLng(37.507463, 127.104370)
+            },
+            {
+                title: '코너드커피', 
+                latlng: new kakao.maps.LatLng(37.516847, 127.023928)
+            },
+            {
+                title: '찰스앤다이애나', 
+                latlng: new kakao.maps.LatLng(37.564115, 127.069950)
+            },
+            {
+                title: '맘마', 
+                latlng: new kakao.maps.LatLng(37.507994, 127.133615)
+            },
+            {
+                title: '데이즈커피', 
+                latlng: new kakao.maps.LatLng(37.519378, 126.938809)
+            },
+            {
+                title: '디저트라인업', 
+                latlng: new kakao.maps.LatLng(37.606851, 127.028622)
+            },
+            {
+                title: '테라스461', 
+                latlng: new kakao.maps.LatLng(37.600082, 126.956806)
+            },
+            {
+                title: '슬라이스룸', 
+                latlng: new kakao.maps.LatLng(37.552537, 126.923475)
+            },
+            {
+                title: '그랜마', 
+                latlng: new kakao.maps.LatLng(37.552537, 126.923475)
+            }
+            ,
+            {
+                title: '쁘띠보네르', 
+                latlng: new kakao.maps.LatLng(37.558473, 126.903588)
+            }
+            ,
+            {
+                title: '피알앤티', 
+                latlng: new kakao.maps.LatLng(37.575092, 127.021641)
+            }
+            ,
+            {
+                title: '시월생', 
+                latlng: new kakao.maps.LatLng(37.579564, 127.017663)
+            }
+            ,
+            {
+                title: '바람이 살랑', 
+                latlng: new kakao.maps.LatLng(37.584085, 126.997235)
+            }
+            ,
+            {
+                title: '비스까미노', 
+                latlng: new kakao.maps.LatLng(37.581791, 126.997755)
             }
         ];
             
