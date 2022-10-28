@@ -57,8 +57,6 @@ public interface WheregoMapper {
 
 	Double reviewAvg(String spotName);
 
-	void updateReviewAvg(com.finalproject.petkage.wherego.model.vo.avgReview reviewStar);
-
 	List<Wherego> lodging_board_cate(@Param("filter") String filter, @Param("location") String location);
 
 	List<Wherego> cafe_board_cate(@Param("location") String location, @Param("opt") String opt);

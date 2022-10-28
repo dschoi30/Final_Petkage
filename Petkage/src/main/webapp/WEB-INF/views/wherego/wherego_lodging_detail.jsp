@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging_detail.css?ver=3">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging_detail.css?ver=4">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -33,7 +33,7 @@
 
     <section class="wg_5">
         <div class="wg5_top">
-            <div class="wg5t_1">
+        	<div class="wg5t_1">
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
                     <div class="swiper-wrapper">
                     <c:forEach items="${imgList}" var="imgList">
@@ -132,24 +132,22 @@
                             <span>09. 27</span>&nbsp; - &nbsp;<span>09. 28</span>
                         </div>
                     </div>
-					<div class="swiper-slide">
                     <div class="wg5bc_room">
-                    <c:forEach var="room" items="${ room }">
-					<c:set var="rename_room" value="${ room.renameRoomImg }" />  
                         <div class="wg5bcr_1">
                             <div class="wg5bcr_img">
-                                <img src="${ path }/resources/upload/wherego/${ fn:substring(rename_room,0,21) }" alt="">
+                                <img src="${ path }/resources/images/wherego/침대.png" alt="">
                             </div>
                             <div class="wg5bcr_text">
                                 <div class="te1">
-                                    ${room.roomName}
+                                    스탠다드
                                 </div>
                                 <div class="te2">
                                     <div class="te2_1">
                                         가격
                                     </div>
                                     <div class="te2_2">
-                                    	${room.roomPrice}
+                                        <span>256,000원</span> &nbsp; &nbsp;
+                                        <span>199,000원</span>
                                     </div>
                                 </div>
                                 <div class="te3">
@@ -167,12 +165,20 @@
                                             <div class="modal-body">
                                                 <p>기본정보</p>
                                                 <ul>
-                                                   <li>${room.mInfo}</li>
+                                                    <li>
+                                                        2인 기준 최대 2인
+                                                    </li>
+                                                    <li>
+                                                        더블베드 1개
+                                                    </li>
+                                                    <li>
+                                                        반려동물 베드 1개
+                                                    </li>
                                                 </ul>
                                                 <hr>
                                                 <p>편의시설</p>
                                                 <ul>
-                                                    <li>${room.mAmeni}</li>
+                                                    <li>TV, 블루투스 스피커, 무선 충전기, 티테이블, 옷장, 에어컨, 미니냉장고, 드라이기, 욕실용품, 샤워가운,슬리퍼, 반려동물 식사 그릇</li>
                                                 </ul>
                                             </div>
                                             <div class="modal-footer">
@@ -190,7 +196,7 @@
                             </div>
                         </div>
 
-                        <%-- <div class="wg5bcr_1">
+                        <div class="wg5bcr_1">
                             <div class="wg5bcr_img">
                                 <img src="${ path }/resources/images/wherego/침대.png" alt="">
                             </div>
@@ -314,8 +320,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div> --%>
-                    </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>    
@@ -326,7 +331,24 @@
                         <div class="wg5bci_content">
                             <h5>주변 정보</h5>
                             <ul>
-                                <li>${wherego.info}</li>
+                                <li>역삼역 도보 1분</li>
+                                <li>선정릉 차량 8분</li>
+                                <li>잠원 한강 공원 차량 12분</li>
+                            </ul>
+                            <h5>기본 정보</h5>
+                            <ul>
+                                <li>체크인 : 15:00 | 체크아웃 : 12:00</li>
+                                <li>22시 이후 체크인 시 호텔 프론트 문의</li>
+                                <li>무료 Wi-Fi</li>
+                                <li>전 객실 금연 (흡연 적발 시 300,000원 위약금이 발생됩니다)</li>
+                                <li>Bath Amenity (치약, 칫솔 무료)</li>
+                                <li>주차 가능 (발렛파킹만 가능 / 박 당 10,000원)</li>
+                            </ul>
+                            <h5>인원 추가 정보</h5>
+                            <ul>
+                                <li>기준인원 외 추가 시, 1인 33,000원 (만 12세 이상~성인), 만 12세 미만 무료</li>
+                                <li>영유아 인원수 포함 / 최대인원 초과 불가</li>
+                                <li>반려동물 1마리 (추가금액 없음)</li>
                             </ul>
                         </div>
                     </details>
@@ -356,10 +378,68 @@
                                 4.8
                             </div>
                         </div>
+                    </div>
+                    <c:forEach var="review" items="${review}" begin="0" end="2" step="1">
+                    <c:set var="rename" value="${ review.revrenameimg }" />
+                    <div class="wg5nc_tr">
+                        <div class="wg5nc_name">
+                            <p>${review.memname}</p>
+                        </div>
+                        <div class="wg5nc_star">
+                            <c:choose>
+                            	<c:when test ="${review.revscore == 1}">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+								</c:when>
+								<c:when test ="${review.revscore == 2}">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+								</c:when>
+								<c:when test ="${review.revscore == 3}">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+								</c:when>
+								<c:when test ="${review.revscore == 4}">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/빈별.png" alt="">
+								</c:when>
+								<c:when test ="${review.revscore == 5}">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+									<img src="${ path }/resources/images/wherego/별.png" alt="">
+								</c:when>
+                            </c:choose>
+                        </div>
                         <div class="wg5nc_review">
-                            <a href="">전체 리뷰 <span>(67)</span></a>
+                            ${review.revcoment}
+                        </div>
+                        <div class="wg5nc_image">
+                            <div class="wg5nc_images">
+                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
+                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
+                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
+                            </div>
+                            <div class="wgc7l_write_time">
+                                <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
+                            </div>
                         </div>
                     </div>
+                    </c:forEach>
+                   	<!-- 
                     <div class="wg5nc_tr">
                         <div class="wg5nc_name">
                             <p>김창식</p>
@@ -416,34 +496,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="wg5nc_tr">
-                        <div class="wg5nc_name">
-                            <p>김창식</p>
-                        </div>
-                        <div class="wg5nc_star">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/별.png" alt="">
-                            <img src="${ path }/resources/images/wherego/빈별.png" alt="">
-                        </div>
-                        <div class="wg5nc_review">
-                            나쁘지 않습니다. <br>
-                            여러모로 괜찮아요~ <br>
-                            어쩌구 저쩌굽니다~ 직원분들 친절해요 :) <br>
-                            재방문 의사는 없습니다~ <br>
-                        </div>
-                        <div class="wg5nc_image">
-                            <div class="wg5nc_images">
-                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
-                            </div>
-                            <div class="wgc7l_write_time">
-                                <p>9월 20일 작성</p>
-                            </div>
-                        </div>
-                    </div>
+                     -->
                 </div>
             </div>   
         </div>
@@ -455,7 +508,7 @@
             	
             	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = {
-                    center: new kakao.maps.LatLng(${wherego.spotMapX}, ${wherego.spotMapY}), // 지도의 중심좌표
+                    center: new kakao.maps.LatLng("${wherego.spotMapX}","${wherego.spotMapY}"), // 지도의 중심좌표
                     level: 5 // 지도의 확대 레벨
                 };  
                 
@@ -510,7 +563,7 @@
             	          
             	    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
             	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-            	        markerPosition = new kakao.maps.LatLng(${wherego.spotMapX}, ${wherego.spotMapY}); // 마커가 표시될 위치입니다
+            	        markerPosition = new kakao.maps.LatLng("${wherego.spotMapX}","${wherego.spotMapY}"); // 마커가 표시될 위치입니다
             	
             	    // 마커를 생성합니다
             	    var marker = new kakao.maps.Marker({

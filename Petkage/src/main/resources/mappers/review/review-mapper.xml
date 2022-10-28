@@ -57,6 +57,23 @@
 		ORDER BY REV_NO DESC
     </select>
     
+    <select id="getReviewAllCount_review_lodging" resultType="_int">
+        SELECT COUNT(*) 
+        FROM REVIEW
+        WHERE REV_CATEGORY = '숙소' AND REV_STATUS = 'Y'
+    </select>
+    
+    <select id="getReviewList_review_lodging" resultMap="ReviewList">
+        SELECT *
+        FROM REVIEW R
+        JOIN MEMBER M ON (M.MEM_NO = R.REV_WRITER_NO)
+        FULL OUTER JOIN (SELECT  SPOT_NAME
+          FROM WHEREWEGO
+        ) W ON (R.REV_TITLE = W.SPOT_NAME)
+        WHERE R.REV_CATEGORY = '숙소' AND R.REV_STATUS = 'Y' AND R.REV_TITLE = W.SPOT_NAME
+        ORDER BY R.REV_NO DESC
+    </select>
+    
     <insert id="review_fupload" parameterType="Review" useGeneratedKeys="true" keyProperty="revno" keyColumn="REV_NO">
     	INSERT INTO REVIEW VALUES (SEQ_REV_NO.NEXTVAL, '', '', #{writerno}, '어디가지', #{revtitle}, #{revcoment}, #{revimg}, SYSDATE, #{revscore}, default, 'Y', default, #{revrenameimg}, #{revcategory}, 5, 20221029517242128)
     </insert>
@@ -177,5 +194,14 @@
 		WHERE REV_CATEGORY = '셀프목욕' AND REV_STATUS = 'Y'
 		ORDER BY REV_NO DESC
     </select>
+    
+    <select id="findReviewByName_lodging" resultMap="ReviewList" resultType="map">
+   		SELECT *
+   		FROM REVIEW R
+   		FULL OUTER JOIN (SELECT  SPOT_NAME
+                                    FROM WHEREWEGO
+        ) W ON (R.REV_TITLE = W.SPOT_NAME)
+   		WHERE R.REV_TITLE = W.SPOT_NAME AND R.REV_CATEGORY = '숙소' AND R.REV_STATUS = 'Y'
+   	</select>
 
 </mapper>

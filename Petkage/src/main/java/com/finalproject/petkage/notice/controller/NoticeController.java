@@ -111,7 +111,7 @@ public class NoticeController {
 		
 		if(result > 0) {
 			model.addObject("msg", "공지사항을 수정했습니다.");
-			model.addObject("location", "/notice/noticeList?no=" + notice.getNo());
+			model.addObject("location", "/notice/noticeList");
 		} else {
 			model.addObject("msg", "공지사항 수정을 실패했습니다.");
 			model.addObject("location", "/notice/noticeUpdate?no=" + notice.getNo());
