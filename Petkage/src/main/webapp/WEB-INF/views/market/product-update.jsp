@@ -102,7 +102,7 @@
                 </table>
                 <br><br>
                 <b>상품 상세 설명</b>
-                <textarea id="summernote" name="proContent" value="${ product.proContent }"></textarea>
+                <textarea id="summernote" class="pro-content" name="proContent">${ product.proContent }</textarea>
                 <br>
                 <div class="align-btn-prod-write">
                     <button type="reset" class="btn btn-light text-nowrap">변경취소</button>
@@ -123,14 +123,18 @@ $(document).ready(function() {
 	        maxHeight: null, 
 	        lang: 'ko-KR',
 	        callbacks: {
-	        	onImageUpload: function(files, editor, welEditable) {
-	        		for(var i = files.length -1; i>=0; i--) {
-	        			sendFile(files[i], this);
-	        		}
+	        	  onFocus: function (contents) {
+	        	    if($('#summernote').summernote('isEmpty')){
+	        	      $("#summernote").html(''); 
+	        	    }
+	        	  }
 	        	}
-	        }
 	 });
     
+	 $('#summernote').summernote('pasteHTML', data);
+	 $('#summernote').val().html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
+	 
+	 
 	$("#proCategory1 option[value=${product.proCategory1}]").attr("selected", "selected");    		
 	$("#proCategory2 option[value=${product.proCategory2}]").attr("selected", "selected");
 });

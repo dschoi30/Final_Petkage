@@ -34,7 +34,7 @@
 				      <div class="numbertext">1 / 6</div>
 				        <img src="${path}/resources/upload/market/${ product.renamedFileName }" style="width:480px; height: 480px;">
 				    </div>
-				  
+<!-- 				  
 				    <div class="slides">
 				      <div class="numbertext">2 / 6</div>
 				        <img src="${path}/resources/images/market/dogfood2.jpg" style="width:480px; height: 480px;">
@@ -59,14 +59,14 @@
 				      <div class="numbertext">6 / 6</div>
 				        <img src="${path}/resources/images/market/dogfood6.jpg" style="width:480px; height: 480px;">
 				    </div>
-				  
+-->				  
 				    <!-- Next and previous buttons -->
-				    <div style="position: relative;">
+<!-- 				    <div style="position: relative;">
 					    <a class="slide-prev" onclick="plusCarouselSlides(-1)">&#10094;</a>
 					    <a class="slide-next" onclick="plusCarouselSlides(1)">&#10095;</a>
-				  	</div>
+				  	</div> -->
 				    <!-- Thumbnail images -->
-				    <div class="row-slide">
+<!--				    <div class="row-slide">
 				      <div class="column">
 				        <img class="thumbnail cursor" src="${path}/resources/upload/market/${ product.renamedFileName }" style="width:80px;" onclick="currentSlide(1)">
 				      </div>
@@ -85,7 +85,7 @@
 				      <div class="column">
 				        <img class="thumbnail cursor" src="${path}/resources/images/market/dogfood6.jpg" style="width:80px" onclick="currentSlide(6)">
 				      </div>
-				    </div>
+				    </div> -->
 <!-- 
                     <div id="carouselIndicators" class="carousel slide" data-touch="false" data-interval="false">
                         <ol class="carousel-indicators">
@@ -630,7 +630,7 @@
             fixNext.removeClass("pd_top_80");
         }
     });
-    
+/*    
 	// 캐러셀 슬라이드
     
     let carouselSlideIndex = 1;
@@ -662,7 +662,7 @@
       slides[carouselSlideIndex-1].style.display = "block";
       dots[carouselSlideIndex-1].className += " active";
     }
-    
+*/    
     // 모달 슬라이더
     
     function openModal() {
