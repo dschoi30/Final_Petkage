@@ -91,7 +91,7 @@
                             	<input type="hidden" name="size_filter" id="size_filter">
                             	<input type="hidden" name="ameni" id="ameni">
                             	<input type="hidden" name="theme" id="theme">
-                                <button type="reset" onclick="location.href='${path}/wherego/whergo_lodging'">초기화</button>
+                                <button type="reset" onclick="location.href='${path}/wherego/lodging'">초기화</button>
                                 <button type="submit" id="detail_search">적용</button>
                             </div>
                         </div>    

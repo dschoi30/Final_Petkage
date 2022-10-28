@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>wherego_main</title>
-    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging_detail.css?ver=4">
+    <link rel="stylesheet" href="${ path }/resources/css/wherego/wherego_lodging_detail.css?ver=5">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -126,12 +126,6 @@
             </div>
             <div class="wg5b_content">
                 <div id="wg5bc_1" class="content_container content_container_01 active">
-                    <div class="wg5bc_date">
-                        <div class="wg5bc_d">
-                            <img src="${ path }/resources/images/wherego/달력.png" alt="">
-                            <span>09. 27</span>&nbsp; - &nbsp;<span>09. 28</span>
-                        </div>
-                    </div>
                     <div class="wg5bc_room">
                         <div class="wg5bcr_1">
                             <div class="wg5bcr_img">
@@ -329,27 +323,7 @@
                     <details class="wg5bc_inf" open>
                         <summary class="wg5bci_1">기본 정보</summary>
                         <div class="wg5bci_content">
-                            <h5>주변 정보</h5>
-                            <ul>
-                                <li>역삼역 도보 1분</li>
-                                <li>선정릉 차량 8분</li>
-                                <li>잠원 한강 공원 차량 12분</li>
-                            </ul>
-                            <h5>기본 정보</h5>
-                            <ul>
-                                <li>체크인 : 15:00 | 체크아웃 : 12:00</li>
-                                <li>22시 이후 체크인 시 호텔 프론트 문의</li>
-                                <li>무료 Wi-Fi</li>
-                                <li>전 객실 금연 (흡연 적발 시 300,000원 위약금이 발생됩니다)</li>
-                                <li>Bath Amenity (치약, 칫솔 무료)</li>
-                                <li>주차 가능 (발렛파킹만 가능 / 박 당 10,000원)</li>
-                            </ul>
-                            <h5>인원 추가 정보</h5>
-                            <ul>
-                                <li>기준인원 외 추가 시, 1인 33,000원 (만 12세 이상~성인), 만 12세 미만 무료</li>
-                                <li>영유아 인원수 포함 / 최대인원 초과 불가</li>
-                                <li>반려동물 1마리 (추가금액 없음)</li>
-                            </ul>
+                            ${wherego.info}
                         </div>
                     </details>
                     <details class="wg5bc_inf" open>
@@ -429,9 +403,9 @@
                         </div>
                         <div class="wg5nc_image">
                             <div class="wg5nc_images">
-                                <img src="${ path }/resources/images/wherego/배경9.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경6.png" alt="">
-                                <img src="${ path }/resources/images/wherego/배경8.png" alt="">
+                                <img src="${ path }/resources/images/wherego/포코1.png" alt="">
+                                <img src="${ path }/resources/images/wherego/포코3.png" alt="">
+                                <img src="${ path }/resources/images/wherego/포코4.png" alt="">
                             </div>
                             <div class="wgc7l_write_time">
                                 <p><fmt:formatDate value="${review.revdate}" pattern="MM월 dd일"/></p>
